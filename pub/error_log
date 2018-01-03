@@ -1,0 +1,7 @@
+[22-Sep-2017 10:35:19 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000] [1203] User magentoe_strip already has more than 'max_user_connections' active connections in /home/magentoexpertini/public_html/strip/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php:128
+Stack trace:
+#0 /home/magentoexpertini/public_html/strip/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php(128): PDO->__construct('mysql:host=loca...', 'magentoe_strip', 'strip@bluethink', Array)
+#1 /home/magentoexpertini/public_html/strip/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Mysql.php(111): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#2 /home/magentoexpertini/public_html/strip/vendor/magento/framework/DB/Adapter/Pdo/Mysql.php(353): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#3 /home/magentoexpertini/public_html/strip/vendor/magento/zendframework1/library/Zend/Db/Adapter/Abstract.php(460): Magento\Framework\DB\Adapter\Pdo\Mysql->_connect()
+#4 /home/magentoexpertini/public_html/strip/vendor/magento/zendframework1/library/Zend/Db/Ada in /home/magentoexpertini/public_html/strip/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php on line 144

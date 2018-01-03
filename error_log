@@ -1,0 +1,560 @@
+[15-Nov-2017 10:13:41 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; Min_DB has a deprecated constructor in /home/webte/public_html/nuluv/adminer.php on line 273
+[15-Nov-2017 10:13:41 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; Min_Result has a deprecated constructor in /home/webte/public_html/nuluv/adminer.php on line 298
+[15-Nov-2017 10:13:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ereg() in /home/webte/public_html/nuluv/adminer.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/webte/public_html/nuluv/adminer.php on line 7
+[15-Nov-2017 10:13:51 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; Min_DB has a deprecated constructor in /home/webte/public_html/nuluv/adminer.php on line 273
+[15-Nov-2017 10:13:51 UTC] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; Min_Result has a deprecated constructor in /home/webte/public_html/nuluv/adminer.php on line 298
+[15-Nov-2017 10:13:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ereg() in /home/webte/public_html/nuluv/adminer.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/webte/public_html/nuluv/adminer.php on line 7
+[16-Nov-2017 14:04:31 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nuluv/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 114
+[16-Nov-2017 14:04:34 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nuluv/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 114
+[16-Nov-2017 14:04:38 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nuluv/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 114
+[16-Nov-2017 14:04:42 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nuluv/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 114
+[16-Nov-2017 14:04:58 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nuluv/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 114
+[17-Nov-2017 13:07:47 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/webte/public_html/nuluv/app/code/Bluethink/Custom/Controller/Index/Quickview.php on line 112
+[17-Nov-2017 13:10:12 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/webte/public_html/nuluv/app/code/Bluethink/Custom/Controller/Index/Quickview.php on line 112
+[18-Nov-2017 14:53:10 UTC] PHP Fatal error:  Uncaught Exception: Warning: SessionHandler::write(): write failed: No space left on device (28) in /home/webte/public_html/nuluv/vendor/magento/framework/Session/SaveHandler.php on line 105 in /home/webte/public_html/nuluv/vendor/magento/framework/App/ErrorHandler.php:61
+Stack trace:
+#0 [internal function]: Magento\Framework\App\ErrorHandler->handler(2, 'SessionHandler:...', '/home/webte/pub...', 105, Array)
+#1 /home/webte/public_html/nuluv/vendor/magento/framework/Session/SaveHandler.php(105): SessionHandler->write('ial02d3fil3qbjs...', '_session_valida...')
+#2 [internal function]: Magento\Framework\Session\SaveHandler->write('ial02d3fil3qbjs...', '_session_valida...')
+#3 /home/webte/public_html/nuluv/vendor/magento/framework/Session/SessionManager.php(139): session_write_close()
+#4 /home/webte/public_html/nuluv/var/generation/Magento/Framework/Session/Generic/Interceptor.php(24): Magento\Framework\Se[23-Nov-2017 05:56:01 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(82): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:08:44 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(77): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:10:43 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:10:55 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:12:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:15:53 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:16:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:18:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:22:46 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:22:57 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:23:30 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:24:31 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:26:31 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:26:50 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:28:16 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:28:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 06:29:43 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml on line 287
+[23-Nov-2017 06:30:33 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml on line 287
+[23-Nov-2017 06:31:42 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(73): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[23-Nov-2017 16:58:05 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to undefined method Magento\Catalog\Helper\Output::getAttribute() in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:154
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Mage in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 154
+[23-Nov-2017 17:19:24 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:154
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 154
+[23-Nov-2017 17:29:19 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 402653184 bytes exhausted (tried to allocate 199245824 bytes) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 156
+[23-Nov-2017 17:29:19 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 402653184 bytes exhausted (tried to allocate 199233536 bytes) in Unknown on line 0
+[23-Nov-2017 17:30:26 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 402653184 bytes exhausted (tried to allocate 199245824 bytes) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 156
+[23-Nov-2017 17:30:27 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 402653184 bytes exhausted (tried to allocate 199233536 bytes) in Unknown on line 0
+[23-Nov-2017 17:57:29 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:57:57 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:57:58 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:57:59 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:58:00 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:58:01 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:58:02 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:58:03 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:58:20 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:58:31 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:58:40 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:59:16 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 17:59:17 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:100
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 100
+[23-Nov-2017 18:28:01 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:157
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 157
+[23-Nov-2017 18:28:02 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:157
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 157
+[23-Nov-2017 18:28:03 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:157
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 157
+[23-Nov-2017 18:28:24 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to undefined function getBaseUrl() in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:157
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Temp in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 157
+[23-Nov-2017 18:30:08 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:157
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 157
+[23-Nov-2017 18:30:09 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:157
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 157
+[23-Nov-2017 18:30:10 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:157
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 157
+[23-Nov-2017 18:30:11 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:157
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 157
+[23-Nov-2017 18:30:12 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:157
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 157
+[23-Nov-2017 18:30:47 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:158
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 158
+[23-Nov-2017 18:32:04 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:158
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 158
+[23-Nov-2017 18:38:21 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:173
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\Email\Model\Template\Filter- in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 173
+[23-Nov-2017 18:39:51 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Mage' not found in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:158
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+# in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 158
+[23-Nov-2017 18:40:46 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to undefined function getBaseUrl() in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:158
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Temp in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 158
+[23-Nov-2017 18:42:43 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to undefined function getBaseUrl() in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:158
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Temp in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 158
+[23-Nov-2017 18:44:12 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to undefined function getBaseUrl() in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml:158
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\ListProduct\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/ListProduct/Interceptor.php(557): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\ListProduct\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Temp in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/list.phtml on line 158
+[24-Nov-2017 07:14:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/edit.phtml(15): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public_ in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[24-Nov-2017 07:24:30 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(51): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[24-Nov-2017 07:36:58 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/login.phtml(51): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/public in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[24-Nov-2017 07:52:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getFirstname() on null in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml:91
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Customer\Block\Widget\Name), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/register.phtml(40): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 /home/webte/pub in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/widget/name.phtml on line 91
+[25-Nov-2017 11:48:52 UTC] PHP Parse error:  syntax error, unexpected '?>' in /home/webte/public_html/nurture/app/code/Mageplaza/LayeredNavigation/view/frontend/templates/layer/view.phtml on line 70
+[25-Nov-2017 12:50:27 UTC] PHP Parse error:  syntax error, unexpected '$subsubcat' (T_VARIABLE), expecting ',' or ';' in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/html/header/header.phtml on line 224
+[25-Nov-2017 12:52:44 UTC] PHP Parse error:  syntax error, unexpected '$subsubcat' (T_VARIABLE), expecting ',' or ';' in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/html/header/header.phtml on line 224
+[25-Nov-2017 13:20:38 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/html/header/header.phtml on line 117
+[25-Nov-2017 13:20:59 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/html/header/header.phtml on line 117
+[25-Nov-2017 13:21:06 UTC] PHP Parse error:  syntax error, unexpected '{' in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/html/header/header.phtml on line 117
+[28-Nov-2017 06:39:26 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 88
+[28-Nov-2017 06:39:27 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 88
+[28-Nov-2017 06:39:33 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 88
+[28-Nov-2017 06:39:40 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 88
+[28-Nov-2017 06:39:40 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 88
+[28-Nov-2017 06:40:30 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 88
+[28-Nov-2017 12:25:57 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 12:26:03 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 12:26:32 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 12:26:52 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 12:27:23 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 12:29:36 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 12:32:30 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 12:33:38 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 07:04:05 UTC] PHP Fatal error:  Uncaught Error: Call to a member function usesSource() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/view/type/default.phtml:14
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Catalog\Block\Product\View\Type\Simple\Interceptor), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/var/generation/Magento/Catalog/Block/Product/View/Type/Simple/Interceptor.php(414): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Catalog\Block\Product\View\Type\Simple\Interceptor->fetchView('/home/webte/pub...')
+#4 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Catalog/templates/product/view/type/default.phtml on line 14
+[28-Nov-2017 12:37:22 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 12:38:11 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 12:38:14 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 12:42:32 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to a member function getFrontend() on boolean in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml:99
+Stack trace:
+#0 /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php(59): include()
+#1 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(255): Magento\Framework\View\TemplateEngine\Php->render(Object(Magento\Framework\View\Element\Template), '/home/webte/pub...', Array)
+#2 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/Template.php(279): Magento\Framework\View\Element\Template->fetchView('/home/webte/pub...')
+#3 /home/webte/public_html/nurture/vendor/magento/framework/View/Element/AbstractBlock.php(659): Magento\Framework\View\Element\Template->_toHtml()
+#4 /home/webte/public_html/nurture/vendor/magento/module-email/Model/Template/Filter.php(404): Magento\Framework\View\Element\AbstractBlock->toHtml()
+#5 [internal function]: Magento\E in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Theme/templates/homepage/homepagecat.phtml on line 99
+[28-Nov-2017 08:34:43 UTC] PHP Fatal error:  Allowed memory size of 402653184 bytes exhausted (tried to allocate 32768 bytes) in /home/webte/public_html/nurture/app/design/frontend/Bluethink/Theme/Magento_Customer/templates/form/register.phtml on line 91
+[28-Nov-2017 08:34:43 UTC] PHP Fatal error:  Allowed memory size of 402653184 bytes exhausted (tried to allocate 32768 bytes) in Unknown on line 0
+[28-Nov-2017 08:35:28 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/webte/public_html/nurture/vendor/magento/framework/View/TemplateEngine/Php.php on line 66

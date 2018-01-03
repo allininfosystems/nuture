@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Allin_Knowledge::parent" title="Knowledge Hub" module="Allin_Knowledge" sortOrder="100" resource="Allin_Knowledge::parent"/>
+		<add id="Allin_Knowledge::kb" title="Knowledge Hub Comments" module="Allin_Knowledge" sortOrder="20" parent="Allin_Knowledge::parent" action="knowledge/kb" resource="Allin_Knowledge::kb"/>
+
+    </menu>
+</config>

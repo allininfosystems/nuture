@@ -27,12 +27,20 @@ class Freeshipamt extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
 		$enabled = $this -> helperData -> isModuleEnabledFreeshipamt();
 		$minimumOrderAmount = $this -> helperData -> getMinimumOrderAmountFreeshipamt();
 		$subtotal = $total -> getTotalAmount('subtotal');
+		if($quote->getShippingAddress()){
+			$getShippingRate = $quote->getShippingAddress()->getShippingAmount();
+			if($getShippingRate > 0){
+				$freeshipamt = 0 - intval($getShippingRate);	
+			}else{
+				$freeshipamt = 0;
+			}
+			
+		}else{
+			$freeshipamt = 0;
+		}
+		
 		if ($enabled && $minimumOrderAmount <= $subtotal) {
-			$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-            $cart = $objectManager->get('\Magento\Checkout\Model\Cart'); 
-            $getShippingRate = $cart->getQuote()->getShippingAddress()->getShippingAmount();
-			$freeshipamt = intval($getShippingRate);
-			//$freeshipamt = -50;
+			
 			$total -> setTotalAmount('freeshipamt', $freeshipamt);
 			$total -> setBaseTotalAmount('freeshipamt', $freeshipamt);
 			$total -> setFreeshipamt($freeshipamt);

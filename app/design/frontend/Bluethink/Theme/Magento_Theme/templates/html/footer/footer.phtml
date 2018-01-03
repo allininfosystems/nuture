@@ -347,8 +347,18 @@ function newsletterSubmit(event){
 <?php
 	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 	$cart = $objectManager->get('\Magento\Checkout\Model\Cart');
-	$shippingAmount = $cart->getQuote()->getShippingAmount();
-	echo 'shipamt='.$shippingAmount;
+	if($cart->getQuote()->getShippingAddress()){
+		$getShippingRate = $cart->getQuote()->getShippingAddress()->getShippingAmount();
+		if($getShippingRate > 0){
+			$freeshipamt = 0 - intval($getShippingRate);	
+		}else{
+			$freeshipamt = 0;
+		}
+		
+	}else{
+		$freeshipamt = 0;
+	}
+	echo 'shipamt='.$freeshipamt;
  ?>
  <?php 
  $objectManager = \Magento\Framework\App\ObjectManager::getInstance();

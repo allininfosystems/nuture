@@ -16,6 +16,7 @@ class AddFeeToOrderObserver implements ObserverInterface
 
 		
         $CustomFeeFreeshipamt = $quote->getFreeshipamt();
+		echo $CustomFeeFreeshipamt; die('abc');
         $CustomFeeBaseFreeshipamt = $quote->getBaseFreeshipamt();
 
         if ($CustomFeeFreeshipamt&&$CustomFeeBaseFreeshipamt) {

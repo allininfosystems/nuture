@@ -1,0 +1,57 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_LayeredNavigationPro
+ * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+
+<?php
+/** @type \Mageplaza\LayeredNavigation\Model\Layer\Filter\Attribute $filter */
+$filter = $block->getFilter();
+
+/** @type \Mageplaza\LayeredNavigationPro\Model\Layer\Filter $filterModel */
+$filterModel = $block->getFilterModel();
+
+$searchEnable = $block->isSearchEnable();
+$attCode = $filter->getRequestVar();
+?>
+<?php if($searchEnable): ?>
+<input type="text" class="layer-search-box" code="<?php echo $attCode ?>" placeholder="<?php echo __('Search') ?>" />
+<?php endif; ?>
+<ol class="items ln-items-<?php echo $attCode ?> <?php echo $searchEnable ? 'layer-search-list layer-search-list-' . $attCode : '' ?>">
+    <?php foreach ($block->getItems() as $item): ?>
+		<li class="item" <?php echo $searchEnable ? "data-search-term=\"" . strtolower($item->getLabel()) . "\"" : ''; ?>>
+			<?php if ($item->getCount() > 0): ?>
+				<a href="<?php echo $block->escapeUrl($filterModel->getItemUrl($item)) ?>">
+					<input type="<?php echo $filterModel->isMultiple($filter) ? 'checkbox' : 'radio' ?>" <?php echo $filterModel->isSelected($item) ? 'checked="checked"' : ''  ?> class="layer-input-filter" name="filter_<?php echo $attCode ?>">
+					<label for="filter_<?php echo $attCode ?>" ><?php echo $item->getLabel() ?></label>
+					
+					<?php if ($filterModel->isShowCounter($filter)): ?>
+						<span class="count"><?php echo $item->getCount()?><span class="filter-count-label"><?php echo ($item->getCount() == 1) ? 'item' : 'items'; ?></span></span>
+					<?php endif; ?>
+				</a>
+			<?php elseif($filterModel->isShowZero($filter)): ?>
+				<input type="<?php echo $filterModel->isMultiple($filter) ? 'checkbox' : 'radio' ?>" disabled="disabled" class="layer-input-filter" name="filter_<?php echo $attCode ?>"/>
+				<?php echo $item->getLabel() ?>
+				<?php if ($filterModel->isShowCounter($filter)): ?>
+					<span class="count"><?php echo $item->getCount()?><span class="filter-count-label"><?php echo ($item->getCount() == 1) ? 'item' : 'items'; ?></span></span>
+				<?php endif; ?>
+			<?php endif; ?>
+        </li>
+	<?php endforeach ?>
+</ol>

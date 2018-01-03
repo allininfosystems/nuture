@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="checkout_cgst_block" xsi:type="object">Magecomp\Gstcharge\Model\CgstFeeConfigProvider</item>
+				<item name="checkout_sgst_block" xsi:type="object">Magecomp\Gstcharge\Model\SgstFeeConfigProvider</item>
+				<item name="checkout_igst_block" xsi:type="object">Magecomp\Gstcharge\Model\IgstFeeConfigProvider</item>
+				<item name="checkout_shipping_cgst_block" xsi:type="object">Magecomp\Gstcharge\Model\ShippingCgstFeeConfigProvider</item>
+				<item name="checkout_shipping_sgst_block" xsi:type="object">Magecomp\Gstcharge\Model\ShippingSgstFeeConfigProvider</item>
+				<item name="checkout_shipping_igst_block" xsi:type="object">Magecomp\Gstcharge\Model\ShippingIgstFeeConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+	 <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="vendor_add_custom_field" type="Magecomp\Gstcharge\Plugin\Checkout\Model\Checkout\LayoutProcessor" sortOrder="100"/>
+    </type>
+</config>

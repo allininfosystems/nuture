@@ -1,0 +1,230 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php if ($crumbs && is_array($crumbs)) : ?>
+
+<?php 
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();        
+$request = $objectManager->get('\Magento\Framework\App\Request\Http');
+$cmsPage = $objectManager->get('\Magento\Cms\Model\Page');
+$page_id=$cmsPage->getId();
+$cmsPage->getIdentifier(); //Get Current CMS Page Identifier
+$page_id;
+//echo $request->getFullActionName() . '<br />';
+$action_name = $request->getActionName();
+$module_name = $request->getModuleName();
+$controller_name = $request->getControllerName();
+if($module_name == 'catalog' && $controller_name == 'category')
+{ 
+  $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+  $catName =  $category->getName();
+  ?>
+  <h2 class="head-title">
+  <?php 
+      if($catName)
+      {
+        echo $catName;
+      }
+  ?>
+  </h2>
+ <?php }else if($controller_name == 'product')
+ {
+  $product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+  $proName =  $product->getName();
+  ?>
+  <h2 class="head-title">
+    <?php 
+        if($proName)
+        {
+          echo $proName;
+        }
+    ?>
+  </h2>
+  <?php }else if($controller_name == 'result') { ?>
+    <h2 class="head-title">
+    <?php 
+        echo __('Search Results');
+    ?>
+   </h2>
+  <?php } elseif ($module_name=='mpblog' && $controller_name == 'post') { ?>
+  <h2 class="head-title">
+  <?php
+      echo __('Blog');
+  ?>
+  </h2>
+  <?php }elseif ($module_name=='checkout' && $controller_name == 'cart'){ ?>
+  <h2 class="head-title">
+  <?php
+      echo __('Shopping Cart');
+  ?>
+ </h2>
+ <?php }elseif ($module_name=='kbase' && $controller_name=='category'){ ?>
+ <h2 class="head-title">
+ <?php
+  echo __('Knowledge Hub');
+  ?>
+</h2>
+<?php }elseif ($module_name=='kbase' && $controller_name=='article'){ ?>
+ <h2 class="head-title">
+ <?php
+ if($action_name=='s'){
+  echo __('Search Results');
+}elseif ($action_name=='view') {
+  echo __('Knowledge Hub');
+}
+  ?>
+</h2>
+<?php }elseif ($module_name=='customer'){ ?>
+ <h2 class="head-title">
+  <?php
+  if($action_name=='create')
+  {
+     echo __('Sign Up');
+  }elseif($action_name=='login'){
+    echo __('Login');
+  }elseif ($action_name=='forgotpassword') {
+    echo __('Forgot Your Password');
+  }elseif ($action_name=='index' && $controller_name=='account') {
+    echo __('My Account');
+  }elseif ($action_name=='logoutSuccess') {
+    echo __('You are signed out');
+  }elseif ($action_name=='edit') {
+    echo __('My Account Information');
+  }elseif ($action_name=='form' && $controller_name=='address') {
+    echo __('Address Edit');
+  }elseif ($action_name=='index' && $controller_name=='address') {
+    echo __('Address Book');
+  }
+  ?>  
+ </h2> 
+ <?php }elseif ($module_name=='checkout' && $controller_name=='index') {?>
+ <h2 class="head-title">
+ <?php
+  echo __('One Step Checkout');
+  
+  ?>
+</h2>
+<?php }elseif ($module_name=='cms') {?>
+<h2 class="head-title">
+  <?php
+  if($page_id=='7')
+  {
+     echo __('About Us');
+  }elseif ($page_id=='8') {
+    echo __('Media');
+  }elseif ($page_id=='9') {
+    echo __('Expert Panel');
+  }elseif ($page_id=='10') {
+    echo __('Giving Back');
+  }elseif ($page_id=='11') {
+    echo __('Careers');
+  }elseif ($page_id=='17') {
+    echo __('Contact Us');
+  }elseif ($page_id=='13') {
+    echo __('Shipping & Returns');
+  }elseif ($page_id=='14') {
+    echo __('Privacy Policy');
+  }elseif ($page_id=='15') {
+    echo __('Terms and Conditions');
+  }
+?>
+</h2>
+<?php }elseif ($controller_name=='index' && $module_name=='faq') {?>
+<h2 class="head-title">
+<?php
+  echo __('Help & FAQs');
+  ?>
+</h2>
+<?php }elseif ($controller_name=='tag' && $module_name=='mpblog') {?>
+  <h2 class="head-title">
+<?php
+  echo __('TAGS');
+  ?>
+</h2>
+<?php }elseif ($action_name=='view' && $module_name=='mpblog' && $controller_name=='category') {?>
+  <h2 class="head-title">
+<?php
+  echo __('Blog');
+  ?>
+</h2><?php }elseif ($module_name=='newsletter') {?>
+  <h2 class="head-title">
+<?php
+  echo __('Newsletter Subscriptions');
+  ?>
+</h2>
+<?php }elseif ($module_name=='wishlist' && $controller_name=='index') {?>
+  <h2 class="head-title">
+<?php
+  echo __('My Wish List');
+  ?>
+</h2>
+<?php }elseif ($module_name=='review' && $controller_name=='customer') {?>
+  <h2 class="head-title">
+<?php
+  echo __('My Product Reviews');
+  ?>
+</h2>
+<?php }elseif ($module_name=='vault' && $controller_name=='cards') {?>
+  <h2 class="head-title">
+<?php
+  echo __('Stored Payment Methods');
+  ?>
+</h2>
+<?php }elseif ($module_name=='sales' && $controller_name=='order') {?>
+  <h2 class="head-title">
+<?php
+if($action_name=='history'){
+  echo __('My Orders');
+}elseif($action_name=='view') {
+  echo __('Items Ordered');
+}
+    ?>
+</h2>
+<?php }elseif ($action_name=='success' && $module_name=='checkout' && $controller_name=='onepage') {?>
+  <h2 class="head-title">
+<?php
+  echo __('Order Success');
+    ?>
+</h2>
+<?php }elseif ($module_name=='rewardpoints') {?>
+  <h2 class="head-title">
+<?php if($controller_name=="index"){
+  echo __('My Rewards');
+}elseif ($controller_name=="settings") {
+  echo __('Reward Points Settings');
+}elseif ($controller_name=="policy") {
+  echo __('Reward Policy');
+}elseif ($controller_name=="transactions") {
+  echo __('Reward Point Transactions');
+}
+
+  ?>
+</h2>
+<?php }elseif ($module_name=='search' && $controller_name=='index') {?>
+ <h2 class="head-title">
+ <?php
+  echo __('Search Results');
+  }
+  ?>
+</h2>
+<div class="breadcum">
+   
+        <?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
+            <?php if ($crumbInfo['link']) : ?>
+                <a href="<?php /* @escapeNotVerified */ echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>">
+                    <?php echo $block->escapeHtml($crumbInfo['label']) ?>
+                </a> <?php echo __('&nbsp; > &nbsp');?>  
+            <?php elseif ($crumbInfo['last']) : ?>
+               <?php echo $block->escapeHtml($crumbInfo['label']) ?>
+            <?php else: ?>
+                <?php echo $block->escapeHtml($crumbInfo['label']) ?>
+            <?php endif; ?>
+        <?php endforeach; ?>  
+</div>   
+<?php endif; ?>

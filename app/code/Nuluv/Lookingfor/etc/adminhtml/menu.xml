@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Nuluv_Lookingfor::parent" title="Lookingfor" module="Nuluv_Lookingfor" sortOrder="100" resource="Nuluv_Lookingfor::parent"/>
+		<add id="Nuluv_Lookingfor::lookingfor" title="Nuluv Lookingfor" module="Nuluv_Lookingfor" sortOrder="20" parent="Nuluv_Lookingfor::parent" action="lookingfor/lookingfor" resource="Nuluv_Lookingfor::lookingfor"/>
+
+    </menu>
+</config>

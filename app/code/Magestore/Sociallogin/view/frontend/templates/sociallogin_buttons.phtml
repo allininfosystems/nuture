@@ -1,0 +1,104 @@
+<?php
+	/**
+ * Copyright © 2016 Magestore. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ */
+?>
+<?php $arrayButton = $this->makeArrayButton(); $temp = $arrayButton; ?>
+<?php $numberShow = $this->getNumberShow();?>
+<?php $countAll = 0;?>
+<?php $countMain = 0;?>
+<?php $count = 0;?>
+<?php
+        if(!isset($_SESSION))session_start();
+        $_SESSION["socialogin_currentpage"] = $this->getCurrentUrl();?>
+
+<div id="sociallogin_button">	
+	<ul class="<?php echo ($this->getDirection() == 'left') ? "left" : "right" ?>">
+	<?php foreach($arrayButton as $key => $button):?>	
+		<?php $check =$button['check'];?>
+		<?php if($check): unset($temp[$key]);?>					
+			<li class="button <?php echo ($this->getDirection() == 'left') ? "left" : "right" ?>"> <?php echo $button['button']?> </li>
+			
+			<script type="text/javascript">
+			require([
+				'prototype' 
+				], function  () {
+					
+							if($('<?php echo $button['id'] ?>' ))
+							$('<?php echo $button['id'] ?>').addClassName('visible');
+							if($('<?php echo $button['id'] ?>' ))
+							$('<?php echo $button['id'] ?>' ).setStyle('min-width: 80px');
+							
+					
+				});
+
+		</script>	
+			<?php ++$countMain ;?>			
+		<?php endif;?>
+		<?php if($countMain == $numberShow){break;} ?>
+	<?php endforeach;?>  		
+	</ul>	
+	<?php if(count($temp)):?>
+	<?php $noEmpty = false;?>
+	<?php foreach($temp as $tem):?>
+	<?php if($tem['check']):?>
+	<?php $noEmpty = true;?>
+	<?php endif;?>
+	<?php endforeach;?>
+	<?php if($noEmpty):?>
+	<div class="sociallogin-other">
+	<input id="numbersocial" type="hidden" name="numbersocial"  value="<?php echo $numberShow;?>"/>
+		<div id="sociallogin-other-div">		
+			<a id="sociallogin-other-a" href="#" onclick="showOtherButton();hideShownButtons(<?php echo $numberShow;?>);" > 
+			<?php if($this->getDirection() == 'left'){ ?>
+				<span class="sociallogin-other-span-img-popup" style="float:left;margin:3px"></span>
+			<?php }?>
+			<span class="sociallogin-other-span" style="<?php if($this->getDirection() == 'left'){ echo 'float:left;margin:3px';} ?>">
+				<?php echo __('Other login') ?>
+			</span>			
+			<?php if($this->getDirection() == 'right'){ ?>
+				<span class="sociallogin-other-span-img-popup"></span>
+			<?php }?>
+			</a>
+			
+		
+		</div>
+	</div>	
+	<?php endif; ?>
+	<?php endif; ?>
+</div>
+<div class="clear"></div>
+	<script type="text/javascript">
+					
+							
+									function showOtherButton(){
+							        	$('social_login_popup').show();
+								        centerWindow('sociallogin_button');
+										centerWindow('magestore-popup_social');
+							        }
+									function hideShownButtons(number){
+										i = 0;
+										$$('#social_login_popup ul li').each(function(el){
+											if(i<number){
+												el.hide();
+												i++;
+											}else el.show();
+										});
+									}
+									
+							 function centerWindow(element) {
+			                    var windowHeight = parseFloat($(element).getHeight())/2;
+			                    var windowWidth = parseFloat($(element).getWidth())/2;
+			                    if(typeof window.innerHeight != 'undefined') {
+			                        $(element).style.top = Math.round(document.body.offsetTop + ((window.innerHeight - $(element).getHeight()))/2)+'px';
+			                        $(element).style.left = Math.round(document.body.offsetLeft + ((window.innerWidth - $(element).getWidth()))/2)+'px';
+			                        } else {
+			                        $(element).style.top = Math.round(document.body.offsetTop + ((document.documentElement.offsetHeight - $(element).getHeight()))/2)+'px';
+			                        $(element).style.left = Math.round(document.body.offsetLeft + ((document.documentElement.offsetWidth - $(element).getWidth()))/2)+'px';
+			                    }
+			                }
+					
+
+			</script>

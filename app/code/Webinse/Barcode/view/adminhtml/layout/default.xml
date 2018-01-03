@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Layout update for Admin Panel.
+ *
+ * @category	Webinse
+ * @package 	Webinse_Barcode
+ * @author  	Webinse Team <info@webinse.com>
+ * @copyright   2017 Webinse Ltd. (https://www.webinse.com)
+ * @license 	http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Webinse_Barcode::js/jscolor/jscolor.js"/>
+    </head>
+</page>

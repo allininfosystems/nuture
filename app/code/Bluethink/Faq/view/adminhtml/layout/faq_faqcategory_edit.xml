@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+     <update handle="editor"/>
+    <body>
+	   <referenceContainer name="content">
+            <block class="Bluethink\Faq\Block\Adminhtml\Faqcategory\Edit" name="faq_faqcategory_edit"/>
+        </referenceContainer>
+		 <referenceContainer name="left">
+            <block class="Bluethink\Faq\Block\Adminhtml\Faqcategory\Edit\Tabs" name="faq_faqcategory_edit_tabs">
+				<block class="Bluethink\Faq\Block\Adminhtml\Faqcategory\Edit\Tab\FAQ" name="faq_faqcategory_edit_tab_faq"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">faqcategory_section</argument>
+                    <argument name="block" xsi:type="string">faq_faqcategory_edit_tab_faq</argument>
+                </action>
+				<!--CedAddTab-->
+			</block>
+        </referenceContainer>
+    </body>
+</page>

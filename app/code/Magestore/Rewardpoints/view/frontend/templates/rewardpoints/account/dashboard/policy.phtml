@@ -1,0 +1,75 @@
+<?php
+/**
+ * Magestore
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Magestore
+ * @package     Magestore_RewardPoints
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+
+/**
+ * Rewardpoints Account Dashboard
+ *
+ * @see Magestore_RewardPoints_Block_Account_Dashboard
+ */
+$earnWhenSpend = $this->_objectManager->create('Magestore\Rewardpoints\Helper\Config')->getConfig('rewardpoints/earning/earn_when_spend', $this->_storeManager->getStore()->getId());
+?>
+
+<?php if($this->getMaxPointBalance() || $this->getRedeemablePoints() || $this->getMaxPerOrder() || !$earnWhenSpend || $this->getTransactionExpireDays() || $this->getHoldingDays()): ?>
+    <strong class="rewardpoints-title"><?php echo __('How your points can be managed') ?></strong><br />
+    <ul class="rewardpoints-dashboard-ul">
+        <?php if ($_maxBalance = $this->getMaxPointBalance()): ?>
+            <li>
+                <?php echo __('Maximum of your balance') ?>:
+                <strong class="rewardpoints-money"><?php echo $this->_objectManager->create('Magestore\Rewardpoints\Helper\Point')->format($_maxBalance) ?></strong>
+            </li>
+        <?php endif; ?>
+        <?php if ($_redeemablePoints = $this->getRedeemablePoints()): ?>
+            <li>
+                <?php echo __('Reach %1 to start using your balance for your purchase.',
+                    '<strong class="rewardpoints-money">' . $this->_objectManager->create('Magestore\Rewardpoints\Helper\Point')->format($_redeemablePoints) . '</strong>'
+                ) ?>
+            </li>
+        <?php endif; ?>
+        <?php if ($_maxPerOrder = $this->getMaxPerOrder()): ?>
+            <li>
+                <?php echo __('Maximum %1 are allowed to spend for an order.',
+                    '<strong class="rewardpoints-money">' . $this->_objectManager->create('Magestore\Rewardpoints\Helper\Point')->format($_maxPerOrder) . '</strong>'
+                ) ?>
+            </li>
+        <?php endif; ?>
+        <?php if (!$earnWhenSpend): ?>
+            <li>
+                <?php echo __('You cannot earn any points when you use points to spend for your order!'); ?>
+            </li>
+        <?php endif; ?>
+        <?php if ($_expireDays = $this->getTransactionExpireDays()): ?>
+            <li>
+                <?php echo __('A transaction will expire after %1 since its creating date..',
+                    ($_expireDays == 1) ? $_expireDays . ' ' . __('day') : $_expireDays . ' ' . __('days')
+                ) ?>
+                <br/>
+                <?php echo __('View transaction history to follow when the transaction expires.') ?>
+            </li>
+        <?php endif ?>
+        <?php if ($_holdingDays = $this->getHoldingDays()): ?>
+            <li>
+                <?php echo __('A transaction will be withheld for %1 since creation.',
+                    ($_holdingDays == 1) ? $_holdingDays . ' ' . __('day') : $_holdingDays . ' ' . __('days')
+                ) ?>
+            </li>
+        <?php endif ?>
+    </ul>
+<?php endif; ?>

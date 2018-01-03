@@ -1,0 +1,149 @@
+<?php
+/** @var \Mirasvit\Kb\Block\Category\Sidebar $block */
+
+$tree = $block->getCategoryTree();
+$minLevel = $block->getMinCategoryLevel();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$store = $storeManager->getStore();
+$baseurl=$store->getBaseUrl();
+$KnowledgehubUrl=$baseurl.'knowledge-hub.html';
+$atozurl= $baseurl.'knowledge-hub/health-a-z.html';
+
+$request     = $objectManager->get('\Magento\Framework\App\Request\Http');
+ $action_name = $request->getActionName();
+ $module_name = $request->getModuleName();
+ $controller_name = $request->getControllerName();
+
+$urlInterface = $objectManager->get('Magento\Framework\UrlInterface');
+$current = $urlInterface->getCurrentUrl();
+
+$param = $block->getRequest()->getParam('article');
+$articles4 = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
+
+$storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+      $currentStore    = $storeManager1->getStore();
+      $mediaUrl        = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+      $nn=$mediaUrl."kb";
+?>
+<?php if (count($tree) > 0): ?>
+    <div class="block block-collapsible-nav kb__category-sidebar">
+        <!-- <div class="title block-collapsible-nav-title"
+             data-mage-init='{"toggleAdvanced": {"toggleContainers": "#block-collapsible-nav-kb", "selectorsToggleClass": "active"}}'>
+            <strong><?//= __('Categories') ?></strong>
+        </div> -->
+        <div class="product-filter filter"  id="block-collapsible-nav-kb">
+            <ul class="nav items">
+                <?php $p = 1; foreach ($tree as $category): ?>
+                    <li class="item level-<?= $category->getLevel() - $minLevel + 1 ?>">
+                        <a class="tab-link <?php if ($current==$KnowledgehubUrl && $p == 1) {echo "current";} elseif ($current == $category->getUrl()) {echo "current";} ?>" href="<?= $category->getUrl() ?>"><?= $category->getName() ?>
+                            <!-- <span class="count"><?//= $category->getArticlesNumber($block->getStoreId()) ?></span> -->
+                        </a>
+                    </li>
+                <?php $p++; endforeach ?>
+            </ul>
+        </div>
+    </div>
+    <div class="alpha_pagination">
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/A" style="<?php if ($param=='A') { echo "filterColor";} ?>">A</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/B" style="<?php if ($param=='B') { echo "filterColor";} ?>">B</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/C" style="<?php if ($param=='C') { echo "filterColor";} ?>">C</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/D" style="<?php if ($param=='D') { echo "filterColor";} ?>">D</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/E" style="<?php if ($param=='E') { echo "filterColor";} ?>">E</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/F" style="<?php if ($param=='F') { echo "filterColor";} ?>">F</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/G" style="<?php if ($param=='G') { echo "filterColor";} ?>">G</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/H" style="<?php if ($param=='H') { echo "filterColor";} ?>">H</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/I" style="<?php if ($param=='I') { echo "filterColor";} ?>">I</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/J" style="<?php if ($param=='J') { echo "filterColor";} ?>">J</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/K" style="<?php if ($param=='K') { echo "filterColor";} ?>">K</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/L" style="<?php if ($param=='L') { echo "filterColor";} ?>">L</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/M" style="<?php if ($param=='M') { echo "filterColor";} ?>">M</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/N" style="<?php if ($param=='N') { echo "filterColor";} ?>">N</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/O" style="<?php if ($param=='O') { echo "filterColor";} ?>">O</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/P" style="<?php if ($param=='P') { echo "filterColor";} ?>">P</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/Q" style="<?php if ($param=='Q') { echo "filterColor";} ?>">Q</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/R" style="<?php if ($param=='R') { echo "filterColor";} ?>">R</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/S" style="<?php if ($param=='S') { echo "filterColor";} ?>">S</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/T" style="<?php if ($param=='T') { echo "filterColor";} ?>">T</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/U" style="<?php if ($param=='U') { echo "filterColor";} ?>">U</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/V" style="<?php if ($param=='V') { echo "filterColor";} ?>">V</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/W" style="<?php if ($param=='W') { echo "filterColor";} ?>">W</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/X" style="<?php if ($param=='X') { echo "filterColor";} ?>">X</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/Y" style="<?php if ($param=='Y') { echo "filterColor";} ?>">Y</a>
+        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/Z" style="<?php if ($param=='Z') { echo "filterColor";} ?>">Z</a>
+<?php endif ?>
+<?php if ($action_name=='view' && $module_name=='kbase' ) { ?>
+      <div class="kb__search-box hub_search">
+    <div class="search-title">Expert advices for parenting and more!</div>
+    <form action="<?= $block->getUrl('kbase/article/s')?>" method="GET" id="kb-s-form" class="abc">
+        <input id="mpblog-search-box" name='s' id='s' type="text" placeholder="Search..." class="form-control input-text required-entry" required value="<?= $block->getQuery() ?>">
+        <button class="action primary" title="Submit" type="submit">
+            <span><i class="fa fa-fw fa-search"></i></span>
+        </button>
+    </form>
+</div>  
+<?php } elseif ($action_name=='filter' && $module_name=='kbase') { ?>
+<form action="<?= $block->getUrl('kbase/article/s')?>" method="GET" id="kb-s-form">
+        <input name='s' id='s' type="text" placeholder="Search..." class="form-control input-text required-entry" required value="<?= $block->getQuery() ?>">
+    </form>
+<?php } ?>
+
+</div>
+
+<style type="text/css">
+.filterColor{
+	    border-bottom: 3px solid #7e6674 !important;
+	    background-color: #FF9FAA !important;
+	}
+	
+.kbase-category-filter .product-filter{
+	margin: auto;
+    width: 33%;
+    margin-left:475px;
+}
+</style>
+<?php
+    $artarr=array();
+    foreach ($articles4 as $article_1){
+		$url=str_replace('.htm','.html',$article_1->getUrl());
+		if(!empty($article_1['image'])){ $imghtml=$nn.'/'.$article_1['image'];} else { $imghtml=$this->getViewFileUrl('images/hub_cat_01.jpg');}
+		$artarr[]=array('value'=>$article_1->getName(),'url'=>$url,'image'=>$imghtml,'desc'=>$article_1->getName());			
+	}
+ ?>
+<script>	
+        require([
+            'jquery',
+            'autocomplete'
+            ], function ($) {
+                $("#blog-section-search").click(function () { 
+                    $("#blog-section-input").show();
+                });
+                $("#close-serach").click(function () { 
+                    $("#blog-section-input").hide();
+                });
+                var visibleImage = 1;
+                $('#mpblog-search-box').autocomplete({
+                    lookup: <?php echo json_encode($artarr); ?>,
+                    lookupLimit: 10,
+                    maxHeight: 2000,
+                    minChars: 1,
+                    onSelect: function (suggestion) {
+                        var urlString = suggestion.url;
+                        window.location.href = urlString.substring(0,urlString.length - 1);
+                    },
+                    formatResult: function (suggestion, currentValue) {
+                        var urlString = suggestion.url;
+                        var html = "<a class='mpblog-suggestion' href='" + urlString.substring(0,urlString.length - 1) + "'>";
+                        if (visibleImage) {
+                            html += "<div class='mpblog-suggestion-left'><img class='img-responsive' src='" + suggestion.image + "' /></div>"
+                        }
+                        html += "<div class='mpblog-suggestion-right'>" +
+                        "<div class='mpblog-product-line mpblog-product-name'>" + suggestion.value + "</div>" +
+                        "<div class='mpblog-product-des'><p class='mpblog-short-des'>" + suggestion.desc + "</p></div></div></a>";
+
+                        return html;
+                    }
+                });
+            });
+        </script>

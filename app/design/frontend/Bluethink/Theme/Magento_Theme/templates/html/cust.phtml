@@ -1,0 +1,66 @@
+<?php 
+  $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+  $request = $objectManager->get('\Magento\Framework\App\Request\Http');
+  $categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+  $categoryHelper = $this->helper('Magento\Catalog\Helper\Category');
+  $categoryRepository = $objectManager->get('\Magento\Catalog\Model\CategoryRepository'); 
+
+$urlInterface = $objectManager->get('Magento\Framework\UrlInterface');
+
+  $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+  $categoryId=$category->getId();
+  $categoryname=$category->getName();
+   $catalogSession = $objectManager->get('\Magento\Catalog\Model\Session');
+
+       if ($categoryId==3 || $categoryId==4 || $categoryId==5 ) {
+   
+      $catalogSession->setCatid($categoryId);
+      $current = $urlInterface->getCurrentUrl();
+      $catalogSession->setCaturl($current);
+  } 
+  $currentq = $urlInterface->getCurrentUrl();
+  $catid=$catalogSession->getCatid();
+  $caturl=$catalogSession->getCaturl();
+  
+  $category = $categoryFactory->create()->load($catid);
+  $categoryurl=$category->getUrl();
+  $childrenCategories = $category->getChildrenCategories();
+  $urlstr=explode('cat=',$caturl);
+  $allcaturl=explode('?',$caturl);
+  if(count($urlstr)>1){
+	   $catsarr=explode('&',$urlstr[1]);
+  }
+ 
+  ?>
+  <section class="container">
+      <div class="product-filter filter"> 
+      	<a class="tab-link <?php if(count($urlstr)==1){echo "current";} ?>" href="<?php echo $categoryurl; ?>">Shop All</a>
+      	 <?php
+              foreach ($childrenCategories as  $value) 
+              { 
+			    if(count($urlstr)==1){
+					echo '<a class="tab-link" href="'.$categoryurl.'?cat='.$value->getId().'">'.$value->getName().'</a>';
+				}else{
+					$act='';
+					$links=$categoryurl.'?cat='.$value->getId();
+					if($catsarr[0]==$value->getId()){
+						$act='current';
+						$links='';
+					}
+					echo '<a class="tab-link '.$act.'" href="'.$links.'">'.$value->getName().'</a>';
+				}
+			  }  ?>
+      	</div>
+  </section>
+  <script>
+ require(['jquery'],function (jQuery) {
+    jQuery(document).ready(function(){
+     jQuery('.toolbar-products').css("display", "block");
+     //jQuery('.tab-link:first').addClass('current');
+     jQuery('.product-filter a:eq(5)').hide()
+    });
+    
+});
+</script>
+             
+            

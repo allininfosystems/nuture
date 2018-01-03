@@ -1,0 +1,93 @@
+<?php
+      $objectManager   = \Magento\Framework\App\ObjectManager::getInstance();
+      $category        = $objectManager->get('Magento\Framework\Registry')->registry('kb_current_category');
+      $catColl         = $objectManager->get('Mirasvit\Kb\Model\Category');
+      $resource        = $objectManager->get('Magento\Framework\App\ResourceConnection');
+      $connection      = $resource->getConnection(); 
+      $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+      $currentStore    = $storeManager1->getStore();
+      $mediaUrl        = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+      $nn=$mediaUrl."kb";
+     if ($category->getCategoryId() == 2 || $category->getCategoryId() == 9) 
+     {
+      $articles4 = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
+       ?>
+        <div id="filter-tab-1" class="tab-content current sdsdsds">          
+              <ul class="hub_list">
+                <?php 
+                foreach ($articles4 as $article_1)
+                {
+                  $publish_datte  = $article_1['created_at'];
+                  $tempDate       = $publish_datte;
+                  $day            = date('l', strtotime($tempDate));
+                  $month          = date('F jS Y ',strtotime($tempDate));
+
+                  $sql_5      = "SELECT mstcat.* FROM mst_kb_category as mstcat
+                  INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id
+                  INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id where mstart.article_id=".$article_1->getArticleId()."";
+                  $result5    = $connection->fetchAll($sql_5);
+                ?>
+                <li>
+                  <div class="hub-box fff">
+                      <a href="<?= $article_1->getUrl(); ?>"><div class="hub-box-image" ><img src="<?php if(!empty($article_1['image'])){ echo $nn.'/'.$article_1['image'];} else { echo $this->getViewFileUrl('images/hub_cat_01.jpg');} ?>"/></div></a>  
+                      <div class="hub-details">
+                          <div class="hub_flex">
+                            <span class="hub_type"><?php echo $result5[0]['name'] ?></span>
+                            <div class="hub_title"><a href="<?= $article_1->getUrl(); ?>"><?php echo $article_1->getName(); ?></a></div>
+                          </div>
+                      </div>
+                      <div class="box-bottom">
+                          <div class="pull-left"><?php echo $month; ?></div>
+                            <div class="pull-right hubrate"><span><i class="fa fa-heart"></i></span><span><?php echo $article_1->getRating();?></span></div>
+                          <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </li>  
+              <?php } ?>
+             </ul> 
+          </div>
+          <div>
+            <?php if ($block->getPagerHtml()): ?>
+                    <?php echo $block->getPagerHtml(); ?>
+              <?php endif ?>
+          </div>
+      <?php } else {
+                
+                $sql        = "Select * FROM mst_kb_article_category WHERE ac_category_id='".$category->getCategoryId()."'";
+                $result1    = $connection->fetchAll($sql);
+                $sql_1      = "Select * FROM mst_kb_category WHERE category_id='".$category->getCategoryId()."'";
+                $result_1   = $connection->fetchAll($sql_1);
+                $result2    = array();     
+                foreach ($result1 as $value) 
+                {
+                  $ac_article_id = $value['ac_article_id'];
+                  $sql2          = "Select * FROM mst_kb_article WHERE article_id='".$ac_article_id."'"; 
+                  $result2       = $connection->fetchAll($sql2);
+                  $publish_datte = $result2[0]['created_at'];
+                  $tempDate      = $publish_datte;
+                  $day           = date('l', strtotime($tempDate));
+                  $month         = date('jS F Y',strtotime($tempDate));
+                  $model = $objectManager->get('Mirasvit\Kb\Model\Article')->load($ac_article_id);
+            ?>
+            <div id="filter-tab-1" class="tab-content current hhhhhhhhhhhh">          
+              <ul class="hub_list">
+                <li>
+                  <div class="hub-box kkk">
+                      <a href="<?php echo $model->getUrl();?>"><div class="hub-box-image" ><img src="<?php if(!empty($result2[0]['image'])){ echo $nn.'/'.$result2[0]['image'];} else { echo $this->getViewFileUrl('images/hub_cat_01.jpg');} ?>"/></div></a>
+                      <div class="hub-details">
+                          <div class="hub_flex">
+                            <span class="hub_type"><?php echo $result_1[0]['name'] ?></span>
+                            <div class="hub_title"><a href="<?php echo $model->getUrl();?>"><?=$result2['0']['name'];?></a></div>
+                          </div>
+                      </div>
+                      <div class="box-bottom">
+                          <div class="pull-left"><?= $month; ?></div>
+                            <div class="pull-right hubrate"><span><i class="fa fa-heart"></i></span><span><?php echo  $model->getRating();?></span></div>
+                          <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </li>
+              </ul>
+            </div>   
+    <?php }  }  ?> 
+   

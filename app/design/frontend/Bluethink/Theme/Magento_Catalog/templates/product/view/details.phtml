@@ -1,0 +1,185 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$blogstr = $product->getBlogs();    
+$knowledgebasestr = $product->getKnowledgebase();    
+$categories = $product->getCategoryIds(); /*will return category ids array*/
+foreach($categories as $category){
+    $cat = $objectManager->create('Magento\Catalog\Model\Category')->load($category);
+    $categoryname[]= $cat->getName();
+    }
+
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$mediaUrl = $storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
+
+/** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
+
+/** Apply filters here */
+
+
+
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
+    <div class="product info detailed" id="custom_scrolls">
+        <?php $layout = $block->getLayout(); ?>
+        <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php $i=0; foreach ($detailedInfoGroup as $name):?>
+                <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                ?>
+                <div class="data item title tablabel-<?php echo $i;?>"
+                     aria-labeledby="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title"
+                     data-role="collapsible" id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>">
+                    <a class="data switch"
+                       tabindex="-1"
+                       data-toggle="switch"
+                       href="#<?php /* @escapeNotVerified */ echo $alias; ?>"
+                       id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title">
+                        <?php /* @escapeNotVerified */ echo $label; ?>
+                    </a>
+                </div>
+                <div class="data item content tabcontent-<?php echo $i;?>" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content">
+                    <?php /* @escapeNotVerified */ echo $html; ?>
+                </div>
+            <?php $i++; endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<div class="prd_detail-blog">
+        <div class="blog-list">    
+            <?php 
+			if($blogstr){
+			$blogsarr = explode(',',$blogstr);
+			if(count($blogsarr)>0){
+			  echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('blogtitleproductdetail')->toHtml();	
+			foreach($blogsarr as $postid){
+			$postcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Post\Collection')->addFieldToFilter('post_id', $postid);
+            foreach($postcollection as $post){
+			       $postid=$post->getPostId(); 
+                   $commentcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Comment\Collection')->addFieldToFilter('post_id',$postid);
+                   $commentcount=count($commentcollection);
+                   $likecount=array();
+               foreach ($commentcollection as $comment) {
+                    $commentid=$comment['comment_id'];
+                    $likecModel = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Like\Collection')->addFieldToFilter('comment_id',$commentid);
+                    $likecount[]=count($likecModel->getData());
+               }
+              $likecot=array_sum($likecount);
+              $publish_datte=$post->getData()['publish_date'];
+              $tempDate = $publish_datte;
+              $day = date('l', strtotime($tempDate));// will gives you the week day name 
+              $month = date('jS F Y',strtotime($tempDate));?>
+              <div class="blog-item">
+                <a href="<?php echo $block->getUrl().'blog/post/'.$post->getData()['url_key'] ?>">
+                    <div class="blogimage" ><img src="<?php echo $mediaUrl.'mageplaza/blog/post/image'.$post->getData()['image']; ?>"/></div></a>       
+                <div class="item-content">
+                    <div class="item-title"><a href="<?php echo $block->getUrl().'blog/post/'.$post->getData()['url_key'] ?>"><?php echo $post->getData()['name']; ?></a></div>
+                    <div class="item-desc"><?php echo $post->getData()['short_description']; ?></div>
+                    <div class="item-bottom">
+                    <div class="blog-date"><?php echo $month; ?></div>
+                        <div class="blog-status">
+                             <div class="blog-like"><?php echo $likecot; ?><i class="fa fa-heart"></i></div>
+                        <div class="blog-comment"><?php echo  $commentcount; ?> <i class="fa fa-comments"></i></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+			<?php } } } } ?>
+            <div class="clearfix"></div>
+        </div>
+</div>
+<?php
+	$storeManager1 =$objectManager->get('Magento\Store\Model\StoreManagerInterface');
+	$currentStore  = $storeManager1->getStore();
+	$mediaUrl      = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+	$nn=$mediaUrl."kb";
+    if($knowledgebasestr){
+		$knowledgebasearr = explode(',',$knowledgebasestr);
+		echo '<div class="knowledgehub-container"> <h2 class="head-title">Knowledge hub goes here...</h2> <p class="head-small">dolor sit amet, consectetur, adipisci velit...</p>';
+		if(count($knowledgebasearr)>0){
+			echo '<div class="hub-item-coll">';
+			foreach($knowledgebasearr as $artid){
+				$articles = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->addFieldToFilter('article_id', $artid);
+				foreach ($articles as  $value) {
+					$categories=$value->getCategories();
+					$publish_datte  = $value['created_at'];
+					$date = new DateTime($publish_datte);
+                    $hubdate=$date->format('F d, Y');
+					echo '<div class="knowledge-item">';
+					     if($value['image']){
+					        echo '<div class="knowledge-item-img"><img src="'.$nn.'/'.$value['image'].'" /></div>';
+						 }
+                         echo '<div class="knowledge-item-cat">'.count($categories).'Mama</div>';						 
+					     echo '<div class="knowledge-item-title">'.$value['name'].'</div>';
+					     echo '<div class="knowledge-item-details"><div class="hubdate">'.$hubdate.'</div><div class="hubrate"><span><i class="fa fa-heart"></i></span><span>'.$value->getRating().'</span></div></div>';
+					echo '</div>';
+				}
+			}
+			echo '</div>';
+		}
+		echo '</div>';
+	}
+?>
+<script>
+ require(['jquery'],function (jQuery) {
+    jQuery("#reviewcom").click(function() {
+    jQuery('html, body').animate({
+        scrollTop: jQuery("#custom_scrolls").offset().top
+    }, 2000);
+    
+});
+    jQuery("#ak").click(function() {
+    jQuery('html, body').animate({
+        scrollTop: jQuery("#custom_scrolls").offset().top
+    }, 2000);
+     jQuery('.tablabel-1').removeClass("active");
+     jQuery('.tablabel-2').removeClass("active");
+     jQuery('.tablabel-3').removeClass("active");
+     jQuery('.tablabel-0').addClass("active");
+	 
+	 jQuery('.tabcontent-1').hide();
+     jQuery('.tabcontent-2').hide();
+     jQuery('.tabcontent-3').hide();
+     jQuery('.tabcontent-0').show();
+
+});
+jQuery("#reviewcom").click(function() {
+    jQuery('html, body').animate({
+        scrollTop: jQuery("#custom_scrolls").offset().top
+    }, 2000);
+
+     jQuery('.tablabel-1').removeClass("active");
+     jQuery('.tablabel-2').removeClass("active");
+     jQuery('.tablabel-3').addClass("active");
+     jQuery('.tablabel-0').removeClass("active");
+	 
+	 jQuery('.tabcontent-1').hide();
+     jQuery('.tabcontent-2').hide();
+     jQuery('.tabcontent-3').show();
+     jQuery('.tabcontent-0').hide();
+    
+});
+    
+});
+</script>

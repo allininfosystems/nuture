@@ -1,0 +1,33 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
+<style>
+.cart-summary{width:100%!important;}
+.cart-summary .cart-totals,#block-rewardpoints{float:left; min-width:400px!important;}
+.cart-summary .discount{float:right; min-width:250px!important;}
+#block-rewardpoints{clear:both; margin:20px 0;}
+</style>
+
+
+<?php
+/**
+ * Shopping cart template
+ *
+ * @var $block \Magento\Checkout\Block\Cart
+ */
+
+
+if ($block->getItemsCount()) {
+    echo $block->getChildHtml('with-items');
+} else {
+    echo $block->getChildHtml('no-items');
+}
+
+
+
+
+

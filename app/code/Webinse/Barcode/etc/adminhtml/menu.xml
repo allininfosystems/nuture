@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webinse Barcode Menu config file.
+ *
+ * @category	Webinse
+ * @package 	Webinse_Barcode
+ * @author  	Webinse Team <info@webinse.com>
+ * @copyright   2017 Webinse Ltd. (https://www.webinse.com)
+ * @license 	http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Webinse_Barcode::barcode" title="Barcode generation and management" module="Webinse_Barcode"
+             translate="title" sortOrder="10" resource="Webinse_Barcode::barcode" parent="Webinse_Core::core"/>
+        <add id="Webinse_Barcode::generator" title="Barcode Generator" module="Webinse_Barcode"
+             translate="title" sortOrder="10" resource="Webinse_Barcode::generator"
+             action="webinse_barcode/generator" parent="Webinse_Barcode::barcode"/>
+        <add id="Webinse_Barcode::import" title="Import Barcode" module="Webinse_Barcode"
+             translate="title" sortOrder="15" resource="Webinse_Barcode::import"
+             action="webinse_barcode/import" parent="Webinse_Barcode::barcode"/>
+        <add id="Webinse_Barcode::scan" title="Scan Barcode" module="Webinse_Barcode"
+             translate="title" sortOrder="20" resource="Webinse_Barcode::scan"
+             action="webinse_barcode/scan" parent="Webinse_Barcode::barcode"/>
+        <add id="Webinse_Barcode::history" title="History of created barcodes" module="Webinse_Barcode"
+             translate="title" sortOrder="80" resource="Webinse_Barcode::history"
+             action="webinse_barcode/history" parent="Webinse_Barcode::barcode"/>
+        <add id="Webinse_Barcode::barcode_configuration" title="Configuration" module="Webinse_Barcode"
+             translate="title" sortOrder="99" resource="Webinse_Barcode::barcode_configuration_menu"
+             action="adminhtml/system_config/edit/section/barcode" parent="Webinse_Barcode::barcode" />
+    </menu>
+</config>

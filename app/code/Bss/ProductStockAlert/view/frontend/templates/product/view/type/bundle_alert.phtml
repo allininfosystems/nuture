@@ -1,0 +1,62 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_ProductStockAlert
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2017 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+?>
+
+<?php
+$helper = $this->helper('Bss\ProductStockAlert\Helper\Data');
+
+?>
+<?php if ($helper->isStockAlertAllowed()): ?>
+<script type="text/javascript">
+    require(['jquery','mage/mage'],function($){
+        $('select.bundle.option').bind("change", function(){
+            if($(this).is("select")){
+                var optionid = $(this).attr('name').match(/\d+/)[0];
+                $(this).find('option:selected').each(function(){
+                    var element = ".container_check_alert"+optionid;
+                    if($(this).attr("url")) {
+                        $(element).html("Out Of Stock");
+                        $.ajax({
+                            url: $(this).attr("url"),
+                            dataType: 'json',
+                            data: {"action" : $(this).attr("action"), "productId" : $(this).attr("productid"), "statusAvailable" : "grouped"},
+                            type : "post"
+                        }).done(function (data) {
+                            $(element).html(data.html);
+                            $(element).trigger('contentUpdated');
+                        })
+                    }else{
+                        $(element).html("");
+                    }
+                });
+            }
+        })
+    });
+</script>
+<?php endif ?>

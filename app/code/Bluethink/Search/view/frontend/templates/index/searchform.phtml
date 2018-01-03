@@ -1,0 +1,78 @@
+<?php
+$helper = $this->helper('Magento\Search\Helper\Data');
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$ajax_url_1     = $baseUrl."pub/static/frontend/Bluethink/Theme/en_US/images/loader-2.gif";
+?>
+
+<style type="text/css">
+  #search_autocomplete ul li .amount {
+    display: block;
+}
+</style>
+<div class="search-bar" id="searchcontainer">
+	<form class="clearfix" id="search_mini_form" action="<?php echo $block->getUrl('search/index/searchresult/');?>" method="post">
+			<input autofocus onkeyup="searchContent();" id="searchContent"
+				   data-mage-init='{"quickSearch":{
+						"formSelector":"#search_mini_form",
+						"url":"<?php echo $block->getUrl('search/ajax/suggest', ['_secure' => $block->getRequest()->isSecure()]); ?>",
+						"destinationSelector":"#search_autocomplete"}
+				   }'
+				   type="text"
+				   name="search"
+				  
+				   placeholder="<?php echo __('Search...'); ?>"
+				   class="search-input"
+				   maxlength="<?php echo $helper->getMaxQueryLength();?>"
+				   role="combobox"
+				   aria-haspopup="false"
+				   aria-autocomplete="both"
+				   autocomplete="on"/>
+			<div id="suggestion" class="" style="position: absolute; width: 1220px; display: none;"></div>
+			<?php echo $block->getChildHtml() ?>
+			<span class="lodercustom" style="display: none;" id="loading"><img alt="Loading..." src="<?php echo $baseUrl; ?>pub/static/frontend/Bluethink/Theme/en_US/images/loader-2.gif"></span>
+			<button type="submit" class="search-submit-btn"><i class="fa fa-search"></i></button>
+			<span class="close-search-btn"><i class="fa fa-close"></i></span>
+	</form>
+</div>
+<span style="display: none;" ><img alt="Loading..." src="<?php echo $ajax_url_1; ?>"></span>
+<script type="text/javascript">
+    require(['jquery'],function (jQuery) {
+    jQuery(document).ready(function(){
+
+    	jQuery('#searchContent').keyup( function() {
+
+        var myLength = jQuery("#searchContent").val().length;
+
+        if( myLength < 3 ){
+
+          jQuery("#suggestion").hide();
+
+        }
+	   if( this.value.length < 3 ) return;
+		var value = jQuery('#searchContent').val();
+		jQuery("#loading").show();
+
+		jQuery.ajax({
+				type:'POST',
+				url:"<?php echo $block->getUrl('search/index/searchcontent/');?>",
+				data: {key:value},
+				//showLoader: true,
+				success:function(feedback) {
+				  jQuery("#suggestion").html(feedback);
+				  jQuery("#suggestion").show();
+				  jQuery("#loading").hide();
+				 },
+				error:function(){             
+				}     
+			  });
+
+	});
+    	jQuery(".close-search-btn").click(function(){
+    		jQuery("#suggestion").hide();
+    	});
+        });
+      });
+</script>

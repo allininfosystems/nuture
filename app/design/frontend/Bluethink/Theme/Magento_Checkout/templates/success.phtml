@@ -1,0 +1,89 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<div class="checkout-success">
+    <?php if ($block->getOrderId()):?>
+        <?php if ($block->getCanViewOrder()) :?>
+            <p><?php echo __('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeHtml($block->getViewOrderUrl()), $block->escapeHtml($block->getOrderId()))) ?></p>
+        <?php  else :?>
+            <p><?php echo __('Your order # is: <span>%1</span>.', $block->escapeHtml($block->getOrderId())) ?></p>
+        <?php endif;?>
+            <p><?php /* @escapeNotVerified */ echo __('We\'ll email you an order confirmation with details and tracking info.') ?></p>
+    <?php endif;?>
+
+    <?php echo $block->getAdditionalInfoHtml() ?>
+    <?php
+    $orderId=$block->getOrderId(); 
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$orderObj = $objectManager->create('Magento\Sales\Model\Order')->loadByIncrementId($orderId);
+	$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+	$subtotal = $orderObj->getSubtotal();
+	$order_id = $orderObj->getId(); //the id of the order
+	$gtotal = $orderObj->getGrandTotal();//grand total of the order
+	$shippingVal=$orderObj->getShippingAmount();
+	$taxAmount=$orderObj->getTaxAmount();
+	$shippingaddress=$orderObj->getShippingAddress()->getData();
+	$billingaddress=$orderObj->getBillingAddress()->getData();
+	$payment_method_code = $orderObj->getPayment()->getMethodInstance()->getCode();
+	$shiphtml='';
+	if(count($shippingaddress)>0){
+		$country_name =$objectManager->create('\Magento\Directory\Model\Country')->load($shippingaddress['country_id'])->getName();
+		$shiphtml.=$shippingaddress['firstname'].''.$shippingaddress['lastname'].'<br>';
+		$shiphtml.=$shippingaddress['street'].'<br>';
+		$shiphtml.=$shippingaddress['city'].','.$shippingaddress['region'].','.$shippingaddress['postcode'].'<br>';
+		$shiphtml.=$country_name;
+	}
+	$billhtml='';
+	if(count($billingaddress)>0){
+		$country_name =$objectManager->create('\Magento\Directory\Model\Country')->load($billingaddress['country_id'])->getName();
+		$billhtml.=$billingaddress['firstname'].''.$billingaddress['lastname'].'<br>';
+		$billhtml.=$billingaddress['street'].'<br>';
+		$billhtml.=$billingaddress['city'].','.$billingaddress['region'].','.$billingaddress['postcode'].'<br>';
+		$billhtml.=$country_name;
+	}
+	echo '<table class="checkout-success-box1" border="1" cellpadding="0" cellspacing="0" border-spacing="0">';
+	echo '<tr><td><strong>Shipping Address</strong> <br>'.$shiphtml.'</td><td><strong>Billing Address</strong> <br>'.$billhtml.'</td></tr>';
+	echo '<tr><td><strong>Shipping Method</strong> <br>'.$orderObj->getShippingDescription().'</td><td><strong>Payment Method</strong> <br>'.$payment_method_code.'</td></tr>';
+	echo '</table>';
+	$orderItems = $orderObj->getAllVisibleItems();
+	echo '<table class="checkout-success-box2" border="1" cellpadding="0" cellspacing="0" border-spacing="0"><tr><th>Name</th><th>Sku</th><th>Price</th><th>Qty</th><th>GST Amount</th><th>Subtotal</th></tr>';
+	foreach ($orderItems as $itemId => $item){
+		$productId=$item->getProductId();
+	    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+		$imghtml='';
+	    if($product){
+		  $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+		  $image_url = $imageHelper->init($product, 'product_page_image_small')->setImageFile($product->getImage())->resize(100, 100)->getUrl();
+		  $imghtml='<img src="'.$image_url.'" />';
+	    }
+		$_product=$item->getProduct();
+		$cat=$_product->getCategoryIds();
+		$rowtotal=$item->getPrice()*$item->getQtyToInvoice();
+		echo '<tr>';
+		echo '<td>'.$item->getName().$imghtml.'</td>';
+		echo '<td>'.$item->getSku().'</td>';
+		echo '<td>'.$item->getPrice().'</td>';
+		echo '<td>'.$item->getQtyToInvoice().'</td>';
+		echo '<td>0</td>';
+		echo '<td>'.$rowtotal.'</td>';
+		echo '</tr>';
+	}
+	echo '<tr><td colspan="5" align="right">Subtotal</td><td>'.$subtotal.'</td></tr>';
+	echo '<tr><td colspan="5" align="right">GST Amount</td><td>'.$taxAmount.'</td></tr>';
+	echo '<tr><td colspan="5" align="right">Shipping & Handling</td><td>'.$shippingVal.'</td></tr>';
+	echo '<tr><td colspan="5" align="right">Grand Total</td><td>'.$gtotal.'</td></tr>';
+    echo '</table>';
+ ?>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?php /* @escapeNotVerified */ echo $block->getUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Continue Shopping') ?></span></a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<?php
+/** @var \Mirasvit\Kb\Block\Category\Sidebar $block */
+
+$tree = $block->getCategoryTree();
+$minLevel = $block->getMinCategoryLevel();
+?>
+<?php if (count($tree) > 0): ?>
+    <div class="block block-collapsible-nav kb__category-sidebar">
+        <div class="title block-collapsible-nav-title"
+             data-mage-init='{"toggleAdvanced": {"toggleContainers": "#block-collapsible-nav-kb", "selectorsToggleClass": "active"}}'>
+            <strong><?= __('Categories') ?></strong>
+        </div>
+        <div class="block-collapsible-content content"  id="block-collapsible-nav-kb">
+            <ul class="nav items">
+                <?php foreach ($tree as $category): ?>
+                    <li class="item level-<?= $category->getLevel() - $minLevel + 1 ?>">
+                        <a href="<?= $category->getUrl() ?>"><?= $category->getName() ?>
+                            <span class="count"><?= $category->getArticlesNumber($block->getStoreId()) ?></span>
+                        </a>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+    </div>
+<?php endif ?>
+

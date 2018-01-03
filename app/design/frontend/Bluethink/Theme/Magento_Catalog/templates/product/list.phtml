@@ -1,0 +1,177 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$request = $objectManager->get('\Magento\Framework\App\Request\Http');
+$action_name = $request->getActionName();
+$module_name = $request->getModuleName();
+$controller_name = $request->getControllerName();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+$wishlist_id = array();
+if ($customerSession->isLoggedIn()) {
+    $customerid = $customerSession->getCustomer()->getId();
+    $Wishlist_Model = $objectManager->create('\Magento\Wishlist\Controller\WishlistProviderInterface');
+    $currentUserWishlist = $Wishlist_Model->getWishlist();
+    if ($currentUserWishlist) {
+        $wishlistItems = $currentUserWishlist->getItemCollection()->getData();
+        foreach ($wishlistItems as $wishlistItems_value) {
+            $wishlist_id[] = $wishlistItems_value['product_id'];
+        }
+    }
+}
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
+    <?php echo $block->getToolbarHtml() ?>
+    <?php echo $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $image = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $image = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+    <div class="products wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> products-<?php /* @escapeNotVerified */ echo $viewMode; ?>">
+        <?php $iterator = 1; ?>
+        <ol class="products list items product-items">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product): ?>
+                <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                <div class="product-box product-item-info" data-container="product-grid">
+                    <?php
+                    $productImage = $block->getImage($_product, $image);
+                    if ($pos != null) {
+                        $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                            . 'top:' . $productImage->getHeight() . 'px;"';
+                    }
+                    ?>
+                    <?php // Product Image ?>
+                    <div class="product-image">
+                        <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                            <?php echo $productImage->toHtml(); ?>
+                        </a>
+                        <?php if ($_product->getIsSalable()): ?>
+                                <div class="overlay" onclick="location.href='<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>';">                               
+                                </div>
+								<div class="overlay-content imginfo">
+								   <a class="quick-icon" href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>"><i class="fa fa-arrow-right" ></i></a>
+								   <div data-product-id="<?php echo $_product->getId(); ?>"></div>
+                                </div>
+                            <?php else: ?>
+                                <div class="overlay sold-out">
+                                    <div class="overlay-sold-out-content"><a class="sold-out-btn" href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">Sold Out</a></div>
+                                </div>
+								<a href="<?php echo $_product->getProductUrl(); ?>" class="get-info">Get Notified</a>
+                            <?php endif; ?>
+                    </div>
+                    <div class="product details product-item-details">
+                            <?php
+                            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                            ?>
+                            <h5>
+                                <a class="product-item-link"
+                                   href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">
+                                       <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                                </a>
+                            </h5>
+                            <p class="p-category">
+                         <?php 
+                         $brand =$_product->getResource()->getAttribute('product_brand')->getFrontend()->getValue($_product); 
+                         $brandurl =$block->getBaseUrl().'nuluv-mama/'.strtolower(str_replace(' ', '', $brand)).'.html';
+                         
+                       
+                          ?>
+                            <a href="<?=$brandurl?>">
+                              <?=$brand?></a></p>
+                            <p class="p-price"><?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?></p>
+
+
+                        </div>
+                </div>
+                <span class="cta"> 
+                        <b><a href="<?php echo $block->getUrl('wishlist', ['_secure' => true]); ?>" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action to wishlist" data-action="add-to-wishlist">
+                                <?php
+                                if ($customerSession->isLoggedIn()) {
+                                    if (!in_array($_product->getId(), $wishlist_id)) {
+                                        ?>
+                                        <i class="fa fa-heart-o"><?php } else { ?> <i class="fa fa-heart"> <?php
+                                            }
+                                        } else {
+                                            ?><i class="fa fa-heart-o"><?php } ?></i>
+                                        </a></b>
+                                        <?php $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($_product->getId()); ?>
+                                        <b>
+                                            <a href="<?php echo $_product->getProductUrl(); ?>">
+                                                <i class="fa fa-comment-o"></i> 
+                                                (<span><?php echo ($RatingOb->getCount()) ? $RatingOb->getCount() : '0'; ?></span>)
+                                            </a>
+                                        </b>
+                                        <div class="product-details btlist-cart" <?php echo strpos($pos, $viewMode . '-actions') ? $position : ''; ?>>
+                                            <?php // echo 'type='.$_product->getTypeId(); ?> 
+                                            <div class="actions-primary"<?php echo strpos($pos, $viewMode . '-primary') ? $position : ''; ?>>
+                                                <?php if ($_product->isSaleable()): ?>
+                                                    <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                                    <?php if($_product->getTypeId()=='simple'){ ?>
+                                                    <form class="prod-list-form" data-role="tocart-form" action="<?php /* @escapeNotVerified */ echo $postParams['action']; ?>" method="post">
+                                                        <input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $postParams['data']['product']; ?>">
+                                                        <input type="hidden" name="<?php /* @escapeNotVerified */ echo Action::PARAM_NAME_URL_ENCODED; ?>" value="<?php /* @escapeNotVerified */ echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
+                                                        <?php echo $block->getBlockHtml('formkey') ?>
+                                                        <button type="submit" title="Add to Cart" class="p-product-add">
+                                                            <span><i class="fa fa-shopping-cart"></i></span>
+                                                        </button>
+                                                    </form>
+                                                    <?php } else { echo '<a class="readmore-pro" href="'.$_product->getProductUrl().'">Read More</a>'; } ?>
+                                                <?php else: ?>
+                                                    <?php if ($_product->getIsSalable()): ?>
+                                                        <div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
+                                                    <?php else: ?>
+                                                        <div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span></div>
+                                                            <?php endif; ?>
+                                                        <?php endif; ?>
+                                            </div>
+                                        </div> 
+                                        </span>
+                <?php echo($iterator == count($_productCollection)+1) ? '</li>' : '' ?>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+    <?php echo $block->getToolbarHtml() ?>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {}
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

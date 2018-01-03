@@ -1,0 +1,17 @@
+<!-- ko -->
+
+  <tr class="totals igst_charge excl">
+        <th class="mark" scope="row">
+            <span class="label" data-bind="text: title"></span>
+            <span class="value" data-bind="text: getIgstValue()"></span>
+        </th>
+        <td class="amount">
+
+            <span class="price"
+                  data-bind="text: getIgstValue(), attr: {'data-th': title}"></span>
+
+
+        </td>
+    </tr>   
+
+<!-- /ko -->

@@ -1,0 +1,85 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Shopbybrand
+ * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<?php
+    $helper = $this->helper('Mageplaza\Shopbybrand\Helper\Data');
+	$timeId = time();
+	$featureBrands = $block->getFeaturedBrand();
+    $style = $helper->getShopByBrandConfig('brandpage/feature/style');
+?>
+
+<?php echo $block->includeCssLib(); ?>
+<?php if ($style == \Mageplaza\Shopbybrand\Model\Config\Source\FeatureStyle::DISLAY_SLIDER) :
+    if(sizeof($featureBrands) > 1):
+    ?>
+    <div class="block-brand-feature widget">
+            <div class="block-title" style="text-align: center;">
+                <strong id="block-feature-brand-heading" role="heading" aria-level="2" ><?php echo $block->getFeatureTitle() ?></strong>
+            </div>
+        <div class="block-content">
+            <div class="owl-carousel owl-theme brand-carousel" id="feature-brand-carousel-<?= $timeId ?>" data-mage-init='{"brandSlider": {}}'>
+                <?php foreach($featureBrands as $brand):?>
+                    <div class="relate-content item">
+                        <a href="<?php echo $block->helper()->getBrandUrl($brand) ?>">
+                            <img class="img-responsive brand-image" src="<?php echo $block->helper()->getBrandImageUrl($brand) ?>">
+                            <?php if($block->showLabel()): ?>
+                                <span>
+                                    <?php echo $brand->getValue() ?>
+                                </span>
+                            <?php endif; ?>
+                        </a>
+                    </div>
+                <?php endforeach;?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+<?php else : ?>
+
+    <div class="block-brand-feature widget">
+            <div class="block-title" style="text-align: center;">
+                <strong id="block-feature-brand-heading" role="heading" aria-level="2" ><?php echo $block->getFeatureTitle() ?></strong>
+            </div>
+            <div class="block-content">
+                    <?php foreach($featureBrands as $brand):?>
+                        <div class="relate-content item mp-2 mp-sm-4 mp-xs-6 col-mp" style="float: left; padding: 5px 0;">
+                            <a href="<?php echo $block->helper()->getBrandUrl($brand) ?>">
+                                <img class="img-responsive brand-image" src="<?php echo $block->helper()->getBrandImageUrl($brand) ?>" style="height: 150px; width: 85%;margin: auto;">
+                                <?php if($block->showLabel()): ?>
+                                <span>
+                                    <?php echo $brand->getValue() ?>
+                                </span>
+                                <?php endif; ?>
+                            </a>
+                        </div>
+                    <?php endforeach;?>
+            </div>
+    </div>
+        <div style="clear: both"></div>
+<?php endif; ?>
+<style type="text/css">
+	.block-brand-feature .relate-content {text-align: center}
+	.block-brand-feature .relate-content a {color: #333}
+	.block-brand-feature .relate-content a span {display: block; margin-top: 10px}
+    @media only screen and (max-width: 767px) {
+        .page-with-filter .columns .sidebar-main {width: 100%}
+    }
+</style>

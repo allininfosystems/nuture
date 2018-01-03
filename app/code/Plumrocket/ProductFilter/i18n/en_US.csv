@@ -1,0 +1,28 @@
+Rating,Rating
+"Stock Status","Stock Status"
+"Auto Refresh","Auto Refresh"
+"Manual Refresh","Manual Refresh"
+Toolbar,Toolbar
+Sidebar,Sidebar
+Range,Range
+"Input Fields (From - To)","Input Fields (From - To)"
+"Slider (From - To)","Slider (From - To)"
+"Price range:","Price range:"
+"&amp; up","&amp; up"
+"Now Shopping by","Now Shopping by"
+"Not rated yet","Not rated yet"
+"Product Filter","Product Filter"
+"Enable Extension","Enable Extension"
+"Product Filter Placement","Product Filter Placement"
+"Filter Mode","Filter Mode"
+"Automatic mode will refresh the product list each time user selects a filter. Manual mode allows to select multiple options and then click on button to ""filter""","Automatic mode will refresh the product list each time user selects a filter. Manual mode allows to select multiple options and then click on button to ""filter"""
+"Enable SEO Friendly URLs","Enable SEO Friendly URLs"
+"Filter Attributes and Customizable Options","Filter Attributes and Customizable Options"
+"Enable Filter Attributes","Enable Filter Attributes"
+"Drag & drop attributes that should be used as product filters.","Drag & drop attributes that should be used as product filters."
+"Enable Product Сustomizable Options","Enable Product Сustomizable Options"
+"Drag & drop customizable options that should be used as product filters.","Drag & drop customizable options that should be used as product filters."
+"Price Display Type","Price Display Type"
+"Show Empty Filter Options","Show Empty Filter Options"
+"Disable Filter Attributes and Customizable Options","Disable Filter Attributes and Customizable Options"
+"You can specify which attributes and customizable options should be disabled in Product Filter for this category.","You can specify which attributes and customizable options should be disabled in Product Filter for this category."

@@ -1,0 +1,12 @@
+.scan-input {
+    padding-right: 85px;
+}
+
+.scan-button {
+    position: relative;
+    top: -32px;
+    float: right;
+    right: 1px;
+    border: none;
+    border-left: 1px solid #adadad;
+}

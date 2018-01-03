@@ -1,0 +1,21 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var \Magento\Wishlist\Model\Item $item */
+?>
+
+<?php $children = $block->getChildNames(); ?>
+<?php if ($children): ?>
+    <div class="<?php /* @escapeNotVerified */ echo $block->getCssClass() ?>">
+    	<div class="wish-edit">
+        <?php foreach ($children as $childName):?>
+            <?php /* @escapeNotVerified */ echo $block->getLayout()->renderElement($childName, false);?>
+        <?php endforeach;?>
+    </div>
+    </div>
+<?php endif; ?>

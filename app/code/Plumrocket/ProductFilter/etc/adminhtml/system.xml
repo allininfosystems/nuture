@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="prproductfilter" translate="label" type="text" sortOrder="9604104" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Product Filter</label>
+            <tab>plumrocket</tab>
+            <resource>Plumrocket_ProductFilter::config_prproductfilter</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <attribute type="expanded">1</attribute>
+                <field id="version" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Plumrocket\ProductFilter\Block\Adminhtml\System\Config\Form\Version</frontend_model>
+                </field>
+                <field id="enabled" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Extension</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="serial" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Plumrocket\Base\Block\Adminhtml\System\Config\Form\Serial</frontend_model>
+                    <label>Serial Key</label>
+                    <hint>ProductFilter</hint>
+                </field>
+                <field id="placement" translate="label comment" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Filter Placement</label>
+                    <source_model>Plumrocket\ProductFilter\Model\Config\Source\Placement</source_model>
+                </field>
+                <field id="mode" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Filter Mode</label>
+                    <source_model>Plumrocket\ProductFilter\Model\Config\Source\Mode</source_model>
+                    <comment>Automatic mode will refresh the product list each time user selects a filter. Manual mode allows to select multiple options and then click on button to "filter"</comment>
+                </field>
+                <field id="seo_url" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable SEO Friendly URLs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+            <group id="settings" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Filter Attributes and Customizable Options</label>
+                <attribute type="expanded">0</attribute>
+                <field id="attributes" translate="label comment" type="hidden" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Plumrocket\ProductFilter\Block\Adminhtml\System\Config\Form\Attribute</frontend_model>
+                    <label>Enable Filter Attributes</label>
+                    <comment><![CDATA[Drag & drop attributes that should be used as product filters.]]></comment>
+                    <hint>Attributes</hint>
+                </field>
+                <field id="custom_options" translate="label comment" type="hidden" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Plumrocket\ProductFilter\Block\Adminhtml\System\Config\Form\CustomOption</frontend_model>
+                    <label>Enable Product Сustomizable Options</label>
+                    <hint>Customizable options</hint>
+                    <comment><![CDATA[Drag & drop customizable options that should be used as product filters.]]></comment>
+                </field>
+                <field id="price_display" translate="label comment" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Plumrocket\ProductFilter\Model\Config\Source\PriceDisplay</source_model>
+                    <label>Price Display Type</label>
+                </field>
+                <field id="empty_option" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Empty Filter Options</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If set to "No", product filter options with "0" results will be hidden from the list of available options.</comment>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>
+

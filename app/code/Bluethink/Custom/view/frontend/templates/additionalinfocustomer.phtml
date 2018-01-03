@@ -1,0 +1,30 @@
+<div class="field refferal">
+    <!--<label for="refferal" class="label"><span><?php /* @escapeNotVerified */echo __('Referral Code') ?></span></label>-->
+    <div class="control">
+        <input type="text"  checked name="refferal" placeholder="Referral Code(Optional)" id="refferal" title="<?php /* @escapeNotVerified */echo __('Referral Code') ?>" class="input-text"  >   
+    </div>
+    <div id="suggestion" class="" style="position: absolute; width: 1220px; display: none;"></div>
+</div>
+
+<script type="text/javascript">
+  require(['jquery'],function (jQuery) {
+    jQuery(document).ready(function(){
+      jQuery('#refferal').keyup( function() {
+      if( this.value.length < 6 ) return;
+      var value = jQuery('#refferal').val();
+      jQuery.ajax({
+            type:'POST',
+            url:"<?php echo $block->getUrl('search/index/index/');?>",
+            data: {check:value},
+            showLoader: true,
+            success:function(feedback) {
+              jQuery("#suggestion").html(feedback);
+              jQuery("#suggestion").show();
+             },
+            error:function(){             
+          }     
+        });
+      });
+    });
+  });
+</script>

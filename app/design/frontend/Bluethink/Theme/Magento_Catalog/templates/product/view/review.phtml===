@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+
+$categories = $product->getCategoryIds(); /*will return category ids array*/
+foreach($categories as $category){
+    $cat = $objectManager->create('Magento\Catalog\Model\Category')->load($category);
+    $catname=  $cat->getName();
+    }
+$request = $objectManager->get('\Magento\Framework\App\Request\Http');
+//echo $request->getFullActionName() . '<br />';
+$action_name = $request->getActionName();
+$module_name = $request->getModuleName();
+$controller_name = $request->getControllerName();
+  //$categoryName=$category->getName(); ?>
+    <h3 class="prd_title"><?php echo $block->getProduct()->getData('name'); ?></h3>
+<?php if($controller_name == 'product'){ ?>
+  <h6 class="prd_type"><?php echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getSubtitle(), 'subtitle') ?></h6>
+  <?php } ?>
+
+
+<div id="reviewdiv"><?php echo $block->getReviewsSummaryHtml($block->getProduct(), false, true)?></div>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Bluethink. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Bluethink_Faq::bluethink_index_index" 
+          title="Other Modules" 
+          module="Bluethink_Faq"  
+          sortOrder="20" 
+          dependsOnModule="Bluethink_Faq"  
+          resource="Bluethink_Faq::bluethink_index_index"/>
+
+        <add id="Bluethink_Faq::bluethink_index_faq" 
+          title="FAQ" 
+          parent="Bluethink_Faq::bluethink_index_index" 
+          module="Bluethink_Faq"  
+          sortOrder="21" 
+          dependsOnModule="Bluethink_Faq" 
+          action="faq/index/index" 
+          resource="Bluethink_Faq::bluethink_index_index"/>
+
+        <add id="Bluethink_Faq::bluethink_index_category" 
+          title="Create FAQ Category" 
+          parent="Bluethink_Faq::bluethink_index_index" 
+          module="Bluethink_Faq"  
+          sortOrder="22" 
+          dependsOnModule="Bluethink_Faq" 
+          action="faq/faqcategory/index" 
+          resource="Bluethink_Faq::bluethink_index_index"/>
+
+        <add id="Bluethink_Dailydose::bluethink_dailydose" 
+            title="Dailydose love" 
+            module="Bluethink_Dailydose" 
+            sortOrder="23" 
+            resource="Bluethink_Dailydose::bluethink_index_index" 
+            parent="Bluethink_Faq::bluethink_index_index" 
+            action="dailydose/dailydose/index"/>
+
+        <add id="Bluethink_Dailydose::bluethink_brand" 
+            title="Nuluv Brand" 
+            module="Bluethink_Dailydose" 
+            sortOrder="24" 
+            resource="Bluethink_Dailydose::bluethink_index_index" 
+            parent="Bluethink_Faq::bluethink_index_index" 
+            action="dailydose/brand/index"/>
+            
+     <!--     <add id="Bluethink_Pincode::bluethink_pincode" 
+            title="Shipping Pincode" 
+            module="Bluethink_Pincode" 
+            sortOrder="25" 
+            resource="Bluethink_Pincode::bluethink_index_index" 
+            parent="Bluethink_Faq::bluethink_index_index" 
+            action="pincode/shipping/index"/> -->
+
+       <!--  <add id="Bluethink_Pincode::bluethink_courier" 
+            title="Shipping Courier" 
+            module="Bluethink_Pincode" 
+            sortOrder="26" 
+            resource="Bluethink_Pincode::bluethink_index_index" 
+            parent="Bluethink_Faq::bluethink_index_index" 
+            action="pincode/courier/index"/> -->
+
+        <add id="Bluethink_Refferalcode::bluethink_refferalcode" 
+            title="Set Refferalcode" 
+            module="Bluethink_Refferalcode" 
+            sortOrder="27" 
+            resource="Bluethink_Refferalcode::bluethink_index_index" 
+            parent="Bluethink_Faq::bluethink_index_index" 
+            action="refferalcode/rewardpoint/index"/>
+       
+    </menu>
+</config>

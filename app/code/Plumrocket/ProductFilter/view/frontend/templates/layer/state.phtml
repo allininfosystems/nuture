@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<?php $_filters = $block->getActiveFilters() ?>
+<?php if (!empty($_filters)): ?>
+<div class="filter-current" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false }}'>
+    <strong class="block-subtitle filter-current-subtitle"
+            role="heading"
+            aria-level="2"
+            data-count="<?php echo count($_filters); ?>"><?php /* @escapeNotVerified */ echo __('Now Shopping by') ?></strong>
+    <ol class="items">
+        <?php foreach ($_filters as $_filter): ?>
+
+            <li class="item">
+                <span class="filter-label"><?php echo $block->escapeHtml(__($_filter->getName())); ?></span>
+                <?php if ($_filter->getFilter() instanceof \Plumrocket\ProductFilter\Model\Layer\Filter\Rating): ?>
+                    <?php $rating = $_filter->getValue(); ?>
+                    <?php if ($rating >= 90) $rating = 100; ?>
+                        <div class="rating-summary">
+                        <?php if ($rating > 0): ?>
+                            <div class="rating-result" title="<?php /* @escapeNotVerified */ echo $rating; ?>%">
+                                <span style="width:<?php /* @escapeNotVerified */ echo $rating; ?>%"><span><?php /* @escapeNotVerified */ echo $rating; ?>%</span></span>
+                            </div>
+                            <?php if ($rating < 90): ?>
+                                <?php echo __('&amp; up'); ?>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <span><?php echo __('Not rated yet') ?></span>
+                        <?php endif; ?>
+                        </div>
+                <?php else: ?>
+                    <span class="filter-value"><?php /* @escapeNotVerified */ echo $block->stripTags($_filter->getLabel()) ?></span>
+                <?php endif; ?>
+                <?php
+                $clearLinkUrl = $_filter->getClearLinkUrl();
+                $currentFilterName = $block->escapeHtml(__($_filter->getName())) . " " . $block->stripTags($_filter->getLabel());
+                $clearValue = $this->helper('\Plumrocket\ProductFilter\Helper\Url')->getValueByFilter($_filter);
+
+                if ($clearLinkUrl):
+                    ?>
+                    <a class="action previous" href="<?php /* @escapeNotVerified */ echo $_filter->getRemoveUrl() ?>"
+                       title="<?php /* @escapeNotVerified */ echo __('Previous') ?>">
+                        <span><?php /* @escapeNotVerified */ echo __('Previous') ?></span>
+                    </a>
+                    <a class="action remove"
+                        data-request="<?php echo $_filter->getFilter()->getRequestVar(); ?>"
+                        data-value="<?php echo $clearValue; ?>"
+                       title="<?php echo $block->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
+                       href="<?php /* @escapeNotVerified */ echo $clearLinkUrl ?>">
+                        <span><?php echo $block->escapeHtml($_filter->getFilter()->getClearLinkText()) ?></span>
+                    </a>
+                <?php else: ?>
+                    <a class="action remove" href="<?php /* @escapeNotVerified */ echo $_filter->getRemoveUrl() ?>"
+                        data-request="<?php echo $_filter->getFilter()->getRequestVar(); ?>"
+                        data-value="<?php echo $clearValue; ?>"
+                       title="<?php /* @escapeNotVerified */ echo $block->escapeHtml(__('Remove')) . " " . $currentFilterName;?>">
+                        <span><?php /* @escapeNotVerified */ echo __('Remove This Item') ?></span>
+                    </a>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
+<?php endif; ?>

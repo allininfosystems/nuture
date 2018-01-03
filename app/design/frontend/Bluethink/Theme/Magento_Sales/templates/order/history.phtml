@@ -1,0 +1,50 @@
+<?php $_orders = $block->getOrders(); ?>
+<?php $_item = $block->getItem(); ?>
+<?= $block->getChildHtml('info') ?>
+<?php if ($_orders && count($_orders)): ?>
+    <div class="wish-head"><span><?php /* @escapeNotVerified */ echo __('My Orders') ?></span></div>
+    <div class="container">
+        <table  id="my-orders-table">
+            <thead>
+                <tr>
+                    <th scope="col" ><?= /* @escapeNotVerified */ __('Date') ?></th>
+                    <th scope="col" ><?= /* @escapeNotVerified */ __('Image ') ?></th>
+                    <th scope="col" ><?= /* @escapeNotVerified */ __('Product Name') ?></th>
+                    <th scope="col" "><?= /* @escapeNotVerified */ __('Qty') ?></th>
+                    <th scope="col" ><?= /* @escapeNotVerified */ __('Order Status') ?></th>
+                    <th scope="col" ><?= /* @escapeNotVerified */ __('Write Product Review') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_orders as $_order): 
+                    $orderid=$_order->getRealOrderId();
+                    $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+                    $orderData = $objectManager->create('Magento\Sales\Model\Order')->loadByIncrementId($orderid);
+                    $orderItems = $orderData->getAllVisibleItems();
+                ?>  
+                  <?php foreach($orderItems as $orderItemst) { ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('Date')) ?>"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt()) ?></td>
+                        <td class="product-img">
+                        <?php
+                        $_product = $objectManager->get('Magento\Catalog\Model\Product')->load($orderItemst->getProductId());
+                        $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+                        $image_url = $imageHelper->init($_product, 'product_page_image_small')->setImageFile($_product->getFile())->resize(100, 100)->getUrl();
+                       ?>
+                        <img src="<?php echo $image_url; ?>"></td>
+                        <td><?php echo $orderItemst['name']; ?></td>
+                        <td><?php echo $orderItemst['qty_ordered']; ?></td>
+                        <td><?=$_order->getStatusLabel(); ?></td>
+                        <td class="product-review"><a href="#" class="brown-btn">Track Shipment</a></td>
+                    </tr>
+                     <?php  } ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have placed no orders.') ?></span></div>
+<?php endif ?>

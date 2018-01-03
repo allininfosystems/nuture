@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magestore\Rewardpoints\Model\ResourceModel\Rate\Earning\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rewardpoints_rate</argument>
+            <argument name="resourceModel" xsi:type="string">Magestore\Rewardpoints\Model\ResourceModel\Rate</argument>
+        </arguments>
+    </type>
+    <type name="Magestore\Rewardpoints\Model\ResourceModel\Rate\Spending\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rewardpoints_rate</argument>
+            <argument name="resourceModel" xsi:type="string">Magestore\Rewardpoints\Model\ResourceModel\Rate</argument>
+        </arguments>
+    </type>
+    <type name="Magestore\Rewardpoints\Model\ResourceModel\Rewardcustomer\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">customer_grid_flat</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Customer\Model\ResourceModel\Customer</argument>
+        </arguments>
+    </type>
+    <type name="Magestore\Rewardpoints\Model\ResourceModel\Transaction\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rewardpoints_transaction</argument>
+            <argument name="resourceModel" xsi:type="string">Magestore\Rewardpoints\Model\ResourceModel\Transaction</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="rewardpoints_spendingrates_listing_data_source" xsi:type="string">Magestore\Rewardpoints\Model\ResourceModel\Rate\Spending\Collection</item>
+                <item name="rewardpoints_earningrates_listing_data_source" xsi:type="string">Magestore\Rewardpoints\Model\ResourceModel\Rate\Earning\Collection</item>
+                <item name="rewardpoint_balance_customer_listing_data_source" xsi:type="string">Magestore\Rewardpoints\Model\ResourceModel\Rewardcustomer\Collection</item>
+                <item name="rewardpoints_transaction_listing_data_source" xsi:type="string">Magestore\Rewardpoints\Model\ResourceModel\Transaction\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="rewardpoint_discount_to_item" type="Magestore\Rewardpoints\Model\Plugin\Quote\RewardpointsToOrderItem"/>
+    </type>
+    <type name="Magento\Sales\Block\Adminhtml\Order\Create\Items\Grid">
+        <plugin name="rewardpoint_discount_to_subtotal" type="Magestore\Rewardpoints\Model\Plugin\Quote\RewardpointsToSubtotal"/>
+    </type>
+    <!--API-->
+    <preference for="Magestore\Rewardpoints\Api\CustomerRepositoryInterface" type="Magestore\Rewardpoints\Model\Customer\CustomerRepository" />
+    <preference for="Magestore\Rewardpoints\Api\Data\Customer\CustomerInterface" type="Magestore\Rewardpoints\Model\Customer" />
+    <preference for="Magestore\Rewardpoints\Api\Data\Customer\CustomerSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Magestore\Rewardpoints\Api\TransactionRepositoryInterface" type="Magestore\Rewardpoints\Model\Transaction\TransactionRepository" />
+    <preference for="Magestore\Rewardpoints\Api\Data\Transaction\TransactionInterface" type="Magestore\Rewardpoints\Model\Transaction" />
+    <preference for="Magestore\Rewardpoints\Api\Data\Transaction\TransactionSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+</config>
+

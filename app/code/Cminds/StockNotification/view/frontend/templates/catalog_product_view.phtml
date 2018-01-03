@@ -1,0 +1,40 @@
+<?php
+/** @var \Cminds\StockNotification\Block\StockNotification $block */
+?>
+
+<div class="block newsletter stocknotification">
+    <div class="title">
+        <strong>
+            <?php
+            echo $block->escapeHtml(
+                __(
+                    'Product is unavailable. Would you like to get e-mail '
+                    . 'notification when the product will be back in stock?'
+                )
+            );
+            ?>
+        </strong>
+    </div>
+    <div class="content">
+        <form class="form subscribe"
+              novalidate
+              action="<?php echo $block->escapeUrl($block->getFormAction()) ?>"
+              method="post"
+              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+              id="stocknotification-validate-email">
+            <div class="field newsletter">
+                <div class="control">
+                    <input name="email" type="email" id="email"
+                       value=""
+                       placeholder="<?php echo __('Enter your e-mail') ?>"
+                       data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action subscribe primary">
+                    <?php echo __('Notify Me') ?>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

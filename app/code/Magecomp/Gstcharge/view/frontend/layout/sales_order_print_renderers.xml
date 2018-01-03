@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="sales.order.print.renderers">
+            <block class="Magento\Sales\Block\Order\Item\Renderer\DefaultRenderer" as="default" template="Magecomp_Gstcharge::order/items/renderer/default.phtml" name="gst_order_print_view_renderer"/>
+			<action method="setChild">
+				   <argument name="alias" xsi:type="string">default</argument>
+				   <argument name="block" xsi:type="string">gst_order_print_view_renderer</argument>
+			 </action>
+        </referenceBlock>
+    </body>
+</page>

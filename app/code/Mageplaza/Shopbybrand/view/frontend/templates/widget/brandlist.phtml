@@ -1,0 +1,75 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Shopbybrand
+ * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<?php
+$timeId = time();
+$selectedBrands = $block->getCollection();
+
+if (sizeof($selectedBrands) > 1):
+    ?>
+    <?php echo $block->includeCssLib(); ?>
+    <div class="block block-brand-feature widget">
+        <?php if ($block->hasData('show_title')): ?>
+            <div class="block-title">
+                <strong id="block-feature-brand-heading" role="heading"
+                        aria-level="2"><?php echo $block->getTitle() ?></strong>
+            </div>
+        <?php endif; ?>
+        <div class="block-content">
+            <div class="owl-carousel owl-theme brand-carousel"
+                 id="feature-brand-carousel-<?= $timeId ?>"
+                 data-mage-init='{"brandSlider": {}}'>
+                <?php foreach ($selectedBrands as $brand): ?>
+                    <div class="relate-content item">
+                        <a href="<?php echo $block->helper()->getBrandUrl(
+                            $brand
+                        ) ?>">
+                            <img class="img-responsive brand-image"
+                                 src="<?php echo $block->helper()
+                                     ->getBrandImageUrl($brand) ?>">
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    <style type="text/css">
+        .block-brand-feature .relate-content {
+            text-align: center
+        }
+
+        .block-brand-feature .relate-content a {
+            color: #333
+        }
+
+        .block-brand-feature .relate-content a span {
+            display: block;
+            margin-top: 10px
+        }
+
+        .owl-carousel .owl-item img {
+            height: 200px;
+        }
+        .page-layout-1column .column.main {
+            width: 100% !important;
+        }
+    </style>
+<?php endif; ?>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <container name="root" label="Root">
+        <block class="Magestore\Rewardpoints\Block\Adminhtml\Customer\Tab\History" name="rewardp_ointhistory_grid"/>
+    </container>
+</page>

@@ -1,0 +1,150 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<tr id="row_<?php echo $this->getElementId(); ?>" data-attribute="sortable-attribute" data-configid="<?php echo $this->getConfigId(); ?>">
+   <td class="label">
+   		<label for="<?php echo $this->getElementId(); ?>"><span data-config-scope="[STORE VIEW]"><?php echo $this->getElement()->getLabel(); ?></span></label>
+   	</td>
+
+	 <div
+	 	data-mage-init='{
+	 		"prProductFilterAdmin_<?php echo $this->getConfigId(); ?>":{
+	 			"itemSelector": ".attr_item",
+	 			"elementId": "#<?php echo $this->getElementId(); ?>",
+	 			"connector": ".field-100-<?php echo $this->getConfigId(); ?>",
+	 			"isCustomOptions": <?php echo (int)$this->isCustomOptions(); ?>,
+	 			"groupListEnabled": ".group .list_enabled",
+	 			"attributeListSelector": "#prproductsfilter_<?php echo $this->getConfigId(); ?>_group",
+	 			"attributeEnabledListSelector": "#prproductsfilter_<?php echo $this->getConfigId(); ?>_enabled_group",
+	 			"enabledAttributesField": "#prproductfilter_settings_<?php echo $this->getConfigId(); ?>"
+	 		}
+	 	}'>
+	 </div>
+
+   	<td class="value">
+
+   		<div class="attribute-list">
+   			<span class="label">All <?php echo $this->getElement()->getHint(); ?></span>
+   			<div>
+	   			<ul id="prproductsfilter_<?php echo $this->getConfigId(); ?>_group" class="<?php if ($this->getIsDisabled()): ?>disabled-attributes<?php endif; ?> field-100-<?php echo $this->getConfigId(); ?>  enabled-list-field">
+
+	   				<?php foreach ($this->getNotActiveAttributes() as $attributeCode => $attribute): ?>
+
+	   					<li class="attr_item"  data-value="<?php echo $attributeCode; ?>" data-label="<?php echo $attribute->getFrontendLabel(); ?>">
+			                <label><?php echo $attribute->getFrontendLabel(); ?></label>
+			                <ul class="sortable list_enabled"></ul>
+			            </li>
+
+	   				<?php endforeach; ?>
+	            </ul>
+            </div>
+   		</div>
+   		<div class="attribute-list">
+   			<span class="label">Filter <?php echo $this->getElement()->getHint(); ?></span>
+   			<div>
+
+	   			<ul id="prproductsfilter_<?php echo $this->getConfigId(); ?>_enabled_group"
+		   			class="<?php if ($this->getIsDisabled()): ?>disabled-attributes<?php endif; ?> field-100-<?php echo $this->getConfigId(); ?> list_enabled enabled-list-field">
+
+	   				<?php foreach ($this->getActiveAttributes() as $attributeCode => $attribute): ?>
+						<?php
+							if (is_numeric($attribute)) {
+								continue; //fix
+							}
+						?>
+	   					<?php if (!is_array($attribute)): ?>
+
+							<li class="attr_item" data-value="<?php echo $attributeCode; ?>" data-label="<?php echo $attribute->getFrontendLabel(); ?>">
+				                <label><?php echo $attribute->getFrontendLabel(); ?></label>
+				                <ul class="sortable list_enabled"></ul>
+				            </li>
+				        <?php else: ?>
+
+				        	<?php $mainAttribute = array_shift($attribute['attributes']); ?>
+				        	<?php $mainAttributeCode = $mainAttribute->getAttributeCode(); ?>
+							<li class="attr_item group" data-value="<?php echo $mainAttributeCode; ?>" data-label="<?php echo $mainAttribute->getFrontendLabel(); ?>">
+								<div class="group_head" data-group-name="<?php echo $attributeCode; ?>">
+								   <div class="group_name">
+										<input type="text" class="group_field" placeholder="Group Name" value="<?php echo $attributeCode; ?>">
+										<span class="cancel" title="cancel" style="display: none;"></span>
+										<span class="ok" title="save" style="display: none;"></span>
+										<span class="edit" title="edit" style="display: block;"></span>
+									</div>
+								</div>
+				                <label><?php echo $mainAttribute->getFrontendLabel(); ?></label>
+				                <ul class="sortable list_enabled">
+				                	<?php foreach ($attribute['attributes'] as  $aCode => $aLabel): ?>
+										<li class="attr_item ui-droppable" data-value="<?php echo $aCode; ?>" data-label="<?php echo $aLabel->getFrontendLabel(); ?>">
+							                <label><?php echo $aLabel->getFrontendLabel(); ?></label>
+							                <ul class="sortable list_enabled"></ul>
+							            </li>
+				                	<?php endforeach; ?>
+				                </ul>
+				            </li>
+				        <?php endif; ?>
+	   				<?php endforeach; ?>
+
+	            </ul>
+            </div>
+   		</div>
+   		<p class="note">
+   			<span><?php echo $this->getElement()->getComment(); ?></span>
+   		</p>
+
+   		<script type="text/javascript">
+
+	   		window.productFilterCheckoboxRewrited = false;
+
+		   	if (!window.productFilterCheckoboxRewrited) {
+				require([
+				    "jquery",
+				    "uiRegistry",
+				    "jquery/jquery.hashchange",
+				    "mage/mage",
+				    "prototype",
+				    "mage/adminhtml/form",
+				    "domReady!"
+				], function(jQuery){
+
+		   			var oldFunction = toggleValueElements;
+		   			toggleValueElements = function(checkbox, container, excludedElements, checked){
+
+		   				var configId = jQuery(checkbox).parents('tr[data-attribute="sortable-attribute"]').data('configid');
+
+		   				if (!checkbox.checked) {
+		   					jQuery('#prproductsfilter_' + configId + '_group').removeClass('disabled-attributes');
+		   					jQuery('#prproductsfilter_' + configId + '_enabled_group').removeClass('disabled-attributes');
+		   				} else {
+		   					jQuery('#prproductsfilter_' + configId + '_group').addClass('disabled-attributes');
+		   					jQuery('#prproductsfilter_' + configId + '_enabled_group').addClass('disabled-attributes');
+		   				}
+
+		   				oldFunction(checkbox, container, excludedElements, checked);
+		   			}
+
+		   			window.productFilterCheckoboxRewrited = true;
+			   	});
+			}
+
+	   	</script>
+
+   	</td>
+
+
+   	<?php echo $this->getInheritCheckboxHtml(); ?>
+</tr>

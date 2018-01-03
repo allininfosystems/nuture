@@ -1,0 +1,85 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Magento\Sales\Block\Adminhtml\Items\Renderer\DefaultRenderer */ ?>
+<?php $_item = $block->getItem() ?>
+<?php $_item->setStoreId($_item->getCreditMemo()->getStoreId()) ?>
+<?php $block->setPriceDataObject($_item) ?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$prod = $objectManager->get('Magento\Catalog\Model\Product')->load($_item->getProductId());
+$hsnCode=$prod->getHsncode();
+
+if(!($hsnCode = $prod->getHsncode())){
+			$hsnCode =  'N/A';
+}
+	
+	
+				$taxableAmount=$_item->getrow_total() - $_item->getdiscount_amount();
+						
+						if($_item->getExclPrice())
+						{
+							$subTotal = $_item->getrow_total();
+							$itemTotal = $subTotal + $_item->getcgst_charge() + $_item->getsgst_charge() + $_item->getigst_charge();
+						}
+						else
+						{
+							$subTotal = $_item->getrow_total() - $_item->getcgst_charge() - $_item->getsgst_charge() - $_item->getigst_charge();
+							$taxableAmount=$subTotal - $_item->getdiscount_amount();
+							$itemTotal = $taxableAmount + $_item->getcgst_charge() + $_item->getsgst_charge() + $_item->getigst_charge();
+						}
+?>
+<tr>
+    <td class="col-product"><?php echo $block->getColumnHtml($_item, 'name') ?><?php echo __("HSNCODE :".$hsnCode) ?></td>
+    <td class="col-price">
+        <?php echo $block->getColumnHtml($_item, 'price'); ?>
+    </td>
+    <td class="col-qty"><?php /* @escapeNotVerified */ echo $_item->getQty()*1 ?></td>
+    <td class="col-subtotal">
+        <?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($subTotal); ?>
+    </td>
+    <td class="col-discount"><?php /* @escapeNotVerified */ echo $block->displayPriceAttribute('discount_amount') ?></td>
+    <td class="col-tax"><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($taxableAmount); ?></td>
+     <td class="col-cgst">
+        <table>
+                          <tbody style="background:none;text-align:center">
+                            <tr>
+                                <td><?php echo round($_item->getcgst_percent(),2)."%";?></span></td>
+                                <td><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency( $_item->getcgst_charge());  ?></span></td>
+                            </tr>
+                        </table>
+		
+		
+    </td>
+    <td class="col-sgst">
+        
+		<table>
+                          <tbody style="background:none;text-align:center">
+                            <tr>
+                                <td><?php echo round($_item->getsgst_percent(),2)."%";?></span></td>
+                                <td><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_item->getsgst_charge());  ?></span></td>
+                            </tr>
+                        </table>
+		
+    </td>
+    <td class="col-igst">
+    				<table>
+                          <tbody style="background:none;text-align:center">
+                            <tr>
+                                <td><?php echo round($_item->getigst_percent(),2)."%";?></span></td>
+                                <td><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_item->getigst_charge());  ?></span></td>
+                            </tr>
+                        </table>
+         
+    </td>
+    
+    <td class="col-total last">
+        <?php echo $block->getColumnHtml($_item, 'total'); ?>
+    </td>
+</tr>

@@ -1,0 +1,87 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Shopbybrand
+ * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<?php
+	$brands = $block->getBrands();
+	$stores = $block->getStoreViews();
+	$singleStore = $block->isSingleStoreMode();
+?>
+
+<table class="admin__control-table">
+	<thead>
+		<tr>
+			<th class="col-select-brand"><?php echo __('Selected') ?></th>
+			<th class="col-brands-id"><?php echo __('Option Id') ?></th>
+			<th class="col-brands-name"><?php echo __('Name') ?></th>
+            <?php if (!$singleStore): ?>
+			<th class="col-brands-store"><?php echo __('Store view') ?></th>
+            <?php endif; ?>
+		</tr>
+	</thead>
+	<tbody data-role="options-container" id="default-table-content">
+        <?php
+            if (sizeof($brands)):
+                foreach ($brands as $brand):
+        ?>
+                <tr class="brands-row brand-<?php echo $brand->getId() ?>">
+                    <td>
+                        <?php if ( in_array ($brand->getId(), $block->getSelectedBrands())) { ?>
+                        <input id="brand_<?php echo $brand->getId() ?>" type="checkbox" name="brand_category[]" value="<?php echo $brand->getId() ?>" checked />
+                        <?php }else { ?>
+                        <input id="brand_<?php echo $brand->getId() ?>" type="checkbox" name="brand_category[]" value="<?php echo $brand->getId() ?>" />
+                        <?php } ?>
+                        <label for="brand_<?php echo $brand->getId() ?>"></label>
+                    </td>
+                    <td>
+                        <span class="brands id"><?php echo $brand->getId() ?></span>
+                    </td>
+                    <td>
+                        <span class="brands name"><?php echo $brand->getValue() ?></span>
+                    </td>
+
+					<?php if (!$singleStore): ?>
+                    <td>
+                        <select disabled title="<?php echo __('Store View') ?>">
+                            <option value="0" <?php if ($brand->getStoreId() == '0') {echo 'selected';} ?>><?php echo __('All store view') ?></option>
+                            <?php foreach ($stores as $store): ?>
+                                <optgroup label="<?php echo $store['label'] ?>">
+                                    <?php if (is_array($store['value'])): ?>
+                                        <?php foreach ($values = $store['value'] as $value): ?>
+                                            <option value="<?php echo $value['value'] ?>"
+                                                <?php if ($brand->getStoreId() == $value['value']) {echo 'selected';}?>>
+                                                <?php echo $value['label'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </optgroup>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <?php endif; ?>
+                </tr>
+                <?php endforeach; ?>
+
+            <?php else: ?>
+                <tr class="no-result-row"><td><span><?php echo __('No brand found') ?></span></td></tr>
+
+        <?php endif; ?>
+	</tbody>
+</table>

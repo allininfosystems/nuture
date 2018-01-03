@@ -1,0 +1,141 @@
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('home_page_main_slider')->toHtml(); ?>
+<!--=======moment slider=======-->
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('home_page_moment_slide')->toHtml();?>
+<!--=======popular product slider=======-->
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('popularproduct')->toHtml();?>
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$mediaUrl = $storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
+
+/** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
+/*$postcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Post\Collection');
+$postcollection->load();*/
+
+// echo "string<pre>";
+// print_r($postcollection->getData());
+$postcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Post\Collection')
+                    ->addFieldToSelect('*')
+                    ->addFieldToFilter('onhome', '1')->load();
+$publish_datte=$postcollection->getData()[0]['publish_date'];
+$tempDate = $publish_datte;
+$day = date('l', strtotime($tempDate));// will gives you the week day name 
+$month = date('jS F Y',strtotime($tempDate));
+?>
+
+	
+
+	<!--=======cuddle and care=========-->
+	<section class="cuddle-and-care slide-border">
+		<div class="container">
+			<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-blog')->toHtml();?>
+			
+			<div class="cuddle-and-care-inner clearfix">
+				<div class="cuddle-and-care-blog">
+					<h3 class="cuddle-and-care-t">Blog</h3>
+					
+					<div class="cuddle-and-care-blog-img"><div class="blogimage11" ><a href="<?php echo $block->getUrl().'blog/post/'.$postcollection->getData()[0]['url_key'] ?>"><img src="<?php echo $mediaUrl.'mageplaza/blog/post/image'.$postcollection->getData()[0]['image']; ?>"/></a></div></div>
+					<span class="date"><?php echo $month; ?></span>
+					<div class="cuddle-and-care-blog-text">
+						<a class="blog-head-t " href="<?php echo $block->getUrl().'blog/post/'.$postcollection->getData()[0]['url_key'] ?>"><?php echo $postcollection->getData()[0]['name'];?>
+						</a>
+						<p><?php echo $postcollection->getData()[0]['short_description'];?>            
+						</p>
+						<a class="read-more" href="<?php echo $block->getUrl().'blog/post/'.$postcollection->getData()[0]['url_key'] ?>">- Read More</a>
+					</div>
+				</div>
+			<?php 
+			   	/*$articles = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
+                $articles->addFieldToFilter('onhome',1);*/
+				$articles = $objectManager->create('Mirasvit\Kb\Model\ResourceModel\Article\Collection')
+                    ->addFieldToSelect('*')
+                    ->addFieldToFilter('onhome', '1')->load();
+				$storeManager1 =$objectManager->get('Magento\Store\Model\StoreManagerInterface');
+				$currentStore  = $storeManager1->getStore();
+				$mediaUrl      = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+				$nn=$mediaUrl."kb";
+               
+			?> 
+			 <h3 class="cuddle-and-care-t knowledgeHubhed">Knowledge Hub</h3>
+			 <?php 
+			 $i=0; ?>
+			  <?php  foreach ($articles as  $value) { 
+			  	if($i<3){
+			  	?>
+				<div class="cuddle-and-care-knowledge-hub">
+					<div class="knowledge-hub-box clearfix">
+						<div class="knowledge-hub-img">
+							<a href="<?php echo $value->getUrl();?>"><img src="<?php if(!empty($value)){ echo $nn.'/'.$value['image'];} else { echo $this->getViewFileUrl('images/hub_cat_01.jpg');} ?>"/></a>
+						</div>
+						<div class="knowledge-hub-text">
+							<!-- <a href="<?php //echo $value->getUrl();?>"> -->
+								<span class="bloger-name"><a href="<?php echo $value->getUrl();?>"><?php echo $value['name']; ?></a></span>
+									
+								<!-- </a> -->
+							<a class="read-more" href="<?php echo $value->getUrl();?>">-Read More</a>
+						</div>
+					</div>
+				</div>
+				<?php  } $i++; } ?>
+			</div>
+		</div>
+	</section>
+	<!--=======cuddle and care=========-->
+	<?php
+	    $model = $objectManager->get('\Bluethink\Dailydose\Model\ResourceModel\Dailydose\Collection');
+    ?>
+     <section class="daily-dose slide-container">
+        <div class="slide-container">
+            <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('dailydose')->toHtml();?>
+            <div class="dailydose-inner">
+                <div id="dailydose" class="owl-carousel owl-theme"> 
+                <?php
+                 foreach ($model as $key) {
+                  if ($key['product_type']=='Instagram') { ?>
+                    <div class="item">
+                        <div class="daily-dose-image">
+                            <a target="_blank" href="<?php echo $key['product_url']; ?>"><img src="<?php echo $block->getUrl().'pub/media/bluethink/images'.$key->getImage(); ?>"/><span class="image-overlay"></span></a>
+                            <span class="insta-title"><i class="fa fa-instagram"></i><?php echo $key['product_title']; ?></span>
+                        </div>
+                    </div>
+                    <?php }elseif ($key['product_type']=='Twitter') { ?>
+                    <div class="item">
+                        <div class="daily-dose-image">
+                            <a target="_blank" href="<?php echo $key['product_url']; ?>"><img src="<?php echo $block->getUrl().'pub/media/bluethink/images'.$key->getImage(); ?>"/><span class="image-overlay"></span></a>
+                            <span class="insta-title"><i class="fa fa-twitter"></i><?php echo $key['product_title']; ?></span>
+                        </div>
+                    </div>
+                    <?php }elseif ($key['product_type']=='Facebook') { ?> 
+                    <div class="item">
+                        <div class="daily-dose-image">
+                            <a  target="_blank" href="<?php echo $key['product_url']; ?>"><img src="<?php echo $block->getUrl().'pub/media/bluethink/images'.$key->getImage(); ?>"/><span class="image-overlay"></span></a>
+                            <span class="insta-title"><i class="fa fa-instagram"></i><?php echo $key['product_title']; ?></span>
+                        </div>
+                    </div>
+                    <?php  } } ?>
+                </div>
+            </div>
+        </div>
+    </section>
+	<script>
+      require(['jquery', 'jquery/ui'], function($){
+		     $(window).load(function(){
+		        $('#dailydose').owlCarousel({
+					loop:true,
+					margin:23,
+					nav:true,
+					dots: true,
+					responsive:{
+						0:{ items:1 },
+						400:{ items:1 },
+						600:{ items:3 },
+						1000:{ items:5 }
+					}
+				});
+			 });
+		  });
+   </script>
+	<!--====footer=====-->
+	
+      

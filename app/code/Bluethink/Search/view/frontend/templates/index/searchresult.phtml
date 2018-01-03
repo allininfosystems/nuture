@@ -1,0 +1,222 @@
+<title>Search result</title>
+<?php
+  $key                      = $_POST["search"];
+  $objectManager            = \Magento\Framework\App\ObjectManager::getInstance();
+  $resource                 = $objectManager->get('Magento\Framework\App\ResourceConnection');
+  $connection               = $resource->getConnection();
+  $priceHelper              = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); 
+  $listBlock                = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');    
+  $categoryHelper           = $this->helper('Magento\Catalog\Helper\Category');
+  
+  const PARAM_NAME_BASE64_URL = 'r64';
+  const PARAM_NAME_URL_ENCODED = 'uenc';
+  use Magento\Framework\App\Action\Action; 
+  $customerSession          = $objectManager->get('Magento\Customer\Model\Session');
+  $wishlist_id              = array();
+  if($customerSession->isLoggedIn())
+  {
+    $customerid             = $customerSession->getCustomer()->getId();
+    $Wishlist_Model         = $objectManager->create('\Magento\Wishlist\Controller\WishlistProviderInterface'); 
+    $currentUserWishlist    = $Wishlist_Model->getWishlist();
+    if ($currentUserWishlist) 
+    {
+      $wishlistItems        = $currentUserWishlist->getItemCollection()->getData();
+      foreach ($wishlistItems as  $wishlistItems_value) 
+      {
+         $wishlist_id[]     = $wishlistItems_value['product_id'];
+      }
+    }
+  }
+
+
+  if ($key!="") 
+  {
+    $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+    $_productCollection = $productCollection->create()->addAttributeToSelect('*')->addAttributeToFilter('name', array('like' => '%' . $key . '%'))->load();
+	
+    /*$productCollection11 =$objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+    $productCollection11->load()
+    ->addAttributeToSelect('*')
+    ->addAttributeToFilter('name', array('like' => '%' . $key . '%'));*/
+	//echo $productCollection->getSelect();
+    //$productCollection->getData();
+	/*echo "Total = ".count($_productCollection);die;*/
+   
+?>
+<div class="container">
+  <h2 class="head-title serch-devider">Products Found</h2>
+  <ul class="product_list"> 
+  <?php
+  if (count($_productCollection)>0) 
+  { 
+  foreach ($_productCollection as $_product) 
+  {  
+    $product           = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getId());
+    $contractDateBegin = $product['news_from_date'];
+    $contractDateEnd   = $product['news_to_date'];
+    date_default_timezone_set('Asia/Kolkata');
+    $paymentDate       = date('Y-m-d H:i:s');
+    $RatingOb          = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($product->getId());
+  ?>
+      
+  <li>
+    <div class="product-box" >
+      <div class="product-image">
+				<?php  if (($paymentDate > $contractDateBegin) && ($paymentDate < $contractDateEnd))
+					{ ?>
+						<div class="new-items">New</div>
+					<?php }
+					else { ?>
+					<?php } ?>
+					<a href="<?php  echo $_product->getProductUrl() ?>"><img src="<?php echo $block->getUrl().'pub/media/catalog/product'.$product->getImage(); ?>"/></a>
+          <div class="overlay">
+              <div class="overlay-content">
+                <a href="javascript:void(0)"  class="search-icon" id='<?php echo $product->getId();?>'><i class="fa fa-search" ></i></a>
+                <a class="quick-icon" href="<?php  echo $_product->getProductUrl() ?>">
+                <i class="fa fa-arrow-right" ></i></a>
+              </div>
+          </div>
+			</div>
+						<div class="product-details">
+							<h5><?php echo '<a href="'.$_product->getProductUrl().'">'.$product->getName().'</a>'; ?></h5>
+							<p class="p-category">Nature’s Baby Organic</p>
+							<p class="p-price"><?php echo $priceHelper->currency($product->getPrice(), true, false); ?></p>
+             <span class="cta">
+                        <b><a  href="<?php echo $block->getUrl('wishlist',['_secure' => true]); ?>" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>'><?php
+                    if ($customerSession->isLoggedIn()) {
+                      if (!in_array($product->getId(), $wishlist_id )) { ?>
+                    <i class="fa fa-heart-o"><?php }else{ ?> <i class="fa fa-heart"> <?php  } }else{ ?><i class="fa fa-heart-o"><?php } ?></i></a></b>
+                          <b><a href="<?php  echo $_product->getProductUrl(); ?>"><i class="fa fa-comment-o"></i> (<?php
+                          if ($RatingOb->getCount()) {
+                            echo $RatingOb->getCount();
+                           }else{echo '0';}?>)</a></b>
+                          <?php $addToCartUrl =  $listBlock->getAddToCartUrl($_product); ?>
+                          <b><form data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post"> 
+                                               <?php echo $block->getBlockHtml('formkey')?>
+                          <button type="submit" title="Add to Cart" class="p-product-add">
+                              <span><i class="fa fa-shopping-cart"></i></span>
+                          </button>
+                          </form></b>
+                        </span>
+						</div>
+		</div>
+  </li>
+<?php } } else { echo "Did not find what you were looking for.."; } } ?>
+</ul>
+<!-- Product search end here.. -->
+<div class="clearfix"></div>
+<hr>
+<!-- Start Knowledge Hub Srarch Goes here.. -->
+<h2 class="head-title serch-devider">Knowledge Hub</h2>
+<ul class="hub_list"> 
+<?php 
+      if ($key!="") 
+      {   
+        $storeManager1 = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+        $currentStore  = $storeManager1->getStore();
+        $mediaUrl      = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+        $nn            = $mediaUrl."kb";
+        $articles      = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load()
+                       ->addFieldToSelect('*')
+                       ->addFieldToFilter(array('name'),
+                            array(
+                              array('like' => '%'.$key.'%')
+                              )
+                        ); 
+
+         if (count($articles->getData()) != 0) 
+        {                 
+          foreach ($articles->getData() as $value) 
+          { 
+            $publish_datte  = $value['created_at'];
+            $tempDate       = $publish_datte;
+            $day            = date('l', strtotime($tempDate));
+            $month          = date('F jS Y ',strtotime($tempDate));
+            $sql_5          = "SELECT mstcat.* FROM mst_kb_category as mstcat
+                  INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id
+                  INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id where mstart.article_id=".$value['article_id']."";
+                  $result5    = $connection->fetchAll($sql_5);
+            $model = $objectManager->get('Mirasvit\Kb\Model\Article')->load($value['article_id']);
+            ?>
+          <li>
+            <div class="hub-box">
+                  <a href="<?php echo $model->getUrl();?>"><img src="<?php if(!empty($value)){ echo $nn.'/'.$value['image'];} else { echo $this->getViewFileUrl('images/hub_cat_01.jpg');} ?>"/></a>
+                  <div class="hub-details">
+                    <div class="hub_flex">
+                          <span class="hub_type"><?php echo $result5[0]['name'] ?></span>
+                          <div class="hub_title"><?php echo $value['name'];  ?></div>
+                    </div>
+                  </div>
+                  <div class="box-bottom">
+                      <div class="pull-left"><?php echo  $month ;?></div>
+                        <div class="pull-right"><i class="fa fa-heart"></i><?php echo $value['rating'];?></div>
+                      <div class="clearfix"></div>
+                    </div>
+                </div>
+            </li> 
+       <?php } } else { echo "Did not find what you were looking for.."; } }   ?> 
+      
+</div>    
+ </ul>
+ <!-- End Knowledge Hub Srarch Goes here.. -->
+<div class="clearfix"></div>
+<hr>
+<!-- Blog Search Goes Here.. -->
+<h2 class="head-title serch-devider">Blog</h2>
+<div class="blog-list">
+<?php 
+    if ($key!="") 
+    { 
+    $storeManager1  = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+    $currentStore   = $storeManager1->getStore();
+    $mediaUrl       = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+    $postcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Post\Collection')->load()
+                    ->addFieldToSelect('*')
+                    ->addFieldToFilter(array('name'),
+                        array(
+                              array('like' => '%'.$key.'%')
+                              )
+                    );
+    $finaldata=$postcollection->getData();
+    if (count($finaldata) != 0) 
+    {  
+    foreach ($finaldata as $bantoo) 
+    { 
+      $publish_datte     = $bantoo['publish_date'];
+      $tempDate          = $publish_datte;
+      $day               = date('l', strtotime($tempDate));
+      $month             = date('jS F Y',strtotime($tempDate));
+      $postid            = $bantoo['post_id'];                 
+      $commentcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Comment\Collection')
+                        ->addFieldToFilter('post_id',$postid);
+      $commentcount      = count($commentcollection);
+     $likecount          = array();
+     foreach ($commentcollection as $comment) 
+     {
+        $commentid       = $comment['comment_id'];
+        $likecModel      = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Like\Collection')
+                         ->addFieldToFilter('comment_id',$commentid);            
+        $likecount[]     = count($likecModel->getData());
+     }
+     $likecot             = array_sum($likecount);
+    ?>
+      <div class="blog-item">
+        <img src="<?php echo $mediaUrl.'mageplaza/blog/post/image'.$bantoo['image']; ?>"/>
+          <div class="item-content">
+              <div class="item-title"><?php echo $bantoo['name'];   ?></div>
+                <div class="item-desc"><?php echo $bantoo['short_description'];?></div>
+                  <div class="item-bottom">
+                    <div class="blog-date"><?php echo $month ; ?></div>
+                        <div class="blog-status">
+                            <div class="blog-like"><?php echo $likecot; ?><i class="fa fa-heart"></i></div>
+                            <div class="blog-comment"><?php echo  $commentcount; ?><i class="fa fa-comments"></i></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>            
+            </div>
+    <?php  } } else { echo "Did not find what you were looking for.."; } }  ?> 
+    <!--   Blog search end here..  -->         
+</div>
+

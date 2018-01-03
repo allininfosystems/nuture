@@ -1,0 +1,17 @@
+<?php
+
+   $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+   $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($_productid);  
+   $ratings = $RatingOb->getSum()/$RatingOb->getCount(); 
+?>
+
+
+<div class="product-reviews-summary">
+   <div class="rating-summary">
+       <span class="label"><span>Rating:</span></span>
+       <div class="rating-result">
+           <span style="width:<?php echo $ratings; ?>%"><span><span itemprop="ratingValue"><?php echo $ratings; ?></span>% of <span itemprop="bestRating">100</span></span></span>
+       </div>
+       <?php echo '('.$RatingOb->getCount().')'; ?>
+   </div> 
+</div>

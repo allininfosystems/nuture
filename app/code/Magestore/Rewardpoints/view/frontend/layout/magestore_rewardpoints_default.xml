@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+ * Magestore
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Magestore
+ * @package     Magestore_RewardPoints
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+/**
+ * @category    Magestore
+ * @package     Magestore_RewardPoints
+ * @author      Magestore Developer
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <attribute name="class" value="account"/>
+        <referenceContainer name="sidebar.main">
+            <block class="Magento\Framework\View\Element\Html\Links" name="customer_rewardpoints_navigation" before="-" template="Magestore_Rewardpoints::rewardpoints/account/navigation.phtml">
+
+                <block class="Magento\Framework\View\Element\Html\Link\Current" name="rewardpoints_navigation_dashboard">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Account Dashboard</argument>
+                        <argument name="path" xsi:type="string">customer/account</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-rewardpoints-index-index" template="Magestore_Rewardpoints::rewardpoints/accountNavigation.phtml" ifconfig="rewardpoints/general/enable">
+                    <arguments>
+                        <argument name="path" xsi:type="string">rewardpoints</argument>
+                        <argument name="label" xsi:type="helper" helper="Magestore\Rewardpoints\Helper\Data::getMyRewardsLabel"></argument>
+                    </arguments>
+                </block>
+
+
+                <block class="Magento\Framework\View\Element\Html\Link\Current" name="rewardpoints_navigation_transactions">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Point Transactions</argument>
+                        <argument name="path" xsi:type="string">rewardpoints/transactions</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Framework\View\Element\Html\Link\Current" name="rewardpoints_navigation_policy">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Reward Policy</argument>
+                        <argument name="path" xsi:type="string">rewardpoints/policy</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Framework\View\Element\Html\Link\Current" name="rewardpoints_navigation_settings">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Settings</argument>
+                        <argument name="path" xsi:type="string">rewardpoints/settings</argument>
+                    </arguments>
+                </block>
+
+            </block>
+        </referenceContainer>
+    </body>
+</page>

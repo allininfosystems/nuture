@@ -1,0 +1,8 @@
+<!-- ko if: isShippingSgstDisplayed() -->
+<tr class="totals shipping_sgst_charge excl" >
+    <th class="mark" colspan="1" scope="row" data-bind="text: getShippingSgstLabel()"></th>
+    <td class="amount">
+        <span class="price" data-bind="text: getShippingSgstFormattedPrice()"></span>
+    </td>
+</tr>
+<!-- /ko -->

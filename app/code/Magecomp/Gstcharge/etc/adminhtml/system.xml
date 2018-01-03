@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+		<tab id="magecomp" translate="label" sortOrder="100">
+            <label><![CDATA[<img src="https://www.magecomp.com/media/images/magecomp--extension.png" alt="MAGECOMP" height="25" style="vertical-align:middle;"/>]]></label>
+        </tab>
+		<section id="Gstcharge" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Indian GST</label>
+            <tab>magecomp</tab>
+            <resource>Magecomp_Gstcharge::config_gstcharge</resource>
+            <group id="Gstcharge" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Configuration</label>
+                <field id="status" translate="label comment" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Indian GST</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+				<field id="gstnumber" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>GSTIN Number</label>
+                </field>
+				<field id="pannumber" translate="label comment" type="text" sortOrder="15" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>PAN Number</label>
+                </field>
+				<field id="cinnumber" translate="label comment" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>CIN Number</label>
+                </field>
+				<field id="tax_percent" translate="label" sortOrder="25" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+				  <label>GST Rate(in Percentage)</label>
+				  <comment><![CDATA[If the selling is performed under a state, GST amount will be divided equally into CGST and SGST. If it is performed intra state, the whole tax rate will be applied to IGST.]]></comment>
+				  <source_model>Magecomp\Gstcharge\Model\Config\Source\Percentage</source_model>
+				</field>
+				<field id="tax_minprice" translate="label" sortOrder="30" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+				  <label>Minimum Product Price to Apply GST Rate</label>
+				  <validate>validate-number validate-zero-or-greater</validate>
+				</field>
+				<field id="tax_percent_minprice" translate="label" sortOrder="35" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+				  <label>GST Rate if Product Price Below Minimum Set Price</label>
+				  <source_model>Magecomp\Gstcharge\Model\Config\Source\Percentage</source_model>
+				  <comment><![CDATA[ If the product prices are below the set minimum price, tax rate set here will be applied.]]></comment>
+				</field>
+				<field id="state" translate="label" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+				  <label>Business Origin</label>
+				  <source_model>Magecomp\Gstcharge\Model\Config\Source\State</source_model>
+				</field>
+				<field id="taxtype" translate="label comment" type="select" sortOrder="45" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Display Product Prices In Catalog</label>
+					<source_model>Magecomp\Gstcharge\Model\Config\Source\Taxtype</source_model>
+                </field>
+				<field id="authentication" translate="label comment" type="image" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+        				<label>Invoice PDF Signature</label>
+        				<backend_model>Magecomp\Gstcharge\Model\Config\Source\Image</backend_model>
+        				<base_url type="media" scope_info="1">gst</base_url>
+						<comment><![CDATA[ Allowed file types: jpg, jpeg, gif, png.]]></comment>
+						<depends><field id="chartstyle">1</field></depends>
+  				</field>
+				<field id="signaturetext" translate="label" sortOrder="55" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+				  <label>Invoice PDF Signature Text</label>
+				</field>
+				
+            </group>
+			<group id="ShippingGstchargeConfig" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Shipping GST Settings</label>
+				<field id="shippingchargeinclude" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GST Apply on Shipping Charge ?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+				<field id="taxtype" translate="label comment" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Display Shipping Prices</label>
+					<source_model>Magecomp\Gstcharge\Model\Config\Source\Taxtype</source_model>
+                </field>
+            </group>				
+		</section>
+    </system>
+</config>

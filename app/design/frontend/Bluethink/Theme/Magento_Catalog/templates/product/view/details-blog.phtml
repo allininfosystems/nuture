@@ -1,0 +1,206 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+    
+    $categories = $product->getCategoryIds(); /*will return category ids array*/
+foreach($categories as $category){
+    $cat = $objectManager->create('Magento\Catalog\Model\Category')->load($category);
+    $categoryname[]= $cat->getName();
+    }
+
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$mediaUrl = $storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
+
+/** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
+
+/** Apply filters here */
+
+
+
+?>
+ <div class="col-sm-12 col-xs-12" id="custom_scroll" >
+ <?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
+    <?php $layout = $block->getLayout(); ?>
+    <div id="addcurrent" class="filter product-info"> 
+
+    <?php $i=0; 
+    foreach ($detailedInfoGroup as $name):?>
+                <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                ?>
+<a class="tab-link " data-tab="tab-label-<?php echo $i;?>"><?php /* @escapeNotVerified */echo $label; ?></a>  <?php
+$i++;
+ endforeach;?> </div>
+<div class="product-info-detail">
+        <div class="container">
+<?php
+$i=0;
+ foreach ($detailedInfoGroup as $name):?>
+                <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                ?>
+    
+            <div id="tab-label-<?php echo $i;?>" data-role="content" class="data item content tab-content">          
+            <?php /* @escapeNotVerified */ echo $html; ?>
+            </div>
+            
+        
+     <?php
+     $i++;
+      endforeach;?>
+     </div>
+    </div>
+     <?php endif; ?>
+
+        <div class="prd_detail-blog">
+        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('blogtitleproductdetail')->toHtml();?>
+
+        <div class="blog-list">    
+            <?php 
+                     if ($categoryname='Nuluv Mama') {
+                     	$catname='Mother';
+                     }
+                     elseif ($categoryname='Nuluv Baby') {
+                     	$catname='Baby';
+                     }
+                     elseif ($categoryname='Nuluv Kids') {
+                     	$catname='Kid';
+                     }
+                 $categorycollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Category\Collection')
+              ->addFieldToFilter('name', $catname);
+              foreach ($categorycollection as $category){
+                        $categoryurl=$category->getUrlKey();
+                         $categoryid=$category->getCategoryId();  
+
+
+                         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+         $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+         $connection = $resource->getConnection();
+         $tableName = $resource->getTableName('mageplaza_blog_post_category');
+         $sql = "Select * FROM " . $tableName." Where category_id = ".$categoryid."";
+         $result = $connection->fetchAll($sql); 
+          
+         foreach ($result as $results) {
+           $postid[]=$results['post_id'];
+       }
+   }
+   $postcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Post\Collection')
+   ->addFieldToFilter('post_id', $postid);
+
+            foreach($postcollection as $post) :?>
+            <?php     $postid=$post->getPostId(); 
+               
+               $commentcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Comment\Collection')->addFieldToFilter('post_id',$postid);
+
+              
+               $commentcount=count($commentcollection);
+               $likecount=array();
+               foreach ($commentcollection as $comment) {
+                   $commentid=$comment['comment_id'];
+                    $likecModel = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Like\Collection')->addFieldToFilter('comment_id',$commentid);
+                    
+          $likecount[]=count($likecModel->getData());
+                
+                    
+                
+                
+               }
+              $likecot=array_sum($likecount);
+            $publish_datte=$post->getData()['publish_date'];
+
+
+$tempDate = $publish_datte;
+$day = date('l', strtotime($tempDate));// will gives you the week day name 
+$month = date('jS F Y',strtotime($tempDate));?>
+            <div class="blog-item">
+                <a href="<?php echo $block->getUrl().'blog/post/'.$post->getData()['url_key'] ?>">
+                    <div class="blogimage" ><img src="<?php echo $mediaUrl.'mageplaza/blog/post/image'.$post->getData()['image']; ?>"/></div></a>       
+                <div class="item-content">
+                    <div class="item-title"><a href="<?php echo $block->getUrl().'blog/post/'.$post->getData()['url_key'] ?>"><?php echo $post->getData()['name']; ?></a></div>
+                    <div class="item-desc"><?php echo $post->getData()['short_description']; ?></div>
+                    <div class="item-bottom">
+                    <div class="blog-date"><?php echo $month; ?></div>
+                        <div class="blog-status">
+                             <div class="blog-like"><?php echo $likecot; ?><i class="fa fa-heart"></i></div>
+                        <div class="blog-comment"><?php echo  $commentcount; ?> <i class="fa fa-comments"></i></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+      
+
+
+<script>
+//  require(['jquery'],function (jQuery) {
+//     jQuery(document).ready(function(){
+//         jQuery('.tab-link:first').addClass('current');
+//         jQuery('.tab-content:first').addClass('current');
+
+//     });
+//     jQuery("#reviewdiv").click(function() {
+//     jQuery('html, body').animate({
+//         scrollTop: jQuery("#custom_scroll").offset().top
+//     }, 2000);
+
+//     jQuery('#addcurrent a:last').addClass("current");jQuery('#addcurrent a:first').removeClass("current");
+//     jQuery("#tab-label-0").removeClass("current");
+//     jQuery("#tab-label-4").addClass("current");
+
+// });
+//     jQuery("#reviewcom").click(function() {
+//     jQuery('html, body').animate({
+//         scrollTop: jQuery("#custom_scroll").offset().top
+//     }, 2000);
+
+//     jQuery('#addcurrent a:last').addClass("current");jQuery('#addcurrent a:first').removeClass("current");
+//     jQuery("#tab-label-0").removeClass("current");
+//     jQuery("#tab-label-4").addClass("current");
+    
+// });
+//     jQuery("#ak").click(function() {
+//     jQuery('html, body').animate({
+//         scrollTop: jQuery("#custom_scroll").offset().top
+//     }, 2000);
+
+//     jQuery('#addcurrent a:first').addClass("current");
+//     jQuery('#tab-label-1').removeClass("current");
+//     jQuery('#tab-label-2').removeClass("current");
+//     jQuery('#tab-label-3').removeClass("current");
+//     jQuery('#tab-label-4').removeClass("current");
+//     jQuery("#tab-label-0").addClass("current");
+
+
+// });
+
+    
+// });
+</script>

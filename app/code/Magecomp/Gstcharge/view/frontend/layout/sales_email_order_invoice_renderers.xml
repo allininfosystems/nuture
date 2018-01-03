@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Email Creditmemo Items List" design_abstraction="custom">
+    <body>
+        <referenceBlock name="sales.email.order.invoice.renderers">
+            <block class="Magento\Sales\Block\Order\Email\Items\DefaultItems" as="default" template="Magecomp_Gstcharge::email/items/invoice/default.phtml" name="gst_email_invoice_view_renderer"/>
+			 <action method="setChild">
+				   <argument name="alias" xsi:type="string">default</argument>
+				   <argument name="block" xsi:type="string">gst_email_invoice_view_renderer</argument>
+			 </action>
+        </referenceBlock>
+    </body>
+</page>

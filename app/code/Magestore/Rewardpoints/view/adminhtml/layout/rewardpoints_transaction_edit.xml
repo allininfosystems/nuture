@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magestore_Rewardpoints::css/style.css"/>
+        <script src="Magestore_Rewardpoints::js/tinybox.js"/>
+    </head>
+    <body>
+
+        <referenceContainer name="left">
+            <block class="Magestore\Rewardpoints\Block\Adminhtml\Transaction\TabContent\Tabs">
+                <block class="Magestore\Rewardpoints\Block\Adminhtml\Transaction\TabContent\Tab\AddNew" name="edit_form"/>
+
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general_tabs</argument>
+                    <argument name="block" xsi:type="string">edit_form</argument>
+                </action>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Magestore\Rewardpoints\Block\Adminhtml\Transaction\Edit" name="admin.block.rewardpoints.form.container"/>
+        </referenceContainer>
+    </body>
+</page>

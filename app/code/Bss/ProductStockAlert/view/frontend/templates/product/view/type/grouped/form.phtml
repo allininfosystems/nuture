@@ -1,0 +1,73 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_ProductStockAlert
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2017 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php if($block->checkCustomer()): ?>
+    <?php if(!$block->getStatusAvailable()): ?>
+        <?php $message = $block->getNotificationMessage() ? $block->getNotificationMessage() : 'Notify me when this product is in stock'; ?>
+        <div class="stockalert" id="block-stockalert<?php echo $block->getProductIdController() ?>" data-mage-init='{"collapsible":{"openedState": "active", "saveState": false}}'>
+            <div class="title" data-role="title">
+                <strong id="block-stockalert-heading<?php echo $block->getProductIdController() ?>" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo __($message) ?></strong>
+            </div>
+            <div class="content" id="form-container<?php echo $block->getProductIdController() ?>" data-role="content" aria-labelledby="block-stockalert-heading">
+                <div id="stockalert-grouped-<?php echo $block->getProductIdController() ?>"
+                      action="<?php /* @escapeNotVerified */ echo $block->getAction(); ?>"
+                      data-mage-init='{"productStockalertGrouped":{
+                            "elementError" : "#stockalert-grouped-<?php echo $block->getProductIdController() ?> .mage-error",
+                            "stockAlertEmail": "#stockalert-grouped-<?php echo $block->getProductIdController() ?> .stockalert_grouped_email",
+                            "applyButton": "#stockalert-grouped-<?php echo $block->getProductIdController() ?> button.action.notify",
+                            "cancelButton": "#stockalert-grouped-<?php echo $block->getProductIdController() ?> button.action.cancel"
+                        }
+                      }'>
+                    <?php if (!$block->hasEmail($block->getProductIdController())): ?>
+                    <div class="bss_productstockaler applied">
+                        <div class="field">
+                            <input type="text" class="input-text stockalert_grouped_email" name="stockalert_grouped_email" value="<?php echo $block->escapeHtml($block->getCustomerEmail()) ?>" placeholder="<?php echo $block->escapeHtml(__('Your Email'));?>" />
+                            <div generated="true" class="mage-error" ></div>
+                        </div>
+                        <div class="actions-toolbar">
+                            <div>
+                                <button class="action notify primary" type="button" value="<?php /* @escapeNotVerified */ echo __('Notify Me') ?>">
+                                    <span><?php /* @escapeNotVerified */ echo __('Notify Me') ?></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <?php else: ?>
+                        <div class="bss_productstockaler">
+                            <button  type="button" class="action cancel primary" value="<?php /* @escapeNotVerified */ echo __('Cancel Coupon') ?>"><span><?php /* @escapeNotVerified */ echo __('Stop Notify') ?></span></button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>    
+        </div>
+    <?php else: ?>
+        <div class="container-child-product">
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

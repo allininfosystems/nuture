@@ -1,0 +1,1 @@
+Magento 2 ajax filter extension allows customers to filter products by different attributes without page refresh. Decrease bounce rates and increase sales by making the navigation to the products quite easy. With our magento filter by attribute plugin installed at your store, your customers will be surprised to see how easy and fast it can be to find the items they need.

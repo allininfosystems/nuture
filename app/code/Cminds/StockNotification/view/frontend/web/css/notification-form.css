@@ -1,0 +1,11 @@
+div.block.newsletter.stocknotification {
+    width: 100%;
+}
+
+.stocknotification .title {
+    display: block !important;
+}
+
+.stocknotification .actions {
+    width: auto !important;
+}

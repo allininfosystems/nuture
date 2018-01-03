@@ -1,0 +1,25 @@
+{
+  "name": "mageplaza/magento-2-seo-url",
+  "description": "Magento 2 Seo Url",
+  "require": {
+    "mageplaza/module-core": "*"
+  },
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Hi",
+      "email": "hi@mageplaza.com",
+      "homepage": "https://www.mageplaza.com",
+      "role": "PM"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Mageplaza\\SeoUrl\\": ""
+    }
+  }
+}

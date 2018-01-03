@@ -1,0 +1,63 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+echo $this->getLayout()
+          ->createBlock('Mirasvit\Kb\Block\Category\Sidebar')
+          ->setTemplate('Mirasvit_Kb::category/sidebar.phtml')
+          ->toHtml();
+$param = $block->getRequest()->getParam('article');
+
+$storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+$currentStore    = $storeManager1->getStore();
+$mediaUrl        = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$nn=$mediaUrl."kb";
+
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+
+if (!empty($param)) {
+	$articlecollection = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')
+                                       ->addFieldToFilter('name', array('like' => $param.'%'))->load();
+    if (count($articlecollection)>0) 
+    {  	?>
+		<cite>Search Result For '<?php echo $param; ?>'</cite>
+		<div id="filter-tab-1" class="tab-content current">          
+		<ul class="hub_list">
+
+<?php
+    foreach ($articlecollection as $article) {
+    	$publish_datte  = $article->getCreatedAt();
+		$tempDate       = $publish_datte;
+		$day            = date('l', strtotime($tempDate));
+		$month          = date('F jS Y ',strtotime($tempDate));
+
+		$sql = "SELECT mstcat.* FROM mst_kb_category as mstcat
+				INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id
+				INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id where mstart.article_id=".$article->getArticleId()."";
+        $result1    = $connection->fetchAll($sql);
+?>
+    	<li>
+			<div class="hub-box">
+				<a href="<?php echo $article->getUrl(); ?>">
+					<div class="hub-box-image">
+						<img src="<?php if(!empty($article->getImage())){ echo $nn.'/'.$article->getImage();} else { echo $this->getViewFileUrl('images/hub_cat_01.jpg');} ?>"/>
+					</div>
+				</a>
+				<div class="hub-details">
+					<div class="hub_flex">
+						<span class="hub_type"><?php echo $result1[0]['name'] ?></span>
+						<div class="hub_title">
+							<a href="<?php echo $article->getUrl(); ?>"><?php echo $article->getName(); ?></a>
+						</div>
+					</div>
+				</div>
+				<div class="box-bottom">
+					<div class="pull-left"><?php echo $month; ?></div>
+					<div class="pull-right"><i class="fa fa-heart"></i><?php echo $article->getRating(); ?></div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</li>
+<?php } ?>
+</ul>
+<?php }else{ echo "There is no article matching collections."; } } ?>
+</div>

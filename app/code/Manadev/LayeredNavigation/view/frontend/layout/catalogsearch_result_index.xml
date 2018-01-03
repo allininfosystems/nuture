@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+ @category    Mana
+ @package     Manadev_LayeredNavigation
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="mana_layered_navigation"/>
+    <head>
+        <css src="Magento_Swatches::css/swatches.css"/>
+    </head>
+    <body>
+        <block class="Manadev\Core\Blocks\Instruction">
+            <action method="remove">
+                <argument name="blockToBeRemoved" xsi:type="string">catalogsearch.leftnav</argument>
+                <argument name="removedByFeature" xsi:type="string">Manadev_LayeredNavigation</argument>
+            </action>
+        </block>
+<!--
+        <referenceBlock name="category.product.type.details.renderers">
+            <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml"/>
+        </referenceBlock>
+-->
+    </body>
+</page>

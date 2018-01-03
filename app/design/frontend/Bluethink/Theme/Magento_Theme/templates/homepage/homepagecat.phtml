@@ -1,0 +1,424 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of Object Manager
+
+
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
+$listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+$categoryHelper = $this->helper('Magento\Catalog\Helper\Category');
+        const PARAM_NAME_BASE64_URL = 'r64';
+        const PARAM_NAME_URL_ENCODED = 'uenc';
+
+use Magento\Framework\App\Action\Action;
+
+$i = 0;
+foreach ($categoryHelper->getStoreCategories() as $category):
+
+    $categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+    $categoryId = $category->getId();
+    $category = $categoryFactory->create()->load($categoryId);
+    $categoryProducts = $category->getProductCollection()
+            ->addAttributeToSelect('*');
+    $catname = $category->getName();
+
+    foreach ($categoryProducts as $product) {
+
+        $allproduct[] = $product->getData();
+        $name[] = $product->getName();
+        $price = $product->getPrice();
+        $description = $product->getDescription();
+    }
+    $i++;
+endforeach;
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+$wishlist_id = array();
+if ($customerSession->isLoggedIn()) {
+    $customerid = $customerSession->getCustomer()->getId();
+    $Wishlist_Model = $objectManager->create('\Magento\Wishlist\Controller\WishlistProviderInterface');
+    $currentUserWishlist = $Wishlist_Model->getWishlist();
+    if ($currentUserWishlist) {
+        $wishlistItems = $currentUserWishlist->getItemCollection()->getData();
+        foreach ($wishlistItems as $wishlistItems_value) {
+            $wishlist_id[] = $wishlistItems_value['product_id'];
+        }
+    }
+}
+?>
+
+<section class="popular-products">
+    <div class="slide-container">
+        <div class="popular-products-inner">
+            <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('popularproducts')->toHtml(); ?>
+            <div class="filter">
+                <a class="tab-link current" data-tab="filter-tab-1">All</a>
+                <a class="tab-link" data-tab="filter-tab-2">Mama</a>
+                <a class="tab-link" data-tab="filter-tab-3">Baby</a>
+                <a class="tab-link" data-tab="filter-tab-4">Kid</a>
+            </div>
+            <div class="product-filter-slider">
+                <div id="filter-tab-1" class="tab-content current">
+                    <div id="filter-1" class="owl-carousel owl-theme">
+                        <?php
+						    $manaproducts=array();
+						    $babyproducts=array();
+						    $kidproducts=array();
+                            $categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+                            $categoryId = 100;
+                            $category = $categoryFactory->create()->load($categoryId);
+                            $categoryProducts = $category->getProductCollection()->addAttributeToSelect('*');
+                            $j = 0;
+                            foreach ($categoryProducts as $product) {
+								$categoryids = $product->getCategoryIds();
+								if(in_array(3,$categoryids)){
+									$manaproducts[]=$product->getId();
+								}
+								if(in_array(4,$categoryids)){
+									$babyproducts[]=$product->getId();
+								}
+								if(in_array(5,$categoryids)){
+									$kidproducts[]=$product->getId();
+								}
+                                $contractDateBegin = $product['news_from_date'];
+                                $contractDateEnd = $product['news_to_date'];
+                                date_default_timezone_set('Asia/Kolkata');
+                                $paymentDate = date('Y-m-d H:i:s');
+
+                                $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($product->getId());
+                                ?><div class="pkg" >
+                                    <div class="item">
+                                        <div class="product-box" >
+                                            <div class="product-image">
+                                                <?php if (($paymentDate > $contractDateBegin) && ($paymentDate < $contractDateEnd)) {
+                                                    ?>
+                                                    <div class="new-items">New</div>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                <?php }
+                                                ?>
+                                                <a href="#"><?php if($product->getImage()){ ?><img src="<?php echo $block->getUrl() . 'pub/media/catalog/product' . $product->getImage(); ?>"/> <?php } ?></a>
+                                                <div class="overlay" onclick="location.href='<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>';">                                                    
+                                                </div>
+												<div class="overlay-content">
+												<?php if ($product->getIsSalable()): ?>
+												    <a class="quick-icon" href="<?php echo $product->getProductUrl() ?>"><i class="fa fa-arrow-right" ></i></a>
+												<?php endif; ?>
+												</div>
+                                                <?php if ($product->getIsSalable()): ?>
+												<?php else: ?>
+													<div class="overlay sold-out">
+														<div class="overlay-sold-out-content"><a class="sold-out-btn" href="<?= /* @escapeNotVerified */ $product->getProductUrl() ?>">Sold Out</a></div>
+													</div>
+													<a href="<?php echo $product->getProductUrl(); ?>" class="get-info">Get Notified</a>
+												<?php endif; ?>												
+                                            </div>
+                                            <div class="product-item-details">
+                                                <h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php echo $product->getName(); ?></a></h5>
+												
+                                                <?php
+                                                $brand = $product->getResource()->getAttribute('product_brand')->getFrontend()->getValue($product);
+                                                if (isset($brand) && !empty($brand)) {
+                                                    $brandurl = 'nuluv-mama/' . strtolower(str_replace(' ', '', $brand)) . '.html';
+                                                    echo '<p class="p-category"><a href="' . $brandurl . '">' . $brand . '</a></p>';
+                                                }
+                                                ?>
+                                                <p class="p-price"><?php echo $priceHelper->currency($product->getPrice(), true, false); ?></p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="cta">
+                                        <b><a  href="<?php echo $block->getUrl('wishlist', ['_secure' => true]); ?>" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>'><?php
+                                                if ($customerSession->isLoggedIn()) {
+                                                    if (!in_array($product->getId(), $wishlist_id)) {
+                                                        ?>
+                                                        <i class="fa fa-heart-o"><?php } else { ?> <i class="fa fa-heart"> <?php
+                                                            }
+                                                        } else {
+                                                            ?><i class="fa fa-heart-o"><?php } ?></i></a></b>
+                                                        <b>
+                                                            <a href="<?php echo $product->getProductUrl(); ?>">
+                                                                <i class="fa fa-comment-o"></i> 
+                                                                (<span><?php echo ($RatingOb->getCount()) ? $RatingOb->getCount() : '0'; ?></span>)
+                                                            </a>
+                                                        </b>
+                                                        <?php $addToCartUrl = $listBlock->getAddToCartUrl($product); ?>
+														<?php if($product->getTypeId()=='simple'){ ?>
+                                                        <b><form class="prod-list-form" data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post">
+                                                                <input type="hidden" name="product" value="<?php echo $product->getId(); ?>">														
+                                                                <?php echo $block->getBlockHtml('formkey') ?>
+                                                                <button type="submit" title="Add to Cart" class="p-product-add">
+                                                                    <span><i class="fa fa-shopping-cart"></i></span>
+                                                                </button>
+                                                            </form></b>
+														<?php } else { echo '<a class="readmore-pro" href="'.$product->getProductUrl().'">Read More</a>'; } ?>
+                                                        </span>
+                                                        </div>
+                                                        <?php
+                                                        $j++;
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    $i++;
+                                                ?>
+                                                </div>
+                                                </div>
+                                                <?php
+												  /*echo '<pre>';
+												  print_r($manaproducts);
+												  echo '<pre>';
+												  echo '<pre>';
+												  print_r($babyproducts);
+												  echo '<pre>';
+												  echo '<pre>';
+												  print_r($kidproducts);
+												  echo '<pre>';*/
+												?>
+						<div id="filter-tab-2" class=" tab-content">
+						<div id="filter-2" class="owl-carousel owl-theme">
+							<?php
+							$j = 0;
+							if(count($manaproducts)>0){
+							foreach ($manaproducts as $productId) {
+								$product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+								$RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($product->getId());
+								?>
+								<div class="pkg" >
+									<div class="item">
+										<div class="product-box" >
+											<div class="product-image">
+												<div class="new-items">New</div>
+												<a href="#"><?php if($product->getImage()){ ?><img src="<?php echo $block->getUrl() . 'pub/media/catalog/product' . $product->getImage(); ?>"/> <?php } ?></a>
+												<div class="overlay" onclick="location.href='<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>';">
+													<div class="overlay-content">													
+													   <?php if ($product->getIsSalable()): ?>
+															<a class="quick-icon" href="<?php echo $product->getProductUrl() ?>"><i class="fa fa-arrow-right" ></i></a>
+														<?php endif; ?>
+													</div>
+												</div>
+												<?php if ($product->getIsSalable()): ?>
+												<?php else: ?>
+													<div class="overlay sold-out">
+														<div class="overlay-sold-out-content"><a class="sold-out-btn" href="<?= /* @escapeNotVerified */ $product->getProductUrl() ?>">Sold Out</a></div>
+													</div>
+													<a href="<?php echo $product->getProductUrl(); ?>" class="get-info">Get Notified</a>
+												<?php endif; ?>
+											</div>
+											<div class="product-item-details">
+												<h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php echo $product->getName(); ?></a></h5>
+												<?php
+												$brand = $product->getResource()->getAttribute('product_brand')->getFrontend()->getValue($product);
+												if (isset($brand) && !empty($brand)) {
+													$brandurl = 'nuluv-mama/' . strtolower(str_replace(' ', '', $brand)) . '.html';
+													echo '<p class="p-category"><a href="' . $brandurl . '">' . $brand . '</a></p>';
+												}
+												?>
+
+												<p class="p-price"><?php echo $priceHelper->currency($product->getPrice(), true, false); ?></p>
+											</div>
+										</div>
+
+									</div>
+									<span class="cta">
+										<b><a  href="<?php echo $block->getUrl('wishlist', ['_secure' => true]); ?>" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>'><?php
+												if ($customerSession->isLoggedIn()) {
+													if (!in_array($product->getId(), $wishlist_id)) {
+														?>
+														<i class="fa fa-heart-o"><?php } else { ?> <i class="fa fa-heart"> <?php
+															}
+														} else {
+															?><i class="fa fa-heart-o"><?php } ?></i></a></b>
+														<b>
+															<a href="<?php echo $product->getProductUrl(); ?>">
+																<i class="fa fa-comment-o"></i> 
+																(<span><?php echo ($RatingOb->getCount()) ? $RatingOb->getCount() : '0'; ?></span>)
+															</a>
+														</b>
+														<?php $addToCartUrl = $listBlock->getAddToCartUrl($product); ?>
+														<?php if($product->getTypeId()=='simple'){ ?>
+														<b><form class="prod-list-form" data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post">
+                                                                <input type="hidden" name="product" value="<?php echo $product->getId(); ?>">														
+																<?php echo $block->getBlockHtml('formkey') ?>
+																<button type="submit" title="Add to Cart" class="p-product-add">
+																	<span><i class="fa fa-shopping-cart"></i></span>
+																</button>
+															</form></b>
+														 <?php } else { '<a class="readmore-pro" href="'.$product->getProductUrl().'">Read More</a>'; } ?>
+														</span>
+														</div>
+														<?php
+														$j++;
+													}
+													}
+													?>
+							</div>
+						</div>
+
+						<div id="filter-tab-3" class=" tab-content">
+							<div id="filter-3" class="owl-carousel owl-theme">
+						<?php
+						$j = 0;
+						if(count($babyproducts)>0){
+							foreach ($babyproducts as $productId) {
+								    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+									$RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($product->getId());
+									?>
+									<div class="item">
+										<div class="product-box" >
+											<div class="product-image">
+												<div class="new-items">New</div>
+												<a href="#"><?php if($product->getImage()){ ?><img src="<?php echo $block->getUrl() . 'pub/media/catalog/product' . $product->getImage(); ?>"/> <?php } ?></a>
+												<div class="overlay" onclick="location.href='<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>';">
+													<div class="overlay-content">													
+													<?php if ($product->getIsSalable()): ?>
+												       <a class="quick-icon" href="<?php echo $product->getProductUrl() ?>"><i class="fa fa-arrow-right" ></i></a>
+												<?php endif; ?>
+													</div>
+												</div>
+												<?php if ($product->getIsSalable()): ?>
+												<?php else: ?>
+													<div class="overlay sold-out">
+														<div class="overlay-sold-out-content"><a class="sold-out-btn" href="<?= /* @escapeNotVerified */ $product->getProductUrl() ?>">Sold Out</a></div>
+													</div>
+													<a href="<?php echo $product->getProductUrl(); ?>" class="get-info">Get Notified</a>
+												<?php endif; ?>
+											</div>
+											<div class="product-item-details">
+												<h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php echo $product->getName(); ?></a></h5>
+												<?php
+												$brand = $product->getResource()->getAttribute('product_brand')->getFrontend()->getValue($product);
+												if (isset($brand) && !empty($brand)) {
+													$brandurl = 'nuluv-mama/' . strtolower(str_replace(' ', '', $brand)) . '.html';
+													echo '<p class="p-category"><a href="' . $brandurl . '">' . $brand . '</a></p>';
+												}
+												?>
+												<p class="p-price"><?php echo $priceHelper->currency($product->getPrice(), true, false); ?></p>
+												<span class="cta">
+													<b><a  href="<?php echo $block->getUrl('wishlist', ['_secure' => true]); ?>" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>'><?php
+											 if ($customerSession->isLoggedIn()) {
+												 if (!in_array($product->getId(), $wishlist_id)) {
+																																									?>
+																																									<i class="fa fa-heart-o"><?php } else { ?> <i class="fa fa-heart"> <?php
+																																										}
+																																									} else {
+																																										?><i class="fa fa-heart-o"><?php } ?></i></a></b>
+																																									<b>
+																																										<a href="<?php echo $product->getProductUrl(); ?>">
+																																											<i class="fa fa-comment-o"></i> 
+																																											(<span><?php echo ($RatingOb->getCount()) ? $RatingOb->getCount() : '0'; ?></span>)
+																																										</a>
+																																									</b>
+																																									<?php $addToCartUrl = $listBlock->getAddToCartUrl($product); ?>
+<?php if($product->getTypeId()=='simple'){ ?>																																									<b><form class="prod-list-form" data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post"> 
+																																											<?php echo $block->getBlockHtml('formkey') ?>
+												<input type="hidden" name="product" value="<?php echo $product->getId(); ?>">																		<button type="submit" title="Add to Cart" class="p-product-add">
+																																												<span><i class="fa fa-shopping-cart"></i></span>
+																																											</button>
+																																										</form></b><?php } else { echo '<a class="readmore-pro" href="'.$product->getProductUrl().'">Read More</a>'; } ?>
+																																									</span>
+																																									</div>
+																																									</div>
+																																									</div>
+																																									<?php
+																																									$j++;
+                                              }
+											  }
+                                         ?>
+
+                                                                                                                                                                </div>
+                                                                                                                                                          </div>
+
+                                                                                                                        <div id="filter-tab-4" class="tab-content">
+                                                                                                                            <div id="filter-4" class="owl-carousel owl-theme">
+                                                                                                                                <?php                                                                                                                            $j = 0;
+                                                                                                                            if(count($kidproducts)>0){
+		foreach ($kidproducts as $productId) {
+		$product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+		$RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($product->getId());
+                                                                                                                                    ?><div class="pkg" >
+                                                                                                                                        <div class="item">
+                                                                                                                                            <div class="product-box" >
+                                                                                                                                                <div class="product-image">
+                                                                                                                                                    <div class="new-items">New</div>
+                                                                                                                                                    <a href="#"><?php if($product->getImage()){ ?><img src="<?php echo $block->getUrl() . 'pub/media/catalog/product' . $product->getImage(); ?>"/> <?php } ?></a>
+                                                                                                                                                    <div class="overlay" onclick="location.href='<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>';">
+                                                                                                                                                        <div class="overlay-content"><?php if ($product->getIsSalable()): ?>
+												    <a class="quick-icon" href="<?php echo $product->getProductUrl() ?>"><i class="fa fa-arrow-right" ></i></a>
+												<?php endif; ?></div>
+                                                                                                                                                    </div>
+																																					<?php if ($product->getIsSalable()): ?>
+												<?php else: ?>
+													<div class="overlay sold-out">
+														<div class="overlay-sold-out-content"><a class="sold-out-btn" href="<?= /* @escapeNotVerified */ $product->getProductUrl() ?>">Sold Out</a></div>
+													</div>
+													<a href="<?php echo $product->getProductUrl(); ?>" class="get-info">Get Notified</a>
+												<?php endif; ?>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="product-item-details">
+                                                                                                                                                    <h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php echo $product->getName(); ?></a></h5>
+                                                                                                                                                    <?php
+                                                                                                                                                    $brand = $product->getResource()->getAttribute('product_brand')->getFrontend()->getValue($product);
+                                                                                                                                                    if (isset($brand) && !empty($brand)) {
+                                                                                                                                                        $brandurl = 'nuluv-mama/' . strtolower(str_replace(' ', '', $brand)) . '.html';
+                                                                                                                                                        echo '<p class="p-category"><a href="' . $brandurl . '">' . $brand . '</a></p>';
+                                                                                                                                                    }
+                                                                                                                                                    ?>
+                                                                                                                                                    <p class="p-price"><?php echo $priceHelper->currency($product->getPrice(), true, false); ?></p>
+
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+
+                                                                                                                                        </div>
+                                                                                                                                        <span class="cta">
+                                                                                                                                            <b><a  href="<?php echo $block->getUrl('wishlist', ['_secure' => true]); ?>" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>'><?php
+                                                                                                                                                    if ($customerSession->isLoggedIn()) {
+                                                                                                                                                        if (!in_array($product->getId(), $wishlist_id)) {
+                                                                                                                                                            ?>
+                                                                                                                                                            <i class="fa fa-heart-o"><?php } else { ?> <i class="fa fa-heart"> <?php
+                                                                                                                                                                }
+                                                                                                                                                            } else {
+                                                                                                                                                                ?><i class="fa fa-heart-o"><?php } ?></i></a></b>
+                                                                                                                                                            <b>
+                                                                                                                                                                <a href="<?php echo $product->getProductUrl(); ?>">
+                                                                                                                                                                    <i class="fa fa-comment-o"></i> 
+                                                                                                                                                                    (<span><?php echo ($RatingOb->getCount()) ? $RatingOb->getCount() : '0'; ?></span>)
+                                                                                                                                                                </a>
+                                                                                                                                                            </b>
+              <?php $addToCartUrl = $listBlock->getAddToCartUrl($product); ?>
+<?php if($product->getTypeId()=='simple'){ ?>
+   <b><form class="prod-list-form" data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post"> 
+   <input type="hidden" name="product" value="<?php echo $product->getId(); ?>">
+<?php echo $block->getBlockHtml('formkey') ?>
+  <button type="submit" title="Add to Cart" class="p-product-add"><span><i class="fa fa-shopping-cart"></i></span></button>
+</form></b>																																							<?php } else { echo '<a class="readmore-pro" href="'.$product->getProductUrl().'">Read More</a>'; } ?> 
+                                                                                                                                                            </span>
+                                                                                                                                                            </div>
+                                                                                                                                                            <?php
+                                                                                                                                                            $j++;
+                                                                                                                                                        }
+																																						}
+                                                                                                                                                        ?>
+                                                                                                                                                        </div>
+                                                                                                                                                        </div>
+                                                                                                                                                        </div>
+                                                                                                                                                        </div>
+                                                                                                                                                        </div>
+                                                                                                                                                        </section>
+<script>
+      require(['jquery', 'jquery/ui'], function($){
+		     $(window).load(function(){
+		        $('#filter-1, #filter-2, #filter-3, #filter-4').owlCarousel({
+					loop:true,
+					margin:35,
+					nav:true,
+					mouseDrag: true,
+					dots: true,
+					responsive:{
+						 0:{ items:1 },
+						400:{ items:1 },
+						600:{ items:2 },
+						1000:{ items:4 }
+					}
+				});
+			 });
+		  });
+   </script>

@@ -1,0 +1,137 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Items $block */
+$columns = $block->getColumns();
+?>
+<div class="container">
+  <table id="cart" class="table table-bordered cart-table hidden-xs">
+    <thead>
+      <tr>
+        <th style="width:5%" >S.No</th>
+        <th style="width:20%">Image</th>
+        <th style="width:40%">Product Name</th>
+        <th style="width:10%">Quantity</th>
+        <th style="width:10%">Price</th>
+        <th style="width:10%">Total</th>
+        <th style="width:10%">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td class="product-img"><img src="images/product5.jpg" /></td>
+        <td>Anti-Blemish Facial Wash, Orange Flavour</td>
+        <td>5</td>
+        <td>2</td>
+        <td>1500</td>
+        <td><img src="images/delete-icon.png" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="visible-xs  cart-table">
+   <tr>
+        <td ><table class="table table-bordered mobile-cart-table">
+         <tbody>
+          <tr>
+            <td>S.No</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>Image</td>
+            <td class="product-img"><img src="images/product5.jpg" /></td>
+          </tr>
+          <tr>
+            <td>Product Name</td>
+            <td>Anti-Blemish Facial Wash, Orange Flavour</td>
+          </tr>
+          <tr>
+            <td>Quantity</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>Remove</td>
+            <td><img src="images/delete-icon.png" /></td>
+          </tr>
+           </tbody>
+        </table>
+        </td>
+      </tr>
+      <tr>
+        <td ><table class="table table-bordered mobile-cart-table">
+         <tbody>
+          <tr>
+            <td>S.No</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>Image</td>
+            <td class="product-img"><img src="images/product5.jpg" /></td>
+          </tr>
+          <tr>
+            <td>Product Name</td>
+            <td>Anti-Blemish Facial Wash, Orange Flavour</td>
+          </tr>
+          <tr>
+            <td>Quantity</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>Remove</td>
+            <td><img src="images/delete-icon.png" /></td>
+          </tr>
+           </tbody>
+        </table>
+        </td>
+      </tr>
+      
+  </table>
+  
+</div>
+<div class="products-grid wishlist">
+    <?php $iterator = 1; ?>
+    <?php if (count($block->getItems())): ?>
+    <ol class="product-items">
+        <?php foreach ($block->getItems() as $item): ?>
+        <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li data-row="product-item" class="product-item" id="item_' . $item->getId() . '">' : '</li><li class="product-item" id="item_' . $item->getId() . '">' ?>
+            <div class="product-item-info">
+                <?php foreach ($columns as $column): ?>
+                    <?php $column->setItem($item); echo $column->toHtml($item);?>
+                <?php endforeach; ?>
+            </div>
+        <?php echo($iterator == count($block->getItems())+1) ? '</li>' : '' ?>
+        <?php endforeach; ?>
+    </ol>
+    <?php else: ?>
+        <div class="message info empty">
+            <span><?php /* @escapeNotVerified */ echo __('This Wish List has no Items');?></span>
+        </div>
+    <?php endif; ?>
+</div>
+
+<?php foreach ($columns as $column): ?>
+    <?php echo $column->getAdditionalHtml();?>
+<?php endforeach; ?>

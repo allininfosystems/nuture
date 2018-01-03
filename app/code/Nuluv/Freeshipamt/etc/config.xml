@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+	
+        <freeshipamt_customfee>
+            <freeshipamt_customfee>
+                <freeshipamt_status>1</freeshipamt_status>
+            </freeshipamt_customfee>
+        </freeshipamt_customfee>
+        <freeshipamt_customfee>
+            <freeshipamt_customfee>
+                <freeshipamt_name>Free ship amt</freeshipamt_name>
+            </freeshipamt_customfee>
+        </freeshipamt_customfee>
+        <freeshipamt_customfee>
+            <freeshipamt_customfee>
+                <freeshipamt_customfeeamount>50</freeshipamt_customfeeamount>
+            </freeshipamt_customfee>
+        </freeshipamt_customfee>
+        <freeshipamt_customfee>
+            <freeshipamt_customfee>
+                <freeshipamt_minimumorderamount>0.01</freeshipamt_minimumorderamount>
+            </freeshipamt_customfee>
+        </freeshipamt_customfee>
+	
+    </default>
+</config>
+			

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+    <!-- Edit customer's balance point -->
+    <event name="adminhtml_customer_save_after">
+        <observer name="rewardpoints_customer_save_after" instance="Magestore\Rewardpoints\Observer\Backend\CustomerSaveAfterObserver" />
+    </event>
+    <!-- setForcedCanCreditmemo -->
+    <event name="sales_order_creditmemo_refund">
+        <observer name="rewardpoints_sales_order_creditmemo_refund" instance="Magestore\Rewardpoints\Observer\Backend\SalesOrderCreditmemoRefund" />
+    </event>
+    <!-- setForcedCanCreditmemo -->
+    <event name="sales_order_load_after">
+        <observer name="rewardpoints_sales_order_load_after" instance="Magestore\Rewardpoints\Observer\Backend\SalesOrderLoadAfter" />
+    </event>
+    <!-- prepare data rewardpoint creditmemo -->
+    <event name="adminhtml_sales_order_creditmemo_register_before">
+        <observer name="rewardpoints_sales_order_creditmemo_register_before" instance="Magestore\Rewardpoints\Observer\Backend\SalesOrderCreditmemoRegisterBefore" />
+    </event>
+    <!-- proccess rewardpoint creditmemo -->
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="rewardpoints_sales_order_creditmemo_save_after" instance="Magestore\Rewardpoints\Observer\Backend\SalesOrderCreditmemoSaveAfter" />
+    </event>
+</config>

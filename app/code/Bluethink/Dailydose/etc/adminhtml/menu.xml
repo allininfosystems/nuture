@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <!--  <add id="Bluethink_Dailydose::bluethink_index_index" 
+            title="Bluethink" 
+            module="Bluethink_Dailydose"  
+            sortOrder="20" 
+            dependsOnModule="Bluethink_Dailydose"  
+            resource="Magento_Backend::content"/>
+
+        <add id="Bluethink_Dailydose::bluethink_dailydose" 
+            title="Dailydose love" 
+            module="Bluethink_Dailydose" 
+            sortOrder="2" 
+            resource="Bluethink_Dailydose::bluethink_index_index" 
+            parent="Bluethink_Dailydose::bluethink_index_index" 
+            action="dailydose/dailydose/index"/>
+        <add id="Bluethink_Dailydose::bluethink_brand" 
+            title="Dailydose Brand" 
+            module="Bluethink_Dailydose" 
+            sortOrder="3" 
+            resource="Bluethink_Dailydose::bluethink_index_index" 
+            parent="Bluethink_Dailydose::bluethink_index_index" 
+            action="dailydose/brand/index"/> -->
+    </menu>
+</config>

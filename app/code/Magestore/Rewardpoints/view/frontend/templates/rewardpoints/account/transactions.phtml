@@ -1,0 +1,88 @@
+<?php 
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_RewardPoints
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+
+/**
+ * Rewardpoints All Transactions
+ * 
+ * @see Magestore_RewardPoints_Block_Account_Transactions
+ */
+?>
+
+<!-- <div class="page-title">
+    <h1><?php //echo __('Point Transactions') ?></h1>
+</div> -->
+
+<?php $_collection = $this->getCollection() ?>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="rewardpoints-paginate">
+        <?php echo $block->getPagerHtml(); ?>
+    </div>
+<?php endif ?>
+<table class="data table table-order-items recent" id="my-orders-table">
+    <caption class="table-caption"><?php echo __('Recent Transactions') ?></caption>
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col"><?php echo __('Title') ?></th>
+        <th scope="col"><?php echo __('Points') ?></th>
+        <th scope="col"><?php echo __('Creating Date') ?></th>
+        <th scope="col"><?php echo __('Expiration Date') ?></th>
+        <th scope="col"><?php echo __('Status') ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php if (count($_collection)): ?>
+        <?php foreach ($_collection as $_transaction): ?>
+            <tr>
+                <td> <?php echo $_transaction->getId() ?> </td>
+                <td> <?php echo $_transaction->getTitleHtml() ?></td>
+                <td> <?php echo $_transaction->getPointAmount() ?> </td>
+                <td>
+                    <?php if ($_transaction->getCreatedTime()): ?>
+                        <?php echo date('F j, Y g:i A',strtotime($_transaction->getCreatedTime())) ?>
+                    <?php else: ?>
+                        <?php echo __('N/A') ?>
+                    <?php endif ?>
+                </td>
+                <td>
+                    <?php if ($_transaction->getExpirationDate()): ?>
+                        <?php echo date('F j, Y g:i A',strtotime($_transaction->getExpirationDate())) ?>
+                    <?php else: ?>
+                        <?php echo __('N/A') ?>
+                    <?php endif ?>
+                </td>
+                <td> <?php echo $_transaction->getStatusLabel() ?></td>
+            </tr>
+        <?php endforeach ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="6">
+                <span><?php echo __('Your point balance hasn\'t had any transaction yet.') ?></span>
+            </td>
+        </tr>
+    <?php endif; ?>
+    </tbody>
+</table>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="rewardpoints-paginate">
+        <?php echo $block->getPagerHtml(); ?>
+    </div>
+<?php endif ?>

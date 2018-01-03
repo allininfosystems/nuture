@@ -1,0 +1,16 @@
+<div style="clear:both; height:10px;"></div>
+<div id="buyer-gst-number">
+    <strong><?php echo __('Buyer Gst Number') ?></strong>
+    <span class="price"><?php echo $block->getBuyerGstNumber() ?></span>
+</div>
+
+<script type="text/javascript">
+    require(
+        ['jquery'],
+        function($) {
+            var element = $('#buyer-gst-number').detach();
+            $('.order-shipping-address').append(element);
+            
+        }
+    );
+</script>

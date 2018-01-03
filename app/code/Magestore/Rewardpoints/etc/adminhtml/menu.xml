@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magestore_Rewardpoints::Reward_Points"
+             title="Reward Points" module="Magestore_Rewardpoints"
+             sortOrder="30" resource="Magestore_Rewardpoints::Reward_Points" />
+
+        <add id="Magestore_Rewardpoints::Earning"
+             title="Earning" module="Magestore_Rewardpoints"
+             sortOrder="10" parent="Magestore_Rewardpoints::Reward_Points"
+             resource="Magestore_Rewardpoints::Earning"/>
+
+        <add id="Magestore_Rewardpoints::Earning_Rates"
+             title="Earning Rates" module="Magestore_Rewardpoints"
+             sortOrder="10" parent="Magestore_Rewardpoints::Earning"
+             action="rewardpoints/earningrates"
+             resource="Magestore_Rewardpoints::Earning_Rates"/>
+
+        <add id="Magestore_Rewardpoints::Spending"
+             title="Spending"
+             module="Magestore_Rewardpoints"
+             sortOrder="20" parent="Magestore_Rewardpoints::Reward_Points"
+             resource="Magestore_Rewardpoints::Spending"/>
+
+        <add id="Magestore_Rewardpoints::Spending_Rates"
+             title="Spending Rates"
+             module="Magestore_Rewardpoints"
+             sortOrder="20" parent="Magestore_Rewardpoints::Spending"
+             action="rewardpoints/spendingrates"
+             resource="Magestore_Rewardpoints::Spending_Rates"/>
+
+        <add id="Magestore_Rewardpoints::Manage_Point_Balances"
+             title="Manage Point Balances"
+             module="Magestore_Rewardpoints" sortOrder="30"
+             parent="Magestore_Rewardpoints::Reward_Points"
+             action="rewardpoints/managepointbalances"
+             resource="Magestore_Rewardpoints::Manage_Point_Balances"/>
+
+        <add id="Magestore_Rewardpoints::Manage_transaction"
+             title="Transactions"
+             module="Magestore_Rewardpoints" sortOrder="40"
+             parent="Magestore_Rewardpoints::Reward_Points"
+             action="rewardpoints/transaction"
+             resource="Magestore_Rewardpoints::Manage_transaction"/>
+
+        <add id="Magestore_Rewardpoints::settings"
+             title="Settings" module="Magestore_Rewardpoints"
+             parent="Magestore_Rewardpoints::Reward_Points"
+             action="adminhtml/system_config/edit/section/rewardpoints"
+             resource="Magestore_Rewardpoints::settings" sortOrder="100"/>
+    </menu>
+</config>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="creditmemo_totals">
+             <block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\CgstCreditTotal"
+                   name="cgst" as="cgst"/>	
+			<block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\SgstCreditTotal"
+                   name="sgst" as="sgst"/>	
+			<block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\IgstCreditTotal"
+                   name="igst" as="igst"/>
+			<block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\ShippingIgstCreditTotal"
+                   name="shipping_igst" as="shipping_igst"/>
+			<block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\ShippingCgstCreditTotal"
+                   name="shipping_cgst" as="shipping_cgst"/>
+			<block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\ShippingSgstCreditTotal"
+                   name="shipping_sgst" as="shipping_sgst"/>	   	   	   
+        </referenceBlock>
+		 <referenceBlock  name="creditmemo_items">
+					 <action method="setTemplate">
+								<argument name="template" translate="true" xsi:type="string">Magecomp_Gstcharge::order/creditmemo/view/items.phtml</argument>
+							</action>
+						  <block class="Magento\Sales\Block\Adminhtml\Items\Renderer\DefaultRenderer" name="custom_creditmemo_renderer" template="Magecomp_Gstcharge::order/creditmemo/view/items/renderer/default.phtml"/>
+
+						 <action method="setChild">
+							<argument name="alias" xsi:type="string">default</argument>
+						   <argument name="block" xsi:type="string">custom_creditmemo_renderer</argument>
+						</action>	
+						
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Column\Qty" name="column_qty" template="items/column/qty.phtml" group="column"/>
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Column\Name" name="column_name" template="items/column/name.phtml" group="column"/>
+                        <block class="Magento\Framework\View\Element\Text\ListText" name="order_item_extra_info"/>
+          </referenceBlock>
+    </body>
+</page>

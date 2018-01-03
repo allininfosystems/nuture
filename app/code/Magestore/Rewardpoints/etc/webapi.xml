@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../app/code/Magento/Webapi/etc/webapi.xsd">
+
+    <!--Rewardpoints customer-->
+    <route url="/V1/rewardpoints/customers/:param" method="GET">
+        <service class="Magestore\Rewardpoints\Api\CustomerRepositoryInterface"
+                 method="get"/>
+        <resources>
+            <resource ref="Magestore_Rewardpoints::api"/>
+        </resources>
+    </route>
+    <route url="/V1/rewardpoints/customers" method="POST">
+        <service class="Magestore\Rewardpoints\Api\CustomerRepositoryInterface"
+                 method="save"/>
+        <resources>
+            <resource ref="Magestore_Rewardpoints::api"/>
+        </resources>
+    </route>
+    <route url="/V1/rewardpoints/customers/:param" method="PUT">
+        <service class="Magestore\Rewardpoints\Api\CustomerRepositoryInterface"
+                 method="update"/>
+        <resources>
+            <resource ref="Magestore_Rewardpoints::api"/>
+        </resources>
+    </route>
+    <route url="/V1/rewardpoints/customers/search" method="GET">
+        <service class="Magestore\Rewardpoints\Api\CustomerRepositoryInterface"
+                 method="getList"/>
+        <resources>
+            <resource ref="Magestore_Rewardpoints::api"/>
+        </resources>
+    </route>
+    <!--Reward Transaction-->
+    <route url="/V1/rewardpoints/transactions/:param" method="GET">
+        <service class="Magestore\Rewardpoints\Api\TransactionRepositoryInterface"
+                 method="get"/>
+        <resources>
+            <resource ref="Magestore_Rewardpoints::api"/>
+        </resources>
+    </route>
+    <route url="/V1/rewardpoints/transactions/search" method="GET">
+        <service class="Magestore\Rewardpoints\Api\TransactionRepositoryInterface"
+                 method="getList"/>
+        <resources>
+            <resource ref="Magestore_Rewardpoints::api"/>
+        </resources>
+    </route>
+    <route url="/V1/rewardpoints/transactions/" method="POST">
+        <service class="Magestore\Rewardpoints\Api\TransactionRepositoryInterface"
+                 method="save"/>
+        <resources>
+            <resource ref="Magestore_Rewardpoints::api"/>
+        </resources>
+    </route>
+    <route url="/V1/rewardpoints/transactions/complete/:id" method="PUT">
+        <service class="Magestore\Rewardpoints\Api\TransactionRepositoryInterface"
+                 method="complete"/>
+        <resources>
+            <resource ref="Magestore_Rewardpoints::api"/>
+        </resources>
+    </route>
+    <route url="/V1/rewardpoints/transactions/cancel/:id" method="PUT">
+        <service class="Magestore\Rewardpoints\Api\TransactionRepositoryInterface"
+                 method="cancel"/>
+        <resources>
+            <resource ref="Magestore_Rewardpoints::api"/>
+        </resources>
+    </route>
+    <route url="/V1/rewardpoints/transactions/expire/:id" method="PUT">
+        <service class="Magestore\Rewardpoints\Api\TransactionRepositoryInterface"
+                 method="expire"/>
+        <resources>
+            <resource ref="Magestore_Rewardpoints::api"/>
+        </resources>
+    </route>
+</routes>
+
+

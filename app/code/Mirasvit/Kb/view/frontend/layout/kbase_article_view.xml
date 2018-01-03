@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="2columns-right"> -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="1column">
+    <body>
+        <attribute name="class" value="kbase"/>
+        <move element="page.main.title" destination="kb.article.view" before="-"/>
+        <referenceBlock name="sidebar.additional" remove="true" />
+        
+
+        <referenceContainer name="content">
+            <block name="kb.article.view" class="Mirasvit\Kb\Block\Article\View" template="article/view.phtml" cacheable="false">
+
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="sidebar.main" htmlTag="div" htmlClass="kb__sidebar" >
+            <block name="kb.search.form" class="Mirasvit\Kb\Block\Search\Form" template="search/form.phtml"/>
+            <block name="kb.category.sidebar" class="Mirasvit\Kb\Block\Category\Sidebar" template="category/sidebar.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

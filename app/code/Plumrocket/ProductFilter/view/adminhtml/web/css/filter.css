@@ -1,0 +1,328 @@
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+
+.admin__scope-old .list_enabled.ui-sortable {
+    margin-bottom: 0px;
+}
+
+#prproductfilter_settings .note {clear:left;}
+
+.attribute-list {
+    width: 49%;
+    float: left;
+    margin-right: 2%;
+}
+
+.attribute-list + .attribute-list {
+    margin-right: 0;
+}
+
+#row_productsfilter_attributes_enable td.value,
+#row_productsfilter_attributes_enable_custom td.value {
+    position: relative;
+}
+
+#row_productsfilter_attributes_enable td.value>span.label,
+#row_productsfilter_attributes_enable_custom td.value>span.label,
+#row_productsfilter_attributes_enable td.scope-label>span.label,
+#row_productsfilter_attributes_enable_custom td.scope-label>span.label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2F2F2F;
+}
+
+#row_productsfilter_attributes_enable .attributes_enable,
+#row_productsfilter_attributes_enable_custom .attributes_enable  {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aaa #c8c8c8 #c8c8c8 #aaa;
+    padding: 2px;
+    background-color: #ffffff;
+    height: 345px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+.form-list tr[id^="row_prproductfilter_settings"] td:last-child {
+    display: none;
+}
+
+.form-list tr[id^="row_prproductfilter_settings"] td.value {
+    width: 67%;
+}
+
+.enabled-list-field {
+    width: 100%; 
+    height: 345px; 
+    overflow: auto;
+    padding: 7px 4px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid #adadad;
+    margin-top: 5px;
+}
+
+.enable-attribute-field {
+    border: 0px;
+    background-color: transparent;
+}
+
+    .enable-attribute-field li.ui-sortable-helper,
+    .enabled-list-field li.ui-sortable-helper {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 0 5px;
+        box-shadow: 1px 1px 2px 0 #ccc;
+        -moz-box-shadow: 1px 1px 2px 0 #ccc;
+        -webkit-box-shadow: 1px 1px 2px 0 #ccc;
+        cursor: pointer;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        list-style: none;
+    }
+
+    .enable-attribute-field li,
+    .enabled-list-field li {
+        border: 1px solid #fff;
+        padding: 2px 5px;
+    }
+
+    /* cursors for drag */
+    .enable-attribute-field li:hover,
+    .enabled-list-field li:hover {
+        cursor: url(../images/1431544103_cursor_hand.png), auto;
+        border: 1px solid #ccc;
+    }
+    .enable-attribute-field li *:hover,
+    .enabled-list-field li *:hover {
+        cursor: url(../images/1431544103_cursor_hand.png), auto;
+    }
+
+    .enable-attribute-field li.ui-sortable-helper:hover *,
+    .enabled-list-field li.ui-sortable-helper:hover *,
+    .enable-attribute-field li.ui-sortable-helper *,
+    .enabled-list-field li.ui-sortable-helper * {
+        cursor: url(../images/14315447451_cursor_drag_hand.png), auto;
+    }
+
+
+    /* IE cursors */
+    .ie_x .enable-attribute-field li:hover,
+    .ie_x .enabled-list-field li:hover {
+        cursor: default;
+    }
+    .ie_x .enable-attribute-field li *:hover,
+    .ie_x .enabled-list-field li *:hover {
+        cursor: default;
+    }
+
+    .ie_x .enable-attribute-field li.ui-sortable-helper:hover *,
+    .ie_x .enabled-list-field li.ui-sortable-helper:hover *,
+    .ie_x .enable-attribute-field li.ui-sortable-helper *,
+    .ie_x .enabled-list-field li.ui-sortable-helper * {
+        cursor: default;
+    }
+
+    .enable-attribute-field li label {
+        font-size: 12px;
+    }
+
+.enabled-list-field li {
+    margin: 4px 0;
+    background-color: #fff;
+}
+
+.enable-attribute-field li.ui-sortable-placeholder,
+.enabled-list-field li.ui-sortable-placeholder {
+    border: 1px solid #007e97;
+    background-color: #EDFCFF;
+    visibility: visible!important;
+}
+
+.enable-attribute-field li.ui-sortable-placeholder.bg-white,
+.enabled-list-field li.ui-sortable-placeholder.bg-white {
+    background-color: #fff;
+    border: 1px solid #fff;
+}
+
+.enabled-list-field li label {
+    font-size: 12px;
+}
+
+.enabled-list-field li.ui-draggable-dragging {
+    z-index: 9000;
+}
+
+.enabled-list-field li.ui-state-hover {
+    border: 2px dashed #007e97;
+    background-color: #EDFCFF;
+}
+.enabled-list-field li.ui-state-hover.active {
+    background-color: #EDFCFF;
+}
+
+.enabled-list-field li.child.ui-state-hover {
+    border: none;
+}
+
+.enabled-list-field li.active {
+    background-color: #1e90ff;
+    color: #ffffff;
+}
+
+    .enabled-list-field li.active label {
+        color: #ffffff;
+    }
+    .enabled-list-field li.ui-state-hover.active label {
+        color: #333;
+    }
+    .enabled-list-field .group li.active label {
+        color: #333;
+    }
+
+.enabled-list-field li.child {
+    
+}
+
+.enabled-list-field li.group {
+    border: 1px solid #C4C4C4;
+    background-color: #F9F9F9;
+    padding: 0;
+    margin: 7px 0;
+    list-style: none;
+}
+
+    .enabled-list-field li.group li {
+        margin: 0;
+        padding: 0;
+        background: inherit;
+        border: 0px;
+    }
+
+    .enabled-list-field li.group li label {
+        font-size: 11px;
+    }
+
+    .enabled-list-field li.group.active>label {
+        color: #333;
+        font-weight: 700;
+    }
+
+    .enabled-list-field li.group.active>label:before {
+        margin-right: 5px;
+    }
+
+        .enabled-list-field li.group.active>label {
+            display: inline-block;
+            background-color: #1e90ff;
+            box-sizing: border-box;
+            margin: 1px 1px 0px 1px;
+            width: 99%;
+            color: #ffffff;
+            padding: 0;
+        }
+
+        .enabled-list-field li.group.active li label {
+            color: #333;
+        }
+
+    .enabled-list-field li.group div.group_name {
+        background-color: #EDEDED;
+        padding: 1px 3px 3px 3px;
+    }
+
+    .enabled-list-field li.group div.group_name input {
+        border: 0px;
+        background-color: #EDEDED;
+        display: inline-block;
+        width: calc(100% - 35px);
+        height: auto;
+        padding: 0 4px;
+        font-size: 12px;
+    }
+    .enabled-list-field li.group div.group_name input:hover {
+        cursor: text;
+    }
+
+    .enabled-list-field li.group div.group_name input:focus {
+        background-color: white;
+    }
+
+    .enabled-list-field li.group div.group_name .edit,
+    .enabled-list-field li.group div.group_name .cancel,
+    .enabled-list-field li.group div.group_name .ok {
+        float: right;
+        width: 16px;
+        height: 16px;
+        margin-top: 2px;
+    }
+
+    .enabled-list-field li.group div.group_name .ok,
+    .enabled-list-field li.group div.group_name .cancel {
+        display: none;
+    }
+
+    .enabled-list-field li.group div.group_name .edit {
+        display: block;
+    } 
+
+    .enabled-list-field li.group div.group_name .edit:hover,
+    .enabled-list-field li.group div.group_name .cancel:hover,
+    .enabled-list-field li.group div.group_name .ok:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
+
+    .enabled-list-field li.group div.group_name .ok {
+        background-image: url(../images/tick-icon.png);
+    }
+
+    .enabled-list-field li.group div.group_name .cancel {
+        background-image: url(../images/cancel_7809.png);
+    }
+
+    .enabled-list-field li.group div.group_name .edit {
+        background-image: url(../images/page_white_edit_2858.png);
+    }
+
+    .enabled-list-field li.group label {
+        padding-left: 3px;
+        font-size: 11px;
+    }
+
+    .enabled-list-field li.group label:before {
+        display: block;
+        float: left;
+        content: "";
+        width: 3px;
+        height: 3px;
+        background-color: #6B6B6B;
+        margin: 5px 4px 0 5px;
+    }
+
+.disabled-attributes:before {
+    background: #ccc;
+    content: "";
+    width: 241px;
+    height: 343px;
+    margin: -7px;
+    cursor: not-allowed;
+    opacity: 0.2;
+    position: absolute;
+}

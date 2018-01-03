@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+
+                                <item name="cgst_charge" xsi:type="array">
+                                    <item name="component"  xsi:type="string">Magecomp_Gstcharge/js/view/checkout/cart/totals/cgst</item>
+                                    <item name="sortOrder" xsi:type="string">20</item>
+                                    <item name="config" xsi:type="array">
+                                         <item name="template" xsi:type="string">Magecomp_Gstcharge/checkout/cart/totals/cgst</item>
+                                        <item name="title" xsi:type="string" translate="true">CGST Fee</item>
+                                    </item>
+                                </item>
+								 <item name="sgst_charge" xsi:type="array">
+                                    <item name="component"  xsi:type="string">Magecomp_Gstcharge/js/view/checkout/cart/totals/sgst</item>
+                                    <item name="sortOrder" xsi:type="string">20</item>
+                                    <item name="config" xsi:type="array">
+                                         <item name="template" xsi:type="string">Magecomp_Gstcharge/checkout/cart/totals/sgst</item>
+                                        <item name="title" xsi:type="string" translate="true">SGST Fee</item>
+                                    </item>
+                                </item>
+								 <item name="igst_charge" xsi:type="array">
+                                    <item name="component"  xsi:type="string">Magecomp_Gstcharge/js/view/checkout/cart/totals/igst</item>
+                                    <item name="sortOrder" xsi:type="string">20</item>
+                                    <item name="config" xsi:type="array">
+                                         <item name="template" xsi:type="string">Magecomp_Gstcharge/checkout/cart/totals/igst</item>
+                                        <item name="title" xsi:type="string" translate="true">IGST Fee</item>
+                                    </item>
+                                </item>
+								
+								 <item name="shipping_cgst_charge" xsi:type="array">
+                                    <item name="component"  xsi:type="string">Magecomp_Gstcharge/js/view/checkout/cart/totals/shippingCgst</item>
+                                    <item name="sortOrder" xsi:type="string">60</item>
+                                    <item name="config" xsi:type="array">
+                                         <item name="template" xsi:type="string">Magecomp_Gstcharge/checkout/cart/totals/shippingCgst</item>
+                                        <item name="title" xsi:type="string" translate="true">Shipping CGST Fee</item>
+                                    </item>
+                                </item>
+								
+								 <item name="shipping_sgst_charge" xsi:type="array">
+                                    <item name="component"  xsi:type="string">Magecomp_Gstcharge/js/view/checkout/cart/totals/shippingSgst</item>
+                                    <item name="sortOrder" xsi:type="string">60</item>
+                                    <item name="config" xsi:type="array">
+                                         <item name="template" xsi:type="string">Magecomp_Gstcharge/checkout/cart/totals/shippingSgst</item>
+                                        <item name="title" xsi:type="string" translate="true">Shipping SGST Fee</item>
+                                    </item>
+                                </item>
+								
+								 <item name="shipping_igst_charge" xsi:type="array">
+                                    <item name="component"  xsi:type="string">Magecomp_Gstcharge/js/view/checkout/cart/totals/shippingIgst</item>
+                                    <item name="sortOrder" xsi:type="string">60</item>
+                                    <item name="config" xsi:type="array">
+                                         <item name="template" xsi:type="string">Magecomp_Gstcharge/checkout/cart/totals/shippingIgst</item>
+                                        <item name="title" xsi:type="string" translate="true">Shipping IGST Fee</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

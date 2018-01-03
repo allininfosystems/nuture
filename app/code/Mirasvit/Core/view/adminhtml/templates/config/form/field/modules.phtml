@@ -1,0 +1,30 @@
+<?php
+/** @var \Mirasvit\Core\Block\Adminhtml\Config\Form\Field\Modules $block */
+$modules = $block->getModules();
+?>
+<div class="section-config active" style="padding-top: 2rem;">
+    <div class="admin__data-grid-wrap-static">
+        <table class="data-grid">
+            <tr>
+                <th class="data-grid-th"><?=__('Module') ?></th>
+                <th class="data-grid-th" nowrap><?=__('Installed Version') ?></th>
+                <th class="data-grid-th" nowrap><?=__('Latest Version') ?></th>
+            </tr>
+        <?php foreach ($modules as $i => $module): ?>
+            <tr>
+                <td>
+                    <a href="<?=$module->getUrl() ?>"><?=$module->getName() ?></a>
+                    <?php if ($module->getInstalledVersion() && version_compare($module->getInstalledVersion(), $module->getLatestVersion())): ?>
+                        <div style="float: right; color: #eb5202;">
+                            <span class="fa fa-fw fa-code-fork"></span> New version is available
+                        </div>
+                    <?php endif ?>
+                </td>
+                <td><?=$module->getInstalledVersion() ?></td>
+                <td><?=$module->getLatestVersion() ?></td>
+
+            </tr>
+        <?php endforeach ?>
+        </table>
+    </div>
+</div>

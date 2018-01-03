@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webinse Barcode Default values for the config.
+ *
+ * @category	Webinse
+ * @package 	Webinse_Barcode
+ * @author  	Webinse Team <info@webinse.com>
+ * @copyright   2017 Webinse Ltd. (https://www.webinse.com)
+ * @license 	http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <barcode>
+            <barcode_config>
+                <barcode_value>random</barcode_value>
+                <barcode_type>C128</barcode_type>
+                <barcode_image_format>jpeg</barcode_image_format>
+            </barcode_config>
+            <barcode_design>
+                <foreground_color>#000000</foreground_color>
+                <background_color>#FFFFFF</background_color>
+                <barcode_height_size>40</barcode_height_size>
+            </barcode_design>
+            <barcode_invoice>
+                <enable_barcode_invoice>1</enable_barcode_invoice>
+            </barcode_invoice>
+            <product_labels>
+                <label_width>400</label_width>
+                <label_height>250</label_height>
+                <label_background_color>#FFFFFF</label_background_color>
+                <image_width>150</image_width>
+                <text_horizontal_position>200</text_horizontal_position>
+                <text_vertical_position>50</text_vertical_position>
+                <include_name>1</include_name>
+                <include_sku>1</include_sku>
+                <include_price>1</include_price>
+            </product_labels>
+        </barcode>
+    </default>
+</config>

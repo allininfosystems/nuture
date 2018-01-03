@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="mpbrand_optionid" class="Mageplaza\Shopbybrand\Block\Widget\OptionId">
+        <label translate="true">MP Brand Option ID Widget</label>
+        <description>MP Brand Option ID Widget</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="show_title" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show/Hide Widget Title</label>
+            </parameter>
+            <parameter name="option_id" xsi:type="text" required="true" visible="true">
+                <label translate="true">Input Option ID</label>
+                <description translate="true">Input Option IDs which you want to show. Example : 213 , 214 , 215...etc</description>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="brands" value="Mageplaza_Shopbybrand::widget/brandlist.phtml" selected="true">
+                        <label translate="true">Default MP Brand Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="content">
+                <template name="brands" value="brands" />
+            </container>
+        </containers>
+    </widget>
+    <widget id="mpbrand_featured" class="Mageplaza\Shopbybrand\Block\Widget\Featured">
+        <label translate="true">MP Featured Brand Widget</label>
+        <description>MP Featured Brand Widget</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="show_title" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show/Hide Widget Title</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="brands" value="Mageplaza_Shopbybrand::widget/brandlist.phtml" selected="true">
+                        <label translate="true">Default MP Brand Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="content">
+                <template name="brands" value="brands" />
+            </container>
+        </containers>
+    </widget>
+    <widget id="mpbrand_categoryid" class="Mageplaza\Shopbybrand\Block\Widget\CategoryId">
+        <label translate="true">MP Brand Category ID Widget</label>
+        <description>MP Brand Category ID Widget</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="show_title" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show/Hide Widget Title</label>
+            </parameter>
+            <parameter name="category_id" xsi:type="text" required="true" visible="true">
+                <label translate="true">Input Category ID</label>
+                <description translate="true">Input Category IDs which you want to show. Example : 1 , 2 , 3...etc</description>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="brands" value="Mageplaza_Shopbybrand::widget/brandlist.phtml" selected="true">
+                        <label translate="true">Default MP Brand Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="content">
+                <template name="brands" value="brands" />
+            </container>
+        </containers>
+    </widget>
+</widgets>

@@ -1,0 +1,14 @@
+/*styles for quick view popup*/
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,500i,600,700');
+
+body{font-family: 'Raleway', sans-serif !important;}
+
+.amasty-quickview-ajax-view {
+    padding-top: 20px;
+    padding-right: 0 !important;
+}
+
+.amasty-tips-navigation, #amasty-tips, .amasty-header, .zopim{
+display: none !important;
+}

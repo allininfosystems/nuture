@@ -1,0 +1,57 @@
+<!--
+ * Magestore
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Magestore
+ * @package     Magestore_RewardPoints
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+/**
+ * @category    Magestore
+ * @package     Magestore_RewardPoints
+ * @author      Magestore Developer
+ */
+-->
+<?php
+$names = $this->_objectManager->create('Magestore\Rewardpoints\Helper\Point')->getPluralName();
+?>
+<div class="rewardpoints-dashboard-list">
+    <strong class="rewardpoints-title"><?php echo __('EARN %1',$names) ?></strong>
+    <br>
+    <span class="rewardpoints-title-content"><?php echo __('Rewards can currently be earned for the following actions:')?></span>
+    <ul class="rewardpoints-dashboard-ul">
+        <li><?php echo __('Making purchases — every time you make a purchase you earn points based on the price of products purchased and these points are added to your %1 balance.',$names); ?></li>
+        <!--BeHavior-->
+        <?php if ($this->isPluginEnable('Magestore_RewardPointsBehavior')): ?>
+            <?php if ($this->getStoreConfig('rewardpoints/group_signandnews/show_signup') && $this->getStoreConfig('rewardpoints/group_signandnews/signing_up')): ?>
+                <li><?php echo __('Registering on the site.') ?></li>
+            <?php endif; ?>
+            <?php if ($this->getStoreConfig('rewardpoints/group_signandnews/show_newsletter') && $this->getStoreConfig('rewardpoints/group_signandnews/newsletter')): ?>
+                <li><?php echo __('Subscribing to a newsletter for the first time.') ?></li>
+            <?php endif; ?>
+            <?php if ($this->getStoreConfig('rewardpoints/group_review_product/show_reviewing') && $this->getStoreConfig('rewardpoints/group_review_product/review')): ?>
+                <li><?php echo __('Review Submission — Earn %1 for submitting product reviews.',$names) ?></li>
+            <?php endif; ?>
+            <?php if ($this->getStoreConfig('rewardpoints/group_tagging_product/show_tagging') && $this->getStoreConfig('rewardpoints/group_tagging_product/tag')): ?>
+                <li><?php echo __('New Tag Submission — Earn %1 for adding tags to products.',$names) ?></li>
+            <?php endif; ?>
+        <?php endif; ?>
+        <!-- ReferFriends -->
+        <?php if ($this->isPluginEnable('Magestore_RewardPointsReferFriends')): ?>
+            <li><?php echo __('Sending Invitations — Earn %1 by inviting your friends to join the site.',$names) ?></li>
+            <li><?php echo __('Converting Invitations to Customer — Earn %1 for every invitation you send out which leads to your friends registering on the site.',$names) ?></li>
+            <li><?php echo __('Converting Invitations to Order — Earn %1 for every invitation you send out which leads to a sale.',$names) ?></li>
+        <?php endif; ?>
+    </ul>
+</div>

@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<?php $filterItems = $this->getFilter()->getItems(); ?>
+<?php $isRadio = $this->getFilter()->getIsRadio(); ?>
+<ol class="items">
+    <?php foreach ($filterItems as $filterItem): ?>
+
+        <li class="item">
+            <div class="rating-summary">
+
+                <?php $url = $this->helper('\Plumrocket\ProductFilter\Helper\Url')->checkUrl($filterItem->getUrl()); ?>
+
+            	<a href="<?php echo $block->escapeUrl($url) ?>"
+                    <?php if ($filterItem->getIsActive()): ?>class="selected"<?php endif; ?>
+                    data-request="<?php echo $filterItem->getFilter()->getRequestVar(); ?>"
+                    <?php if ($isRadio): ?>data-radio="true"<?php endif; ?>
+                    data-value="<?php echo $filterItem->getValue(); ?>">
+
+                    <?php if (!$filterItem->getValue()): ?>
+                        <span><?php echo __('Not rated yet') ?></span>
+                        <span>(<?php echo $filterItem->getCount(); ?>)</span>
+                    <?php else: ?>
+
+                        <?php $rating = $filterItem->getValue() * 20; ?>
+    			        <div class="rating-result" title="<?php /* @escapeNotVerified */ echo $rating; ?>%">
+    			            <span style="width:<?php /* @escapeNotVerified */ echo $rating; ?>%">
+                                <span><?php /* @escapeNotVerified */ echo $rating; ?>% </span>
+                            </span>
+    			        </div>
+                        <span>
+                            <?php if ($filterItem->getValue() > 0 && $filterItem->getValue() <=4):?> <?php echo __('&amp; up'); ?><?php endif; ?>
+                            <span>(<?php echo $filterItem->getCount(); ?>)</span>
+                        </span>
+                    <?php endif; ?>
+			    </a>
+		    </div>
+        </li>
+    <?php endforeach ?>
+</ol>
+

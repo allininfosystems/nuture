@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="creditmemo_totals">
+            <block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\CgstCreditTotal"
+                   name="cgst" as="cgst"/>	
+			<block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\SgstCreditTotal"
+                   name="sgst" as="sgst"/>	
+			<block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\IgstCreditTotal"
+                   name="igst" as="igst"/>
+			<block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\ShippingIgstCreditTotal"
+                   name="shipping_igst" as="shipping_igst"/>
+			<block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\ShippingCgstCreditTotal"
+                   name="shipping_cgst" as="shipping_cgst"/>
+			<block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Creditmemo\ShippingSgstCreditTotal"
+                   name="shipping_sgst" as="shipping_sgst"/>	   
+        </referenceBlock>
+    </body>
+</page>

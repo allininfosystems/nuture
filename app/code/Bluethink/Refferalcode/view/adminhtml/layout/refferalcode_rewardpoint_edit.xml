@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+     <update handle="editor"/>
+    <body>
+	   <referenceContainer name="content">
+            <block class="Bluethink\Refferalcode\Block\Adminhtml\Rewardpoint\Edit" name="refferalcode_rewardpoint_edit"/>
+        </referenceContainer>
+		 <referenceContainer name="left">
+            <block class="Bluethink\Refferalcode\Block\Adminhtml\Rewardpoint\Edit\Tabs" name="refferalcode_rewardpoint_edit_tabs">
+				<block class="Bluethink\Refferalcode\Block\Adminhtml\Rewardpoint\Edit\Tab\Point" name="refferalcode_rewardpoint_edit_tab_point"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">refferalcode_section</argument>
+                    <argument name="block" xsi:type="string">refferalcode_rewardpoint_edit_tab_point</argument>
+                </action>
+				<!--CedAddTab-->
+			</block>
+        </referenceContainer>
+    </body>
+</page>

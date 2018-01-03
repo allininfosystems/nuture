@@ -1,0 +1,147 @@
+<?php 
+
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $faqcategorymodel = $objectManager->create('Bluethink\Faq\Model\ResourceModel\Faqcategory\Collection');
+    $faqmodel= $objectManager->create('Bluethink\Faq\Model\ResourceModel\Faq\Collection');
+        
+?>
+<style type="text/css">
+    a:hover, .alink:hover{
+        text-decoration:none;
+    }
+    a:active, .alink:active{
+         text-decoration:none;
+    }
+</style>
+<section class="popular-products">
+    <div class="container faq-container">
+        <div class="" style="border-top:0;">
+		<div class="faq-container-cls">
+            <div class="product-filter filter"> 
+                <?php $i=1;
+                 foreach ($faqcategorymodel  as $catname) {  ?>
+                   <a class="tab-link <?php if($i==1){echo"current";} ?>" data-tab="filter-tab-<?php echo $i; ?>"><?php echo $catname['faq_cat_name']; ?></a>
+               <?php $i++; } ?>     
+            </div>
+        </div>
+            <div class="product-grid-list">
+                <?php for ($j=1; $j < $i; $j++) { ?>
+                    <div id="filter-tab-<?php echo $j; ?>" class="tab-content <?php if($j==1){echo"current";} ?>">
+                    <div class="panel-group" id="accordion<?php echo $j; ?>">
+                        <?php
+                        $r=0;
+                         foreach ($faqmodel as $faqname) {
+
+                if ($faqname['assigned_category']== $j) {  ?>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4  class="panel-title"> <a id="a<?php echo $j.$r; ?>" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $j; ?>" href="#panel<?php echo $j.$r; ?>">
+                                <?php if($r=='0') { ?> 
+                                    <i class="fa fa-plus"></i>
+                                <?php } else { ?>
+                                <i class="fa fa-plus"></i>
+                                <?php } ?>
+                                    <?php echo $faqname['questions'];?></a> </h4>
+                            </div>
+                            <div id="panel<?php echo $j.$r; ?>" class="panel-collapse collapse <?php if($r==0){echo"show";} ?>">
+                                <div class="panel-body"><?php echo $faqname['answers'];?></div>
+                            </div>
+                        </div>
+                        <?php  $panel[]="#panel".$j.$r;
+                        $r++;
+                        }  } ?>
+                        
+                    </div>
+                </div>
+              <?php   } ?>
+                
+               
+            </div>
+        </div>
+    </div>
+</section>
+
+ <?php
+    
+ $final=implode(",", $panel);?>
+<script>
+require(['jquery','jquery.bootstrap.min','jquery.owl.carousel','jquery.theme'],function (jQuery,jQueryBootstrapMin,jqueryOwlCarousel,jqueryTheme) 
+{
+jQuery(function(){
+    var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+    jQuery('a[data-modal-id]').click(function(e){
+    e.preventDefault();
+    jQuery("body").append(appendthis);
+    jQuery(".modal-overlay").fadeTo(500, 0.7);
+    //$(".js-modalbox").fadeIn(500);
+        var modalBox = jQuery(this).attr('data-modal-id');
+        jQuery('#'+modalBox).fadeIn(jQuery(this).data());
+    });
+    jQuery(".js-modal-close, .modal-overlay").click(function() {
+        jQuery(".modal-box, .modal-overlay").fadeOut(500, function() {
+            jQuery(".modal-overlay").remove();
+        }); 
+    }); 
+    jQuery(window).resize(function() {
+        jQuery(".modal-box").css({
+            top: (jQuery(window).height() - jQuery(".modal-box").outerHeight()) / 2,
+            left: (jQuery(window).width() - jQuery(".modal-box").outerWidth()) / 2
+        });
+    }); 
+    jQuery(window).resize(); 
+});
+});
+</script> 
+<script>
+require(['jquery','jquery.bootstrap.min','jquery.owl.carousel','jquery.theme'],function (jQuery,jQueryBootstrapMin,jqueryOwlCarousel,jqueryTheme) 
+ {
+    jQuery(document).ready(function(){
+
+        var selectIds = jQuery('<?php echo $final; ?>');
+        jQuery(function ($) {
+        /*jQuery('.accordion-toggle').click(function () {
+        jQuery(this).prev().find('.fa').toggleClass('fa-minus fa-plus');
+});*/
+
+jQuery(function ($) {
+        selectIds.on('show.bs.collapse hidden.bs.collapse', function () {
+            jQuery(this).prev().find('.fa').toggleClass('fa-minus fa-plus');
+        })
+    });
+          
+            // selectIds.on('show.bs.collapse hidden.bs.collapse', function () {
+            //     alert('hiii');
+
+            // 	jQuery(this).prev().find('.fa').toggleClass('fa-minus fa-plus');
+
+            //     // jQuery(this).prev().find('i').toggleClass('fa-minus fa-plus');
+            // })
+        });
+});
+
+  });
+</script>
+<script type="text/javascript">
+    require(['jquery','jquery.bootstrap.min','jquery.owl.carousel','jquery.theme'],function (jQuery,jQueryBootstrapMin,jqueryOwlCarousel,jqueryTheme) 
+      {
+        
+        jQuery(document).ready(function()
+        {
+             acordopen();
+           // jQuery(".soci").load(function(){
+                 
+                  //jQuery("#a10").click();
+
+            //});            
+
+        });
+       
+
+        }); 
+        function acordopen() {
+    setTimeout(function(){  jQuery("#a10").click(); }, 1000);
+     setTimeout(function(){  jQuery("#a20").click(); }, 1000);
+      setTimeout(function(){  jQuery("#a30").click(); }, 1000);
+       setTimeout(function(){  jQuery("#a40").click(); }, 1000);
+}     
+</script> 

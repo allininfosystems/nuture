@@ -1,0 +1,141 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$mediaUrl = $storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
+
+/** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
+$postcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Post\Collection');
+/** Apply filters here */
+$postcollection->load();
+$publish_datte=$postcollection->getData()[0]['publish_date'];
+// echo "string<pre>";
+// print_r($postcollection->getData());
+
+$tempDate = $publish_datte;
+$day = date('l', strtotime($tempDate));// will gives you the week day name 
+$month = date('jS F Y',strtotime($tempDate));
+?>
+
+
+
+
+<!-- <h2 class="head-title">Products Listing</h2> -->
+<div class="container abt-top-container ">
+<div class="row">
+<div class="col-sm-6 col-xs-12"><img src='<?php echo $this->getViewFileUrl('images/abt-img1.png'); ?>' ></div>
+<div class="col-sm-6 col-xs-12">
+<h3 class="about-title">The moment your little one changes from just being a thought on your mind to a flutter in your tummy, Nurture promises to hold your hand through the amazing journey of pregnancy.</h3>
+<div class="abt-para-content">
+<p>Proinde die funestis interrogationibus praestituto imaginarius iudex equitum resedit magister adhibitis aliis iam quae essent agenda praedoctis, et adsistebant hinc inde notarii, quid quaesitum esset, quidve responsum, cursim ad Caesarem perferentes, cuius imperio truci, stimulis reginae exsertantis aurem subinde per aulaeum, nec diluere obiecta permissi nec defensi periere conplures.</p>
+<p>Haec dum oriens diu perferret, caeli reserato tepore Constantius consulatu suo septies et Caesaris ter egressus Arelate Valentiam petit, in Gundomadum et Vadomarium fratres Alamannorum reges arma moturus.</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 col-sm-6">
+<h3 class="about-title">There has never been, nor will there ever be, anything quite so special as the love between the mother and a son.There is an endearing tenderness in the love of a mother to a son that transcends all other affections of the heart.</h3>
+<div class="abt-para-content">
+<p>Proinde die funestis interrogationibus praestituto imaginarius iudex equitum resedit magister adhibitis aliis iam quae essent agenda praedoctis, et adsistebant hinc inde notarii, quid quaesitum esset, quidve responsum, cursim ad Caesarem perferentes, cuius imperio truci, stimulis reginae exsertantis aurem subinde per aulaeum, nec diluere obiecta permissi nec defensi periere conplures.</p>
+</div>
+</div>
+<div class="col-sm-6 col-xs-12"><img src='<?php echo $this->getViewFileUrl('images/abt-img2.png'); ?>' ></div>
+</div>
+</div>
+<!--=======Our Story=========-->
+<div class="container our-story-container">
+<h2 class="head-title">Our Story</h2>
+<p class="head-small">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</p>
+<div class="abt-para-content">
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt. Few word argue that, ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt. Few word argue that, ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt. Few word argue that, ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae abillo invento veritatis et quasi architecto beatae vitae dicta sunt. Few word argue that, ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt. Few word argue that, ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae abillo invento veritatis et quasi architecto beatae vitae dicta sunt. Few word argue that, ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
+<p>veritatis et quasi architecto beatae vitae dicta sunt. Few word argue that, ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae abillo invento veritatis et quasi architecto beatae vitae dicta sunt.</p>
+</div>
+</div>
+<!--=======cuddle and care=========-->
+	<section class="cuddle-and-care slide-border">
+		<div class="container">
+			<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-blog')->toHtml();?>
+			
+			<div class="cuddle-and-care-inner clearfix">
+				<div class="cuddle-and-care-blog">
+					<h3 class="cuddle-and-care-t">Blog</h3>
+					
+					<div class="cuddle-and-care-blog-img"><img src="<?php echo $mediaUrl.'mageplaza/blog/post/image'.$postcollection->getData()[0]['image']; ?>"/></div>
+					<span class="date"><?php echo $month; ?></span>
+					<div class="cuddle-and-care-blog-text">
+						<a class="blog-head-t " href="<?php echo $block->getUrl().'blog/post/'.$postcollection->getData()[0]['url_key'] ?>"><?php echo $postcollection->getData()[0]['name'];?>
+						</a>
+						<p><?php echo $postcollection->getData()[0]['short_description'];?>            
+						</p>
+						<a class="read-more" href="<?php echo $block->getUrl().'blog/post/'.$postcollection->getData()[0]['url_key'] ?>">- Read More</a>
+					</div>
+				</div>
+			<?php 
+			   	$articles = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
+                $articles->setOrder('article_id','ASC');
+                $articles->setPageSize(3); 
+				$storeManager1 =$objectManager->get('Magento\Store\Model\StoreManagerInterface');
+				$currentStore  = $storeManager1->getStore();
+				$mediaUrl      = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+				$nn=$mediaUrl."kb";
+               
+			?> 
+			 <h3 class="cuddle-and-care-t knowledgeHubhed">Knowledge Hub</h3>
+			 <?php 
+			 $i=0; ?>
+			  <?php  foreach ($articles as  $value) { 
+			  	if($i<3){
+			  	?>
+				<div class="cuddle-and-care-knowledge-hub">
+					<div class="knowledge-hub-box clearfix">
+						<div class="knowledge-hub-img">
+							<img src="<?php if(!empty($value)){ echo $nn.'/'.$value['image'];} else { echo $this->getViewFileUrl('images/hub_cat_01.jpg');} ?>"/>
+						</div>
+						<div class="knowledge-hub-text">
+							<a href="<?php echo $value->getUrl();?>"><?php echo $value['name']; ?></a>
+							<a class="read-more" href="<?php echo $value->getUrl();?>">-Read More</a>
+						</div>
+					</div>
+				</div>
+				<?php  } $i++; } ?>
+			</div>
+		</div>
+	</section>
+	<!--=======cuddle and care=========-->
+	<?php
+	    $model = $objectManager->get('\Bluethink\Dailydose\Model\ResourceModel\Dailydose\Collection');
+    ?>
+     <section class="daily-dose slide-container">
+        <div class="slide-container">
+            <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('dailydose')->toHtml();?>
+            <div class="dailydose-inner">
+                <div id="dailydose" class="owl-carousel owl-theme"> 
+                <?php
+                 foreach ($model as $key) {
+                  if ($key['product_type']=='Instagram') { ?>
+                    <div class="item">
+                        <div class="daily-dose-image">
+                            <a target="_blank" href="<?php echo $key['product_url']; ?>"><img src="<?php echo $block->getUrl().'pub/media/bluethink/images'.$key->getImage(); ?>"/><span class="image-overlay"></span></a>
+                            <span class="insta-title"><i class="fa fa-instagram"></i><?php echo $key['product_title']; ?></span>
+                        </div>
+                    </div>
+                    <?php }elseif ($key['product_type']=='Twitter') { ?>
+                    <div class="item">
+                        <div class="daily-dose-image">
+                            <a target="_blank" href="<?php echo $key['product_url']; ?>"><img src="<?php echo $block->getUrl().'pub/media/bluethink/images'.$key->getImage(); ?>"/><span class="image-overlay"></span></a>
+                            <span class="insta-title"><i class="fa fa-twitter"></i><?php echo $key['product_title']; ?></span>
+                        </div>
+                    </div>
+                    <?php }elseif ($key['product_type']=='Facebook') { ?> 
+                    <div class="item">
+                        <div class="daily-dose-image">
+                            <a  target="_blank" href="<?php echo $key['product_url']; ?>"><img src="<?php echo $block->getUrl().'pub/media/bluethink/images'.$key->getImage(); ?>"/><span class="image-overlay"></span></a>
+                            <span class="insta-title"><i class="fa fa-instagram"></i><?php echo $key['product_title']; ?></span>
+                        </div>
+                    </div>
+                    <?php  } } ?>
+                </div>
+            </div>
+        </div>
+    </section>

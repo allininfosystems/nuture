@@ -1,0 +1,49 @@
+
+<?php
+
+      $objectManager   = \Magento\Framework\App\ObjectManager::getInstance();
+      $category        = $objectManager->get('Magento\Framework\Registry')->registry('kb_current_category');
+      $catColl         = $objectManager->get('Mirasvit\Kb\Model\Category');
+      $resource        = $objectManager->get('Magento\Framework\App\ResourceConnection');
+      $connection      = $resource->getConnection(); 
+      $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+      $currentStore    = $storeManager1->getStore();
+      $mediaUrl        = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+      $nn=$mediaUrl."kb";
+      $collection = $block->getArticleCollection();
+?>
+
+<?php if ($collection->count()): ?>
+        <div id="filter-tab-1" class="tab-content current tag">          
+              <ul class="hub_list">
+                <?php 
+      
+                foreach ($collection as $article)
+                {
+                  $publish_datte  = $article['created_at'];
+                  $tempDate       = $publish_datte;
+                  $day            = date('l', strtotime($tempDate));
+                  $month          = date('F jS Y ',strtotime($tempDate));
+                ?>
+                <li>
+                  <div class="hub-box">
+                      <a href="<?= $article->getUrl(); ?>"><div class="hub-box-image" ><img src="<?php if(!empty($article['image'])){ echo $nn.'/'.$article['image'];} else { echo $this->getViewFileUrl('images/hub_cat_01.jpg');} ?>"/></div></a>  
+                      <div class="hub-details">
+                          <div class="hub_flex">
+                           <!--  <span class="hub_type">mama</span> -->
+                            <div class="hub_title"><a href="<?= $article->getUrl(); ?>"><?php echo $article->getName(); ?></a></div>
+                          </div>
+                      </div>
+                      <div class="box-bottom">
+                          <div class="pull-left"><?php echo $month; ?></div>
+                            <div class="pull-right hubrate"><span><i class="fa fa-heart"></i></span><span><?php echo $article->getRating();?></span></div>
+                          <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </li>
+              <?php } ?>
+            </ul>
+        </div>
+<?php else: ?>
+    <p><b><?= __('Did not find what you were looking for..'); ?></p></b>
+<?php endif ?>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Cminds_StockNotification::customer_request"
+             title="Customer Requests"
+             module="Cminds_StockNotification"
+             sortOrder="10"
+             action="stocknotification/request/index"
+             resource="Cminds_StockNotification::customer_request"
+             parent="Cminds_StockNotification::main"/>
+        <add id="Cminds_StockNotification::main"
+             title="Cminds Stock Notification"
+             module="Cminds_StockNotification"
+             sortOrder="20"
+             parent="Magento_Catalog::catalog"
+             resource="Cminds_StockNotification::main"/>
+    </menu>
+</config>

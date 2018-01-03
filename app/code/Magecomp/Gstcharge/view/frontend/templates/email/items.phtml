@@ -1,0 +1,100 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php $_order = $block->getOrder() ?>
+<?php if ($_order): ?>
+    <?php $_items = $_order->getAllItems(); ?>
+    <table class="email-items">
+        <thead style="background-color:#EDEBEB;">
+            <tr>
+                <th class="item-info" style="vertical-align:middle" >
+                    <?= /* @escapeNotVerified */  __('Items'); ?>
+                </th>
+                 <th class="col cgst" colspan="2" style="vertical-align:middle">
+					<table>
+                      <tbody style="background:none;text-align:center">
+                    	<tr>
+                        	<td colspan="2"><?php /* @escapeNotVerified */ echo __('CGST') ?></span></td>
+                        </tr>
+                        <tr>
+                        	<td><?php echo __('Rate') ?></span></td>
+                            <td><?php echo __('Amount') ?></span></td>
+                        </tr>
+                       </tbody>
+                    </table>
+				</th>
+                <th class="col sgst" colspan="2" style="vertical-align:middle">
+                	<table>
+                      <tbody style="background:none;text-align:center">
+                    	<tr>
+                        	<td colspan="2"><?php /* @escapeNotVerified */ echo __('SGST') ?></span></td>
+                        </tr>
+                        <tr>
+                        	<td><?php echo __('Rate') ?></span></td>
+                            <td><?php echo __('Amount') ?></span></td>
+                        </tr>
+                       </tbody>
+                    </table>
+                </th>
+                <th class="col igst" colspan="2" style="vertical-align:middle">
+                	<table>
+                      <tbody style="background:none;text-align:center">
+                    	<tr>
+                        	<td colspan="2"><?php /* @escapeNotVerified */ echo __('IGST') ?></span></td>
+                        </tr>
+                        <tr>
+                        	<td><?php echo __('Rate') ?></span></td>
+                            <td><?php echo __('Amount') ?></span></td>
+                        </tr>
+                       </tbody>
+                    </table>
+                </th>
+                <th class="item-qty" style="vertical-align:middle">
+                    <?= /* @escapeNotVerified */  __('Qty'); ?>
+                </th>
+                <th class="item-price" style="vertical-align:middle">
+                    <?= /* @escapeNotVerified */  __('Price'); ?>
+                </th>
+            </tr>
+             
+        </thead>
+        <?php foreach ($_items as $_item): ?>
+            <?php
+                if ($_item->getParentItem()) {
+                    continue;
+                }
+            ?>
+            <tbody style="margin-bottom:15px;">
+                <?= $block->getItemHtml($_item) ?>
+                <p style="margin-bottom: 19px;"></p>
+            </tbody>
+        <?php endforeach; ?>
+        <tfoot class="order-totals">
+            <?= $block->getChildHtml('order_totals') ?>
+        </tfoot>
+    </table>
+    <?php if ($this->helper('Magento\GiftMessage\Helper\Message')->isMessagesAllowed('order', $_order, $_order->getStore()) && $_order->getGiftMessageId()): ?>
+        <?php $_giftMessage = $this->helper('Magento\GiftMessage\Helper\Message')->getGiftMessage($_order->getGiftMessageId()); ?>
+        <?php if ($_giftMessage): ?>
+            <br />
+            <table class="message-gift">
+                <tr>
+                    <td>
+                        <h3><?= /* @escapeNotVerified */  __('Gift Message for this Order') ?></h3>
+                        <strong><?= /* @escapeNotVerified */  __('From:'); ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                        <br /><strong><?= /* @escapeNotVerified */  __('To:'); ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                        <br /><strong><?= /* @escapeNotVerified */  __('Message:'); ?></strong>
+                        <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                    </td>
+                </tr>
+            </table>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

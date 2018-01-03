@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <preference for="Magento\Sales\Block\Adminhtml\Order\View\Items\Renderer\DefaultRenderer" type="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\View\Items\Renderer\DefaultRenderer"/>
+   
+   <preference for="Magento\Sales\Model\Order\Pdf\Items\Invoice\DefaultInvoice" type="Magecomp\Gstcharge\Model\Order\Pdf\Items\Invoice\DefaultInvoice" />
+   
+   <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Magecomp\Gstcharge\Model\Order\Pdf\Invoice" />
+   
+</config>

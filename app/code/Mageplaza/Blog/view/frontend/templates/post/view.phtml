@@ -1,0 +1,674 @@
+
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) 2016 Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<style type="text/css">
+    #at4-share{
+        display: none !important;
+    }
+</style>
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$tagcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Tag\Collection')
+->addFieldToFilter('enabled', 1);
+
+$categorycollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Category\Collection')
+->addFieldToFilter('enabled', 1);
+
+$_post = $block->getCurrentPost();
+$author = $block->getAuthorByPost($_post->getAuthorId());
+$authorName = $author !== null ? $author->getName() : '';
+$modifier = $block->getAuthorByPost($_post->getModifierId());
+$modifierName = $modifier !== null ? $modifier->getName() : '';
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$tableName = $resource->getTableName('mageplaza_blog_post');
+$sql = "Select url_key,post_id FROM " . $tableName;
+$result = $connection->fetchAll($sql);
+
+
+?>
+
+
+<?php 
+	$checkRss = $block->checkRss();
+	if ($checkRss):
+?>
+
+	<div class="mp-blog-rss">
+		<a href="<?php echo $checkRss ?>" class="bb-rss-icon"><img src="
+			<?php echo $this->getViewFileUrl('Mageplaza_Blog::media/images/rss.png') ?>" width="16px"> </a>
+	</div>
+<?php endif; ?>
+
+<?php if($block->filterPost($_post)): ?>
+
+<?php if ($block->getBlogConfig('share/enabled')): ?>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $block->getBlogConfig('share/pubid_id') ?>"
+            async="async"></script>
+<?php endif; ?>
+
+        <div class="mpcss post-view" id="mpblog-list-container">
+            <div class="row">
+                <?php if ($block->getBlogConfig('sidebar/sidebar_left_right')==1){ ?>
+                <div class="post-list-content col-sm-8">
+					<div class="post-image">
+					   <?php if ($_post->getImage()) : ?>
+						   <a class="fancybox" href="<?php echo $block->getImageUrl($_post->getImage()); ?>">
+							   <img class="img-responsive" src="<?php echo $block->getImageUrl($_post->getImage()); ?>" alt="<?php echo $block->escapeHtml($_post->getName()); ?>"/>
+						   </a>
+					   <?php endif; ?>
+					</div>
+					
+                    <div class="post-title col-xs-12" style="margin-bottom: 20px;">
+                        <h1><?php echo $_post->getName();?></h1>
+                    </div>
+                    
+
+                    <div class="post-post_content col-xs-12">
+                         <?php echo $block->getPageFilter($_post->getPostContent()); ?>
+                    </div>
+
+                    <div class="col-xs-12 categoryblogsec">
+                        <hr/>
+                        <div class="mp-post-info">
+                            <span><i class="fa fa-calendar-times-o"></i> <?php echo $block->getDateFormat($_post->getPublishDate()); ?></span>
+                            <?php if ($block->getPostCategoryHtml($_post)) {?>
+                                | <span><i class="fa fa-folder-open-o"></i> <?php echo __('Categories:'); ?> <?php echo $block->getPostCategoryHtml($_post); ?> </span>
+                            <?php } ?>
+                            <?php if ($block->getTagList($_post)) {?>
+                                | <span><i class="fa fa-tags"></i> <?php echo __('Tags:'); ?>  <?php echo $block->getTagList($_post); ?></span>
+                            <?php } ?>
+                            <?php if ($authorName && $block->getBlogConfig('general/display_author')){ ?>
+                                | <span><i class="fa fa-user"></i> By: <a class="mp-info" href="<?php echo $block->getAuthorUrl($author) ?>"><?php echo $authorName; ?></a></span>
+                                <?php if ($authorName != $modifierName && $modifierName){ ?>
+                                    | <span><i class="fa fa-edit"></i> Modify By: <a class="mp-info" href="<?php echo $block->getAuthorUrl($modifier) ?>"><?php echo $modifierName;?></a><?php echo ' at : '.$_post->getUpdatedAt(); ?></span>
+                                <?php } ?>
+                            <?php } ?>
+
+                        </div>
+                        <hr/>
+                    </div>
+                    
+					<?php if ($block->getBlogConfig('share/enabled')): ?>
+						<div class="mpcss blogSharing">
+							<div id="sharing">
+								<div class="share-col-left">
+								<span class="number-cls">0</i></span>
+								 <span class="wishlist-cls"><i class="fa fa-heart"></i></span>
+								</div>
+								<div class="share-col-right">
+									<div class="post-sharing-button social-main-cls">
+											<label class="label-cls">Share: </label>
+											<ul class="social-media-icons-cls">
+											<li class="fa-twitter-cls"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+											<li class="fa-facebook-cls"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+											<li class="fa-pinterest-p-cls"><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+											<li class="fa-instagram-cls"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+											</ul>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php endif; ?>
+				
+					<?php
+					$bid= $_post->getPostId();
+
+					foreach ($result as $key => $value) {
+
+						
+						if ($bid==$value['post_id']) {
+						   $pre=$key-1;
+						   $next=$key+1;
+						}
+						# code...
+					}
+					$preurl="";
+					$nexturl="";
+					foreach ($result as $key => $value) {
+						//  echo "<pre>";
+						// print_r($value);
+						
+						if ($pre==$key ) {
+						  $preurl=$value['url_key'];
+						}
+						
+						if ($next==$key) {
+						 $nexturl=$value['url_key'];
+						}
+						# code...
+					}
+					//echo "string".$nexturl.";;;;;".$preurl;
+
+					?>
+					
+					<div class="blog-post-nav">
+					<?php  $objectManager  = \Magento\Framework\App\ObjectManager::getInstance();        
+					$storeManager   = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+					$store          = $storeManager->getStore();
+					$baseurl        = $store->getBaseUrl();
+					if ($preurl) { ?>
+						
+						<a href="<?php echo $baseurl."blog/post/".$preurl; ?>" class="pull-left"><i class="fa fa-long-arrow-left"></i>&nbsp;&nbsp;
+							
+								Previous Post
+							</a> 
+							<?php }
+							if ($nexturl) { ?>
+						  
+						<a href="<?php echo $baseurl."blog/post/".$nexturl; ?>" class="pull-right">
+						   Next Post&nbsp;&nbsp;<i class="fa fa-long-arrow-right"></i></a>
+						   <?php } ?>
+						<div class="clearfix"></div>
+					</div>
+			<div class="mpcss mp-comment bottomcommentBox-cls">
+
+        <?php if( $_post->getAllowComment()==1) { ?>
+            <?php $typeComment = $block->checkComment(); ?>
+            <?php if ($typeComment == Mageplaza\Blog\Model\Config\Source\Comments\Type::DISQUS): ?>
+                <div class="box-collateral box-reviews" id="post-reviews">
+                    <h2><?php echo __('Comments') ?></h2>
+
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_shortname = '<?php echo $block->helperComment('disqus');?>';
+
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function () {
+                            var dsq = document.createElement('script');
+                            dsq.type = 'text/javascript';
+                            dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+
+
+                </div>
+            <?php elseif ($typeComment == Mageplaza\Blog\Model\Config\Source\Comments\Type::FACEBOOK): ?>
+                <div class="box-collateral box-reviews" id="post-reviews">
+                    <h2><?php echo __('Comments') ?></h2>
+
+                    <div id="fb-root"></div>
+                    <script>(function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=<?php echo $this->getAppId()?>";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+
+
+                    <div class="fb-comments" data-href="<?php echo $block->getUrlByPost($_post); ?>" data-numposts="<?php echo $block->helperComment('facebook_number_comment'); ?>"
+                         data-width="100%" data-colorscheme="<?php echo $block->helperComment('facebook_colorscheme') ?>" data-order-by="<?php echo $block->helperComment('facebook_order_by') ?>"></div>
+
+                </div>
+
+            <?php elseif ($typeComment == Mageplaza\Blog\Model\Config\Source\Comments\Type::DEFAULT_COMMENT): ?>
+                <div class="container default-cmt">
+                    <div class="row">
+                        <div> <h2><?php echo __('Comments'); ?></h2></div>
+                       <div class="default-cmt__content__cmt-content">
+                                <?php
+                                /**
+                                 * Comment rows
+                                 */
+                                $comments = $block->getPostComments($_post->getId());
+                                $block->getCommentsTree($comments, 0);
+                                $html = $block->getCommentsHtml();
+                                echo $html;
+                                ?>
+                                </div>
+                        <div class="col-xs-2">
+                            <div class="default-cmt__cmt-login" <?php if ($block->isLoggedIn()) {echo 'style="display:none;"';} ?>>
+                                <button class="btn-primary default-cmt__cmt-login__btn-login"><?php echo __('Login') ?></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 commentmp">
+                            <div class="default-cmt__content">
+                                <?php
+                                   $ajax_image= $baseurl."pub/media/wysiwyg/ajax-loader.gif";
+                                 ?>
+                                <div class="default-cmt__content__cmt-block">
+                                    <div class="default-cmt__content__cmt-block__cmt-box">
+                                        <textarea class="default-cmt__content__cmt-block__cmt-box__cmt-input" maxlength="255" placeholder="<?php echo __('Type comments here...') ?>"></textarea>
+                                        <div class="default-cmt__content__cmt-block__cmt-box__cmt-btn">
+                                            <button id="button_disable" class="default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit btn-primary" <?php if (!$block->isLoggedIn()) {echo ' disabled';} ?>><?php echo __('Posted as username') ?></button>
+                                            <div id="comment_ids" style="display: none; margin-left: 210px; margin-top: 50px;"><img src="<?php echo  $ajax_image; ?>"></div>
+                                            <?php if (!$block->isLoggedIn()) {?>
+                                 <a class="content-login-cls" href="<?php echo $baseurl."customer/account/login/"; ?>" style="color: red; margin-right:10px;" class="pull-rig">
+                                  Please login for comment
+                                  </a>
+                                            <?php }?>
+                                        </div>
+                                    </div>
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    //get login url, text of button like, reply
+                    var loginUrl = '<?php echo $block->getLoginUrl(); ?>';
+                    var like = '<?php echo __('Like') ?>',
+                        reply = '<?php echo __('Reply') ?>';
+
+                    require([
+                        'comment'
+                    ]);
+                </script>
+
+            <?php endif;
+        }?>
+
+</div>
+                </div>
+
+                <div class="mp-sidebar col-sm-4">
+                         <?php echo $this->getChildHtml('sidebar_search'); ?>
+
+
+                         <div class="block-title col-xs-12 sidebar-tags">
+         <p class="block-mp-sidebar-heading" role="heading" aria-level="2"><?php echo __('Tags') ?></p>
+        </div>
+        <div class="col-xs-12 taglising">
+            <?php if ($tagcollection != '' && !empty($tagcollection)): ?>
+                <?php foreach ($tagcollection as $tag): 
+
+                 $tagurl=$tag->getUrlKey();
+                ?>
+                    <a class="label label-default tags-list" style="font-size:
+                        <?php //$size = $block->getTagSize($tag);
+                            //echo ($size > 8) ? ($size .'px') : '8px';
+                        ?>
+                    " href="<?php echo $block->getUrl().'blog/tag/'.$tagurl; ?>"><?php echo $tag->getName(); ?></a>
+                <?php endforeach; ?>
+                
+                <?php else: ?>
+                    <?php echo __('No Tags') ?>
+                <?php endif; ?>
+                <hr/>
+       
+           </div>
+
+        <div class="sidebar-acc">
+		
+		<!----------------------------------->
+		
+		<div class="panel-group blogaccordion-cls" id="accordion">
+			<?php  
+			$i=1 ;
+			$postid=array();
+			foreach ($categorycollection as $category): 
+				$categoryurl=$category->getUrlKey();
+				$categoryid=$category->getCategoryId();  
+
+
+				$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+				$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+				$connection = $resource->getConnection();
+				$tableName = $resource->getTableName('mageplaza_blog_post_category');
+				$sql = "Select * FROM " . $tableName." Where category_id = ".$categoryid."";
+				$result = $connection->fetchAll($sql); 
+
+				foreach ($result as $results) {
+				$postid[]=$results['post_id'];
+				}
+			?>
+			<div class="panel-heading">
+			<h4 class="panel-title"> 
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" id="panela<?php echo $i; ?>" href="#panel<?php echo $i; ?>"><?php echo ucfirst($category->getName())?>
+			<i class="fa fa-angle-down pull-right"></i>
+			</a> 
+			</h4>
+			</div>
+			<div id="panel"  style="display:none;">
+			<div class="panel-body">
+			<?php 
+				$postcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Post\Collection')
+				->addFieldToFilter('post_id',$postid);
+				$postname=array();
+				$j=1;
+				foreach ($postcollection as $postcollections) {
+					$postname=$postcollections['name']; 
+					$posturl=$postcollections['url_key'];
+					if($j<6){
+			?>
+				
+					<p><a href="<?php echo $block->getUrl().'blog/post/'.$posturl; ?>"><?php echo $postname; ?></a></p>
+				
+
+			<?php } $j++; } ?>
+			</div>
+			</div>
+		  <?php $i++; endforeach; ?>
+		</div>
+		
+		
+		
+		<script>
+		require(['jquery', 'jquery/ui'], function($) {
+		  $( function() {
+				$( "#accordion" ).accordion({
+					active: false,
+					collapsible: true
+				});
+				
+		  } );
+		});
+		</script>
+		<!----------------------------------->
+		<?php /* ?>
+                <div class="panel-group" id="accordion22">
+
+                     <?php  
+					 $i=1 ;
+                     $postid=array();
+                     foreach ($categorycollection as $category): 
+							$categoryurl=$category->getUrlKey();
+							$categoryid=$category->getCategoryId();  
+
+
+							$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+							$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+							$connection = $resource->getConnection();
+							$tableName = $resource->getTableName('mageplaza_blog_post_category');
+							$sql = "Select * FROM " . $tableName." Where category_id = ".$categoryid."";
+							$result = $connection->fetchAll($sql); 
+
+							foreach ($result as $results) {
+								$postid[]=$results['post_id'];
+							}
+?>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"> 
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" id="panela<?php echo $i; ?>" href="#panel<?php echo $i; ?>"><?php echo ucfirst($category->getName())?>
+								<i class="fa fa-angle-down pull-right"></i>
+								</a> 
+								</h4>
+							</div>
+							
+							<div id="panel<?php echo $i; ?>" class="panel-collapse collapse">
+								<div class="panel-body">
+								<?php 
+								$postcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Post\Collection')
+								->addFieldToFilter('post_id',$postid);
+								$postname=array();
+								$j=1;
+								foreach ($postcollection as $postcollections) {
+									$postname=$postcollections['name']; 
+									$posturl=$postcollections['url_key'];
+									if($j<6){
+								?>
+										<p><a href="<?php echo $block->getUrl().'blog/post/'.$posturl; ?>"><?php echo $postname; ?></a></p>
+
+								<?php } $j++; } ?>
+								</div>
+							</div>
+						</div>
+              
+
+                    
+                     <?php $i++; endforeach; ?>
+			</div>
+			<?php */ ?>
+		</div>
+<?php
+                        
+                         ?>
+                </div>
+                <?php }else{ ?>
+
+                    <div class="mp-sidebar col-md-3 col-sm-4 col-xs-12">
+                         <?php
+                         echo $this->getChildHtml('sidebar_search'); ?>
+                         <div class="block-title col-xs-12 sidebar-tags">
+         <p class="block-mp-sidebar-heading" role="heading" aria-level="2"><?php echo __('Tags') ?></p>
+        </div>
+        <div class="col-xs-12">
+            <?php if ($tagcollection != '' && !empty($tagcollection)): ?>
+                <?php foreach ($tagcollection as $tag): 
+
+                 $tagurl=$tag->getUrlKey();
+                ?>
+                    <a class="label label-default tags-list" style="font-size:
+                       
+                    " href="<?php echo $block->getUrl().'blog/tag/'.$tagurl; ?>"><?php echo $tag->getName(); ?></a>
+                <?php endforeach; ?>
+                
+                <?php else: ?>
+                    <?php echo __('No Tags') ?>
+                <?php endif; ?>
+                <hr/>
+       
+           </div>
+
+        <?php /* ?>
+        <div class="sidebar-acc">
+                <div class="panel-group" id="accordion">
+                  
+
+            <?php 
+                $i = 1;
+            foreach ($categorycollection as $category): 
+            $categoryurl=$category->getUrlKey();
+        $categoryid=$category->getCategoryId();   ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel<?php echo $i; ?>"><?php echo ucfirst($category->getName())?><i class="fa fa-angle-down pull-right"></i></a> </h4>
+                        </div>
+                        <div id="panel<?php echo $i; ?>" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p><a href="#">How To Make Labor Hurt Less</a></p>
+                                <p><a href="#">Why You Won’t Be Seeing Baby Pictures...</a></p>
+                                <p><a href="#">What Happens At The Mid-Pregnancy</a></p>
+                                <p><a href="#">This gyno made this silliest mistake</a></p>
+                                <p><a href="#">How To Make Labor Hurt Less</a></p>
+                            </div>
+                        </div>
+                    </div>
+                     <?php $i++; endforeach; ?>
+                </div>
+            </div>
+        <?php */ ?>
+                    </div>
+
+                    <div class="post-list-content col-md-9 col-sm-8">
+                        <div class="post-title col-xs-12" style="margin-bottom: 20px;">
+                        <h1><?php echo $_post->getName();?></h1>
+                    </div>
+                        <div class="post-image">
+                           <?php if ($_post->getImage()) : ?>
+                               <a class="fancybox" href="<?php echo $block->getImageUrl($_post->getImage()); ?>">
+                                   <img class="img-responsive" src="<?php echo $block->getImageUrl($_post->getImage()); ?>" alt="<?php echo $block->escapeHtml($_post->getName()); ?>"/>
+                               </a>
+                           <?php endif; ?>
+                        </div>
+
+
+                        <div class="post-post_content col-xs-12">
+                            <?php echo $block->getPageFilter($_post->getPostContent()); ?>
+                        </div>
+
+                        <div class="col-xs-12 categoryblogsec">
+                            <hr/>
+                            <div class="mp-post-info">
+                                <span><i class="fa fa-calendar-times-o"></i> <?php echo $block->getDateFormat($_post->getPublishDate()); ?></span>
+                                <?php if ($block->getPostCategoryHtml($_post)) {?>
+                                    | <span><i class="fa fa-folder-open-o"></i> <?php echo __('Categories:'); ?> <?php echo $block->getPostCategoryHtml($_post); ?> </span>
+                                <?php } ?>
+                                <?php if ($block->getTagList($_post)) {?>
+                                    | <span><i class="fa fa-tags"></i> <?php echo __('Tags:'); ?>  <?php echo $block->getTagList($_post); ?></span>
+                                <?php } ?>
+
+                                <?php if ($authorName && $block->getBlogConfig('general/display_author')){ ?>
+                                    | <span><i class="fa fa-user"></i> By: <a class="mp-info" href="<?php echo $block->getAuthorUrl($author) ?>"><?php echo $authorName; ?></a></span>
+                                <?php if ($authorName != $modifierName && $modifierName){ ?>
+                                        | <span><i class="fa fa-edit"></i> Modify By: <a class="mp-info" href="<?php echo $block->getAuthorUrl($modifier) ?>"><?php echo $modifierName;?></a><?php echo ' at : '.$_post->getUpdatedAt(); ?></span>
+
+                                    <?php } ?>
+                                <?php } ?>
+
+                            </div>
+                            <hr/>
+                        </div>
+                        
+                    </div>
+
+                <?php }?>
+            </div>
+        </div>
+
+
+<?php
+/**
+ * About the author content
+ */
+?>
+<?php if($block->getBlogConfig('general/display_author') && $block->getBlogConfig('general/author_description')): ?>
+    <div class="mpcss about-admin">
+        <div class="row">
+            <div class="col-xs-12 author-title">
+                <h4 class="admin-title"><?php echo __('About the Author: ');?><a class="mp-info"><?php if($block->getBlogConfig('general/author_name')) echo $block->getBlogConfig('general/author_name');?></a></h4>
+                <div id="admin-border"></div>
+            </div>
+            <div class="col-xs-12 author-des">
+                <?php if($block->getBlogConfig('general/upload_image')):?>
+                <div class="admin-avatar">
+                    <img class="img-responsive" src="<?php echo $block->getImageUrl('mageplaza/author/'.$block->getBlogConfig('general/upload_image'));?>">
+                </div>
+                <?php endif;?>
+                <div class="admin-description">
+                    <?php echo $block->getBlogConfig('general/author_description');?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif;?>
+
+
+<?php
+    /**
+     * Seo article snippet
+     */
+    $enableSnippet = $block->getSeoConfig('snippet/enabled');
+    $orgName = $block->getSeoConfig('snippet/organize_name');
+    $logo = $block->getSeoConfig('snippet/upload_image_id') ? $block->getLogoImage($block->getSeoConfig('snippet/upload_image_id'))
+        : $block->getDefaultImageUrl();
+
+    if ($enableSnippet):
+?>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://google.com/article"
+  },
+  "headline": "<?php echo $_post->getName(); ?>",
+  "image": {
+    "@type": "ImageObject",
+    "url": "<?php echo $_post->getImage() ? $block->getImageUrl($_post->getImage())
+        : $block->getDefaultImageUrl(); ?>",
+    "height": 800,
+    "width": 800
+  },
+  "datePublished": "<?php echo $block->getDateFormat($_post->getPublishDate()); ?>",
+  "dateModified": "<?php echo $block->getDateFormat($_post->getUpdatedAt()); ?>",
+  "author": {
+    "@type": "Person",
+    "name": "<?php echo $authorName; ?>"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "<?php echo $orgName; ?>",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "<?php echo $logo; ?>",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "description": "<?php echo $_post->getShortDescription(); ?>"
+}
+</script>
+
+    <?php endif; ?>
+
+<?php else: ?>
+    <div><?php echo __('This store has no post with name: ').$_post->getName() ?></div>
+
+<?php endif;?>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'fancybox',
+        'migrate'
+    ], function($){
+        var addToAll = false;
+        var gallery = true;
+        var titlePosition = 'inside';
+        $(addToAll ? 'img' : 'img.fancybox').each(function(){
+            var $this = $(this);
+            var title = $this.attr('title');
+            var src = $this.attr('data-big') || $this.attr('src');
+            var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+            $this.wrap(a);
+        });
+        if (gallery)
+            $('a.fancybox').attr('rel', 'fancyboxgallery');
+        $('a.fancybox').fancybox({
+            titlePosition: titlePosition
+        });
+        jQuery(document).ready(function()
+      {
+          //alert('hih');
+         jQuery('#panela1').click();
+        
+         
+       });
+    });
+</script>
+
+<style type="text/css">
+    <?php if ($block->helperComment('facebook_colorscheme') == "dark"){ ?>
+			.mp-comment .box-collateral span{
+				background-color: #3e2f3a !important;
+			}
+    <?php }?>
+	.post-same-topics .relate-content-container{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	button.default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit {    background: #7e6674 !important;}
+</style>
+

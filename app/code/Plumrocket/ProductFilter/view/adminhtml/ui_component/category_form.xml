@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+ -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="display_settings">
+        <field name="pr_exluded_attributes">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Plumrocket\ProductFilter\Model\Attribute\Source\ActiveFilters</item>
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">300</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="default" xsi:type="string">''</item>
+                    <item name="label" xsi:type="string" translate="true">Disable Filter Attributes and Customizable Options</item>
+                    <item name="notice" xsi:type="string" translate="true">You can specify which attributes and customizable options should be disabled in Product Filter for this category.</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

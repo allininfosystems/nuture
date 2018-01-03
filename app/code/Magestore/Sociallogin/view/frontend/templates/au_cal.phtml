@@ -1,0 +1,36 @@
+<?php  /**
+ * Copyright © 2016 Magestore. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ */
+?>
+<form action="<?php echo $this->getAlLoginUrl();?>" method="post" id="form-validate">
+    <div class="fieldset">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <h2 class="legend"><?php echo __('Login with Clavid Name') ?></h2>
+        <ul class="form-list">
+            <li>
+                <label for="identity" class="required"><em>*</em><?php echo __('Enter your Clavid username') ?></label>
+                <div class="input-box">
+                    <input type="text" name="name" id="identity" title="<?php echo __('Enter Clavid Name') ?>" class="input-text required-entry" />
+					<div id="advice-required-entry-identity" style="display:none" class="validation-advice" style="">This is a required field.</div>
+				</div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo __('* Required Fields') ?></p>
+        <button type="submit" title="<?php echo __('Sumbit') ?>" onClick="return checkForm();" class="button"><span><span><?php echo __('Sumbit') ?></span></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+	function checkForm(){
+		if(!$('identity').value){
+			$('advice-required-entry-identity').show();
+			return false;
+		}else{
+			$('advice-required-entry-identity').hide();
+			return true;
+		}
+	}
+</script>

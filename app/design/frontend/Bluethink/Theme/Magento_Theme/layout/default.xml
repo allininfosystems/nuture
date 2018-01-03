@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+	
+	
+	
+       <referenceContainer name="header.container">
+            <container name="custom.header" before="main.content">
+                <block class="Magento\Framework\View\Element\Template" name="header_1" before="-" template="Magento_Theme::html/header/header.phtml" cacheable="false">
+
+                </block>
+                <block class="Magento\Theme\Block\Html\Breadcrumbs" name="breadcrumbs" as="breadcrumbs" after="custom.header"/>
+            </container> 
+        </referenceContainer>
+		
+		
+		
+		
+        <referenceContainer name="footer-container">
+            <block class="Magento\Framework\View\Element\Template" name="footer_1" template="Magento_Theme::html/footer/footer.phtml"/>     
+        </referenceContainer>
+        <remove name="report.bugs"/>
+         
+		   
+		   
+		    <referenceBlock name="top.links" remove="true" />
+            <referenceBlock name="header.panel.wrapper" remove="true" />
+            <referenceBlock name="header-wrapper" remove="false" />
+            <referenceBlock name="footer" remove="true"/>
+            <referenceBlock name="navigation.sections" remove="true"/>
+            <referenceBlock name="page-title-wrapper" remove="true"/>
+            <referenceBlock name="page.main.title" remove="true" /> 
+           <referenceBlock name="breadcrumbs" display="false" />
+			 <referenceBlock name="logo" remove="true" />
+		    
+
+		  
+		   
+
+
+    </body>
+</page>

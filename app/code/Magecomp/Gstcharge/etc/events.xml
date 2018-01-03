@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_place_after">
+   		 <observer name="sales_order_place_after_gstorder" instance="Magecomp\Gstcharge\Observer\Gstorder" shared="false"/>
+	</event>
+    <event name="sales_order_invoice_register">
+    	<observer name="sales_order_invoice_register_gstorder" instance="Magecomp\Gstcharge\Observer\Gstinvoice" shared="false"/>
+    </event>
+    <event name="sales_order_creditmemo_refund">
+    	<observer name="sales_order_creditmemo_refund_gstorder" instance="Magecomp\Gstcharge\Observer\Gstcreditmemo" shared="false"/>
+    </event>
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="buyergstnumbertoorder" instance="Magecomp\Gstcharge\Observer\Savebuyergsttoorder"/>
+    </event>
+</config>

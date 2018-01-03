@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+ <!--         <add id="Bluethink_Refferalcode::bluethink_index_index" 
+            title="Bluethink" 
+            module="Bluethink_Refferalcode"  
+            sortOrder="20" 
+            dependsOnModule="Bluethink_Refferalcode"  
+            resource="Magento_Backend::content"/>
+
+        <add id="Bluethink_Refferalcode::bluethink_refferalcode" 
+            title="Set Refferalcode" 
+            module="Bluethink_Refferalcode" 
+            sortOrder="2" 
+            resource="Bluethink_Refferalcode::bluethink_index_index" 
+            parent="Bluethink_Refferalcode::bluethink_index_index" 
+            action="refferalcode/rewardpoint/index"/> -->
+       
+    </menu>
+</config>

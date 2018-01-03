@@ -1,0 +1,48 @@
+<!--@subject Your points balance expiration @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$customer.name":"Customer Name",
+"var title":"Transaction Title",
+"var amount":"Transaction Amount",
+"var status":"Transaction Status",
+"var point_amount":"Point Amount Formated",
+"var spent":"Transaction Amount Used",
+"var point_used":"Transaction Amount Used Formated",
+"var total":"Customer Balance",
+"var point_balance":"Customer Balance Formated",
+"var expirationdays":"Expiration After Days",
+"var expirationdate":"Expiration Date",
+"store url=\"customer/account/\"":"Customer Account Url"}
+@-->
+
+<!--@styles
+body,td { color:#2f2f2f; font:13px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+    {{template config_path="design/email/header_template"}}
+    <!-- [ middle starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <p><strong>{{trans "Dear" }} {{$customer.name}}</strong>,<br/>
+                                {{trans "We would like to inform you that your transaction will expire after" }} {{var expirationdays}} {{trans "day(s)" }}. {{trans "You should also note that if your earned points expire, your rewards will become invalid. Please check more details below" }}:</p>
+                            <p style="border:1px solid #BEBCB7; padding:13px 18px; background:#F8F7F5; ">
+                                <strong>{{trans "The transaction detail" }}</strong><br/>
+                                <strong>{{trans "Transaction title" }}:</strong> {{var title}}<br/>
+                                <strong>{{trans "Transaction amount" }}:</strong> {{var point_amount}}<br/>
+                                <strong>{{trans "Transaction amount used" }}:</strong> {{var point_used}}<br/>
+                                <strong>{{trans "Current balance" }}:</strong> {{var point_balance}}<br/>
+                                <strong>{{trans "Expiration date" }}:</strong> {{var expirationdate}}
+                            <p>
+                            <p>{{trans "If you have any other questions, please feel free to contact us at" }} <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> {{trans "or call us at" }} {{config path='general/store_information/phone'}} {{trans "Monday - Friday" }}, {{trans "8am - 5pm PST" }}.</p>
+                            <p>{{trans "Thanks again" }},<br/>
+                                <strong>{{var store.getFrontendName()}}</strong>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+{{template config_path="design/email/footer_template"}}

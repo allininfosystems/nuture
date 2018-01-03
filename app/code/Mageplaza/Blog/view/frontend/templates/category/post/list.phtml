@@ -1,0 +1,268 @@
+
+
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) 2016 Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$categorycollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Category\Collection')
+->addFieldToFilter('enabled', 1);
+$posts=$block->getPostList();
+$resizeWidth = $block->getBlogConfig('general/resize_image/resize_width');
+$resizeHeight = $block->getBlogConfig('general/resize_image/resize_height');
+$pageNum = $block->getPageParam();
+if ($pageNum == null){
+	$pageNum = 1;
+}
+$rturl=$_SERVER['REQUEST_URI'];
+$urlarr=explode('/',$rturl);
+$carkey=end($urlarr);
+?>
+	<?php $checkRss = $block->checkRss();
+if ($checkRss):
+	?>
+	<div class="mp-blog-rss">
+            <a href="<?php echo $checkRss ?>" class="bb-rss-icon">
+                <img src="<?php echo $this->getViewFileUrl('Mageplaza_Blog::media/images/rss.png') ?>" width="16px">
+            </a>
+        </div>
+<?php endif; ?>
+<?php if ($posts != '') : ?>
+    <?php
+    $countPage = $posts[0];
+	array_shift($posts);
+	?>
+	<div class="post-list-container mpcss" id="mpblog-list-container">
+		<div class="row">
+              <div class="category-section">
+			    <?php 
+				     if(count($categorycollection)>0){
+						 echo '<div class="blog-category"><section class="cat-container"><div class="blog-category-list">';
+						 echo '<a class="tab-link" href="'.$storeManager->getStore()->getBaseUrl().'blog">All</a>';
+						 foreach($categorycollection as $category){
+							  $categoryid=$category->getCategoryId();
+							  $categoryname=$category->getName();
+							  $categoryurl=$category->getUrlKey();
+							  $act='';
+							  if($carkey==$categoryurl){
+								  $act='current';
+							  }
+							  echo '<a class="tab-link '.$act.'" href="'.$storeManager->getStore()->getBaseUrl().'blog/category/'.$categoryurl.'">'.$categoryname.'</a>';
+						 }
+                         echo '</div><div class="mp-sidebar">'.$this->getChildHtml('sidebar_search').'</div></section></div>';						 
+					 }
+				?>
+			</div>
+              <?php if ($block->getBlogConfig('sidebar/sidebar_left_right')==1){
+			  ?>
+            <div class="post-list-content col-xs-12 blogListing">
+                <div class="post-list-body">
+                <?php foreach ($posts as $post) : ?>
+                    <?php $postid=$post->getPostId(); 
+               $commentcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Comment\Collection')->addFieldToFilter('post_id',$postid);
+
+              
+               $commentcount=count($commentcollection);
+               $likecount=array();
+               foreach ($commentcollection as $comment) {
+                   $commentid=$comment['comment_id'];
+                    $likecModel = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Like\Collection')->addFieldToFilter('comment_id',$commentid);
+                    
+          $likecount[]=count($likecModel->getData());
+             
+               }
+              $likecot=array_sum($likecount);
+               
+                     ?>
+
+                     <div class="blog-item">
+             <?php if ($post->getImage()) :
+                                    ?>
+                                    <a href="<?php echo substr($block->getUrlByPost($post),0,-1) ?>">
+                                        <img class="img-responsive"
+                                             src="<?php echo $block->resizeImage($post->getImage(),$resizeWidth,$resizeHeight); ?>"
+                                             alt="<?php echo $block->escapeHtml($post->getName()); ?>"/>
+                                    </a>
+                                <?php endif; ?>
+            <div class="item-content">
+                <div class="item-title">
+                <a class="post-link-title" title="<?php echo $post->getName(); ?>"
+                                       href="<?php echo substr($block->getUrlByPost($post),0,-1) ?>">
+                                        <?php echo $post->getName();?>
+                                    </a>
+                                    </div>
+                <div class="item-desc"><?php echo $post->getShortDescription(); ?></div>
+                <div class="item-bottom">
+                <div class="blog-date"><?php echo  $block->getDateFormat($post->getPublishDate()); ?></div>
+                    <div class="blog-status">
+                        <div class="blog-like"><?php echo $likecot; ?><i class="fa fa-heart"></i></div>
+                        <div class="blog-comment"><?php echo  $commentcount; ?> <i class="fa fa-comments"></i></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>            
+        </div>
+                <?php endforeach; ?>
+                </div>
+				
+            </div>
+
+            
+				  <?php
+			  }else{ ?>
+                  <div class="post-list-content col-md-9 col-sm-8 col-xs-12 blogListing">
+                        <div class="post-list-body">
+                        <?php foreach ($posts as $post) : ?>
+                           <?php $postid=$post->getPostId(); 
+               $commentcollection = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Comment\Collection')->addFieldToFilter('post_id',$postid);
+
+              
+               $commentcount=count($commentcollection);
+               $likecount=array();
+               foreach ($commentcollection as $comment) {
+                   $commentid=$comment['comment_id'];
+                    $likecModel = $objectManager->create('Mageplaza\Blog\Model\ResourceModel\Like\Collection')->addFieldToFilter('comment_id',$commentid);
+                    
+          $likecount[]=count($likecModel->getData());
+           
+               }
+              $likecot=array_sum($likecount);
+           
+                     ?>
+                     <div class="blog-item">
+             <?php if ($post->getImage()) :
+                                    ?>
+                                    <a href="<?php echo substr($block->getUrlByPost($post),0,-1) ?>">
+                                        <img class="img-responsive"
+                                             src="<?php echo $block->resizeImage($post->getImage(),$resizeWidth,$resizeHeight); ?>"
+                                             alt="<?php echo $block->escapeHtml($post->getName()); ?>"/>
+                                    </a>
+                                <?php endif; ?>
+            <div class="item-content">
+                <div class="item-title">
+                <a class="post-link-title" title="<?php echo $post->getName(); ?>"
+                                       href="<?php echo substr($block->getUrlByPost($post),0,-1) ?>">
+                                        <?php echo $post->getName();?>
+                                    </a>
+                                    </div>
+                <div class="item-desc"><?php echo $post->getShortDescription(); ?></div>
+                <div class="item-bottom">
+                <div class="blog-date"><?php echo  $block->getDateFormat($post->getPublishDate()); ?></div>
+                    <div class="blog-status">
+                        <div class="blog-like"><?php echo $likecot; ?><i class="fa fa-heart"></i></div>
+                        <div class="blog-comment"><?php echo  $commentcount; ?> <i class="fa fa-comments"></i></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>            
+        </div>
+                        <?php endforeach; ?>
+                        </div>
+                   
+
+                    </div>
+
+			  <?php }?>
+		</div>
+    </div>
+
+	<?php if($countPage > 1): ?>
+        <ul class="items mp-blog-pages" aria-labelledby="paging-label">
+        <?php
+		for ($i = 1; $i <= $countPage; $i++):
+			?>
+            <li class="item mp-page-item">
+                  <?php
+				  if ($pageNum == $i)
+				  { ?>
+                      <span class="selected_page"><?php echo $i; ?></span>
+				  <?php } else {?>
+                <a href="<?php
+                if ($block->getMonthParam())
+                {
+					echo $this->getUrl('*/*/*', ['_use_rewrite' => true]) .'?month='.$block->getMonthParam().'&p=' . $i;
+                }
+                else
+                {
+					echo $this->getUrl('*/*/*', ['_use_rewrite' => true]) . '?p=' . $i;
+                }
+                ?>" class="page">
+                    <span class="label"><?php echo __('Page') ?></span>
+                        <span><?php echo $i; ?></span>
+                </a>
+                <?php }?>
+            </li>
+		<?php endfor; ?>
+        </ul>
+	<?php endif; ?>
+
+<?php else : ?>
+
+	<div class="post-list-container mpcss">
+        <div class="row">
+            <?php if ($block->getBlogConfig('sidebar/sidebar_left_right')==1){
+			?>
+            <div class="post-list-content col-md-9 col-sm-8 col-xs-12">
+                 <?php echo __('There are no posts at this moment'); ?>
+				
+            </div>
+            <div class="mp-sidebar col-md-3 col-sm-4 col-xs-12">
+                <?php
+				echo $this->getChildHtml('sidebar_search');
+				echo $this->getChildHtml('mpblog_sidebarauthor');
+				echo $this->getChildHtml('mpblog_sidebarmostview');
+				echo $this->getChildHtml('mpblog_sidebarcategory');
+				echo $this->getChildHtml('mpblog_sidebarmonthly');
+				echo $this->getChildHtml('mpblog_sidebartopic');
+				echo $this->getChildHtml('mpblog_sidebartag');
+				?>
+            </div>
+            <?php }else{?>
+                <div class="mp-sidebar col-md-3 col-sm-4 col-xs-12">
+                    <?php
+					echo $this->getChildHtml('sidebar_search');
+					echo $this->getChildHtml('mpblog_sidebarauthor');
+					echo $this->getChildHtml('mpblog_sidebarmostview');
+					echo $this->getChildHtml('mpblog_sidebarcategory');
+					echo $this->getChildHtml('mpblog_sidebarmonthly');
+					echo $this->getChildHtml('mpblog_sidebartopic');
+					echo $this->getChildHtml('mpblog_sidebartag');
+					?>
+                </div>
+                <div class="post-list-content col-md-9 col-sm-8 col-xs-12">
+                    <?php echo __('There are no posts at this moment'); ?>
+					
+                </div>
+            <?php } ?>
+        </div>
+
+    </div>
+
+<?php endif; ?>
+
+<style type="text/css">
+    
+    .blogListing {width: 100%}
+   .blogListing .blog-item {float: left; width: 30.99% !important;}
+</style>

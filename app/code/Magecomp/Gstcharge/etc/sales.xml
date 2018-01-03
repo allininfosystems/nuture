@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/sales.xsd">
+    <section name="quote">
+        <group name="totals">
+            <item name="cgst_charge" instance="Magecomp\Gstcharge\Model\Quote\Total\Cgst" sort_order="150"/>
+			<item name="sgst_charge" instance="Magecomp\Gstcharge\Model\Quote\Total\Sgst" sort_order="150"/>
+			<item name="igst_charge" instance="Magecomp\Gstcharge\Model\Quote\Total\Igst" sort_order="150"/>
+			<item name="shipping_cgst_charge" instance="Magecomp\Gstcharge\Model\Quote\Total\Shippingcgst" sort_order="100"/>
+			<item name="shipping_sgst_charge" instance="Magecomp\Gstcharge\Model\Quote\Total\Shippingsgst" sort_order="110"/>
+			<item name="shipping_igst_charge" instance="Magecomp\Gstcharge\Model\Quote\Total\Shippingigst" sort_order="120"/>
+        </group>
+    </section>
+ <section name="order_invoice">
+        <group name="totals">
+            <item name="cgst_charge" instance="Magecomp\Gstcharge\Model\Invoice\Total\Cgst" sort_order="160"/>
+			<item name="sgst_charge" instance="Magecomp\Gstcharge\Model\Invoice\Total\Sgst" sort_order="170"/>
+			<item name="igst_charge" instance="Magecomp\Gstcharge\Model\Invoice\Total\Igst" sort_order="180"/>
+			
+			<item name="shipping_cgst_charge" instance="Magecomp\Gstcharge\Model\Invoice\Total\Shippingcgst" sort_order="190"/>
+			<item name="shipping_sgst_charge" instance="Magecomp\Gstcharge\Model\Invoice\Total\Shippingsgst" sort_order="200"/>
+			<item name="shipping_igst_charge" instance="Magecomp\Gstcharge\Model\Invoice\Total\Shippingigst" sort_order="210"/>
+        </group>
+    </section>
+ <section name="order_creditmemo">
+        <group name="totals">
+            <item name="cgst_charge" instance="Magecomp\Gstcharge\Model\Creditmemo\Total\Cgst" sort_order="160"/>
+			<item name="sgst_charge" instance="Magecomp\Gstcharge\Model\Creditmemo\Total\Sgst" sort_order="170"/>
+			<item name="igst_charge" instance="Magecomp\Gstcharge\Model\Creditmemo\Total\Igst" sort_order="180"/>
+			<item name="shipping_cgst_charge" instance="Magecomp\Gstcharge\Model\Creditmemo\Total\Shippingcgst" sort_order="190"/>
+			<item name="shipping_sgst_charge" instance="Magecomp\Gstcharge\Model\Creditmemo\Total\Shippingsgst" sort_order="200"/>
+			<item name="shipping_igst_charge" instance="Magecomp\Gstcharge\Model\Creditmemo\Total\Shippingigst" sort_order="210"/>			
+        </group>
+    </section>
+</config>

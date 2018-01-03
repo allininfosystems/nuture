@@ -1,0 +1,95 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_ProductStockAlert
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2017 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+$items = $block->getItems();
+
+?>
+<?php if (count($items) == 0): ?>
+    <div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
+    <div class="products wrapper list products-list">
+        <ol class="products list items product-items">
+            <?php foreach ($items as $item): ?>
+            <li data-row="product-item" class="item product product-item">
+                <div class="product-item-info">
+                    <a class="product-image-container" href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($item->getProductId()) ?>" title="<?php echo $block->escapeHtml($block->getProductName($item->getProductId())) ?>">
+                        <span class="product-image-container">
+                            <span class="product-image-wrapper">
+                                <img class="" src="<?php echo $block->getProductImageUrl($item->getProductId()); ?>" title="<?php echo $block->escapeHtml($block->getProductName($item->getProductId())) ?>" alt="<?php echo $block->escapeHtml($block->getProductName($item->getProductId())) ?>" width="135" height="135">
+                            </span>
+                        </span>
+                    </a>
+                    <div class="product details product-item-details">
+                        <p class="product-item-name">
+                            <?php echo __('Product Name: ') ?>
+                            <a href="<?php echo $block->getProductUrl($item->getProductId()) ?>" title="<?php echo $block->escapeHtml($block->getProductName($item->getProductId())) ?>" class="product-item-link">
+                                <?php echo $block->escapeHtml($block->getProductName($item->getProductId())) ?>
+                            </a>
+                        </p>
+                        <p class="product-item-customer-email">
+                            <?php echo __('Email subscribe: ') ?>
+                            <?php echo $block->escapeHtml($item->getCustomerEmail()) ?>
+                        </p>
+                        <p class="product-item-stock">
+                            <?php echo __('Status: ') ?>
+                            <?php echo $block->escapeHtml($block->getStatusStock($item->getProductId())) ?>
+                        </p>
+                        <form id="unstockalert-form"
+                          action="<?php /* @escapeNotVerified */ echo $block->getUnsubUrl($item->getProductId()); ?>"
+                          method="post">
+                            <div class="primary">
+                                <button  type="submit" class="action cancel primary" value="<?php /* @escapeNotVerified */ echo __('Stop Notify') ?>"><span><?php /* @escapeNotVerified */ echo __('Stop Notify') ?></span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </ol>
+        <form id="unstockalert-form-all"
+          action="<?php /* @escapeNotVerified */ echo $block->getUnsubAllUrl(); ?>"
+          method="post">
+            <div class="primary">
+                <button  type="submit" class="action cancel primary" value="<?php /* @escapeNotVerified */ echo __('Stop All Notification') ?>"><span><?php /* @escapeNotVerified */ echo __('Stop All Notification') ?></span></button>
+            </div>
+        </form>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+        <?php endif ?>
+    </div>
+<?php endif; ?>
+

@@ -1,0 +1,11 @@
+.admin__menu .level-0.item-core > a:before {
+    content: url("../images/logo_webinse_grey.png");
+}
+
+.admin__menu .level-0.item-core > a:hover:before {
+    content: url("../images/logo_webinse_white.png");
+}
+
+.admin__menu .level-0.item-core._active._show > a:before {
+    content: url("../images/logo_webinse_white.png");
+}

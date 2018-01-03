@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Bluethink. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+   <!--  <menu> -->
+    <!--     <add id="Bluethink_Custom::bluethink_index_index" title="Custom" module="Bluethink_Custom"  sortOrder="20" dependsOnModule="Bluethink_Custom" action="custom/index/index" resource="Bluethink_Custom::bluethink_index_index"/> -->
+<!--AddMenu-->
+   <!--  </menu> -->
+</config>

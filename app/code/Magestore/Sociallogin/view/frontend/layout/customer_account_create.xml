@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Copyright © 2016 Magestore. All rights reserved.
+  ~ See COPYING.txt for license details.
+  ~
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="content">
+        <block class="Magestore\Sociallogin\Block\Autosociallogin" before="-" name="before.customer.registration.sociallogin" template="Magestore_Sociallogin::sociallogin_buttons.phtml"> 	
+				<action method="setPosition">
+                    <argument name="position" xsi:type="string">before-customer-registration</argument>
+                </action>
+		</block>
+		<block class="Magestore\Sociallogin\Block\Autosociallogin" after="-" name="after.customer.registration.sociallogin" template="Magestore_Sociallogin::sociallogin_buttons.phtml"> 	
+				<action method="setPosition">
+                	 <argument name="position" xsi:type="string">after-customer-registration</argument>
+                </action>
+		</block>		
+    </referenceContainer>
+</page>

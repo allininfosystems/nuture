@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_item = $block->getItem() ?>
+<?php $_order = $block->getItem()->getOrder(); ?>
+<tr>
+    <td class="item-info<?php if ($block->getItemOptions()): ?> has-extra<?php endif; ?>">
+        <p class="product-name"><?= $block->escapeHtml($_item->getName()) ?></p>
+        <p class="sku"><?= /* @escapeNotVerified */  __('SKU'); ?>: <?= $block->escapeHtml($block->getSku($_item)) ?></p>
+        <?php if ($block->getItemOptions()): ?>
+            <dl>
+                <?php foreach ($block->getItemOptions() as $option): ?>
+                    <dt><strong><em><?= /* @escapeNotVerified */  $option['label'] ?></em></strong></dt>
+                    <dd>
+                        <?= /* @escapeNotVerified */  nl2br($option['value']) ?>
+                    </dd>
+                <?php endforeach; ?>
+            </dl>
+        <?php endif; ?>
+        <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addInfoBlock) :?>
+            <?= $addInfoBlock->setItem($_item->getOrderItem())->toHtml() ?>
+        <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+    </td>
+    <!-- magecomp start -->
+    <td class="col subtotal" data-th="<?php echo $block->escapeHtml(__('CGST')); ?>">
+     	<table>
+              <tbody style="background:none;text-align:center">
+                 <tr>
+                     <td><?php echo round($_item->getcgst_percent(),2);?></span></td>
+                     <td><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_item->getCgstCharge(),true,false);  ?></span></td>
+                 </tr>
+           </table>
+       
+    </td>
+     <td class="col subtotal" data-th="<?php echo $block->escapeHtml(__('SGST')); ?>">
+        <table>
+            <tbody style="background:none;text-align:center">
+            	<tr>
+                	<td><?php echo round($_item->getsgst_percent(),2);?></span></td>
+                    <td><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_item->getSgstCharge(),true,false);  ?></span></td>
+                </tr>
+        </table>
+    </td>
+     <td class="col subtotal" data-th="<?php echo $block->escapeHtml(__('IGST')); ?>">
+       <table>
+                          <tbody style="background:none;text-align:center">
+                            <tr>
+                                <td><?php echo round($_item->getigst_percent(),2);?></span></td>
+                                <td><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_item->getIgstCharge(),true,false);  ?></span></td>
+                            </tr>
+                        </table>
+    </td>
+    <!-- magecomp End -->
+    <td class="item-qty"><?= /* @escapeNotVerified */  $_item->getQty() * 1 ?></td>
+    <td class="item-price">
+        <?= /* @escapeNotVerified */  $block->getItemPrice($_item); ?>
+    </td>
+</tr>

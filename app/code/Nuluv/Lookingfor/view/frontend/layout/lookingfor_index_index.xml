@@ -1,0 +1,33 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+
+	<head>
+        <title>Looking for</title>
+        <!-- 
+		demo
+		<css src="Nuluv_Lookingfor::css/css.css"/>
+		<script src="Nuluv_Lookingfor::js/js.js"/>
+		<css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+		<script src="path/file.js" defer="defer"/>
+		<link src="http://url.com" src_type="url"/>
+		<remove src="path/remove/file.css"/>
+
+		-->
+    </head> 
+
+    <body>
+
+
+        <referenceContainer name="sidebar.main">
+            <block class="Nuluv\Lookingfor\Block\Index\Sidebar" name="lookingfor_index_sidebar" before="-" template="Nuluv_Lookingfor::lookingfor_index_sidebar.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Nuluv\Lookingfor\Block\Index\Index" name="lookingfor_index_index" template="Nuluv_Lookingfor::lookingfor_index_index.phtml"/>
+        </referenceContainer>
+		<referenceContainer name="page.messages">
+            <block class="Magento\Framework\View\Element\Messages" name="messages" as="messages"/>
+        </referenceContainer>
+
+
+    </body>
+</page>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+     <update handle="editor"/>
+    <body>
+	   <referenceContainer name="content">
+            <block class="Bluethink\Dailydose\Block\Adminhtml\Brand\Edit" name="dailydose_brand_edit"/>
+        </referenceContainer>
+		 <referenceContainer name="left">
+            <block class="Bluethink\Dailydose\Block\Adminhtml\Brand\Edit\Tabs" name="brand_brand_edit_tabs">
+				<block class="Bluethink\Dailydose\Block\Adminhtml\Brand\Edit\Tab\Brandme" name="dailydose_brand_edit_tab_brandme"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">brand_section</argument>
+                    <argument name="block" xsi:type="string">dailydose_brand_edit_tab_brandme</argument>
+                </action>
+				<!--CedAddTab-->
+			</block>
+        </referenceContainer>
+    </body>
+</page>

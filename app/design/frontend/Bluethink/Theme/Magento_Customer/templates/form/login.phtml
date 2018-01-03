@@ -1,0 +1,58 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Form\Login $block */
+?>
+<?php
+/**
+ * Customer login form template
+ *
+ * @see \Magento\Customer\Block\Form\Login
+ * @var $block \Magento\Customer\Block\Form\Login
+ */
+?>
+<?php //echo $this->getLayout()->getBlock('breadcrumbs')->toHtml();   ?>
+<div class="login-bga">
+<div class="container">
+    <div class="login-box lga">
+        <!--<h1 class="login-box-title">Login</h1>-->
+        <form 
+            action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>"
+            method="post"
+            id="login-form"
+            data-mage-init='{"validation":{}}'>
+                <?php echo $block->getBlockHtml('formkey'); ?>
+            <input name="login[username]" placeholder="Email"  value="<?php echo $block->escapeHtml($block->getUsername()) ?> " <?php if ($block->isAutocompleteDisabled()) : ?> autocomplete="off"<?php endif; ?> id="email" type="email" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" data-validate="{required:true, 'validate-email':true}">
+            <input name="login[password]" placeholder="Password"  type="password" <?php if ($block->isAutocompleteDisabled()) : ?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true,'validate-password':true}">   
+            <?php echo $block->getChildHtml('form_additional_info'); ?> 
+           <div class="lg-btn"><button type="submit" class="sub-btn"" name="send" id="send2"><span><?php /* @escapeNotVerified */ echo __('Log In') ?></span></button></div>
+            <div class="forgot-password"><a  href="<?php /* @escapeNotVerified */ echo $block->getForgotPasswordUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Forgot Your Password') ?> </span></a> <!--<a href="<?php echo $block->geturl("customer/account/create"); ?>">Register account</a>--></div>
+            <div class="clearfix"></div>
+            <h2 class="decorated"><span>Or Log In With</span></h2> 
+            <div class="sociallogin-login">
+                <?php echo $block->getLayout()->createBlock('Mageplaza\SocialLogin\Block\Popup\Social')->setTemplate('Mageplaza_SocialLogin::form/social.phtml')->toHtml(); ?>
+            </div>
+        </form>
+    </div>
+
+<div class="signbga">
+<?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Form\Register')->setTemplate('Magento_Customer::form/register.phtml')->toHtml();?>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<style type="text/css">
+    .mage-error[generated]{
+        margin-bottom: 12px;
+    }
+</style>
+

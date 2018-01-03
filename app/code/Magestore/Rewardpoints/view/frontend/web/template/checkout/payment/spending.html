@@ -1,0 +1,45 @@
+<!-- ko if: enableReward() -->
+<div class="payment-reward-spending _collapsible"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active','active': '2'}}">
+    <div class="content-spend-point">
+        <div class="payment-reward-spending-title " data-role="title">
+            <span class="action action-toggle" id="block-discount-heading" role="heading" aria-level="2">
+                 <!-- ko i18n: 'Spend Your Points'--><!-- /ko -->
+            </span>
+        </div>
+        <div class="payment-reward-spending-content" data-role="content">
+            <div data-bind="if: checkOptionType() == 'slider'" id="rewardpoints-slider-container" >
+                <h5 class="note-spend">  <!-- ko i18n: 'Choose how many points to spend'--><!-- /ko --> :</h5>
+                <span data-bind="html:textRule"></span>
+                <input data-bind="spendingPoint" id="range_reward_point" type="text" >
+                <div class="input-point">
+                <span> <!-- ko i18n: 'You will spend'--><!-- /ko -->
+                    <input
+                        data-bind="attr:{'data-oldval':oldval()},value:usePoint(),event:{ change: function() { changSpendingPoint() }}"
+                        type="text" class="input-text"
+                        data-oldval=""
+                        id="reward_sales_point" name="reward_sales_point">
+                    <!-- ko i18n: 'Points'--><!-- /ko -->
+                </span>
+                </div>
+                <div class="input-max">
+                    <input
+                            data-bind="checked:checkedMax,event:{ change:function() { maxSpendingPoint() } }"
+                            type="checkbox" id="reward_max_points_used">
+                    <label for="reward_max_points_used">
+                        <!-- ko i18n: 'Maximize my discount with points'--><!-- /ko -->
+                    </label>
+                </div>
+            </div>
+            <div data-bind="if: checkOptionType() == 'needPoint'">
+                <h5 class="note-spend">  <!-- ko i18n: 'Choose how many points to spend'--><!-- /ko --> :</h5>
+                <span data-bind="html:textRule"></span>
+                <div id="rewardpoints-needmore-msg" data-bind="html:textNeedmorePoint"></div>
+            </div>
+            <div data-bind="if: checkEarnwhenSpend">
+                <!-- ko i18n: 'P/s: You will not earn any points when using points to spend!'--><!-- /ko -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->

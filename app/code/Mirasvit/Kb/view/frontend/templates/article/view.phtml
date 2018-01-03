@@ -1,0 +1,430 @@
+<?php
+/** @var \Mirasvit\Kb\Block\Article\View $block */
+//@codingStandardsIgnoreFile
+$article = $block->getArticle();
+
+$tags = $block->getTags();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseUrl = $storeManager->getStore()->getBaseUrl();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$mediaUrl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+
+$postId = $article->getArticleId();
+$comments = "SELECT * FROM mst_kb_comment WHERE post_id=$postId and parent_id=0 order by id DESC";
+$allComments = $connection->fetchAll($comments);
+
+$storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+      $currentStore    = $storeManager1->getStore();
+      $mediaUrl1        = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+      $nn=$mediaUrl1."kb";
+	  $articles4 = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
+?>
+
+<?= $block->getChildHtml('kb.search.form') ?>
+
+<?= $block->getKbPageTitle() ?>
+<div class="row kkk">
+	<div class="kb-hub-cls col-sm-8">
+		<div class="kb-article__metadata">
+            <div class="kb-hub-cls-img"> 		
+                <img src='<?=$mediaUrl.'kb/'.$article->getImage(); ?>' alt="blog" />	
+            </div>
+            <div class="kb-hub-cls-post-title"> 			
+			    <h1><?php echo $article->getName(); ?></h1>
+            </div> 			
+		</div>
+
+		<div class="kb-article__body cms-content">
+			<?= $article->getTextHtml() ?>
+		</div>
+		
+		<div class="mpcss blogSharing">
+			<div id="sharing">
+				<div class="share-col-left">
+				<span class="number-cls">0</span>
+				 <span class="wishlist-cls"><i class="fa fa-heart"></i></span>
+				</div>
+				<div class="share-col-right">
+					<div class="post-sharing-button social-main-cls">
+						<label class="label-cls">Share: </label>
+						<ul class="social-media-icons-cls">
+						<li class="fa-twitter-cls"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li class="fa-facebook-cls"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li class="fa-pinterest-p-cls"><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+						<li class="fa-instagram-cls"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="blog-post-nav">        
+			<a href="<?=$baseUrl ?>blog/post/what-happens-at-the-mid-pregnancy-ultrasound" class="pull-right">
+			   Next Post&nbsp;&nbsp;<i class="fa fa-long-arrow-right"></i></a>
+			<div class="clearfix"></div>
+		</div>
+			
+		<?php $customerSession = $objectManager->get('Magento\Customer\Model\Session'); ?>
+		<div class="mpcss mp-comment bottomcommentBox-cls">
+			<div class="container default-cmt">
+				<div class="row">
+					<div> <h2><?=count($allComments)?> Comments</h2></div>
+					<div class="default-cmt__content__cmt-content">
+						<ul class="default-cmt__content__cmt-content row">
+							<?php
+							foreach($allComments as $allComment){
+								$createdDate = date("M d Y", strtotime($allComment['created_at']));
+								$createdTime = date("h:i", strtotime($allComment['created_at']));
+								
+							$allLikes = $connection->fetchAll("select sum(likes) as totalLikes from mst_kb_comment_likes where comment_id=".$allComment['id']);
+							$totalLikes = $allLikes[0]['totalLikes'];
+							
+							$pid = $allComment['id'];
+							
+							$replyComments = "SELECT * FROM mst_kb_comment WHERE post_id=$postId and parent_id=$pid order by id DESC";
+							$allReplyComments = $connection->fetchAll($replyComments);
+							
+							?>
+							<li class="default-cmt__content__cmt-content__cmt-row cmt-row col-xs-12" data-cmt-id="<?=$allComment['id']?>" style="border-top: none;">
+								<div class="cmt-row__cmt-username">
+									<span class="cmt-row__cmt-username username"><?=ucwords($allComment['name'])?></span>
+								</div>
+								<div class="cmt-row__cmt-content">
+									<p><?=$allComment['comment']?></p>
+								</div>
+								<div class="cmt-row__cmt-interactions interactions">
+									<div class="interactions__btn-actions">
+										<a class="interactions__btn-actions action btn-like" id="artical_likes<?=$allComment['id']?>" data-cmt-id="<?=$allComment['id']?>"><?=$totalLikes?> Likes</a>
+																				
+										<?php if($customerSession->isLoggedIn()) { ?>
+										<a class="interactions__btn-actions action btn-like" onclick="replyBox('<?=$allComment['id']?>')">Reply</a>
+										<a class="interactions__btn-actions count-like">
+											<i class="fa fa-thumbs-up" onclick="articleLike('<?=$allComment['id']?>')" aria-hidden="true"></i>
+											<span class="count-like__like-text"></span>
+										</a>
+										<?php } else { ?>
+										<a class="interactions__btn-actions action btn-like" a href='<?=$baseUrl."customer/account/login/" ?>'>Reply</a>
+										<a class="interactions__btn-actions count-like" a href='<?=$baseUrl."customer/account/login/" ?>'>
+											<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+											<span class="count-like__like-text"></span>
+										</a>
+										<?php } ?>
+										<div id="like-ajax-loading<?=$allComment['id']?>" style="display:none">
+											<img src="<?=$mediaUrl ?>wysiwyg/ajax-loader.gif">
+										</div>
+									</div>
+									<div class="interactions__cmt-createdat">
+										<span><?=$createdDate ?> at <?=$createdTime ?></span>
+									</div>
+								</div>
+								<div class="cmt-row__reply-row row" style="display:none" id="reply_on_comment<?=$allComment['id']?>">
+									<div class="reply-form__form-input form-group col-xs-8 col-md-6">
+										<label for="reply_cmt2"></label>
+										<input type="text" class="form-group__input form-control" id="commentVal<?=$allComment['id']?>" autofocus="">
+										<div style="color:red; display:none" id="reply-comment-error<?=$allComment['id']?>">Required field</div>
+										<a class="interactions__btn-actions action btn-like" onclick="replyOnComment('<?=$allComment['id']?>')">Reply</a>
+									</div>
+								</div>
+								<?php if(count($allReplyComments) > 0){ ?>
+								<ul class="customer-reply-cls">
+									<?php
+									foreach($allReplyComments as $allReply){ ?>
+										<li>
+											<div class="cmt-row__cmt-username">
+												<span class="cmt-row__cmt-username username"><?=ucwords($allReply['name'])?></span>
+											</div>
+											<div class="cmt-row__cmt-content">
+												<p><?=$allReply['comment']?></p>
+											</div>
+										</li>
+									<?php } ?>
+								</ul>
+								<?php } ?>
+							</li>
+							<?php } ?>
+						</ul>                               
+					</div>
+					<div class="col-xs-2">
+						<div class="default-cmt__cmt-login">
+							<button class="btn-primary default-cmt__cmt-login__btn-login">Login</button>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 commentmp">
+						<div class="default-cmt__content">
+							<div class="default-cmt__content__cmt-block">
+								<div class="default-cmt__content__cmt-block__cmt-box">
+									<input type="hidden" id="article_id" value="<?=$article->getArticleId() ?>">
+									<textarea class="default-cmt__content__cmt-block__cmt-box__cmt-input" id="cust_cmnt" maxlength="255" placeholder="Type comments here..."></textarea>
+									<div style="color:red; display:none" id="comment-error">Required field</div>
+									<div class="default-cmt__content__cmt-block__cmt-box__cmt-btn">
+										<button class="default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit btn-primary" <?=$customerSession->isLoggedIn()?'':'disabled' ?> onclick="submitComment()">Posted as username</button>
+										<div id="ajax-loading" style="display:none">
+											<img src="<?=$mediaUrl ?>wysiwyg/ajax-loader.gif">
+										</div>
+										
+										<?php if(!$customerSession->isLoggedIn()) { ?>
+											<a class="content-login-cls" href="<?=$baseUrl ?>customer/account/login/" style="color: red; margin-right:10px;">
+												Please login for comment
+											</a>
+										<?php }	?>
+										
+									</div>
+								</div>
+							</div>                               
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script>
+				function replyOnComment(aid)
+				{
+					var comment = jQuery('#commentVal' + aid).val();
+					var articleId = jQuery('#article_id').val();
+					
+					var vcomment = 0;
+					
+					if(comment ==''){ 
+						vcomment = 1;
+						jQuery('#reply-comment-error' + aid).text('This is a required field.');
+						jQuery('#reply-comment-error' + aid).show();
+					} else { 
+						vcomment = 0; 
+						jQuery('#reply-comment-error' + aid).hide();
+					}
+					
+					if(vcomment == 0)
+					{
+						jQuery('#like-ajax-loading' + aid).show();
+						jQuery.post( "<?php echo $this->getUrl().'kbase/article/comment'?>" , { postId: 'reply', articleId: articleId, parentId: aid, comment:comment} )
+						  .done(function( data ) {
+						jQuery('#like-ajax-loading' + aid).hide();
+							
+							window.location.reload();
+							
+						  });
+					} else {
+						return false;
+					}
+					
+				}
+				
+				function replyBox(aid)
+				{
+					jQuery('.cmt-row__reply-row').hide();
+					jQuery('#reply_on_comment' + aid).show();
+				}
+				
+				function articleLike(aid)
+				{
+					jQuery('#like-ajax-loading' + aid).show();
+					jQuery.post( "<?php echo $this->getUrl().'kbase/article/comment'?>" , { postId: 'like', aid:aid} )
+					  .done(function( data ) {
+					jQuery('#like-ajax-loading'  + aid).hide();
+					jQuery('#artical_likes' + aid).text(data + ' Likes');
+					  });
+				}
+			
+				function submitComment()
+				{
+					var comment = jQuery('#cust_cmnt').val();
+					var aId = jQuery('#article_id').val();
+					var vcomment = 0;
+					
+					if(comment ==''){ 
+						vcomment = 1;
+						jQuery('#comment-error').text('This is a required field.');
+						jQuery('#comment-error').show();
+					} else { 
+						vcomment = 0; 
+						jQuery('#comment-error').hide();
+					}
+					
+					if(vcomment == 0)
+					{
+						jQuery('#ajax-loading').show();
+						jQuery.post( "<?php echo $this->getUrl().'kbase/article/comment'?>" , { postId: aId, comment:comment} )
+						  .done(function( data ) {
+						jQuery('#ajax-loading').hide();
+							
+							window.location.reload();
+							
+						  });
+					} else {
+						return false;
+					}
+				}
+			
+				//get login url, text of button like, reply
+				var loginUrl = '<?=$baseUrl ?>' + 'customer/account/login/';
+				var like = 'Like',
+					reply = 'Reply';
+
+				require([
+					'comment'
+				]);
+			</script>   
+		</div>
+	</div>
+	<div class="mp-sidebar col-sm-4">
+		<div class="mpblog-search">
+			<div class="block block-content">
+				<div class="field search" style="display:none;" id="blog-section-input">
+					<label class="label" for="mpblog-search-box" data-role="minisearch-label">
+						<span>Search</span>
+					</label>
+					<a href="javascript:void(0)" id="close-serach">x</a> 
+					<div class="control">
+						<input id="mpblog-search-box" type="text" name="query" value="" placeholder="Search blogs here..." class="input-text" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off">
+					</div>
+				</div>
+				<div class="actions">
+					<button id="blog-section-search" type="submit" title="Search" class="action search">
+						<i class="fa fa-search" aria-hidden="true" style="font-size: 16px;margin-top: 5px;"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<?php
+    $artarr=array();
+    foreach ($articles4 as $article_1){
+		$url=str_replace('.htm','.html',$article_1->getUrl());
+		if(!empty($article_1['image'])){ $imghtml=$nn.'/'.$article_1['image'];} else { $imghtml=$this->getViewFileUrl('images/hub_cat_01.jpg');}
+		$artarr[]=array('value'=>$article_1->getName(),'url'=>$url,'image'=>$imghtml,'desc'=>$article_1->getName());			
+	}
+   ?>
+    <script>	
+        require([
+            'jquery',
+            'autocomplete'
+            ], function ($) {
+                $("#blog-section-search").click(function () { 
+                    $("#blog-section-input").show();
+                });
+                $("#close-serach").click(function () { 
+                    $("#blog-section-input").hide();
+                });
+                var visibleImage = 1;
+                $('#mpblog-search-box').autocomplete({
+                    lookup: <?php echo json_encode($artarr); ?>,
+                    lookupLimit: 10,
+                    maxHeight: 2000,
+                    minChars: 1,
+                    onSelect: function (suggestion) {
+                        var urlString = suggestion.url;
+                        window.location.href = urlString.substring(0,urlString.length - 1);
+                    },
+                    formatResult: function (suggestion, currentValue) {
+                        var urlString = suggestion.url;
+                        var html = "<a class='mpblog-suggestion' href='" + urlString.substring(0,urlString.length - 1) + "'>";
+                        if (visibleImage) {
+                            html += "<div class='mpblog-suggestion-left'><img class='img-responsive' src='" + suggestion.image + "' /></div>"
+                        }
+                        html += "<div class='mpblog-suggestion-right'>" +
+                        "<div class='mpblog-product-line mpblog-product-name'>" + suggestion.value + "</div>" +
+                        "<div class='mpblog-product-des'><p class='mpblog-short-des'>" + suggestion.desc + "</p></div></div></a>";
+
+                        return html;
+                    }
+                });
+            });
+        </script>
+        <div class="block-title col-xs-12 sidebar-tags">
+            <p class="block-mp-sidebar-heading" role="heading" aria-level="2">Tags</p>
+        </div>
+        <div class="col-xs-12 taglising">
+		    <?php if ($tags->count()): ?>
+				<?= __('Tags:') ?>
+				
+				<?php
+				$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+				$baseUrl = $storeManager->getStore()->getBaseUrl();
+
+				$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+				$connection = $resource->getConnection();
+
+				$sql = "SELECT * FROM mst_kb_tag";
+				$allPosts = $connection->fetchAll($sql); 
+				
+				  foreach ($allPosts as $tag): ?>
+					<a class="label label-default tags-list" href='<?= $baseUrl.'knowledge-hub/tags/'.$tag['url_key'].'.html' ?>'><?= $tag['name'] ?></a>
+				<?php endforeach ?>
+			<?php endif ?>
+            <hr>
+        </div>
+        <div class="sidebar-acc">
+            <div class="panel-group">
+			
+			<?php
+				$catSql = "SELECT * FROM mst_kb_category where category_id!=1 and is_active=1";
+				$allCats = $connection->fetchAll($catSql);
+			
+				foreach ($allCats as $category): ?>
+				    
+					<button class="accordion"><?= $category['name'] ?></button>
+					<div class="panel" style="display:none">
+						<p><a href="http://demo.demotoday.info/nuture/blog/post/what-happens-at-the-mid-pregnancy-ultrasound">What Happens At The Mid-Pregnancy Ultrasound</a></p>
+						<p><a href="http://demo.demotoday.info/nuture/blog/post/why-you-won-t-be-seeing-baby-pictures-at-the-ob">Why You Won’t Be Seeing Baby Pictures At The OB</a></p>
+						<p><a href="http://demo.demotoday.info/nuture/blog/post/this-gyno-made-this-silliest-mistake">This gyno made this silliest mistake</a></p>
+						<p><a href="http://demo.demotoday.info/nuture/blog/post/how-to-make-labor-hurt-less_2">test</a></p>
+					</div>
+				<?php endforeach ?>
+            </div>
+        </div>
+		
+
+		<script>
+			var acc = document.getElementsByClassName("accordion");
+			var i;
+
+			for (i = 0; i < acc.length; i++) {
+			  acc[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				if (this.nextElementSibling.style.display==='block') { this.nextElementSibling.style.display='none'; }
+				else { this.nextElementSibling.style.display='block'; }
+			  });
+			}
+		</script>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<?php if ($block->getCommentProvider() == 'disqus'): ?>
+    <script>
+        var disqus_config = function () {
+        };
+        (function () {
+            var d = document, s = d.createElement('script');
+
+            s.src = '//<?=$block->getDisqusShortname() ?>.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+<?php elseif ($block->getCommentProvider() == 'facebook'): ?>
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div class="fb-comments" data-href="<?= $article->getUrl() ?>"
+         data-numposts="5" width="100%"></div>
+<?php endif ?>

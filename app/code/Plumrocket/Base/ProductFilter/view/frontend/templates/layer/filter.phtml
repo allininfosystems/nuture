@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<ol class="items">
+
+    <?php foreach ($filterItems as $filterItem): ?>
+
+        <?php $isRadio = $filterItem->getFilter()->getIsRadio(); ?>
+        <li class="item">
+
+
+            <?php $urlHelper = $this->helper('\Plumrocket\ProductFilter\Helper\Url'); ?>
+            <?php $value = $urlHelper->getValueByFilter($filterItem); ?>
+            <?php $url = $urlHelper->checkUrl($filterItem->getUrl()); ?>
+
+            <?php if ($filterItem->getCount() > 0): ?>
+                <a href="<?php echo $block->escapeUrl($url) ?>"
+                    <?php if ($filterItem->getIsActive()): ?>class="selected"<?php endif; ?>
+                    data-request="<?php echo $block->escapeHtml($filterItem->getFilter()->getRequestVar()) ?>"
+                    <?php if ($isRadio): ?>data-radio="true"<?php endif; ?>
+                    data-value="<?php echo $block->escapeHtml($value) ?>">
+                    <span><?php echo $filterItem->getLabel() ?>
+                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php echo $block->escapeHtml($filterItem->getCount()) ?><span class="filter-count-label"><?php if ($filterItem->getCount() == 1):?><?php echo $block->escapeHtml(__('item')) ?><?php else:?> <?php echo $block->escapeHtml(__('items')) ?><?php endif;?></span></span>
+                    <?php endif; ?>
+                    </span>
+                </a>
+            <?php else:?>
+                <span class="attr-dis">
+                <?php echo $filterItem->getLabel() ?>
+                <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                    <span class="count"><?php echo $block->escapeHtml($filterItem->getCount()) ?><span class="filter-count-label">
+                        <?php if ($filterItem->getCount() == 1):?><?php echo $block->escapeHtml(__('item')) ?><?php else:?><?php echo$block->escapeHtml( __('items')) ?><?php endif;?></span></span>
+                <?php endif; ?>
+                </span>
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+</ol>

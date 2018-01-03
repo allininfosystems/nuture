@@ -1,0 +1,675 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Copyright © 2016 Magestore. All rights reserved.
+  ~ See COPYING.txt for license details.
+  ~
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <tab id="magestore" translate="label" sortOrder="400">
+            <label>Magestore Extension</label>
+        </tab>
+        <section id="sociallogin" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Social Login</label>
+            <tab>magestore</tab>
+            <resource>Magestore_Sociallogin::config_sociallogin</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable_socials" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Sociallogin</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="position" translate="label" type="multiselect" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shown Position</label>
+                    <source_model>Magestore\Sociallogin\Model\System\Config\Position</source_model>
+                    <comment>Position of Social Login buttons in front-end</comment>
+                </field>
+                <field id="direction" translate="label" type="select" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shown Direction</label>
+                    <source_model>Magestore\Sociallogin\Model\System\Config\Direction</source_model>
+                    <comment>Direction of Social Login buttons to be shown in front-end</comment>
+                </field>
+                <field id="select_redirect_page" translate="label" type="select" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select Redirect Page</label>
+                    <source_model>Magestore\Sociallogin\Model\System\Config\RedirectPage</source_model>
+                </field>
+                <field id="custom_page" translate="label comment" type="text" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Redirect Page</label>
+                    <depends>
+                                <field id="select_redirect_page">4</field>
+                    </depends>
+                </field>
+                 <field id="number_show" translate="label" type="text" sortOrder="6" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of visible buttons</label><comment><![CDATA[This is the number of buttons shown in frontend, others will be shown only when customer clicks on "Other login"]]></comment>
+                </field>
+            </group>
+            
+            <group id="fblogin" translate="label" type="text" sortOrder="2" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Facebook Login Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                <field id="app_id" translate="label" type="text" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>App ID</label>
+                    <comment><![CDATA[<a href="http://developers.facebook.com/setup/" target="_bank">Register</a>]]></comment>
+                </field>
+                 <field id="app_secret" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>App Secret</label>
+                    
+                </field>
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+
+             <group id="twlogin" translate="label" type="text" sortOrder="3" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Twitter Login Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                <field id="app_id" translate="label" type="text" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Key</label>
+                    <comment><![CDATA[<a href="http://twitter.com/apps/new" target="_bank">Register</a>]]></comment>
+                </field>
+                 <field id="app_secret" translate="label" type="text" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>App Secret</label>
+                    
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Callback URL</label>
+                    <frontend_model>Magestore\Sociallogin\Block\Adminhtml\System\Config\Twitterredirecturl</frontend_model>
+
+                    <comment><![CDATA[Please use this link for Callback URL field when registering with Twitter API]]></comment>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="6" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                <group id="instalogin" translate="label" type="text" sortOrder="4" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Instagram Login Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                <field id="consumer_key" translate="label" type="text" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client ID</label>
+                    <comment><![CDATA[<a href="http://instagram.com/developer/" target="_bank">Register</a>]]></comment>
+                </field>
+                 <field id="consumer_secret" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Secret</label>
+                    <comment></comment>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Redirect URL</label>
+                    <frontend_model>Magestore\Sociallogin\Block\Adminhtml\System\Config\Instagramredirecturl</frontend_model>
+                    <comment><![CDATA[Please use this link for Redirect URL field when registering with Instagram API]]></comment>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                <group id="amazonlogin" translate="label" type="text" sortOrder="5" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Amazon Login Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                <field id="consumer_key" translate="label" type="text" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client ID</label>
+                    <comment><![CDATA[<a href="https://login.amazon.com/website" target="_bank">Register</a>]]></comment>
+                </field>
+                 <field id="consumer_secret" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Secret</label>
+                    <comment></comment>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allowed Return URLs</label>
+                    <frontend_model>Magestore\Sociallogin\Block\Adminhtml\System\Config\Amazonredirecturl</frontend_model>
+                      <comment><![CDATA[Please use this link for Allowed Return URLs field when registering with Amazon API]]></comment>
+                </field>
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="6" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                 <group id="gologin" translate="label" type="text" sortOrder="6" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Google Login Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                <field id="consumer_key" translate="label" type="text" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client ID</label>
+                    <comment><![CDATA[<a href="https://cloud.google.com/console" target="_bank">Register</a>]]></comment>
+                </field>
+                 <field id="consumer_secret" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Secret</label>
+                    <comment></comment>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Redirect URLs</label>
+                    <frontend_model>Magestore\Sociallogin\Block\Adminhtml\System\Config\Redirecturl</frontend_model>
+                      <comment><![CDATA[Please use this link for Redirect URLs field when registering with Google API]]></comment>
+                </field>
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="6" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                 <group id="yalogin" translate="label" type="text" sortOrder="7" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Yahoo Login Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                <field id="app_id" translate="label" type="text" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Application Id</label>
+                     <comment><![CDATA[<a href="https://developer.apps.yahoo.com/dashboard/createKey.html" target="_bank">Register</a><span id="yahoo_create_abcxyz" style="margin-left:20px">Please check permission "Read/Write Public and Private" in "Social Directory (Profiles)" in your app</span>]]></comment>
+                </field>
+                <field id="consumer_key" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Key</label>
+                     <comment><![CDATA[<a href="https://developer.apps.yahoo.com/dashboard/createKey.html" target="_bank">Register</a><span id="yahoo_create_abcxyz" style="margin-left:20px">Please check permission "Read/Write Public and Private" in "Social Directory (Profiles)" in your app</span>]]></comment>
+                </field>
+
+                 <field id="consumer_secret" translate="label" type="text" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Secret</label>
+                    <comment></comment>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Application URL</label>
+                    <frontend_model>Magestore\Sociallogin\Block\Adminhtml\System\Config\Yahooredirecturl</frontend_model>
+                      <comment><![CDATA[Please use this link for Redirect URLs field when registering with Google API]]></comment>
+                </field>
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="6" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="7" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                 <group id="aollogin" translate="label" type="text" sortOrder="8" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>AOL Login Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                 <group id="wplogin" translate="label" type="text" sortOrder="9" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>WordPress Login Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                <group id="callogin" translate="label" type="text" sortOrder="10" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Clavid Login Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                
+                <group id="orglogin" translate="label" type="text" sortOrder="11" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Orange Login Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                <group id="fqlogin" translate="label" type="text" sortOrder="12" showInDefault="12" 
+showInWebsite="1" showInStore="1">
+                  <label>FoursQuare Login Configuration</label>
+
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                 
+                 <field id="consumer_key" translate="label" type="text" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client ID</label>
+                    <comment><![CDATA[<a href="https://foursquare.com/login?continue=%2Fdevelopers%2Fapps" target="_bank">Register</a>]]></comment>
+                </field>
+                 <field id="consumer_secret" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Secret</label>
+                    <comment></comment>
+                </field>
+
+                <field id="redirect_url" translate="label" type="text" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Redirect URL(s)</label>
+                    <frontend_model>Magestore\Sociallogin\Block\Adminhtml\System\Config\FoursQuareredirecturl</frontend_model>
+                      <comment><![CDATA[Please use this link for Redirect URL(s) field when registering with FoursQuare API]]></comment>
+                </field>
+
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+                
+                  <field id="is_customer_confirm_password" translate="label" type="select" sortOrder="6" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Confirm password</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+                    
+                <field id="sort_order" translate="label" type="text" sortOrder="7" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                <group id="livelogin" translate="label" type="text" sortOrder="13" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Windows Live Login Configuration</label>
+
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                 
+                 <field id="consumer_key" translate="label" type="text" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client ID</label>
+                    <comment><![CDATA[<a href="https://account.live.com/developers/applications/create" target="_bank">Register</a>]]></comment> 
+                </field>
+                 <field id="consumer_secret" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Secret</label>
+                    <comment></comment>
+                </field>
+
+                <field id="redirect_url" translate="label" type="text" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Redirect URL(s)</label>
+                    <frontend_model>Magestore\Sociallogin\Block\Adminhtml\System\Config\Liveredirecturl</frontend_model>
+                      <comment><![CDATA[Please use this link for Redirect URL(s) field when registering with Windows Live API]]></comment>
+                </field>
+
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+                
+                <field id="sort_order" translate="label" type="text" sortOrder="6" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                <group id="linklogin" translate="label" type="text" sortOrder="14" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>LinkedIn Login Configuration</label>
+
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                 
+                 <field id="app_id" translate="label" type="text" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client ID</label>
+                    <comment><![CDATA[<a href="https://www.linkedin.com/secure/developer" target="_bank">Register</a>]]></comment>
+                </field>
+                 <field id="secret_key" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Secret</label>
+                    <comment></comment>
+                </field>
+
+               
+
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+                <field id="is_customer_confirm_password" translate="label" type="select" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Confirm Password</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+                
+                <field id="sort_order" translate="label" type="text" sortOrder="6" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                 <group id="openlogin" translate="label" type="text" sortOrder="15" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>MyOpenId Login Configuration</label>
+
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                 
+              
+
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+                
+                
+                <field id="sort_order" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                 <group id="ljlogin" translate="label" type="text" sortOrder="16" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>LiveJournal Login Configuration</label>
+
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                 
+              
+
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+                
+                
+                <field id="sort_order" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                <group id="perlogin" translate="label" type="text" sortOrder="17" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Persona Login Configuration</label>
+
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                 
+              
+
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+                
+                
+                <field id="sort_order" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                <group id="selogin" translate="label" type="text" sortOrder="19" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>Stack Enchange Login Configuration</label>
+
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                 
+              
+
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+                
+                
+                <field id="sort_order" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+                <group id="vklogin" translate="label" type="text" sortOrder="20" showInDefault="1" 
+showInWebsite="1" showInStore="1">
+                  <label>VK Login Configruation</label>
+
+                <field id="is_active" translate="label" type="select" sortOrder="1" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> 
+                 
+                    <field id="app_id" translate="label" type="text" sortOrder="2" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Application ID</label>
+                    <comment><![CDATA[<a href="http://vk.com/editapp?act=create" target="_bank">Register</a>]]></comment>
+                </field> 
+                 
+                     <field id="secure_key" translate="label" type="text" sortOrder="3" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secure Key</label>
+                   
+                </field> 
+                 
+                     <field id="redirect_url" translate="label" type="text" sortOrder="4" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Base Domain</label>
+                    <frontend_model>Magestore\Sociallogin\Block\Adminhtml\System\Config\Vkredirecturl</frontend_model>
+                     <comment><![CDATA[Please use this link for Base Domain field when registering with VK API]]></comment>
+                </field> 
+                 
+                    
+
+                <field id="is_send_password_to_customer" translate="label" type="select" sortOrder="5" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Password To Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                     
+                </field>
+                
+                
+                <field id="sort_order" translate="label" type="text" sortOrder="6" 
+showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    
+                </field>
+                
+            </group>
+            
+            <group id="implement" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Implement Code</label>
+                <frontend_model>Magestore\Sociallogin\Block\Adminhtml\System\Config\Implementcode</frontend_model>
+            </group>
+            
+        </section>
+    </system>
+</config>

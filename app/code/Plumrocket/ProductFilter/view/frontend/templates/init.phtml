@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<div id="product-filter-init"></div>
+
+<script type="text/x-magento-init">
+    {
+        "#product-filter-init": {
+            "Plumrocket_ProductFilter/js/init": {
+		 		"filterItemSelector": "#narrow-by-list .item a, #narrow-by-list .swatch-option-link-layered",
+		 		"actionsSelector": ".pages-items .item a",
+		 		"clearButton": "#product-filter-clear",
+		 		"removeFilterLink": ".filter-current .item a.action",
+		 		"productlistSelector": ".column.main",
+		 		"auto": "<?php echo $this->isAutoMode(); ?>",
+		 		"filterSelector": "#layered-filter-block",
+		 		"filterParamSeparator": "<?php echo $block->getFilterParamSeparator(); ?>",
+		 		"isSeoFriendly": "<?php echo $block->useSeoFriendlyUrl(); ?>",
+		 		"_currentUrl": "<?php echo $block->getCurrentUrl(); ?>",
+		 		"realParams": <?php echo $this->getRealParams(); ?>,
+		 		"selected": <?php echo $this->getSelectedParams(); ?>,
+		 		"categoryUrlSufix": "<?php echo $this->getCategoryUrlSufix(); ?>"
+	 		}
+        }
+    }
+</script>
+
+<?php /*Fix for browser history after ajax-queries */?>
+<script type="text/javascript">
+    require([
+        "Plumrocket_ProductFilter/js/model/processor",
+        "domReady!"
+    ], function(processor){
+        var oldOnpopstate = window.onpopstate;
+        window.onpopstate = function(event) {
+            if (typeof oldOnpopstate == 'function') oldOnpopstate();
+            processor.pushState = false;
+            processor.run(window.location.href);
+        };
+    });
+</script>

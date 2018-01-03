@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="invoice_totals">
+            <block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Invoice\CgstInvoiceTotal" name="cgst_invoice" as="cgst_invoice" />
+            <block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Invoice\SgstInvoiceTotal" name="sgst_invoice" as="sgst_invoice" />
+            <block class="Magecomp\Gstcharge\Block\Adminhtml\Sales\Order\Invoice\IgstInvoiceTotal" name="igst_invoice" as="igst_invoice" />
+        </referenceBlock>
+		 <referenceBlock  name="invoice_items">
+					 <action method="setTemplate">
+								<argument name="template" translate="true" xsi:type="string">Magecomp_Gstcharge::order/invoice/view/items.phtml</argument>
+							</action>
+						  <block class="Magento\Sales\Block\Adminhtml\Items\Renderer\DefaultRenderer" name="custom_renderer" template="Magecomp_Gstcharge::order/invoice/view/items/renderer/default.phtml"/>
+
+						 <action method="setChild">
+							<argument name="alias" xsi:type="string">default</argument>
+						   <argument name="block" xsi:type="string">custom_renderer</argument>
+						</action>	
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Column\Qty" name="column_qty" template="items/column/qty.phtml" group="column"/>
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Column\Name" name="column_name" template="items/column/name.phtml" group="column"/>
+                        <block class="Magento\Framework\View\Element\Text\ListText" name="order_item_extra_info"/>
+         </referenceBlock>
+    </body>
+</page>

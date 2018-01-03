@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <update handle="editor"/>
+    <head>
+        <css src="Webinse_Barcode::css/search.css"/>
+        <link src="Webinse_Barcode::js/form/element/search.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="webinse_barcode_scan_form"/>
+        </referenceContainer>
+    </body>
+</page>

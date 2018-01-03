@@ -1,0 +1,174 @@
+<?php
+/**
+ * Magestore
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Magestore
+ * @package     Magestore_RewardPoints
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+
+/**
+ * Rewardpoints spending on Backend template
+ *
+ * @see Magestore_RewardPoints_Block_Adminhtml_Order_Create_Form
+ */
+?>
+<?php if ($this->enableReward() ): ?>
+    <?php $_sliderRules = $this->getSliderRules() ?>
+    <?php $_checkboxRules = $this->getCheckboxRules() ?>
+    <?php
+    /** @var $_pointHelper Magestore_RewardPoints_Helper_Point */
+    $_pointHelper   = $this->getPointHelper();
+    $_pointName     = $_pointHelper->getPluralName();
+    $blanceFormated = $this->helper('Magestore\Rewardpoints\Helper\Customer')->getBalanceFormated();
+    $blance = $this->helper('Magestore\Rewardpoints\Helper\Customer')->getBalance();
+    ?>
+    <?php if (count($_sliderRules) || (count($_checkboxRules))): ?>
+        <?php if(isset($this->getRulesArray($_sliderRules)['rate']) && $this->getRulesArray($_sliderRules)['rate']['optionType'] != 'needPoint'):  ?>
+            <?php $_sliderData = $this->getSliderData() ?>
+            <div  class="order-coupons " id="admin_rewardpoints_rules">
+                <?php if($blance){  ?>
+                    <div id="rewardpoints-slider-container" class="admin__field">
+                        <label class="admin__field-label">
+                    <span>
+                        <?php echo __('Use Customer Reward Points') ?>
+                        (<?php echo $blanceFormated; ?>)
+                    </span>
+                        </label>
+                        <dt>
+                            <label><?php echo __('Choose how many points to spend') ?>:</label>
+                        </dt>
+                        <input id="range_reward_point" type="text"/>
+                        <div class="input-point">
+                    <span>
+                        <?php echo __('You will spend') ?>
+                        <input type="text" class="input-text" data-oldval=""
+                               id="reward_sales_point" name="reward_sales_point"
+                               value="<?php echo ( $_sliderData->getUsePoint() ? $_sliderData->getUsePoint() : ( $this->checkMaxpoint() ? $this->getPointsUseMaxDefault() : "0") ) ; ?>" />
+                        <?php echo $_pointName ?>
+                    </span>
+                        </div>
+                        <div class="input-max">
+                            <input type="checkbox" id="reward_max_points_used"  />
+                            <label for="reward_max_points_used">
+                                <?php echo __('Maximize my discount with points') ?>
+                            </label>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <script>
+                require([
+                    "jquery",
+                    "magestore/rangeSlider",
+                    'Magento_Sales/order/create/scripts'
+                ], function($,rangerSlider, script) {
+                    var rewardSliderRules = <?php echo $this->getRulesJson($_sliderRules) ?>;
+                    var usePoint = <?php echo $_sliderData->getUsePoint() ? $_sliderData->getUsePoint() : 0 ?>;
+                    var maxPoint = <?php echo $this->checkMaxpoint() ?>;
+                    var useMaxPoint = "<?php echo $this->getUseMaxDefault()?>";
+                    function updateTotal(point) {
+                        // ['items','shipping_method', 'totals', 'billing_method', 'rewardpoints'],
+                        order.loadArea(
+                            ['rewardpoints'],
+                            true,
+                            {reward_sales_rule: 'rate', reward_sales_point: point, reset_shipping: true}
+                        );
+                        order.itemsUpdate();
+                    }
+                    $(document).ready(function() {
+
+                        if(rewardSliderRules && rewardSliderRules.rate){
+                            if (usePoint == rewardSliderRules.rate.sliderOption.maxPoints ) {
+                                $('#reward_max_points_used').attr('checked', 'checked');
+                            }
+
+                            $('#reward_max_points_used').click(function () {
+                                if ($(this).attr('checked')) {
+                                    var point = rewardSliderRules.rate.sliderOption.maxPoints;
+                                } else {
+                                    var point = rewardSliderRules.rate.sliderOption.minPoints;
+                                }
+                                $('#reward_sales_point').val(point);
+                                var $range = $("#range_reward_point");
+                                var slider = $range.data("ionRangeSlider");
+                                slider.update({
+                                    from: point
+                                });
+                                window.use_point_old_value = point;
+                                updateTotal(point);
+                            });
+
+                            $('#reward_sales_point').data('oldval', $('#reward_sales_point').val());
+                            $('#reward_sales_point').change(function () {
+                                if ($.isNumeric($(this).val())) {
+                                    if ($(this).val() > rewardSliderRules.rate.sliderOption.maxPoints) {
+                                        var val = rewardSliderRules.rate.sliderOption.maxPoints;
+                                        $(this).val(rewardSliderRules.rate.sliderOption.maxPoints);
+                                    }
+                                    $(this).data('oldval', $(this).val());
+                                    $(this).removeAttr('style');
+                                    var $range = $("#range_reward_point");
+                                    var slider = $range.data("ionRangeSlider");
+                                    slider.update({
+                                        from: $(this).val()
+                                    });
+                                    window.use_point_old_value = $(this).val();
+                                    updateTotal($(this).val());
+                                    if (rewardSliderRules.rate.sliderOption.maxPoints == $(this).val()) {
+                                        $('#reward_max_points_used').attr('checked', 'checked');
+                                    } else {
+                                        $('#reward_max_points_used').removeAttr('checked');
+                                    }
+                                } else {
+                                    $(this).css({"border": "solid 1px red"});
+                                    $(this).val($('#reward_sales_point').data('oldval'));
+                                }
+                            });
+
+                            $("#range_reward_point").ionRangeSlider({
+                                grid: true,
+                                grid_num:((rewardSliderRules.rate.sliderOption.maxPoints<4)?rewardSliderRules.rate.sliderOption.maxPoints:4),
+                                min: rewardSliderRules.rate.sliderOption.minPoints,
+                                max: rewardSliderRules.rate.sliderOption.maxPoints,
+                                from: <?php echo $_sliderData->getUsePoint() ? $_sliderData->getUsePoint() : 0 ?>,
+                                step: rewardSliderRules.rate.sliderOption.pointStep,
+                                onFinish: function (data) {
+                                    if (rewardSliderRules.rate.sliderOption.maxPoints == data.from) {
+                                        $('#reward_max_points_used').attr('checked', 'checked');
+                                    } else {
+                                        $('#reward_max_points_used').removeAttr('checked');
+                                    }
+                                    $("#reward_sales_point").val(data.from);
+                                    window.use_point_old_value = data.from;
+                                    updateTotal(data.from);
+                                }
+                            });
+
+                            if(useMaxPoint){
+                                console.log(window.use_point_old_value);
+                                if(typeof window.use_point_old_value == "undefined"){
+                                    <?php if($_sliderData->getUsePoint() == NULL): ?>
+                                        $('#reward_max_points_used').trigger('click');
+                                    <?php endif; ?>
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
+        <?php endif ?>
+    <?php endif ?>
+<?php endif // end $this->enableReward() condition ?>

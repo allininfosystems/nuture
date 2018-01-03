@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<div class="product-filter-slider" data-filter-type="slider">
+  	<span><?php echo __('Price range:') ?></span>
+  	<div class="filter-price-amount">
+  		<?php $currencySymbol = $block->getCurrencySymbol(); ?>
+  		<?php $min = $this->getMinValue(); ?>
+  		<?php $max = $this->getMaxValue(); ?>
+      <?php $from = $this->getFromValue(); ?>
+      <?php $to = $this->getToValue(); ?>
+  		<?php echo $currencySymbol; ?><span id="filter-price-amount-from"><?php echo $from; ?></span> -
+  		<?php echo $currencySymbol; ?><span id="filter-price-amount-to"><?php echo $to; ?></span>
+  	</div>
+
+	<div id="slider-range" data-mage-init='{"prProductFilterSlider":{
+  	 		"min": <?php echo $min; ?>,
+  	 		"max": <?php echo $max; ?>,
+  	 		"amountFrom": "#filter-price-amount-from",
+  	 		"amountTo": "#filter-price-amount-to",
+        "inputFrom": "#filter-input-price-from",
+        "inputTo": "#filter-input-price-to",
+        "request": <?php echo $this->getRequestedPrice(); ?>
+	 		}}'
+	 		></div>
+
+</div>

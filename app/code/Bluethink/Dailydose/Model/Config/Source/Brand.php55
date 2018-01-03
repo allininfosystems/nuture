@@ -1,0 +1,26 @@
+<?php
+
+namespace Bluethink\Dailydose\Model\Config\Source;
+
+use Magento\Framework\Option\ArrayInterface;
+
+class Brand implements ArrayInterface
+{
+   const LEVIS = 'Levis';
+   const MUFTI = 'Mufti';
+   const SPYKER = 'Spyker';
+
+   /**
+    * @return array
+    */
+   public function toOptionArray()
+   {
+       $options = [
+           self::LEVIS => __('Levis'),
+           self::MUFTI => __('Mufti'),
+           self::SPYKER => __('Spyker')
+       ];
+
+       return $options;
+   }
+}

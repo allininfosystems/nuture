@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webinse Barcode System Config file.
+ *
+ * @category	Webinse
+ * @package 	Webinse_Barcode
+ * @author  	Webinse Team <info@webinse.com>
+ * @copyright   2017 Webinse Ltd. (https://www.webinse.com)
+ * @license 	http://opensource.org/licenses/OSL-3.0 The Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="webinse_core" translate="label" sortOrder="1">
+            <label>Webinse</label>
+        </tab>
+        <section id="barcode" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Barcode</label>
+            <tab>webinse_core</tab>
+            <resource>Webinse_Barcode::barcode_configuration</resource>
+            <group id="barcode_config" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Barcode Configuration</label>
+                <field id="barcode_auto_add" translate="label comment" sortOrder="1" type="button" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auto-generate barcodes for all products</label>
+                    <frontend_model>Webinse\Barcode\Block\Adminhtml\System\Config\Form\Button</frontend_model>
+                    <tooltip>This process may take some time.</tooltip>
+                </field>
+                <field id="barcode_value" translate="label comment tooltip" sortOrder="2" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default barcode value</label>
+                    <source_model>Webinse\Barcode\Model\Config\Source\BarcodeValue</source_model>
+                    <comment>This value will be added to the form for generation by default</comment>
+                </field>
+                <field id="barcode_value_pattern" translate="label comment tooltip" sortOrder="3" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Value by pattern (beta)</label>
+                    <depends>
+                        <field id="barcode_value">pattern</field>
+                    </depends>
+                    <tooltip>
+                        Example: A1C/wd:5,d:3/ ;
+                        Syntax:
+                        A1C - static part,
+                        / ... / - variable part,
+                        w - letters,
+                        d - digits,
+                        wd - letters and digits,
+                        : - separates type and quantity,
+                        5 - quantity ;
+                        Result: A1CMZ54N012
+                    </tooltip>
+                </field>
+                <field id="barcode_type" translate="label comment tooltip" sortOrder="4" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default barcode type</label>
+                    <source_model>Webinse\Barcode\Model\Config\Source\BarcodeTypes</source_model>
+                </field>
+                <field id="barcode_image_format" translate="label comment tooltip" sortOrder="5" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default barcode image format</label>
+                    <source_model>Webinse\Barcode\Model\Config\Source\ImageFormats</source_model>
+                </field>
+            </group>
+            <group id="barcode_design" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Barcode Design</label>
+                <field id="foreground_color" translate="label comment tooltip" sortOrder="1" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Foreground color</label>
+                    <validate>color {required:false,hash:true}</validate>
+                    <comment>Default value: #000000</comment>
+                </field>
+                <field id="background_color" translate="label comment tooltip" sortOrder="2" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background color</label>
+                    <validate>color {required:false,hash:true}</validate>
+                    <comment>Default value: #FFFFFF</comment>
+                    <tooltip>Choose contrasting colors. The background should be light color and the foreground should be dark color.</tooltip>
+                </field>
+                <field id="barcode_height_size" translate="label comment tooltip" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Barcode: height size</label>
+                    <comment>Default value: 40</comment>
+                </field>
+            </group>
+            <group id="barcode_invoice" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Barcodes in the invoice</label>
+                <field id="enable_barcode_invoice" translate="label comment tooltip" sortOrder="3" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable barcodes in the invoice</label>
+                    <comment>If selected "Yes", then product barcodes will be added to the PDF invoice</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="product_labels" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Label config</label>
+                <field id="label_width" translate="label comment tooltip" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label width</label>
+                    <validate>validate-number</validate>
+                    <comment>Default value: 400</comment>
+                    <tooltip>Value in pixels</tooltip>
+                </field>
+                <field id="label_height" translate="label comment tooltip" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label height</label>
+                    <validate>validate-number</validate>
+                    <comment>Default value: 250</comment>
+                    <tooltip>Value in pixels</tooltip>
+                </field>
+                <field id="label_background_color" translate="label comment tooltip" sortOrder="3" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label background color</label>
+                    <validate>color {required:false,hash:true}</validate>
+                    <comment>Default value: #FFFFFF</comment>
+                </field>
+                <field id="image_width" translate="label comment tooltip" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product image width</label>
+                    <validate>validate-number</validate>
+                    <comment>Default value: 150</comment>
+                    <tooltip>Value in pixels</tooltip>
+                </field>
+                <field id="text_horizontal_position" translate="label comment tooltip" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Horizontal space</label>
+                    <validate>validate-number</validate>
+                    <comment>Default value: 200</comment>
+                    <tooltip>Value in pixels</tooltip>
+                </field>
+                <field id="text_vertical_position" translate="label comment tooltip" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Vertical space</label>
+                    <validate>validate-number</validate>
+                    <comment>Default value: 50</comment>
+                    <tooltip>Value in pixels</tooltip>
+                </field>
+                <field id="include_name" translate="label comment tooltip" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include name of product</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="include_sku" translate="label comment tooltip" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include SKU of product</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="include_price" translate="label comment tooltip" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include price of product</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="preview" translate="label comment tooltip" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Preview</label>
+                    <frontend_model>Webinse\Barcode\Block\Adminhtml\System\Config\Form\Field\LabelPreview</frontend_model>
+                    <comment>Save the settings and the preview will be updated.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Copyright © 2016 Magestore. All rights reserved.
+  ~ See COPYING.txt for license details.
+  ~
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+            <css src="Magestore_Sociallogin::css/sociallogin.css"/>
+            <css src="Magestore_Sociallogin::css/mobilesociallogin.css"/>
+    </head>
+    <body>
+        <referenceBlock name="header-wrapper">
+    		<block class="Magestore\Sociallogin\Block\Autosociallogin" after="-" name="fblogin.header.container" template="Magestore_Sociallogin::sociallogin_buttons.phtml" >
+                 <action method="setPosition">
+                    <argument name="position" xsi:type="string">header</argument>
+                </action>
+    		</block>
+    	</referenceBlock>
+         <referenceContainer name="after.body.start">
+           <block class="Magestore\Sociallogin\Block\Toplinks" after="-" name="toplinks.sociallogin" template="Magestore_Sociallogin::toplinks/toplinks.phtml"/>
+        </referenceContainer>
+       <referenceContainer name="before.body.end">
+            <block class="Magestore\Sociallogin\Block\Buttons" after="-" name="allbuttons.sociallogin" template="Magestore_Sociallogin::allbuttons.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

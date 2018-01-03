@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/pdf_file.xsd">
+  <totals>
+    <total name="cgst">
+      <title translate="true">CGST</title>
+      <source_field>cgst_charge</source_field>
+      <display_zero>false</display_zero>
+      <sort_order>550</sort_order>
+    </total>
+	<total name="sgst">
+      <title translate="true">SGST</title>
+      <source_field>sgst_charge</source_field>
+      <display_zero>false</display_zero>
+      <sort_order>555</sort_order>
+    </total>
+	<total name="igst">
+      <title translate="true">IGST</title>
+      <source_field>igst_charge</source_field>
+      <display_zero>false</display_zero>
+      <sort_order>560</sort_order>
+    </total>
+	<total name="shipping_igst">
+      <title translate="true">Shipping IGST</title>
+      <source_field>shipping_igst_charge</source_field>
+      <display_zero>false</display_zero>
+      <sort_order>565</sort_order>
+    </total>
+	<total name="shipping_cgst">
+      <title translate="true">Shipping CGST</title>
+      <source_field>shipping_cgst_charge</source_field>
+      <display_zero>false</display_zero>
+      <sort_order>570</sort_order>
+    </total>
+	<total name="shipping_sgst">
+      <title translate="true">Shipping IGST</title>
+      <source_field>shipping_sgst_charge</source_field>
+      <display_zero>false</display_zero>
+      <sort_order>575</sort_order>
+    </total>	
+  </totals>
+</config>

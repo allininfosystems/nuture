@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <tab id="bluethink" translate="label" sortOrder="10">
+            <label>Bluethink</label>
+        </tab>
+        <section id="sleekaccordian" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Search</label>
+            <tab>bluethink</tab>
+            <resource>Bluethink_Search::configuration</resource>
+            <group id="parameters" translate="label" type="text"  sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>(Search)Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="display_text" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Search</label>
+                    <comment>This text will display on the checkout page.</comment>
+                </field>
+                <label>General Configuration</label>
+                <field id="percentage" translate="label comment" sortOrder="3" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Search(page)</label>
+                    <comment>test</comment>
+                    
+                </field>  
+            </group>
+        </section>
+    </system>
+</config>

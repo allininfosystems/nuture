@@ -1,0 +1,16 @@
+<!-- ko if: enableReward() -->
+<div class="rewardpoints-cart-sidebar">
+    <div style="float:left" data-bind="html:getImageHtml()"></div>
+    <div data-bind="if: customerLogin()">
+        <span><!-- ko i18n: 'Check out now to earn'--><!-- /ko --></span>
+        <span data-bind="text:earnPoint()"></span>
+    </div>
+    <div data-bind="ifnot: customerLogin()">
+        <a data-bind="attr:{'href':urlRedirectLogin()}">
+            <!-- ko i18n: 'Login'--><!-- /ko -->
+        </a>
+        <span><!-- ko i18n: 'and check out now to earn'--><!-- /ko --></span>
+        <span data-bind="text:earnPoint()"></span>
+    </div>
+</div>
+<!-- /ko -->

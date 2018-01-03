@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">webinse_barcode_generator_form.webinse_barcode_generator_form_data_source</item>
+            <item name="deps" xsi:type="string">webinse_barcode_generator_form.webinse_barcode_generator_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Generate Barcode</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">webinse_barcode_generator_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Webinse\Barcode\Block\Adminhtml\Generator\Edit\BackButton</item>
+            <!--<item name="delete" xsi:type="string">Webinse\Barcode\Block\Adminhtml\Generator\Edit\DeleteButton</item>-->
+            <item name="reset" xsi:type="string">Webinse\Barcode\Block\Adminhtml\Generator\Edit\ResetButton</item>
+            <item name="save" xsi:type="string">Webinse\Barcode\Block\Adminhtml\Generator\Edit\SaveButton</item>
+        </item>
+    </argument>
+    <dataSource name="webinse_barcode_generator_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Webinse\Barcode\Model\Generator\DataProvider</argument>
+            <argument name="name" xsi:type="string">webinse_barcode_generator_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="webinse_barcode/generator/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="barcode_generator">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Barcode generator</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">barcode_generator</item>
+                    <item name="dataScope" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="product_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Product Name</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">barcode_generator</item>
+                    <item name="dataScope" xsi:type="string">product_name</item>
+                </item>
+            </argument>
+        </field>
+        <field name="sku">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Product SKU</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">barcode_generator</item>
+                    <item name="dataScope" xsi:type="string">sku</item>
+                </item>
+            </argument>
+        </field>
+        <field name="barcode">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Barcode number</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">barcode_generator</item>
+                    <item name="dataScope" xsi:type="string">barcode</item>
+                </item>
+            </argument>
+        </field>
+        <field name="barcode_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Webinse\Barcode\Model\Config\Source\BarcodeTypes</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Barcode type</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">barcode_generator</item>
+                    <item name="dataScope" xsi:type="string">barcode_type</item>
+                </item>
+            </argument>
+        </field>
+        <field name="image_format">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Webinse\Barcode\Model\Config\Source\ImageFormats</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Barcode image format</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">barcode_generator</item>
+                    <item name="dataScope" xsi:type="string">image_format</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

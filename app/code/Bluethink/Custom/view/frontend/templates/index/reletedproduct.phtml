@@ -1,0 +1,106 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct'); 
+
+$related_products = $product->getRelatedProducts();
+$requestInterface = $objectManager->get('Magento\Framework\App\RequestInterface');
+$routeName      = $requestInterface->getRouteName();   
+if(!empty($related_products)){
+?>
+<div class="alsolike-products" <?php if($routeName=='amasty_quickview'){ echo 'style="display:none;"'; } ?>>
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('relatedproductdetail')->toHtml();
+
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+   $wishlist_id=array();
+  if($customerSession->isLoggedIn()){
+    $customerid=$customerSession->getCustomer()->getId();
+     $Wishlist_Model = $objectManager->create('\Magento\Wishlist\Controller\WishlistProviderInterface'); 
+     $currentUserWishlist = $Wishlist_Model->getWishlist();
+    if ($currentUserWishlist) {
+      $wishlistItems = $currentUserWishlist->getItemCollection()->getData();
+      foreach ($wishlistItems as  $wishlistItems_value) 
+      {
+         $wishlist_id[]=$wishlistItems_value['product_id'];
+      }
+    }
+  }
+?>
+
+        <div id="reletedprod" class="owl-carousel owl-theme">
+         
+   <?php  foreach ($related_products as $products) {
+           $productObject = $objectManager->get('Magento\Catalog\Model\Product');
+           $productModel = $productObject->loadByAttribute('sku', $products->getSku());
+           $productname=$productModel->getName();
+           $producturl=$productModel->getProductUrl();
+           $store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+           $imageUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $productModel->getImage(); 
+           $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($products->getId()); ?>
+
+           
+            <!--=======item====-->
+            <div class="pkg" >
+                 <div class="item">
+                    <div class="product-box" >
+                        <div class="product-image">
+                            <a href="#"><img src="<?php echo  $imageUrl; ?>"/></a>
+                            <div class="overlay">
+                                <div class="overlay-content"><a href="javascript:void(0)"  id='<?php echo $products->getId();?>' class="search-icon"><i class="fa fa-search" ></i></a><a href="<?php echo $producturl; ?>" class="quick-icon"><i class="fa fa-arrow-right" ></i></a></div>
+                            </div>
+                        </div>
+                        <div class="product-details">
+                           <a href="<?php echo $producturl; ?>"> <h5><?php echo __($productname); ?></h5> </a>
+                            <p class="p-category">Nature’s Baby Organic</p>
+                            <p class="p-price">INR <?php echo round($productModel->getPrice()); ?></p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <span class="cta">
+                                <b><a  href="<?php echo $block->getUrl('wishlist',['_secure' => true]); ?>" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>'><?php
+                    if ($customerSession->isLoggedIn()) {
+                      if (!in_array($products->getId(), $wishlist_id )) { ?>
+                    <i class="fa fa-heart-o"><?php }else{ ?> <i class="fa fa-heart"> <?php  } }else{ ?><i class="fa fa-heart-o"><?php } ?></i></a> </b>
+                               <!--  <b><i class="fa fa-comment-o"></i> (210) </b> -->
+                               <b><a href="<?php  echo $product->getProductUrl(); ?>"><i class="fa fa-comment-o"></i> (<?php
+                          if ($RatingOb->getCount()) {
+                            echo $RatingOb->getCount();
+                           }else{echo '0';}?>)</a>  </b>
+                                <?php   $addToCartUrl =  $listBlock->getAddToCartUrl($productModel); ?>
+                                                <b><form data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post"> 
+                                               <?php echo $block->getBlockHtml('formkey')?>
+                                                <button type="submit" title="Add to Cart" class="p-product-add">
+                                                    <span><i class="fa fa-shopping-cart"></i></span>
+                                                </button>
+                                    </form></b>
+                            </span>
+                          </div>
+            <!--=======item====-->
+                
+        
+
+   <?php  } ?>
+   </div>
+   <script>
+      require(['jquery', 'jquery/ui'], function($){
+		     $(window).load(function(){
+		        $('#reletedprod').owlCarousel({
+					loop:true,
+					margin:35,
+					nav:true,
+					mouseDrag: true,
+					dots: true,
+					responsive:{
+						 0:{ items:1 },
+						400:{ items:1 },
+						600:{ items:2 },
+						1000:{ items:4 }
+					}
+				});
+			 });
+		  });
+   </script>
+</div>
+<?php } ?>
+

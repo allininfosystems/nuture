@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="customer_form">
+                <block class="Magestore\Rewardpoints\Block\Adminhtml\Customer\Tab\Rewardpoint" name="customer_edit_tab_rewardpoint" >
+                    <arguments>
+                        <argument name="tab_label" xsi:type="string">rewardpoints</argument>
+                        <argument name="sort_order" xsi:type="number">12</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>

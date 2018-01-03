@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © 2016 Magestore. All rights reserved.
+  ~ See COPYING.txt for license details.
+  ~
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+    	<add id="Magestore_Sociallogin::sociallogin" title="Social Login" module="Magestore_Sociallogin" sortOrder="10" resource="Magestore_Sociallogin::sociallogin"/>
+
+        <add id="Magestore_Sociallogin::sociallogin_sociallogin" title="Social Login" module="Magestore_Sociallogin" sortOrder="10" parent="Magestore_Sociallogin::sociallogin" resource="Magestore_Sociallogin::sociallogin_sociallogin"/>
+
+		
+
+        <add id="Magestore_Sociallogin::settings" title="Settings" module="Magestore_Sociallogin" sortOrder="20" parent="Magestore_Sociallogin::sociallogin_sociallogin" action="adminhtml/system_config/edit/section/sociallogin" resource="Magestore_Sociallogin::settings"/>
+
+        
+    </menu>
+</config>

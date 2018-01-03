@@ -1,0 +1,377 @@
+<script type="text/javascript">
+    /* require(['jquery','jquery.bxslider'],function(jQuery,jQueryBxslider){
+        jQuery(document).ready(function(){
+          jQuery('.slider1').bxSlider({
+			slideWidth: 200,
+			minSlides: 1,
+			maxSlides: 8,
+			slideMargin: 10,
+			auto: true,
+			pager: false
+		 });
+        });
+    }); */
+</script>
+<script>
+            /*jQuery("#onestepcheckout-shipping-section").click(function() {
+            jQuery(this).slideUp();
+            });*/
+        </script>
+<?php $rturl=$_SERVER['REQUEST_URI'];
+      $urlarr=explode('/',$rturl);
+	  $itemupdate=0;
+      if(in_array('checkout',$urlarr) && in_array('cart',$urlarr) && in_array('product_id',$urlarr)){
+		  $itemupdate=1;
+	  }
+ ?>		
+<script>
+    require(['jquery'],function(jQuery){
+        jQuery(document).ready(function(){
+			<?php if($itemupdate==0){ ?>
+            jQuery('#product_addtocart_form').submit(function( event ){
+				event.preventDefault();
+            });
+			<?php } ?>
+			jQuery(document).on("click",".showcart",function() {
+				jQuery('.showcart').addClass("clicked");
+			});
+			jQuery(document).on("submit",".prod-list-form",function(event) {
+				event.preventDefault();
+            });
+        });
+    });
+</script>
+<style type="text/css">
+  .prd_thumb_list li{
+    overflow: hidden;
+    
+  }
+  .sideimage{
+        max-height: 412px;
+    width: 97px;
+    float: left;
+    position: fixed;
+    /*overflow: hidden;*/
+    overflow-y: scroll;
+}
+.sidediv{
+  width: 98px;overflow: hidden;float: left;height: 411px;
+}
+#div.sidediv :hover {
+    width: 98px;
+    overflow: hidden;
+    float: left;
+    height: 411px;
+    overflow-y: scroll;
+}
+
+  }
+</style>
+<!--====footer=====-->
+
+ <?php
+    $objectManager  = \Magento\Framework\App\ObjectManager::getInstance();        
+    $request        = $objectManager->get('\Magento\Framework\App\Request\Http');
+    $storeManager   = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+    $store          = $storeManager->getStore();
+    $baseurl        = $store->getBaseUrl();
+    $model          = $objectManager->get('\Bluethink\Dailydose\Model\ResourceModel\Brand\Collection');
+    $controller_name = $request->getControllerName();
+  ?>
+
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <div id="popup1" class="modal-box">
+      <a href="javascript:void(0)" class="js-modal-close close">×</a>
+      <div id="quickview" ></div>
+    </div>
+
+    <div class="brand-text">
+      <span class="text-brand">Trusted Global Brands</span>
+      <span id="back-to-top"><i class="fa fa-angle-up"></i></span>
+    </div>
+  <footer class="footer clearfix">
+<div class="container">
+
+<div class="brand-slider">
+<div id="brands" class="owl-carousel owl-theme"><!--=======item====-->
+<?php foreach ($model as $value) { 
+  ?>
+<div class="item"><a href="<?php echo $value['brand_url'] ;?>"><span class="brand-images"><img src="<?php echo $block->getUrl().'pub/media/bluethink/brand/images'.$value->getImage(); ?>" alt="" /></span></a></div>
+<?php }   
+?>
+</div>
+</div>
+<div class="footer-links clearfix">
+<div class="link-box">
+<h3>Information Links</h3>
+<ul class="effect">
+<li><a href="<?php echo $baseurl.'about_us'; ?>"><i class="fa fa-angle-right"></i> About Us</a></li>
+<li><a href="<?php echo $baseurl.'media'; ?>"><i class="fa fa-angle-right"></i> Media</a></li>
+<li><a href="<?php echo $baseurl.'expert_panel'; ?>"><i class="fa fa-angle-right"></i> Expert Panel</a></li>
+<li><a href="<?php echo $baseurl.'giving_back'; ?>"><i class="fa fa-angle-right"></i> Giving Back</a></li>
+<li><a href="<?php echo $baseurl.'blog'; ?>"><i class="fa fa-angle-right"></i> Blog</a></li>
+<li><a href="<?php echo $baseurl.'careers'; ?>"><i class="fa fa-angle-right"></i> Careers</a></li>
+<li><a href="<?php echo $baseurl.'contact_us'; ?>"><i class="fa fa-angle-right"></i> Contact Us</a></li>
+</ul>
+</div>
+<div class="link-box">
+<h3> </h3>
+<ul class="effect">
+<li><a href="<?php echo $baseurl.'customer/account/login/'; ?>"><i class="fa fa-angle-right"></i> My Account</a></li>
+<!--<li><a href="<?php echo $baseurl.'contact_us'; ?>"><i class="fa fa-angle-right"></i> Contact Us</a></li>-->
+<li><a href="<?php echo $baseurl.'faq/index/index/'; ?>"><i class="fa fa-angle-right"></i> Help &amp; FAQs</a></li>
+<li><a href="<?php echo $baseurl.'shipping_returns'; ?>"><i class="fa fa-angle-right"></i> Shipping &amp; Returns</a></li>
+<li><a href="<?php echo $baseurl.'privacy_policy'; ?>"><i class="fa fa-angle-right"></i> Privacy Policy</a></li>
+<li><a href="<?php echo $baseurl.'intellectual-property-rights-policy'; ?>"><i class="fa fa-angle-right"></i> Intellectual Property Rights Policy</a></li>
+<li><a href="<?php echo $baseurl.'return-refund-policy'; ?>"><i class="fa fa-angle-right"></i> Return & Refund Policy</a></li>
+<li><a href="<?php echo $baseurl.'terms_conditions'; ?>"><i class="fa fa-angle-right"></i> Terms and Conditions</a></li>
+</ul>
+</div>
+<div class="link-box">
+<h3>Tags</h3>
+<div class="tags"><a href="<?php echo $baseurl.'blog/tag/wipes/'; ?>">wipes</a><a href="<?php echo $baseurl.'blog/tag/cough/'; ?>">cough</a><a href="<?php echo $baseurl.'blog/tag/illness1/'; ?>">illness</a><a href="<?php echo $baseurl.'blog/tag/pregnancy/'; ?>">Pregnancy</a><a href="<?php echo $baseurl.'blog/tag/breastfeeding/'; ?>">breastfeeding</a></div>
+</div>
+<?php 
+echo $this->getLayout()->createBlock("Magento\Newsletter\Block\Subscribe")->setTemplate("Magento_Newsletter::subscribe.phtml")->toHtml();
+?>
+<div class="soci">
+<ul class="social-footer">
+          <li><span>Follow us on : </span></li>
+          <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('social_icon')->toHtml();?>
+        </ul>
+<div class="'pro"><img src="<?php echo $this->getViewFileUrl('images/created_by.png'); ?>" alt="" /></div>
+</div>
+</div>
+<div class="copyright clearfix"><span class="copyright-text">Copyright © 2017 Nuluv – All Rights Reserved.</span><span class="designed-by">Site By <a href="#" target="_blank"><img src="<?php echo $this->getViewFileUrl('images/dl.png'); ?>" alt="" /></a></span>
+</div>
+</div>
+
+</footer>
+
+  <script type="text/javascript">
+
+          require(['jquery'],function(jQuery){
+           
+			  var b = jQuery('#back-to-top');
+			  //b.hide();
+			  b.on('click',function(e){
+				e.preventDefault();
+				jQuery('html,body').animate({
+				  scrollTop: 0
+				}, 700);
+			  });
+			  
+			  var $win = jQuery(window);   
+			  $win.scroll(function () { 
+				/*alert('fgfgffghf');*/
+				var footer_pos =  (jQuery(".footer").offset().top - jQuery(window).innerHeight()) - jQuery(document).scrollTop();
+				if ($win.scrollTop() > 300) {
+				  b.fadeIn();
+				  //console.log("fadding in")
+				} 
+				else {
+				  b.fadeOut();
+				}
+				
+				if(footer_pos < 0){
+				  b.css("position","absolute");
+				}else{
+				  b.css("position","fixed");
+				}
+			  });
+			});
+        
+    </script> 
+    <script>
+    
+    
+  require(['jquery'],function (jQuery) {
+    jQuery(document).ready(function(){
+
+    jQuery(".search-icon").click(function(){
+
+    //alert(this.id); 
+    jQuery("#popup1").css({ 'top': "32.5px" });
+    var id=this.id;
+    var controller='<?php echo $controller_name; ?>';
+    jQuery.ajax({
+      url: "<?php echo $block->getUrl('custom/index/quickview/');?>",
+      showLoader: true,
+      type: 'POST',
+      data: {id:id,controller:controller},
+      success: function(rs)
+      {
+        //alert(rs);
+        document.getElementById("quickview").innerHTML=rs;
+        jQuery("#popup1").css({ 'display': "block" });
+       
+      
+     }
+    });
+  });
+    var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+  jQuery('a[data-modal-id]').click(function(e){
+  e.preventDefault();
+    jQuery("body").append(appendthis);
+    jQuery(".modal-overlay").fadeTo(500, 0.7);
+    //$(".js-modalbox").fadeIn(500);
+    var modalBox = jQuery(this).attr('data-modal-id');
+    jQuery('#'+modalBox).fadeIn(jQuery(this).data());
+  });
+  jQuery(".js-modal-close, .modal-overlay").click(function() {
+    jQuery(".modal-box, .modal-overlay").fadeOut(500, function() {
+      jQuery(".modal-overlay").remove();
+    }); 
+  }); 
+  jQuery(window).resize(function() {
+    jQuery(".modal-box").css({
+      top: (jQuery(window).height() - jQuery(".modal-box").outerHeight()) / 2,
+      left: (jQuery(window).width() - jQuery(".modal-box").outerWidth()) / 2
+    });
+  }); 
+  jQuery(window).resize();
+  });
+    jQuery('#thumbs li').delegate('img','click', function(){
+  jQuery('#largeImage').attr('src',jQuery(this).attr('src').replace('thumb','large'));
+  //$('#description').html($(this).attr('alt'));
+});
+
+
+ });
+
+function newsletterSubmit(event){
+  event.preventDefault();
+  require(['jquery'],function(jQuery){
+    var url = jQuery('#newsletter-validate-detail').attr('action');
+    var form = jQuery('#newsletter-validate-detail').serialize();
+    var emailid = jQuery('#newsletter').val();
+    email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+    if(email_regex.test(emailid)){
+      // alert(url);
+      // alert(form);
+      jQuery.ajax({
+                  showLoader: true,
+                  url: url,
+                  data: form,
+                  type: "POST",
+              }).done(
+                  function (response) {
+                      console.log(response);
+                      jQuery('#news_msg').show();
+                      jQuery('#news_msg').html(response);
+                      jQuery('#newsletter').val('');
+                      setTimeout(function(){ jQuery('#news_msg').hide(); }, 3000);
+                  }
+              );
+    }
+
+  });
+}
+</script>
+<script>
+        require(["jquery"],function(jQuery){
+            jQuery(document).ready(function(){
+                jQuery("#22222").click(function(){
+                    alert("The paragraph was clicked.");
+                });
+            });
+        });
+    </script>
+
+      <script type="text/javascript">
+       function invokehello(id)
+       {
+        
+        var replacerc=document.getElementById("largeImage");
+        replacerc.src=id.getAttribute('src');
+        console.log("*********"+id);
+        
+       }
+    </script>
+
+    <script type="text/javascript">
+      require(["jquery"],function(jQuery){
+		  
+			jQuery(window).load(function() {
+			  setTimeout(function(){jQuery('.toolbar-products').css("display", "block"); }, 5000);
+			});			
+       
+		jQuery('.sublink').click(function(){
+			jQuery(this).toggleClass('open');
+			jQuery(this).siblings('.megamenu').slideToggle();
+			/*jQuery('.megamenu').slideToggle();*/
+		});
+
+		if (window.matchMedia('(max-width: 767px)').matches){
+		jQuery('.trigger-opn').click(function() {
+			jQuery(this).parent().siblings('.open-submenu').find('.trigger-opn').removeClass('activate');
+			jQuery(this).parent().siblings('.open-submenu').find('.open-submenu').slideUp(250);
+			jQuery(this).next('.open-submenu').slideToggle(250);
+			jQuery(this).next('.open-submenu').children('.open-submenu').find('.open-submenu').slideUp(250);
+			jQuery(this).next('.open-submenu').children('.open-submenu').find('.trigger-opn').removeClass('activate');
+			jQuery(this).toggleClass('activate');
+			return false;
+		});
+		}
+	});
+</script>        
+ <script>
+	require(["jquery"],function(jQuery){
+		jQuery(".login").hover(function() {
+		    jQuery("#login-form").slideToggle();
+		});
+	});
+</script> 
+<script type="text/x-magento-init">
+    {
+        ".prod-list-form": {
+            "catalogAddToCart": {
+                "bindSubmit": true
+            }
+        }
+    }
+</script>
+
+<!--  <script>
+  require(["jquery"],function(jQuery){
+  jQuery(document).ready(function() {
+  var timeout = 1000;
+
+  setTimeout(function(){
+    jQuery(".loader").fadeOut("slow");
+  }, timeout);
+  
+    });
+  });
+</script>  -->
+<?php
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$cart = $objectManager->get('\Magento\Checkout\Model\Cart');
+	$shippingAmount = $cart->getQuote()->getShippingAmount();
+	echo 'shipamt='.$shippingAmount;
+ ?>
+ <?php 
+ $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$cart = $objectManager->get('\Magento\Checkout\Model\Cart'); 
+ 
+$billingAddress = $cart->getQuote()->getBillingAddress();
+//echo '<pre>'; print_r($billingAddress->getData()); echo '</pre>';
+ 
+$shippingAddress = $cart->getQuote()->getShippingAddress();
+//echo '<pre>'; print_r($shippingAddress->getData()); echo '</pre>';
+?>
+
+<!-- <script>
+  require(['jquery'],function(jQuery){
+    jQuery(document).ready(function(){
+      jQuery(window).scroll(function() {    
+        var scroll = jQuery(window).scrollTop();
+        if (scroll >= 30) {
+            jQuery(".top-wrap").addClass("fixed");
+        } else {
+            jQuery(".top-wrap").removeClass("fixed");
+        }
+    });
+    });
+  });
+</script> -->

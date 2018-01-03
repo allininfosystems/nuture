@@ -1,0 +1,44 @@
+<?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
+<?php $_product = $block->getProduct() ?>
+
+<?php if ($block->displayProductStockStatus()): ?>
+    <?php if ($_product->isAvailable()): ?>
+        <div class="prd_dealer" title="<?php /* @escapeNotVerified */ echo __('Availability') ?>">
+            <span class="stock_status instock"><?php /* @escapeNotVerified */ echo __('In stock') ?></span>
+            <?php echo __('Sold by ');?><?php $brandname= $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getProductBrand(), 'product_brand'); 
+               $getAttribute=explode(',', $brandname);
+               foreach ($getAttribute as $getAttributes) {
+                   
+    
+$attr = $_product->getResource()->getAttribute('product_brand');
+ if ($attr->usesSource()) {?>
+ <strong><?php echo $optionText = $attr->getSource()->getOptionText($getAttributes);?></strong><?php
+ }
+}
+    
+            ?><?php echo __(' and Fulfilled by <strong>Nuluv</strong>.'); ?>
+        </div>
+    <?php else: ?>
+        <div class="prd_dealer" title="<?php /* @escapeNotVerified */ echo __('Availability') ?>">
+            <span class="stock_status outstock"><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span>
+            <?php echo __('Sold by ');?><?php $brandname= $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getProductBrand(), 'product_brand'); 
+               $getAttribute=explode(',', $brandname);
+               foreach ($getAttribute as $getAttributes) {
+                   
+    
+$attr = $_product->getResource()->getAttribute('product_brand');
+ if ($attr->usesSource()) {?>
+ <strong><?php echo $optionText = $attr->getSource()->getOptionText($getAttributes);?></strong><?php
+ }
+}
+    
+            ?><?php echo __(' and Fulfilled by <strong>Nuluv</strong>.'); ?>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+<style type="text/css">
+	.stock_status.outstock {
+    background: #af2c2c;
+    margin-right: 5px;
+}
+</style>

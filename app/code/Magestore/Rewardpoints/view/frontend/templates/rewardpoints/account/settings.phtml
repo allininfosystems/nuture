@@ -1,0 +1,115 @@
+<div id="main" data-bind="scope:'main'">
+    <label for="price">
+        Price:
+    </label>
+    <input data-bind="value:price" id="price" type="text"/>
+    <p data-bind="text: price"></p>
+    <label for="qty">
+        qty:
+    </label>
+    <input data-bind="value:qty" id="qty" type="text"/>
+    <p data-bind="text: total"></p>
+    <input type="button" data-bind="click: getProducts" value="GetProducts"/>
+
+    <div class="products wrapper grid products-grid">
+        <ol class="products list items product-items">
+            <!-- ko foreach: products -->
+            <li class="item product product-item">
+                <div class="product-item-info" data-container="product-grid">
+                    <a href="http://ubuntuhost.com/magento212/joust-duffle-bag.html"
+                       class="product photo product-item-photo" tabindex="-1">
+
+<span class="product-image-container" style="width:240px;">
+    <span class="product-image-wrapper" style="padding-bottom: 125%;">
+        <img class="product-image-photo"
+             data-bind="attr:{'src': image_url}" width="240" height="300" alt="Joust Duffle Bag"/></span></span>
+                    </a>
+                    <div class="product details product-item-details">
+                        <strong class="product name product-item-name">
+                            <a data-bind="attr:{'href' : url_key},text:name" class="product-item-link"></a>
+                        </strong>
+                        <div class="product-reviews-summary short">
+                            <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="50%">
+                                    <span style="width:50%"><span>50%</span></span>
+                                </div>
+                            </div>
+                            <div class="reviews-actions">
+                                <a class="action view"
+                                   href="http://ubuntuhost.com/magento212/joust-duffle-bag.html#reviews">2&nbsp;<span>Reviews</span></a>
+                            </div>
+                        </div>
+                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="1">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-1" data-price-amount="680000" data-price-type="finalPrice" class="price-wrapper ">
+        <span class="price" data-bind="text:price"></span>    </span>
+        </span>
+
+                        </div>
+                        <div class="product-item-inner">
+                            <div class="product actions product-item-actions">
+                                <div class="actions-primary">
+                                    <form data-role="tocart-form"
+                                          action="http://ubuntuhost.com/magento212/checkout/cart/add/uenc/aHR0cDovL3VidW50dWhvc3QuY29tL21hZ2VudG8yMTIvZ2Vhci9iYWdzLmh0bWw,/product/1/"
+                                          method="post">
+                                        <input type="hidden" name="product" value="1">
+                                        <input type="hidden" name="uenc"
+                                               value="aHR0cDovL3VidW50dWhvc3QuY29tL21hZ2VudG8yMTIvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0RvdkwzVmlkVzUwZFdodmMzUXVZMjl0TDIxaFoyVnVkRzh5TVRJdloyVmhjaTlpWVdkekxtaDBiV3csL3Byb2R1Y3QvMS8,">
+                                        <input name="form_key" type="hidden" value="sP1rIjOR7Lz8Ftot">
+                                        <button type="submit" title="Add to Cart" class="action tocart primary">
+                                            <span>Add to Cart</span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div data-role="add-to-links" class="actions-secondary">
+                                    <a href="#" class="action towishlist" title="Add to Wish List"
+                                       aria-label="Add to Wish List"
+                                       data-post="{&quot;action&quot;:&quot;http:\/\/ubuntuhost.com\/magento212\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;1&quot;,&quot;uenc&quot;:&quot;aHR0cDovL3VidW50dWhvc3QuY29tL21hZ2VudG8yMTIvZ2Vhci9iYWdzLmh0bWw,&quot;}}"
+                                       data-action="add-to-wishlist" role="button">
+                                        <span>Add to Wish List</span>
+                                    </a>
+                                    <a href="#" class="action tocompare" title="Add to Compare"
+                                       aria-label="Add to Compare"
+                                       data-post="{&quot;action&quot;:&quot;http:\/\/ubuntuhost.com\/magento212\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;1&quot;,&quot;uenc&quot;:&quot;aHR0cDovL3VidW50dWhvc3QuY29tL21hZ2VudG8yMTIvZ2Vhci9iYWdzLmh0bWw,&quot;}}"
+                                       role="button">
+                                        <span>Add to Compare</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- /ko-->
+        </ol>
+    </div>
+</div>
+
+<script>
+    window.baseUrl = '<?php echo $this->getUrl() ?>';
+</script>
+<script type="text/x-magento-init">
+    {
+        "#main" : {
+            "Magento_Ui/js/core/app" : {
+                "components" : {
+                    "main" : {
+                        "component" : "Magestore_Rewardpoints/js/view/test",
+                        "displayArea": "main"
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+</script>
+
+

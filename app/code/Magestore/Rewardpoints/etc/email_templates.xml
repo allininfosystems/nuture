@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magestore. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:Magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="rewardpoints_email_update_balance" label="Email template sent to customer when updating point balance" file="rewardpoints/update_balance.html" type="html" module="Magestore_Rewardpoints" area="frontend"/>
+    <template id="rewardpoints_email_before_expire_transaction" label="Email template sent to customer before a transaction expires" file="rewardpoints/before_expire_transaction.html" type="html" module="Magestore_Rewardpoints" area="frontend"/>
+    <template id="rewardpoints_email_before_expire_transaction" label="Email template sent to customer before a transaction expires" file="rewardpoints/before_expire_transaction.html" type="html" module="Magestore_Rewardpoints" area="frontend"/>
+</config>

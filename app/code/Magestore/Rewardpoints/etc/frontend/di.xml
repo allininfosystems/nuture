@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="checkout_customerdata_cart" type="Magestore\Rewardpoints\Model\Plugin\CustomerData\Cart"/>
+    </type>
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="update_payment_fee_order" type="Magestore\Rewardpoints\Model\Plugin\UpdateDiscountForOrder"/>
+    </type>
+    <type name="Magento\Paypal\Model\Cart">
+        <plugin name="update_paypal_fee_order" type="Magestore\Rewardpoints\Model\Plugin\UpdateDiscountForOrder"/>
+    </type>
+</config>
+

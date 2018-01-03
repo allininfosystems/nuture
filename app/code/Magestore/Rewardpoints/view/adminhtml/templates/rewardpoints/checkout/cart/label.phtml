@@ -1,0 +1,83 @@
+<?php
+/**
+ * Magestore
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Magestore
+ * @package     Magestore_RewardPoints
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+/**
+ * Rewardpoints show on Review Total
+ *
+ * @see Magestore_RewardPoints_Block_Checkout_Cart_Label
+ */
+?>
+
+<?php if ($this->isEnable()): ?>
+
+    <?php
+    /** @var $_pointHelper Magestore_RewardPoints_Helper_Point */
+    $_pointHelper = $this->getPointHelper();
+    $_spendingPoint = $this->getSpendingPoint();
+    $_earningPoints = $this->getEarningPoint();
+    $_earningPointsByCoupon = $this->helper('Magestore\Rewardpoints\Helper\Calculation\Earning')->getEarningPointByCoupon();
+    ?>
+    <?php if ($_spendingPoint || $_earningPoints  || $_earningPointsByCoupon): ?>
+        <?php if ($this->getColspan() == 1): ?><thead><?php endif ?>
+        <?php if ($_spendingPoint): ?>
+            <tr class="row-totals">
+                <td class="a-right" id="check-spend-point" colspan="<?php echo $this->getColspan() ?>" style="<?php echo $this->getTotal()->getStyle() ?>">
+                    <strong style="font-size: 13px;">
+                        <?php
+
+                            echo __('You will spend');
+
+                        ?>:</strong>
+                </td>
+                <td class="a-right" style="min-width: 70px;text-align:right;<?php echo $this->getTotal()->getStyle() ?>">
+                    <?php echo $_pointHelper->format($_spendingPoint) ?>
+                </td>
+            </tr>
+        <?php endif ?>
+        <?php if ($_earningPoints): ?>
+            <tr>
+                <td class="a-right" colspan="<?php echo $this->getColspan() ?>" style="<?php echo $this->getTotal()->getStyle() ?>">
+                    <strong style="font-size: 13px;">
+                        <?php
+                            if($this->getQuote()->getCustomerGroupId() > 0){
+                                echo __('You will earn');
+                            } ?>:</strong>
+                </td>
+                <td class="a-right" style="min-width: 70px;text-align:right;<?php echo $this->getTotal()->getStyle() ?>">
+                    <?php echo $_pointHelper->format($_earningPoints) ?>
+                </td>
+            </tr>
+        <?php endif ?>
+        <?php if ($_earningPointsByCoupon): ?>
+            <tr>
+                <td class="a-right" colspan="<?php echo $this->getColspan() ?>" style="<?php echo $this->getTotal()->getStyle() ?>">
+                    <?php echo __('Earn Points (%1)', $this->helper('Magestore\Rewardpoints\Helper\Calculation\Earning')->getCouponEarnPoints()); ?>
+                </td>
+                <td class="a-right" style="min-width: 70px;text-align:right;<?php echo $this->getTotal()->getStyle() ?>">
+                    <?php echo $_pointHelper->format($_earningPointsByCoupon) ?>
+                </td>
+            </tr>
+        <?php endif ?>
+        <?php if ($this->getColspan() == 1): ?></thead><?php endif ?>
+    <?php endif ?>
+
+    <?php
+
+endif // End if ($this->isEnable()) ?>

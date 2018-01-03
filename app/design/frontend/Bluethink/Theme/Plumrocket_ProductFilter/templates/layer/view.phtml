@@ -1,0 +1,125 @@
+<?php
+
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+?>
+
+<?php if ($block->canShowBlock()): ?>
+
+    <?php $helper = $this->helper('\Plumrocket\ProductFilter\Helper\Data'); ?>
+    <?php $filters = $helper->breakByGroup($block->getFilters()); ?>
+    <?php
+
+        if ($helper->getPlacement() == \Plumrocket\ProductFilter\Model\Config\Source\Placement::PLACEMENT_TOOLBAR) {
+            $activeFilters = false;
+            $multi = false;
+        } else {
+            $activeFilters = [0,1,2,3,4,5,6,7,8,9,10]; // Opened by default
+            $multi = true;
+        }
+
+        $accordionSettings = [
+            "openedState"   =>  "active",
+            "collapsible"   =>  true,
+            "active"    =>  $activeFilters,
+            "multipleCollapsible"   =>  $multi
+        ];
+
+        $aSettings = json_encode($accordionSettings);
+
+        $collectionSize = $block->getLayer()->getProductCollection()->getSize();
+    ?>
+
+    <div class="block filter" id="layered-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+        <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
+        <!-- <div class="block-title filter-title" data-count="<?php echo $filtered; ?>">
+            <strong data-role="title"><?php  echo __('Shop By') ?></strong>
+        </div> -->
+        <div class="block-content filter-content">
+            <?php echo $block->getChildHtml('state') ?>
+
+            <?php if ($block->getLayer()->getState()->getFilters()): ?>
+                <div class="block-actions filter-actions">
+                    <a id="product-filter-clear" href="<?php /* @escapeNotVerified */ echo $block->getClearUrl() ?>" class="action clear filter-clear"><span><?php /* @escapeNotVerified */ echo __('Clear All') ?></span></a>
+                </div>
+            <?php endif; ?>
+            <?php $wrapOptions = false; ?>
+            <?php foreach ($filters as $code => $filter): ?>
+
+
+                <?php if (is_array($filter)): ?>
+
+                    <?php if (!$wrapOptions): ?>
+                        <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?php /* @escapeNotVerified */ echo __('Shopping Options') ?></strong>
+                        <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":<?php echo $aSettings; ?>}'>
+                    <?php  $wrapOptions = true; endif; ?>
+
+                    <div class="filter-group-container">
+                        <div data-role="collapsible" class="filter-options-item">
+                            <div data-role="title" class="filter-options-title"><?php /* @escapeNotVerified */ echo __($code) ?></div>
+                            <div data-role="content" class="filter-options-content">
+                            <?php foreach ($filter as $item): ?>
+
+                                <?php if ($item['pf_attribute_code'] == 'price' && $collectionSize <= 1) continue; ?>
+
+                                <?php if ($item->getItemsCount()): ?>
+                                    <div class="filter-group-option-title"><?php /* @escapeNotVerified */ echo __($item->getName()) ?></div>
+                                    <?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($item); ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php else: ?>
+
+                    <?php if ($code == 'price' && $collectionSize <= 1) continue; ?>
+
+                    <?php if ($filter->getItemsCount()): ?>
+                        <?php if (!$wrapOptions): ?>
+                            <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?php /* @escapeNotVerified */ echo __('Shopping Options') ?></strong>
+                            <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":<?php echo $aSettings; ?>}'>
+                        <?php  $wrapOptions = true; endif; ?>
+                        <div data-role="collapsible" class="filter-options-item">
+                            <div data-role="title" class="filter-options-title"><?php /* @escapeNotVerified */ echo __($filter->getName()) ?></div>
+                            <div data-role="content" class="filter-options-content"><?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($filter); ?></div>
+                        </div>
+                    <?php endif; ?>
+
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if ($wrapOptions): ?>
+
+                <?php if (!$this->helper('Plumrocket\ProductFilter\Helper\Data')->isAutoMode()): ?>
+                    <button style="display:none;" class="action manual-filter primary" id="manual-filter" title="Filter">
+                        <span><?php echo __('Filter') ?></span>
+                    </button>
+                <?php endif; ?>
+
+                </div>
+            <?php else: ?>
+                <script>
+                    require([
+                        'jquery'
+                    ], function ($) {
+                        $('#layered-filter-block').addClass('filter-no-options');
+                    });
+                </script>
+            <?php endif; ?>
+        </div>
+
+    </div>
+<?php endif; ?>

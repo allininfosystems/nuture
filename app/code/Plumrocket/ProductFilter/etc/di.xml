@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\Catalog\Model\Layer\Category\FilterableAttributeList" type="Plumrocket\ProductFilter\Model\Catalog\Layer\Category\FilterableAttributeList"/>
+
+    <virtualType name="categoryFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+        <arguments>
+            <argument name="filters" xsi:type="array">
+                <item name="attribute" xsi:type="string">Plumrocket\ProductFilter\Model\CatalogSearch\Layer\Filter\Attribute</item>
+                <item name="price" xsi:type="string">Plumrocket\ProductFilter\Model\CatalogSearch\Layer\Filter\Price</item>
+                <item name="decimal" xsi:type="string">Magento\Catalog\Model\Layer\Filter\Decimal</item>
+                <item name="category" xsi:type="string">Plumrocket\ProductFilter\Model\CatalogSearch\Layer\Filter\Category</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="searchFilterList" type="Magento\Catalog\Model\Layer\FilterList">
+        <arguments>
+            <argument name="filters" xsi:type="array">
+                <item name="attribute" xsi:type="string">Plumrocket\ProductFilter\Model\CatalogSearch\Layer\Filter\Attribute</item>
+                <item name="price" xsi:type="string">Plumrocket\ProductFilter\Model\CatalogSearch\Layer\Filter\Price</item>
+                <item name="decimal" xsi:type="string">Magento\Catalog\Model\Layer\Filter\Decimal</item>
+                <item name="category" xsi:type="string">Plumrocket\ProductFilter\Model\CatalogSearch\Layer\Filter\Category</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <preference for="Magento\LayeredNavigation\Block\Navigation\State" type="Plumrocket\ProductFilter\Block\LayeredNavigation\Navigation\State"/>
+    <preference for="Magento\Catalog\Model\Layer\Filter\Item" type="Plumrocket\ProductFilter\Model\Catalog\Layer\Filter\Item"/>
+
+    <preference for="Magento\CatalogSearch\Model\Layer\Filter\Category" type="Plumrocket\ProductFilter\Model\CatalogSearch\Layer\Filter\Category"/>
+    <preference for="Magento\Catalog\Model\Layer\Filter\Price\Range" type="Plumrocket\ProductFilter\Model\Catalog\Layer\Filter\Price\Range"/>
+
+
+    <type name="Magento\Catalog\Model\Layer\FilterList">
+        <plugin name="prproductfilter_filter_list" type="Plumrocket\ProductFilter\Plugin\Model\Catalog\Layer\FilterList" />
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\Layer\FilterList">
+        <plugin name="prproductfilter_filter_list" type="Plumrocket\ProductFilter\Plugin\Model\Catalog\Layer\FilterList" />
+    </type>
+
+
+    <type name="Magento\CatalogSearch\Model\Layer\Category\ItemCollectionProvider">
+        <plugin name="prproductfilter_collection_provider" type="Plumrocket\ProductFilter\Plugin\Model\CatalogSearch\Layer\Category\ItemCollectionProvider" />
+    </type>
+
+    <type name="Magento\LayeredNavigation\Block\Navigation\FilterRenderer">
+        <plugin name="pr_filter_layered_renderer" type="Plumrocket\ProductFilter\Plugin\Block\LayeredNavigation\Navigation\FilterRenderer" sortOrder="1" />
+    </type>
+    
+    <!-- fix for ee Elasticsearch -->
+    <type name="Magento\Elasticsearch\SearchAdapter\Filter\Builder\Term">
+        <plugin name="prproductfilter_fix" type="Plumrocket\ProductFilter\Plugin\Elasticsearch\TermPlugin" />
+    </type>
+
+</config>

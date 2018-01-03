@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+     <update handle="editor"/>
+    <body>
+	   <referenceContainer name="content">
+            <block class="Bluethink\Productimport\Block\Adminhtml\Import\Edit" name="productimport_import_edit"/>
+        </referenceContainer>
+		 <referenceContainer name="left">
+            <block class="Bluethink\Productimport\Block\Adminhtml\Import\Edit\Tabs" name="productimport_import_edit_tabs">
+				<block class="Bluethink\Productimport\Block\Adminhtml\Import\Edit\Tab\Import" name="productimport_import_edit_tab_import"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">import_section</argument>
+                    <argument name="block" xsi:type="string">productimport_import_edit_tab_import</argument>
+                </action>
+				<!--CedAddTab-->
+			</block>
+        </referenceContainer>
+    </body>
+</page>

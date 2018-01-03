@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_ProductStockAlert
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2017 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Module\Setup\Migration">
+        <arguments>
+            <argument name="compositeModules" xsi:type="array">
+                <item name="productstockalert" xsi:type="string">Bss_ProductStockAlert</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Swatches\Block\Product\Renderer\Configurable" type="Bss\ProductStockAlert\Block\ConfigurableControl" />
+    <preference for="Magento\GroupedProduct\Block\Product\View\Type\Grouped" type="Bss\ProductStockAlert\Block\Product\View\Type\Grouped" />
+    <preference for="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox" type="Bss\ProductStockAlert\Block\Product\View\Type\Bundle\Option\Checkbox" />
+    <preference for="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Radio" type="Bss\ProductStockAlert\Block\Product\View\Type\Bundle\Option\Radio" />
+    <preference for="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Select" type="Bss\ProductStockAlert\Block\Product\View\Type\Bundle\Option\Select" />
+    <preference for="Magento\Bundle\Model\ResourceModel\Option\Collection" type="Bss\ProductStockAlert\Model\ResourceModel\Option\Collection" />
+    
+    <virtualType name="Bss\ProductStockAlert\Model\ResourceModel\Stock\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bss_product_alert_stock</argument>
+            <argument name="resourceModel" xsi:type="string">Bss\ProductStockAlert\Model\ResourceModel\Stock</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="productstockalert_customer_subscription_list_data_source" xsi:type="string">Bss\ProductStockAlert\Model\ResourceModel\Stock\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

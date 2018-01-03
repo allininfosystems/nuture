@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+         <add id="Bluethink_Productimport::bluethink_index_index" 
+            title="Product Bulk Import." 
+            module="Bluethink_Productimport"  
+            sortOrder="20" 
+            dependsOnModule="Bluethink_Productimport"  
+            resource="Magento_Backend::content"/>
+
+        <add id="Bluethink_Productimport::bluethink_import" 
+            title="Simple Product" 
+            module="Bluethink_Productimport" 
+            sortOrder="2" 
+            resource="Bluethink_Productimport::bluethink_index_index" 
+            parent="Bluethink_Productimport::bluethink_index_index" 
+            action="productimport/import/index"/>
+    </menu>
+</config>

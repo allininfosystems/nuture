@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="invoice_totals">
+            <block class="Magecomp\Gstcharge\Block\Sales\Totals\CgstInvoiceTotal" name="cgst"/>
+			<block class="Magecomp\Gstcharge\Block\Sales\Totals\SgstInvoiceTotal" name="sgst"/>
+			<block class="Magecomp\Gstcharge\Block\Sales\Totals\IgstInvoiceTotal" name="igst"/>
+			
+		    <block class="Magecomp\Gstcharge\Block\Sales\Totals\ShippingCgstInvoiceTotal" name="shipping_cgst_invoice_total"/>
+		    <block class="Magecomp\Gstcharge\Block\Sales\Totals\ShippingSgstInvoiceTotal" name="shipping_sgst_invoice_total"/>
+		    <block class="Magecomp\Gstcharge\Block\Sales\Totals\ShippingIgstInvoiceTotal" name="shipping_igst_invoice_total"/>
+			
+        </referenceBlock>
+		<referenceBlock name="invoice_items">
+
+                <action method="setTemplate">
+                    <argument name="template" translate="true" xsi:type="string">Magecomp_Gstcharge::order/invoice/items.phtml</argument>
+                </action>
+
+            </referenceBlock>
+    </body>
+</page>

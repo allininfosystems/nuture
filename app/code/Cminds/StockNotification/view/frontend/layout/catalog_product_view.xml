@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Cminds_StockNotification::css/notification-form.css"/>
+    </head>
+    <body>
+        <referenceBlock name="product.info.main">
+            <block class="Cminds\StockNotification\Block\StockNotification"
+                   name="stocknotification.subscribe"
+                   template="Cminds_StockNotification::catalog_product_view.phtml"
+            />
+        </referenceBlock>
+    </body>
+</page>

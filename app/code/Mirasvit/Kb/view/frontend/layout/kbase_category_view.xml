@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="1column" >
+    <body>
+        <attribute name="class" value="kbase"/>
+        <referenceBlock name="sidebar.additional" remove="true" />
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Knowledge Hub</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Knowledge Hub</item>
+                    <item name="label" xsi:type="string">Knowledge Hub</item>
+                </argument>
+            </action>
+        </referenceBlock>
+
+        <move element="page.main.title" destination="kb.category.article.list.additional" before="-"/>
+
+        <referenceContainer name="content">
+
+            <container name="sidebar.main" htmlTag="div" htmlClass="kb__sidebar" before="-">
+                
+                <block name="kb.category.sidebar" class="Mirasvit\Kb\Block\Category\Sidebar" template="category/sidebar.phtml" before="-"/>
+                <block name="kb.search.form" class="Mirasvit\Kb\Block\Search\Form" template="search/form.phtml"/>
+            </container>
+
+            <container name="custom.container" htmlTag="div" htmlClass="custom.container">
+                <block class="Mirasvit\Kb\Block\Category\Custom" name="custom" template="Mirasvit_Kb::category/custom.phtml"/>
+            </container>
+
+            <block name="kb.category.view" class="Mirasvit\Kb\Block\Category\View" template="category/view.phtml">
+                <block class="Mirasvit\Kb\Block\Category\View" name="kb.category.articles" template="Mirasvit_Kb::category/articles.phtml">
+                    <block class="Mirasvit\Kb\Block\Article\ListArticle" name="kb.category.articles.list" as="kb.article_list" template="Mirasvit_Kb::article/list.phtml">
+                        <container name="kb.category.article.list.additional" as="kb.additional" />
+                        <block class="Magento\Framework\View\Element\RendererList" name="kb.category.article.type.details.renderers" as="kb.details.renderers">
+                            <block class="Magento\Framework\View\Element\Template" as="kb.default"/>
+                        </block>
+                        <block class="Mirasvit\Kb\Block\Article\ArticleList\Toolbar" name="kb.article_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                            <block class="Magento\Theme\Block\Html\Pager" name="article_list_toolbar_pager"/>
+                        </block>
+                        <action method="setToolbarBlockName">
+                            <argument name="name" xsi:type="string">kb.article_list_toolbar</argument>
+                        </action>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="kb.category.view" remove="true" />
+        <!-- <referenceContainer name="sidebar.main" htmlTag="div" htmlClass="kb__sidebar">
+            <block name="kb.search.form" class="Mirasvit\Kb\Block\Search\Form" template="search/form.phtml"/>
+            <block name="kb.category.sidebar" class="Mirasvit\Kb\Block\Category\Sidebar" template="category/sidebar.phtml"/>
+        </referenceContainer> -->
+    </body>
+</page>

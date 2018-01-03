@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+
+            <block class="Cminds\StockNotification\Block\Adminhtml\StockNotification" name="stocknotification_post_grid">
+                <block class="Magento\Backend\Block\Widget\Grid" name="stocknotification_grid.grid" as="grid">
+                    <arguments>
+                        <argument name="id" xsi:type="string">id</argument>
+                        <argument name="dataSource" xsi:type="object">Cminds\StockNotification\Model\ResourceModel\StockNotification\Grid\Collection</argument>
+                        <argument name="default_sort" xsi:type="string">requests</argument>
+                        <argument name="default_dir" xsi:type="string">DESC</argument>
+                        <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" name="stocknotification_grid.grid.columnSet" as="grid.columnSet">
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="product_name">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Product Name</argument>
+                                <argument name="index" xsi:type="string">product_name</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="sku">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">SKU</argument>
+                                <argument name="index" xsi:type="string">sku</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="requests">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Requests</argument>
+                                <argument name="index" xsi:type="string">requests</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="requests_last_week">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Requests Last Week</argument>
+                                <argument name="index" xsi:type="string">requests_last_week</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="requests_last_month">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Requests Last Month</argument>
+                                <argument name="index" xsi:type="string">requests_last_month</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="requests_last_6_months">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Requests Last 6 Months</argument>
+                                <argument name="index" xsi:type="string">requests_last_6_months</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="last_request">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Last Request</argument>
+                                <argument name="index" xsi:type="string">last_request</argument>
+                                <argument name="type" xsi:type="string">date</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="first_request">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">First Request</argument>
+                                <argument name="index" xsi:type="string">first_request</argument>
+                                <argument name="type" xsi:type="string">date</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

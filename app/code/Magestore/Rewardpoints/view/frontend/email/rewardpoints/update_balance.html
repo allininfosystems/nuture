@@ -1,0 +1,44 @@
+<!--@subject Your points balance update @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$customer.name":"Customer Name",
+"var title":"Transaction Title",
+"var amount":"Transaction Amount",
+"var status":"Transaction Status",
+"var point_amount":"Point Amount Formated",
+"var total":"Customer Balance",
+"var point_balance":"Customer Balance Formated",
+"store url=\"customer/account/\"":"Customer Account Url"}
+@-->
+
+<!--@styles
+body,td { color:#2f2f2f; font:13px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+
+        {{template config_path="design/email/header_template"}}
+                <!-- [ middle starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <p><strong> {{trans "Dear %account_name" account_name=$customerName}}</strong>,<br/>
+                            {{trans "We have updated the point balance for you so that you can have relevant information of points earned or spent. To view more details, please click"}} <a href="{{store url="rewardpoints"}}" style="color:#1E7EC8;">{{trans "here" }}</a>.</p>
+                            <p style="border:1px solid #BEBCB7; padding:13px 18px; background:#F8F7F5; ">
+                                <strong>{{trans "The transaction detail" }}</strong><br/>
+                                <strong>{{trans "Transaction title" }}:</strong> {{var title}}<br/>
+                                <strong>{{trans "Transaction amount" }}:</strong> {{var point_amount}}<br/>
+                                <strong>{{trans "Transaction status" }}:</strong> {{var status}}<br/>
+                                <strong>{{trans "Current balance" }}:</strong> {{var point_balance}}
+                            <p>
+                            <p>{{trans "If you have any other questions, please feel free to contact us at" }} <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> {{trans "or call us at" }} {{config path='general/store_information/phone'}} {{trans "Monday - Friday" }}, {{trans "8am - 5pm PST" }}.</p>
+                            <p>{{trans "Thanks again" }},<br/>
+                                <strong>{{trans '%STORE' STORE=$store.getFrontendName()}}</strong>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+{{template config_path="design/email/footer_template"}}

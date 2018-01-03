@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Product Filter v3.x.x
+ * @copyright   Copyright (c) 2016 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Deprecated
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="prproductfilter_move_toolbar" type="Plumrocket\ProductFilter\Plugin\Block\Catalog\Product\ProductList\Toolbar" />
+    </type>
+    -->
+
+    <preference for="\Magento\Swatches\Block\LayeredNavigation\RenderLayered" type="Plumrocket\ProductFilter\Block\Swatches\LayeredNavigation\RenderLayered"/>
+    <preference for="\Magento\CatalogSearch\Model\Layer\Filter\Category" type="Plumrocket\ProductFilter\Model\CatalogSearch\Layer\Filter\Category"/>
+
+    <preference for="\Magento\Catalog\Model\Layer\Filter\DataProvider\Category" type="Plumrocket\ProductFilter\Model\Catalog\Layer\Filter\DataProvider\Category"/>
+
+	<type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="prproductfilter" xsi:type="array">
+                    <item name="class" xsi:type="string">Plumrocket\ProductFilter\Controller\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,36 @@
+<?php
+	/**
+ * Copyright © 2016 Magestore. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ */
+?>
+<?php $isLogin = $block->_getSession()->isLoggedIn()?>
+<?php if(!$isLogin){?>
+<button id="bt-loginper" class="bt-login-social" alt="<?php echo __('Login by Persona') ?>" title="<?php echo __('Login by Persona') ?>" onclick="perLogin()" href="javascript:void(0);">
+	<span><span><?php echo __('Persona Sign in') ?></span></span>
+</button>
+<script src="https://login.persona.org/include.js">/*thu vien js cua persona*/</script>
+<script type="text/javascript">
+    var newwindow;
+    var intId;
+    function perLogin(){
+       
+		navigator.id.logout();
+		navigator.id.watch({
+		loggedInUser: '',
+		// sau khi login
+		onlogin: function(assertion) {
+			window.location = "<?php echo $this->getPerLoginUrl()?>"+"?assertion="+assertion+"";
+		},
+		onlogout: function() {
+			
+		}
+	});
+		navigator.id.request();
+	
+        return false;
+    }
+	
+    </script>
+<?php }?>

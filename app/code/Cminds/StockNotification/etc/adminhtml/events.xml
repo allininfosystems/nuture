@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_save_before">
+        <observer name="ProductObserverBeforeSave"
+                  instance="Cminds\StockNotification\Observer\ProductObserverBeforeSave"/>
+    </event>
+    <event name="catalog_product_save_after">
+        <observer name="ProductObserverAfterSave"
+                  instance="Cminds\StockNotification\Observer\ProductObserverAfterSave"/>
+    </event>
+    <event name="cminds_stocknotification_product_is_salable">
+        <observer name="ProductIsSalable"
+                  instance="Cminds\StockNotification\Observer\ProductIsSalable"/>
+    </event>
+</config>

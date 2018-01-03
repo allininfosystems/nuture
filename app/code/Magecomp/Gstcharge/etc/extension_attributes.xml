@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Checkout\Api\Data\ShippingInformationInterface">
+        <attribute code="cgst_charge" type="decimal"/>
+        <attribute code="sgst_charge" type="decimal"/>
+		<attribute code="igst_charge" type="decimal"/>
+		<attribute code="shipping_cgst_charge" type="decimal"/>
+		<attribute code="shipping_sgst_charge" type="decimal"/>
+		<attribute code="shipping_igst_charge" type="decimal"/>	
+		<attribute code="buyer_gst_number" type="string"/>
+    </extension_attributes>
+</config>

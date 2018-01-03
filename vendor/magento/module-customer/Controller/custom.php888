@@ -1,0 +1,10 @@
+<?php
+
+namespace Magento\Customer\Controller;
+class Custom extends \Magento\Customer\Controller\
+{
+  public function execute()
+    {
+       echo 'string';
+    } 
+}

@@ -2,6 +2,7 @@
 return array (
   'modules' => 
   array (
+    'Allin_Knowledge' => 1,
     'Amasty_Base' => 1,
     'Amasty_Quickview' => 1,
     'Bluethink_Custom' => 1,

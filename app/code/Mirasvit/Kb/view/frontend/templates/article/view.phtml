@@ -17,7 +17,7 @@ $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
 $connection = $resource->getConnection();
 
 $postId = $article->getArticleId();
-$comments = "SELECT * FROM mst_kb_comment WHERE post_id=$postId and parent_id=0 order by id DESC";
+$comments = "SELECT * FROM mst_kb_comment WHERE post_id=$postId and parent_id=0 and status=1 order by id DESC";
 $allComments = $connection->fetchAll($comments);
 
 $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
@@ -88,7 +88,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 							
 							$pid = $allComment['id'];
 							
-							$replyComments = "SELECT * FROM mst_kb_comment WHERE post_id=$postId and parent_id=$pid order by id DESC";
+							$replyComments = "SELECT * FROM mst_kb_comment WHERE post_id=$postId and parent_id=$pid and status=1 order by id DESC";
 							$allReplyComments = $connection->fetchAll($replyComments);
 							
 							?>

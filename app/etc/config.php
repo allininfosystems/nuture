@@ -74,7 +74,7 @@ return array (
     'Magento_ConfigurableProduct' => 1,
     'Magento_Multishipping' => 1,
     'Magento_NewRelicReporting' => 1,
-    'Ebizmarts_MailChimp' => 0,
+    'Ebizmarts_MailChimp' => 1,
     'Magento_OfflinePayments' => 1,
     'Magento_SalesRule' => 1,
     'Magento_PageCache' => 1,

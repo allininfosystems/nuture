@@ -349,7 +349,8 @@ if ($request->getFullActionName() != 'cms_index_index') {
             var lastScrollTop = 0;
             var delta = 5;
             var navbarHeight = jQuery('.navigation').outerHeight();
-            var sticky = jQuery('.navigation');			
+            var sticky = jQuery('.navigation');
+			var heading = jQuery('.head-title');
             jQuery(window).scroll(function(event) {
                 didScroll = true;
             });
@@ -369,11 +370,12 @@ if ($request->getFullActionName() != 'cms_index_index') {
                     return;
                 }
 
-                if (st <= 34) {
-                    sticky.removeClass('fixed');
-					heading.removeClass('fixed');
+                if (st <= 32) {
+                    //sticky.removeClass('fixed');
+					//heading.removeClass('fixed');
                 } else {
-                    sticky.addClass('fixed');					
+                    //sticky.addClass('fixed');
+					//heading.addClass('fixed');
                 }
 
                 lastScrollTop = st;

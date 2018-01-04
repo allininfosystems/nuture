@@ -2176,6 +2176,17 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .minicart-items .product-item-details .details-qty input{ border: none; height: auto; width: auto; text-align: left;
  float: left; font-weight: 400;}
 .block-minicart .block-content > .actions {float: left; width: 100%;} 
+#rewardpoints-login-msg, #rewardpoints-needmore-msg{margin: 10px 0 0 !important; line-height: 20px !important;}
+.payment-reward-spending .payment-reward-spending-title .action-toggle {color: #333 !important; font-weight: 700;}
+.payment-reward-spending._active .payment-reward-spending-title .action-toggle:after{content: '\f107' !important; font-family: "FontAwesome";
+ color: #333; font-size: 20px; line-height: 20px;}
+.payment-reward-spending .payment-reward-spending-title .action-toggle:after{content: '\f106' !important;
+    font-family: "FontAwesome" !important;
+    color: #333 !important;
+    font-size: 20px !important;
+    line-height: 20px !important;} 
+.payment-method-title.field.choice label.label {font-weight: 700;} 
+.checkout-payment-method .step-title{font-weight: 700;}
 
 /*========= End OF Mini Cart ===========*/
 

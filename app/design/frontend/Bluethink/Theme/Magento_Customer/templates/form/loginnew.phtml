@@ -23,7 +23,7 @@
         <form 
             action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>"
             method="post"
-            id="login-form"
+            id="login-form-tophead"
             data-mage-init='{"validation":{}}'>
                 <?php echo $block->getBlockHtml('formkey'); ?>
             <input name="login[username]" placeholder="Email"  value="<?php echo $block->escapeHtml($block->getUsername()) ?> " <?php if ($block->isAutocompleteDisabled()) : ?> autocomplete="off"<?php endif; ?> id="email" type="email" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" data-validate="{required:true, 'validate-email':true}">

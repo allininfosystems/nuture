@@ -317,9 +317,18 @@ function newsletterSubmit(event){
 </script>        
  <script>
 	require(["jquery"],function(jQuery){
-		jQuery(".login").hover(function() {
-		    jQuery("#login-form").slideToggle();
+		
+		jQuery(".login").hover(function(){
+			jQuery('#login-form').show();
+		},function(){
+			jQuery('#login-form').hide();
 		});
+		/* jQuery(".login").hover(function() {
+		    jQuery("#login-form").show();			
+		});
+		jQuery("#login-form").mouseout(function() {
+		    jQuery("#login-form").hide();
+		}); */
 	});
 </script> 
 <script type="text/x-magento-init">

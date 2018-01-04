@@ -2169,8 +2169,13 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .block-minicart .items-total{font-family: 'Open Sans', sans-serif; line-height: 20px;}
 .block-minicart .subtotal{font-family: 'Open Sans', sans-serif; float: right;}
 .block-minicart .subtotal span.label {display: none;}
-.minicart-wrapper .block-minicart .rewardpoints-cart-sidebar {width: 100%; float: left; margin: 10px 0px; font-family: 'Open Sans', sans-serif;}
+.minicart-wrapper .block-minicart .rewardpoints-cart-sidebar {width: 100%; float: left; margin: 10px 0px 0; font-family: 'Open Sans', sans-serif;}
 .block-minicart .action.viewcart{font-family: 'Open Sans', sans-serif;}
+.minicart-items .product-item-details .details-qty label.label {color: #333; font-family: 'Open Sans', sans-serif; vertical-align: super;
+ text-transform: uppercase; font-size: 14px; font-weight: 400; padding: 0; float: left; line-height: 20px;}
+.minicart-items .product-item-details .details-qty input{ border: none; height: auto; width: auto; text-align: left;
+ float: left; font-weight: 400;}
+.block-minicart .block-content > .actions {float: left; width: 100%;} 
 
 /*========= End OF Mini Cart ===========*/
 

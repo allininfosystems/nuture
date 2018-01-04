@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Nuluv. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Nuluv_Liker::nuluv_liker_index" title="Likes" module="Nuluv_Liker"  sortOrder="20" dependsOnModule="Nuluv_Liker" action="liker/liker/index" resource="Nuluv_Liker::nuluv_liker_index"/>
+<!--AddMenu-->
+    </menu>
+</config>

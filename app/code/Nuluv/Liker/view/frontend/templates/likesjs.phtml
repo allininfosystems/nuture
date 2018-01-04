@@ -1,0 +1,46 @@
+<script type="text/javascript">
+require(['jquery'], function(){
+	jQuery(document).ready(function(){
+		
+
+		jQuery(".like").click(function(){
+        var id = this.id;   // Getting Button id
+        var split_id = id.split("_");
+
+        var text = split_id[0];
+        var product_id = split_id[1];  
+
+        var type_id= jQuery('#'+id).attr('type-id');
+        var page_type= jQuery('#'+id).attr('page-type');
+
+        
+        // AJAX Request
+        jQuery.ajax({
+        	url: 'http://localhost/lok/m218/liker/liker/',
+        	type: 'post',
+        	data: {type_id:type_id,product_id:product_id,page_type:page_type},
+        	dataType: 'json',
+        	success: function(data){
+        		var likes = data['likes'];
+        		jQuery("#likes_"+product_id).text(likes); 
+        		if(type_id == 0){
+        			jQuery('#'+id).attr('type-id','1');
+        			jQuery('#'+id).val('Like');
+        		}
+        		else{
+        			jQuery('#'+id).attr('type-id','0');
+        			jQuery('#'+id).val('Unlike');
+        		}
+        	}
+
+        });
+
+    });
+
+
+
+
+	});
+
+});
+</script>

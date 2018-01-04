@@ -1,7 +1,8 @@
 <?php
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of Object Manager
-
-
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$store = $storeManager->getStore();
+$baseUrl=$store->getBaseUrl();
 $priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
 $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
 $categoryHelper = $this->helper('Magento\Catalog\Helper\Category');
@@ -31,8 +32,11 @@ foreach ($categoryHelper->getStoreCategories() as $category):
 endforeach;
 $customerSession = $objectManager->get('Magento\Customer\Model\Session');
 $wishlist_id = array();
+$customerEmail='';
+$customerid='';
 if ($customerSession->isLoggedIn()) {
     $customerid = $customerSession->getCustomer()->getId();
+	$customerEmail = $customerSession->getCustomer()->getEmail();
     $Wishlist_Model = $objectManager->create('\Magento\Wishlist\Controller\WishlistProviderInterface');
     $currentUserWishlist = $Wishlist_Model->getWishlist();
     if ($currentUserWishlist) {
@@ -108,7 +112,7 @@ if ($customerSession->isLoggedIn()) {
 													<div class="overlay sold-out">
 														<div class="overlay-sold-out-content"><a class="sold-out-btn" href="<?= /* @escapeNotVerified */ $product->getProductUrl() ?>">Sold Out</a></div>
 													</div>
-													<a href="<?php echo $product->getProductUrl(); ?>" class="get-info">Get Notified</a>
+													<a href="<?php if($customerEmail!=''){ echo 'javascript:void(0)'; }else{ echo $product->getProductUrl(); }  ?>" <?php if($customerEmail!=''){ ?>onclick="notification(<?php echo $product->getId(); ?>)"<?php }  ?> class="get-info notmess<?php echo $product->getId(); ?>">Get Notified</a>
 												<?php endif; ?>												
                                             </div>
                                             <div class="product-item-details">
@@ -200,7 +204,7 @@ if ($customerSession->isLoggedIn()) {
 													<div class="overlay sold-out">
 														<div class="overlay-sold-out-content"><a class="sold-out-btn" href="<?= /* @escapeNotVerified */ $product->getProductUrl() ?>">Sold Out</a></div>
 													</div>
-													<a href="<?php echo $product->getProductUrl(); ?>" class="get-info">Get Notified</a>
+													<a href="<?php if($customerEmail!=''){ echo 'javascript:void(0)'; }else{ echo $product->getProductUrl(); }  ?>" <?php if($customerEmail!=''){ ?>onclick="notification(<?php echo $product->getId(); ?>)"<?php }  ?> class="get-info notmess<?php echo $product->getId(); ?>">Get Notified</a>
 												<?php endif; ?>
 											</div>
 											<div class="product-item-details">
@@ -279,7 +283,7 @@ if ($customerSession->isLoggedIn()) {
 													<div class="overlay sold-out">
 														<div class="overlay-sold-out-content"><a class="sold-out-btn" href="<?= /* @escapeNotVerified */ $product->getProductUrl() ?>">Sold Out</a></div>
 													</div>
-													<a href="<?php echo $product->getProductUrl(); ?>" class="get-info">Get Notified</a>
+													<a href="<?php if($customerEmail!=''){ echo 'javascript:void(0)'; }else{ echo $product->getProductUrl(); }  ?>" <?php if($customerEmail!=''){ ?>onclick="notification(<?php echo $product->getId(); ?>)"<?php }  ?> class="get-info notmess<?php echo $product->getId(); ?>">Get Notified</a>
 												<?php endif; ?>
 											</div>
 											<div class="product-item-details">
@@ -350,7 +354,7 @@ if ($customerSession->isLoggedIn()) {
 													<div class="overlay sold-out">
 														<div class="overlay-sold-out-content"><a class="sold-out-btn" href="<?= /* @escapeNotVerified */ $product->getProductUrl() ?>">Sold Out</a></div>
 													</div>
-													<a href="<?php echo $product->getProductUrl(); ?>" class="get-info">Get Notified</a>
+													<a href="<?php if($customerEmail!=''){ echo 'javascript:void(0)'; }else{ echo $product->getProductUrl(); }  ?>" <?php if($customerEmail!=''){ ?>onclick="notification(<?php echo $product->getId(); ?>)"<?php }  ?> class="get-info notmess<?php echo $product->getId(); ?>">Get Notified</a>
 												<?php endif; ?>
                                                                                                                                                 </div>
                                                                                                                                                 <div class="product-item-details">
@@ -422,3 +426,24 @@ if ($customerSession->isLoggedIn()) {
 			 });
 		  });
    </script>
+<script>
+    function notification(pid){
+		require(['jquery'],function(jQuery){
+			var url = '<?php echo $baseUrl; ?>stocknotification/custom/index';
+			var email = '<?php echo $customerEmail; ?>';
+			var customer_id = '<?php echo $customerid; ?>';
+			jQuery(document).ready(function(){
+				jQuery.ajax({
+                  showLoader: true,
+                  url: url,
+                  data: {pid:pid,email:email,cid:customer_id},
+                  type: "POST",
+              }).done(
+                  function (response) {
+                      jQuery('.notmess' + pid).html(response);
+                  }
+              );
+			});
+		}); 
+	}
+</script>

@@ -22,9 +22,9 @@ class Index extends Action
 		
 		if ($this->checkNotification($pid,$email,$cid) === false) {
             $this->saveNotification($pid,$email,$cid);
-			echo '<p style="color:green;">We will send an email to '.$email.' when the product will back in stock!</p>';
+			echo 'Notified';
         } else {
-            echo '<p style="color:red;">Your e-mail '.$email.' is already on the list!</p>';
+            echo 'Already Notified';
         }
     }
 	public function checkNotification($pid,$email,$cid){

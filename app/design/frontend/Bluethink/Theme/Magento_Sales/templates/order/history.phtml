@@ -13,6 +13,7 @@
                     <th scope="col" "><?= /* @escapeNotVerified */ __('Qty') ?></th>
                     <th scope="col" ><?= /* @escapeNotVerified */ __('Order Status') ?></th>
                     <th scope="col" ><?= /* @escapeNotVerified */ __('Write Product Review') ?></th>
+					<th scope="col" class="col actions">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,11 @@
                         <td><?php echo $orderItemst['qty_ordered']; ?></td>
                         <td><?=$_order->getStatusLabel(); ?></td>
                         <td class="product-review"><a href="#" class="brown-btn">Track Shipment</a></td>
+						<td data-th="<?php echo $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                            <a href="<?php /* @escapeNotVerified */ echo $block->getViewUrl($_order) ?>" class="action view">
+                                <span><?php /* @escapeNotVerified */ echo __('View Order') ?></span>
+                            </a>
+                        </td>
                     </tr>
                      <?php  } ?>
                 <?php endforeach; ?>

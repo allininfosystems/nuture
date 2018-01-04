@@ -133,6 +133,7 @@ return array (
     'Mirasvit_Core' => 1,
     'Mirasvit_Kb' => 1,
     'Nuluv_Freeshipamt' => 1,
+    'Nuluv_Liker' => 1,
     'Nuluv_Lookingfor' => 1,
     'PayUIndia_Payu' => 1,
     'Plumrocket_Base' => 1,

@@ -408,8 +408,8 @@ footer.footer .brand-slider { width: 100%; height: auto; text-align: center; dis
 .link-box .tags a { display: inline-block; padding: 10px 18px; color: #cbcbcb; text-decoration: none; border: 1px solid #cbcbcb; margin-bottom: 4px; -webkit-border-radius: 10px; -moz-border-radius: 10px; -o-border-radius: 10px; border-radius: 10px; font-size: 13px; -webkit-transition: all .4s ease-in-out; -moz-transition: all .4s ease-in-out; -o-transition: all .4s ease-in-out; transition: all .4s ease-in-out; margin-right: 4px; }
 .link-box .tags a:hover { background: #fff; color: #333; border: 1px solid #fff; }
 .link-box p { font-size: 13px; color: #fff; margin-bottom: 0px; }
-.link-box form.newsletter { width: 100%; height: auto; }
-.link-box form .form-group { width: 100%; height: auto; display: block; margin: 15px 0px; float: left; }
+.link-box form.newsletter { width: 100%; height: auto; margin: 15px 0px; position: relative;}
+.link-box form .form-group {width: auto; height: auto; display: inline-block; margin: 0;}
 .link-box form .form-group input { width: 100%; height: 40px; border: 1px solid #cbcbcb; -webkit-border-radius: 5px; -moz-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; background: none; padding: 0px 20px; color: #fff; }
 .link-box form .form-group input::-webkit-input-placeholder { color: #cbcbcb; }
 .link-box form .form-group input::-moz-placeholder { color: #cbcbcb;; }
@@ -1133,7 +1133,6 @@ section.daily-dose { width: 100%; height: auto; display: block; padding: 45px 0p
 .product-info-detail {padding: 30px 10px;}
 
 .prd_control {clear: both; overflow: hidden;}
-.action.primary:hover {background: none !important; border: none !important;}
 #cart-93-qty {width: 32px; border: none !important;}
 .cart-summary {height: 359px;}
 
@@ -1225,7 +1224,6 @@ section.popular-products .owl-carousel.owl-drag .owl-item {margin-right: 34px !i
 .cart-summary .block .fieldset {margin: 0 0 25px 0px !important;}
 .cart-summary .apply {padding: 15px !important; border-radius: 0 !important; text-transform: uppercase; font-size: 13px !important; 
  background: #7e6674 !important; color: #fff !important; font-weight: normal !important; border: none !important;}
-.action.primary:hover {border: none !important;}
 .messages div {    font-family: 'Raleway', Times, serif !important; font-size: 15px;}
 .filter.product-info {margin-top: -18px;}
 .block-cart-failed .action.continue, .cart-container .form-cart .action.continue {border: none;}
@@ -1242,10 +1240,6 @@ section.popular-products .owl-carousel.owl-drag .owl-item {margin-right: 34px !i
 
 /*for details page media gallery*/
 
-.abs-shopping-cart-items .action.continue:hover, .block-cart-failed .action.continue:hover, .cart-container .form-cart .action.continue:hover {background: #e2e2e2!important; border: 1px solid #cdcdcd!important;  color: #555 !important;}
-.action.primary:hover {background: #e2e2e2!important; border: 1px solid #cdcdcd!important;  color: #555 !important;}
-
-.action.primary:focus, .action.primary:active {background: #e2e2e2!important; border: 1px solid #cdcdcd!important;  color: #555 !important;}
 .cart-summary {height: auto !important;}
 #co-shipping-method-form .cart-summary .block .item-options {display: inline-block; position: relative; top: 18px;}
 #co-shipping-method-form .item-title {display: inline-block;}
@@ -2052,7 +2046,8 @@ p.sublink.open:after{content: "\f068"; font-family:FontAwesome; right: 0; positi
 .page-header .login-box.lga input::-webkit-input-placeholder {color: #919191;}
 .page-header .social-login-authentication-channel .btn{font-size:10px;}
 .page-header .login-box.lga .sub-btn {padding: 9px 21px !important; border: 1px solid #7e6674 !important; font-size: 10px;}
-.page-header .login-bga {width: 100%; background-size: cover; padding: 10px 0 10px 0; margin-bottom: 0; background: rgba(160, 158, 158, 0.3);}
+.page-header .login-bga {width: 100%; background-size: cover; padding: 1px 0 6px 0; margin-bottom: 0; background: rgba(160, 158, 158, 0.3);}
+.page-header .login-bga .container {padding: 0px 6px;}
 .minicart-wrapper {display: inline-block; position: absolute; margin-top: 0; bottom: 0px; right: 0; top:33px; z-index: 9;}
 nav.navigation .cart-search{right: 45px;}
 .page-header .header.content {padding: 0px 20px 0;}
@@ -2164,6 +2159,18 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 /*============ Mini Cart ===========*/
 
 .minicart-items-wrapper{height: 200px !important;}
+.minicart-items .product-item-name{display: inline-block; max-width: 150px; vertical-align: top; line-height: 20px;}
+.minicart-items .product-item-details {text-align: left;}
+.minicart-items .product-item-pricing {display: inline-block;}
+.minicart-wrapper .product .actions{display: none;}
+.minicart-items .product-item-details .price-excluding-tax {margin: 3px 0 0;}
+.minicart-items .product-item-name a{font-family: 'Open Sans', sans-serif;}
+.minicart-items .product-item-details .price{font-family: 'Open Sans', sans-serif;}
+.block-minicart .items-total{font-family: 'Open Sans', sans-serif; line-height: 20px;}
+.block-minicart .subtotal{font-family: 'Open Sans', sans-serif; float: right;}
+.block-minicart .subtotal span.label {display: none;}
+.minicart-wrapper .block-minicart .rewardpoints-cart-sidebar {width: 100%; float: left; margin: 10px 0px; font-family: 'Open Sans', sans-serif;}
+.block-minicart .action.viewcart{font-family: 'Open Sans', sans-serif;}
 
 /*========= End OF Mini Cart ===========*/
 
@@ -2431,6 +2438,12 @@ span#back-to-top {right: 22px; width: 40px; height: 40px; background: #7e6674; z
 #back-to-top .fa{color: #fff; font-size: 18px;}
 .soci .social-footer ul {padding: 0; display: inline-block;}
 .page.messages{display:none;}
+.newsletter .actions button.action.subscribe.primary span {font-size: 0;}
+.newsletter .actions button.action.subscribe.primary {background: url(../images/newslatter-arrow.png) top center no-repeat; border: none !important;
+ width: 40px; height: 40px; background-size: cover; position: absolute; top: 0;}
+.newsletter .actions button.action.subscribe.primary:hover,.newsletter .actions button.action.subscribe.primary:active{background: url(../images/newslatter-arrow.png) top center no-repeat !important; 
+ background-size: cover !important; box-shadow:none;} 
+.newsletter .actions {display: inline-block;}
 
 /*===== End footer ====*/
 
@@ -2481,7 +2494,6 @@ nav.navigation ul.left-nav li a, nav.navigation ul.right-nav li a{font-size: 14p
 .megamenu .mg_cat_heading:before{content: "\f067"; font-family: FontAwesome; right: 0; position: absolute; font-size: 14px;}
 .megamenu .mg_cat_heading.activate:before{content: "\f068"; font-family: FontAwesome; right: 0; position: absolute; font-size: 14px;}
 .header-bg .head-title{padding-top: 30px;}
-.cus-container {margin-top: 93px;}
 .header-bg{background-position: center calc(100% - 10px); padding-bottom: 35px;}
 .minicart-wrapper .block-minicart {top: 55px;}
 .navigation a{padding-top: 12px;}

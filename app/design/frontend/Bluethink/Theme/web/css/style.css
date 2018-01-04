@@ -2188,6 +2188,11 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .payment-method-title.field.choice label.label {font-weight: 700;} 
 .checkout-payment-method .step-title{font-weight: 700;}
 
+.checkout-index-index .billing-address-same-as-shipping-block [type="checkbox"]:checked + label:after{display:none !important;}
+[type="checkbox"]:not(:checked) + label:after, [type="checkbox"]:checked + label:after{display:none !important;}
+.billing-address-same-as-shipping-block label .title{margin-left: 0 !important;}
+#billing-new-address-form .field.choice label span {margin-left: 18px !important;}
+
 /*========= End OF Mini Cart ===========*/
 
 

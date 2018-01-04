@@ -4,3 +4,4 @@
 /app/etc/env.php
 /vendor/magento/framework/Encryption/Crypt.php
 /app/etc/config.php
+/pub/media

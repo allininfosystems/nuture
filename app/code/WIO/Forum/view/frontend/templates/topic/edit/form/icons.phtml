@@ -1,0 +1,29 @@
+<?php
+$forumIcons = $block->getAllIcons();
+$forumIconId = $block->getCurrentIcon();
+if (is_array($forumIcons)):
+  ?>
+  <div class="forum-topic-edit-icons">
+    <div class="forum-icons-placeholder">
+      <input type="radio" id="input-icon-none" <?php if ($block->getCurrentIcon() == ''): ?> checked="checked" <?php endif ?>  name="icon_id[]" value="" />
+      <label for="input-icon-none" > <?php echo __('None') ?></label>
+    </div>
+    <?php
+    $all = 1;
+    foreach ($forumIcons['ids'] as $forumIconId):
+      if (!($all % 3)):
+        ?>
+        <div class="clearfix"></div>
+      <?php endif; ?>
+      <div class="forum-icons-placeholder">
+        <input <?php if ($block->getCurrentIcon() == $forumIconId): ?> checked="checked" <?php endif; ?> type="radio" id="input-icon-<?php echo $forumIconId ?>" name="icon_id[]" value="<?php echo $forumIconId ?>" />
+        <label for="input-icon-<?php echo $forumIconId ?>" ><img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getIconPath($forumIconId)) ?>" /> <?php echo __($forumIcons['key'][$forumIconId]) ?></label>
+      </div>
+      <?php
+      $all++;
+    endforeach;
+    ?>
+  </div>
+  <div class="clearfix"></div>
+
+<?php endif; ?>

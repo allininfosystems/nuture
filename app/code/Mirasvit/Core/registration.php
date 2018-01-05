@@ -9,11 +9,16 @@
  *
  * @category  Mirasvit
  * @package   mirasvit/module-core
- * @version   1.2.21
+ * @version   1.2.48
  * @copyright Copyright (C) 2017 Mirasvit (https://mirasvit.com/)
  */
 
 
+$registration = dirname(dirname(dirname(__DIR__))) . '/vendor/mirasvit/module-core/src/Core/registration.php';
+if (file_exists($registration)) {
+    // module was already installed via composer
+    return;
+}
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
     'Mirasvit_Core',

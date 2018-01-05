@@ -1,0 +1,127 @@
+<?php
+//@codingStandardsIgnoreFile
+//if (!$block->getMaxPointsNumberToSpent()) {
+//    return;
+//}
+$helper = $this->helper('Mirasvit\Rewards\Helper\Data');
+
+$applyButtonStyle = 'display: none';
+$cancelButtonStyle = 'display: none';
+if (!$block->getPointsAmount()) {
+    $applyButtonStyle = '';
+} else {
+    $cancelButtonStyle = '';
+}
+$blockClass = 'col-mg';
+if ($block->is1ColumnDesign()) {
+    $blockClass = '';
+}
+?>
+<div class="<?php echo $blockClass; ?> mg-lg-12 mg-md-12 mg-sm-12 mg-xs-12" style="display: none;">
+    <div id="rewards__checkout-cart-usepoints" class="rewards__checkout-cart-usepoints">
+        <div class="col-wrapper">
+            <div class="onestep-title">
+                <h2>
+                    <i class="fa fa-credit-card"></i>
+                    <?= __('Use Reward Points') ?>
+                </h2>
+            </div>
+            <div class="discount-form">
+                <p>
+                    <?= __('You have <b>%1</b> available.', $helper->formatPoints($block->getBalancePoints())) ?>
+                    <br>
+                    <?= __('Enter amount of points to spend:'); ?>
+                </p>
+
+                <input type="hidden" name="remove-points" id="remove-points" value="0"/>
+
+                <div class="amount">
+                    <div class="input-box">
+                        <input type="text" class="input-text" id="points_amount" name="points_amount"
+                               value="<?= $block->getPointsAmount() ? (int)$block->getPointsAmount() : '' ?>"
+                            />
+                        <div class="validation-advice" id="advice-points_amount" style="display: none"></div>
+                    </div>
+
+                    <div class="actions-button">
+                        <button id="one-step-checkout-rewards-points-apply-btn" type="button"
+                                class="button" style="<?php echo $applyButtonStyle; ?>">
+                            <span><?= __('Apply Points') ?></span>
+                        </button>
+                        <button id="one-step-checkout-rewards-points-cancel-btn" type="button"
+                                class="button" style="<?php echo $cancelButtonStyle; ?>">
+                            <span><?= __('Cancel Points') ?></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="rewards_checkout_all_points_container" class="input-box"
+                     style="<?php echo $applyButtonStyle; ?>">
+                    <input type='checkbox' id="points_all" name="points_all"
+                        <?= $block->getPointsAmount() == $block->getMaxPointsNumberToSpent() ? 'checked' : '' ?> />
+                    <label for="points_all" class="">
+                        <?= __('Use maximum %1', $helper->formatPoints($block->getMaxPointsNumberToSpent())) ?>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //<![CDATA[
+    require(['mirasvit/rewards/onestepcheckout/securecheckout'], function (SecureCheckoutRewardsPoints) {
+        new SecureCheckoutRewardsPoints({
+            isPointsApplyed: <?php echo $block->getPointsAmount() ? 'true' : 'false'; ?>,
+            applyRewardsPointsButton: '#one-step-checkout-rewards-points-apply-btn',
+            cancelRewardsPointsButton: '#one-step-checkout-rewards-points-cancel-btn',
+            allPointsRewardsPointsBlock: '#rewards_checkout_all_points_container',
+            pointsAmountInput: 'points_amount',
+            rewardsPointsContainer: '#rewards__checkout-cart-usepoints',
+            applyRewardsPointsUrl: '<?php echo $block->getApplySecureCheckoutUrl()?>',
+            validationRequireMessage: '<?php echo __('This is a required field') ?>',
+            errorMessageField: '#advice-points_amount',
+        })
+    })
+
+    //]]>
+</script>
+
+<script type="text/javascript">
+    //<![CDATA[
+
+    function rewardsFormSubmit(isRemove) {
+        if (isRemove) {
+            jQuery('#points_amount').removeClass('required-entry');
+            jQuery('#remove-points').val("1");
+        } else {
+            jQuery('#points_amount').addClass('required-entry');
+            jQuery('#remove-points').val("0");
+        }
+    }
+    var maxPointsNumberToSpent = <?= $block->getMaxPointsNumberToSpent() ?>;
+
+    require([
+        "jquery"
+    ], function ($) {
+        $(document).ready(function () {
+            $('body').on('click', '#points_all', function (event) {
+                if ($('#points_amount').val() == maxPointsNumberToSpent) {
+                    $('#points_amount').val('');
+                } else {
+                    $('#points_amount').val(maxPointsNumberToSpent);
+                }
+            });
+
+            $('body').on('keyup', '#points_amount', function () {
+                var val = parseInt($('#points_amount').val());
+                if (isNaN(val) || val < maxPointsNumberToSpent) {
+                    $('#points_all').removeProp('checked');
+                } else {
+                    $('#points_all').prop('checked', 'checked');
+                    $('#points_amount').val(maxPointsNumberToSpent);
+                }
+            });
+        });
+    });
+    //]]>
+</script>

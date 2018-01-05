@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Mirasvit\Rewards\Block\Checkout\Cart\Tooltip" name="rewards-tooltip"
+                   before="rewards-notification"/>
+            <block class="Mirasvit\Rewards\Block\Notification\Message" name="rewards-notification"
+                   template="notification/block.phtml" before="-"/>
+            <referenceContainer name="cart.summary">
+                <block class="Mirasvit\Rewards\Block\Checkout\Cart\RewardsPoints" name="rewards.points" template="checkout/cart/rewardspoints.phtml" after="checkout.cart.summary.title">
+                    <arguments>
+                        <argument name="jsLayout" xsi:type="array">
+                            <item name="types" xsi:type="array">
+                                <item name="form.input" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/abstract</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="provider" xsi:type="string">checkoutProvider</item>
+                                        <item name="deps" xsi:type="array">
+                                            <item name="0" xsi:type="string">checkoutProvider</item>
+                                        </item>
+                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                        <item name="elementTmpl" xsi:type="string">ui/form/element/input</item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="components" xsi:type="array">
+                                <item name="block-rewards-points-form" xsi:type="array">
+                                    <item name="component" xsi:type="string">uiComponent</item>
+                                    <item name="children" xsi:type="array">
+                                        <item name="rewards-points" xsi:type="array">
+                                            <item name="component" xsi:type="string">Mirasvit_Rewards/js/checkout/cart/rewards_points</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="errors" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">0</item>
+                                                    <item name="component" xsi:type="string">Mirasvit_Rewards/js/view/checkout/messages</item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+            </referenceContainer>
+        </referenceContainer>
+    </body>
+</page>

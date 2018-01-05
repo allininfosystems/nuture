@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+    <event name="tag_save_commit_after">
+        <observer name="mst_tag_save_commit_after" instance="\Mirasvit\Rewards\Observer\BehaviorTagSubmit"/>
+    </event>
+    <event name="review_save_commit_after">
+        <observer name="mst_review_save_commit_after" instance="\Mirasvit\Rewards\Observer\BehaviorReviewSubmit"/>
+    </event>
+    <event name="adminhtml_customer_save_after">
+        <observer name="mst_adminhtml_customer_save_after" instance="\Mirasvit\Rewards\Observer\AdminCustomerSaveAfter"/>
+    </event>
+    <event name="sales_quote_save_after">
+        <observer name="mst_rewards_model_sales_quote_save_after" instance="\Mirasvit\Rewards\Observer\AdminOrderQuoteAfterSave"/>
+    </event>
+</config>

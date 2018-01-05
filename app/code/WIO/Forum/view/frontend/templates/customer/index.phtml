@@ -1,0 +1,78 @@
+<div class="forum-myaccount-container">
+  <form class="form form-forum-myaccount" 
+        action="<?php echo $block->getFormAction() ?>" 
+        method="post" 
+        id="form-validate-forum-myaccount" 
+        enctype="multipart/form-data" 
+        data-hasrequired="* <?php echo __('Required Fields') ?>" 
+        autocomplete="off" 
+        novalidate="novalidate">
+          <?php echo $block->getBlockHtml('formkey') ?>
+    <div class="forum-user-avatar-container">
+      
+      <img src="<?php echo $block->getAvatarImg() ?>" class="forum-user-avatar" />
+      <?php if($block->getAvatar()): ?> 
+      <div class="forum-customer-delete-avatar">
+        <span class="label">
+          <input type="checkbox" name="avatar[delete]" />
+          <?php echo __('Remove Avatar'); ?>
+        </span>
+      </div>
+      <br>
+      <?php endif; ?>
+
+    </div>
+    <fieldset class="fieldset info">
+      <div class="field field-name-nickname required">
+        <label class="label" for="nickname">
+          <span><?php echo __('Nickname') ?></span>
+        </label>
+        <div class="control">
+          <input type="text" id="nickname" name="nickname" 
+                 value="<?php echo $block->getNickName() ?>" 
+                 title="<?php echo __('Nickname') ?>" 
+                 class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+        </div>
+      </div>
+      <div class="field field-name-avatar">
+        <label class="label" for="avatar">
+          <span><?php echo __('Avatar') ?></span>
+        </label>
+        <div class="control">
+          <input type="file" name="avatar" class="input-file" /><br>
+          <p class="note"><?php echo __('width: 100px, .jpg, .png, .gif, .jpeg') ?></p>
+        </div>
+      </div>
+      <div class="field field-name-signature">
+        <label class="label" for="signature">
+          <span><?php echo __('Signature') ?></span>
+        </label>
+        <div class="control">
+          <textarea class="forum-myaccount-signature-input" id="signature" name="signature"><?php echo $block->getSignature() ?></textarea>
+          <br>
+          <p class="note">
+            <?php echo htmlspecialchars(__('alowed tags: <b>, <ul>, <em>')) ?>
+          </p>
+        </div>
+      </div>
+    </fieldset>
+    <div class="actions-toolbar">
+      <div class="primary">
+        <button type="submit" class="action save primary" title="<?php echo __('Save') ?>">
+          <span><?php echo __('Save') ?></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript">
+  require([
+    'jquery',
+    'mage/mage'
+  ], function ($) {
+
+    var dataForm = $('#form-validate-forum-myaccount');
+    dataForm.mage('validation', {});
+
+  });
+</script>

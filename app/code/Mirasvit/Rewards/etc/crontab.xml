@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="mirasvit_rewards_cron" instance="Mirasvit\Rewards\Model\Cron" method="run">
+            <schedule>* * * * *</schedule>
+        </job>
+    </group>
+    <group id="index">
+        <job name="mirasvit_rewards_cron_twitter_rules" instance="Mirasvit\Rewards\Model\Cron\TwitterRule" method="run">
+            <schedule>*/1 * * * *</schedule>
+        </job>
+    </group>
+</config>

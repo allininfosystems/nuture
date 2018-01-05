@@ -1,0 +1,51 @@
+<?php
+$collection = $block->getCollection();
+?>
+<div class="forum-search-results-topics forum-search-results">
+
+  <div class="clearfix">&nbsp;</div>
+  <?php if (!$collection || !$collection->getSize()): ?>
+    <div class="forum-grid-no-data">
+      <?php echo __('No Data Found') ?>
+    </div>
+  <?php else: ?>
+    <div class="toolbar top forum-toolbar">
+      <?php echo $block->getPagerHtml(); ?>
+    </div>
+  
+    <div class="forum-sort">
+      <?php echo __('Sort By') ?>
+      &nbsp;&nbsp;
+      <a <?php echo ($this->getSortType() == 'asc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl('asc') ?>"><?php echo __('Oldest') ?></a>
+      &nbsp;|&nbsp;
+      <a <?php echo ($this->getSortType() == 'desc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl('desc') ?>"><?php echo __('Newest') ?></a>
+    </div>
+
+    <table class="forum-grid forum-list grid">
+      <thead>
+        <tr>
+          <th>
+            <?php echo __('Search Results'); ?>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($collection as $_item):
+        ?>
+        
+          <tr>
+            <td>
+              <div class="forum-search-topic">
+                <div class="forum-search-topic">
+                  <?php echo __('Topic: <strong><a href="%2">%1"</a></strong>', $block->setMarkPost($_item->getTitle()), $block->getTopicViewUrl($_item) ); ?>
+                </div>
+              </div>  
+            </td>
+          </tr>
+          
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  <?php endif; ?>
+</div>  

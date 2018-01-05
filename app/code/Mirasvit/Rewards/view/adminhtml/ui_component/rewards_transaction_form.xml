@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">rewards_transaction_form.rewards_transaction_form_data_source</item>
+            <item name="deps" xsi:type="string">rewards_transaction_form.rewards_transaction_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">rewards_transaction_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Mirasvit\Rewards\Ui\General\Form\Control\BackButton</item>
+            <item name="save" xsi:type="string">Mirasvit\Rewards\Ui\General\Form\Control\SaveButton</item>
+        </item>
+    </argument>
+    <dataSource name="rewards_transaction_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Mirasvit\Rewards\Ui\Transaction\Form\DataProvider</argument>
+            <argument name="name" xsi:type="string">rewards_transaction_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">transaction_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/*/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string">General Information</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="amount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Points Balance Change</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="history_message">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Message in the rewards history</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="additionalInfo" xsi:type="string"><![CDATA[
+                        Customer will see this in his account
+                        ]]>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="email_message">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="files_browser_window_url" xsi:type="boolean">false</item>
+                        <item name="height" xsi:type="string">300px</item>
+                        <item name="toggle_button" xsi:type="boolean">false</item>
+                        <item name="add_variables" xsi:type="boolean">false</item>
+                        <item name="add_widgets" xsi:type="boolean">false</item>
+                        <item name="add_images" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="source" xsi:type="string">email_message</item>
+                    <item name="label" xsi:type="string">Message for customer notification email</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="wysiwyg" xsi:type="boolean">false</item>
+                    <item name="dataScope" xsi:type="string">email_message</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="rows" xsi:type="number">8</item>
+                    <item name="additionalInfo" xsi:type="string"><![CDATA[
+                        You can use the following variables:<br>
+                        {{var customer.name}} - customer name<br>
+                        {{store url=""}} - store URL<br>
+                        {{var store.getFrontendName()}} - store name<br>
+                        {{var transaction_amount}} - formatted amount of current transaction (e.g 10 Rewards Points)<br>
+                        {{var balance_total}} - formatted balance of customer account (e.g. 100 Rewards Points)<br>
+                        Leave empty to use default notification email.<br>
+                        ]]>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="in_transaction_user">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">in_transaction_user</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </field>
+        <container name="customer_grid" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="additionalClasses" xsi:type="string">customer-grid</item>
+                </item>
+            </argument>
+            <insertListing name="rewards_customer_grid">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="autoRender" xsi:type="boolean">true</item>
+                        <item name="dataScope" xsi:type="string">rewards_customer_grid</item>
+                        <item name="ns" xsi:type="string">rewards_customer_grid</item></item>
+                </argument>
+            </insertListing>
+        </container>
+    </fieldset>
+</form>

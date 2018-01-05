@@ -1,0 +1,93 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+$bookmarks_ids = $block->getBookmarksIds();
+?>
+<div class="main-forum-container">
+  <div class="forum-top-block">
+    <?php echo $block->getChildHtml('forum.index.top'); ?>
+  </div>
+  <div class="forum-content-container forum-content-bookmark-container">
+    <div class="forum-list-container clearfix">
+      <h3 class="grid-title">
+        <?php echo __('My Bookmarks'); ?>
+      </h3>
+    </div>
+
+    <table class="forum-grid forum-list grid" id="wio-forum-table-bookmark">
+      <thead>
+        <tr>
+          <th>
+            <?php echo __('Forum'); ?>
+          </th>
+          <th>
+            <?php echo __('Topic'); ?>
+          </th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if (!$bookmarks_ids || !is_array($bookmarks_ids)): ?>
+          <tr>
+            <td colspan="3">
+              <div class="forum-grid-no-data">
+                <?php echo __('No Data Found') ?>
+              </div>
+            </td>
+          </tr>
+        <?php else: ?>
+          <?php
+          foreach ($bookmarks_ids as $topic_id):
+            $item = $block->getItem($topic_id);
+            if (!$item):
+              continue;
+            endif;
+            ?>
+            <tr id="wio-forum-row-id-<?php echo $topic_id ?>">
+              <td class="bookmark-forum-item">
+
+                <div class="forum-icons">
+                  <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_forum.png'); ?>" />
+                </div>
+                <div class="forum-details">
+                  <a class="forum-display-description" href="<?php echo $block->getItemUrl($item->getParentForum()); ?>"><?php echo $item->getParentForum()->getTitle() ?></a>
+                  <div class="forum-created-time">
+                    <?php echo __('Created') ?>: <?php echo $block->getTimeAccordingToTimeZone($item->getParentForum()->getCreatedTime()); ?>
+                  </div>
+                </div>
+                
+              </td>
+              <td class="bookmark-topic-item">
+                <div class="forum-icons">
+                  <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_topic.png'); ?>" />
+                </div>
+                <div class="forum-details">
+                  <a class="forum-display-description" href="<?php echo $block->getItemUrl($item->getParentForum(), $item); ?>"><?php echo $item->getTitle() ?></a>
+                  <div class="forum-created-time">
+                    <?php echo __('Created') ?>: <?php echo $block->getTimeAccordingToTimeZone($item->getCreatedTime()); ?>
+                  </div>
+                </div>
+              </td>
+              <td class="bookmark-manage-item">
+                <a href="javascript:void(0)" onclick="WIO_FORUM_BOOKMARKS.removeBookmark(<?php echo $topic_id ?>)"><?php echo __('Delete') ?></a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </tbody>
+    </table>
+    <div class="forum-bottom-block">
+      <?php echo $block->getChildHtml('forum.index.bottom'); ?>
+    </div>
+  </div>  
+
+</div>  

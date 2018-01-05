@@ -1,0 +1,25 @@
+<script type="text/javascript">
+  window.onload = function () {
+    tinymce.init({
+      selector: "textarea",
+      height: 200,
+      plugins: [
+        "emoticons paste "
+      ],
+      relative_urls: false,
+      remove_script_host: false,
+      toolbar1: "emoticons",
+      menubar: false,
+      toolbar_items_size: 'small',
+    });
+  }
+  
+  function ___wio_showEditor() {
+    document.getElementById('wio-editor').style.display = 'block';
+  }
+  function ___wio_hideEditor() {
+    document.getElementById('wio-editor').style.display = 'none';
+  }
+
+</script>
+

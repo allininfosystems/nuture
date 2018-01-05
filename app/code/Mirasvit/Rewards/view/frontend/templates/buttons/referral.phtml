@@ -1,0 +1,11 @@
+<div class="buttons-referral-like">
+  <a class="referral" href='<?= $block->getUrl('rewards/referral')?>'><?= __('Refer Friends')?></a>
+
+  <?php if ($block->getEstimatedEarnPoints() > 0): ?>
+    <?php if ($block->isAuthorized()): ?>
+    <div id='referral-message'>
+  	<?= __('Refer friend and earn %1. More friends more points!',  $this->helper('Mirasvit\Rewards\Helper\Data')->getPointsName()); ?>
+    </div>
+    <?php endif; ?>
+  <?php endif; ?>
+</div>

@@ -1,0 +1,18 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<update handle="customer_account"/>
+  <head>
+    <title translate="true">My Forum Account</title>
+    <css src="WIO_Forum/css/forum.css"/>
+  </head>
+  <body>
+    <referenceBlock name="page.main.title">
+      <action method="setPageTitle">
+        <argument translate="true" name="title" xsi:type="string">My Forum Account</argument>
+      </action>
+    </referenceBlock>
+    <referenceContainer name="content">
+      <block class="WIO\Forum\Block\Customer\Index" cacheable="false" name="my_forum_account" template="WIO_Forum::customer/index.phtml">
+      </block>
+    </referenceContainer>
+  </body>
+</page>

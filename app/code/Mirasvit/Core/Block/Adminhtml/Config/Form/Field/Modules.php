@@ -9,7 +9,7 @@
  *
  * @category  Mirasvit
  * @package   mirasvit/module-core
- * @version   1.2.21
+ * @version   1.2.48
  * @copyright Copyright (C) 2017 Mirasvit (https://mirasvit.com/)
  */
 
@@ -19,6 +19,7 @@ namespace Mirasvit\Core\Block\Adminhtml\Config\Form\Field;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Backend\Block\Template\Context;
+use Mirasvit\Core\Api\Service\ValidationServiceInterface;
 use Mirasvit\Core\Model\ModuleFactory;
 
 class Modules extends Field
@@ -27,12 +28,18 @@ class Modules extends Field
      * @var ModuleFactory
      */
     protected $moduleFactory;
+    /**
+     * @var ValidationServiceInterface
+     */
+    private $validationService;
 
     public function __construct(
+        ValidationServiceInterface $validationService,
         ModuleFactory $moduleFactory,
         Context $context,
         array $data = []
     ) {
+        $this->validationService = $validationService;
         $this->moduleFactory = $moduleFactory;
 
         parent::__construct($context, $data);
@@ -57,6 +64,7 @@ class Modules extends Field
     public function render(AbstractElement $element)
     {
         $element->unsScope()->unsCanUseWebsiteValue()->unsCanUseDefaultValue();
+
         return parent::render($element);
     }
 
@@ -77,13 +85,47 @@ class Modules extends Field
 
         foreach ($this->moduleFactory->create()->getInstalledModules() as $moduleName) {
             $module = $this->moduleFactory->create()
-                    ->load($moduleName);
+                ->load($moduleName);
 
-            if ($module->getName()) {
+            if ($module->getModuleName() || $module->getName()) {
                 $modules[] = $module;
             }
         }
 
+        usort($modules, function ($a, $b) {
+            return strcmp($b->getName(), $a->getName());
+        });
+
         return $modules;
+    }
+
+    /**
+     * Check whether validator available for that module or not.
+     *
+     * @param \Mirasvit\Core\Model\Module $module
+     *
+     * @return bool
+     */
+    public function isValidationAvailable(\Mirasvit\Core\Model\Module $module)
+    {
+        foreach ($this->validationService->getValidators() as $validator) {
+            if ($module->getModuleName() == $validator->getModuleName()
+                || in_array($validator->getModuleName(), $module->getRequiredModuleNames($module->getModuleName()))
+            ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Get validation URL for given module.
+     *
+     * @return string
+     */
+    public function getValidationUrl()
+    {
+        return $this->getUrl('mstcore/validator/');
     }
 }

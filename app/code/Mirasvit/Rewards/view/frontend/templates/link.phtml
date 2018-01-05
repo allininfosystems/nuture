@@ -1,0 +1,26 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/* @var $block \Mirasvit\Rewards\Block\Link */
+?>
+<li class="link rewards" data-bind="scope: 'rewards'">
+    <a <?= $block->getLinkAttributes() ?>><?= $block->escapeHtml($block->getLabel()) ?>
+        <!-- ko if: rewards().amount -->
+        <span data-bind="text: rewards().amount" class="counter amount"></span>
+        <!-- /ko -->
+    </a>
+</li>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "rewards": {
+                        "component": "Mirasvit_Rewards/js/view/rewards",
+                        "defaultValue": "<?= $block->escapeHtml($block->getValue()) ?>"
+                    }
+                }
+            }
+        }
+    }
+</script>

@@ -1,0 +1,36 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+?>
+<div class="main-forum-container">
+  <div class="forum-top-block">
+    <?php echo $block->getChildHtml('forum.index.top'); ?>
+  </div>
+  <div class="forum-search-type-controls">
+    <a href="<?php echo $block->getSearchByPost() ?>" <?php if($block->getIsSearchPost()): ?> class="active" <?php endif; ?>><?php echo __('Search By Post') ?></a>&nbsp;|&nbsp;
+    <a href="<?php echo $block->getSearchByTopic() ?>" <?php if($block->getIsSearchTopic()): ?> class="active" <?php endif; ?>><?php echo __('Search By Topic') ?></a>
+  </div>
+  <div class="forum-content-container forum-content-search-container">
+    <div class="forum-list-container clearfix">
+      <h3 class="grid-title">
+        <?php echo __('Search Results for "%1"', $block->getSearchPhrase()); ?>
+      </h3>
+      <?php if($block->getIsSearchPost()): ?>
+        <?php echo $block->getChildHtml('forum.search.grid.posts'); ?>
+      <?php else: ?>
+        <?php echo $block->getChildHtml('forum.search.grid.topics'); ?>
+      
+      <?php endif; ?>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<!-- ko if: isShowRewards() -->
+<div class="payment-option _collapsible opc-payment-additional discount-code"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+    <div class="payment-option-title field choice" data-role="title">
+        <span class="action action-toggle" id="block-rewards-heading" role="heading" aria-level="2">
+            <!-- ko i18n: 'Apply'--><!-- /ko --> <span data-bind="text: rewardsPointsName"></span>
+        </span>
+    </div>
+    <div class="payment-option-content" data-role="content">
+        <div class="rewards-message-block">
+            <!-- ko foreach: getRegion('rewards-messages') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <form id="reward-points-form" class="form form-discount" data-bind="attr: { action: ApplayPointsUrl }, blockLoader: isLoading" method="post">
+            <div class="payment-option-inner">
+                <div class="field">
+                    <p>
+                        <!-- ko i18n: 'You have'--><!-- /ko --> <b data-bind="text: rewardsPointsAvailble"></b> <!-- ko i18n: 'available.'--><!-- /ko -->
+                    </p>
+
+                    <input type="hidden" name="remove-points" id="remove-points" data-bind="value: isRemovePoints"/>
+
+                    <div class="control">
+                        <input type="text" class="input-text" id="points_amount" name="points_amount"
+                            data-bind="
+                                value: rewardsPointsUsed,
+                                attr: {
+                                    'data-validate': addRequireClass,
+                                    placeholder: $t('Enter amount of points to spend'),
+                                 },
+                                event: { change: validatePointsAmount }
+                            "
+                            data-validate="{'required-entry':true}" required
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="onestepcheckout-newsletter checkbox-group">
+                <input type="checkbox" id="points_all" name="points_all"
+                       class="checkbox osc-additional-data" data-bind="
+                    click: setMaxPoints,
+                    checked: useMaxPoints
+                ">
+                <label class="label--checkbox" for="points_all">
+                    <span class="check"></span>
+                    <span class="box-check"></span>
+                    <!-- ko i18n: 'Use maximum'--><!-- /ko --> <b data-bind="text: chechoutRewardsPointsMax"></b>
+                </label>
+            </div>
+
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="button" class="button" data-bind="click: rewardsFormSubmit.bind($data, false)">
+                        <span><!-- ko i18n: 'Apply Points'--><!-- /ko --></span>
+                    </button>
+                    <button type="button" class="button" data-bind="click: rewardsFormSubmit.bind($data, true)">
+                        <span><!-- ko i18n: 'Cancel Points'--><!-- /ko --></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /ko -->

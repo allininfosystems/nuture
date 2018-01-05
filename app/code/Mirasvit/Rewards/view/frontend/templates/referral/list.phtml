@@ -1,0 +1,163 @@
+<?php
+/**
+ * @var \Mirasvit\Rewards\Block\Referral\Listing $block
+ * $block->getRewardsData()  \Mirasvit\Rewards\Helper\Data  $_rewardsData
+ */
+?>
+<?php if ($block->getFacebookIsActive()): ?>
+    <div id="fb-root"></div>
+<?php endif; ?>
+
+<?php
+$collection = $block->getReferralCollection();
+?>
+
+<div class="block block-rewards-referral-list">
+    <div class="block-title">
+        <strong><?= __('Share with Friends') ?></strong>
+    </div>
+
+    <div class="block-content">
+        <p><?= __('Share the referral link in the social media and get points!') ?></p>
+
+        <div class="rewards-social-buttons">
+            <div class="fb">
+                <div class="fb-share-button" data-href="<?= $block->getShareUrl() ?>" data-layout="button"></div>
+            </div>
+            <div class="tw">
+                <a href="https://twitter.com/share" class="twitter-share-button"
+                   data-url="<?= $block->getShareUrl() ?>" data-count="none"
+                   data-text="<?= __('Check this out!') ?>"><?= __('Tweet on Twitter') ?></a>
+            </div>
+            <div class="gp">
+                <div class="g-plus g-plusone" data-action="share" data-annotation="none" data-height="24"
+                     data-href="<?= $block->getShareUrl() ?>"></div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+        <br>
+        <p>
+            <span>
+                <?php echo __('Your referral link:') ?>
+            </span>
+            <span class="rewards-referral-link">
+                <?php echo $block->getShareUrl() ?>
+            </span>
+        </p>
+    </div>
+</div>
+
+<div class="block">
+    <div class="block-title">
+        <strong><?= __('Send Invitations') ?></strong>
+    </div>
+
+    <div class="block-content">
+        <form action="<?= $block->getUrl('rewards/referral/post') ?>" method="POST"
+              enctype="multipart/form-data" id="referralForm">
+            <div class="fieldset">
+                <?= $block->getChildHtml('rewards.notification') ?>
+                <p><span><?= __('Enter contacts of your friends to invite them.') ?></span></p>
+
+                <table class="data-table">
+                    <thead>
+                    <tr class="first last">
+                        <th class="a-center">#</th>
+                        <th><?= __('Name') ?></th>
+                        <th class="last"><?= __('Email') ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                        <tr class="first odd">
+                            <td class="a-center"><?= $i ?></td>
+                            <td>
+                                <input name="name[<?= $i ?>]" id="name<?= $i ?>"
+                                       class="input-text <?= $i == 1? 'required-entry': ''?>" type="text"/>
+                            </td>
+                            <td class="last">
+                                <input name="email[<?= $i ?>]" id="email<?= $i ?>"
+                                       class="input-text validate-email <?= $i == 1? 'required-entry': ''?>" type="text"/>
+                            </td>
+                        </tr>
+                    <?php endfor ?>
+                    </tbody>
+                </table>
+                <br>
+                <div class="field field-name-lastname required">
+                    <label for="message" class="label">
+                        <span><?= __('Message') ?></span>
+                    </label>
+                    <div class="control">
+                        <textarea style="width: 100%" name="message" id='message' class="required-entry"></textarea>
+                    </div>
+                </div>
+                <div class="buttons-set">
+                    <button type="submit" title="<?= __('Send Invitations') ?>" class="action primary">
+                        <span><span><?= __('Send Invitations') ?></span></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <script type="text/javascript">
+            var fbLocaleCode = '<?=$block->getLocaleCode()?>';
+            var fbAppId = '<?=$block->getAppId()?>';
+        </script>
+        <script>
+            require.config({
+                deps: [
+                    'jquery',
+                    "mage/mage"
+                ],
+                callback: function ($) {
+                    'use strict';
+                    var dataForm = $('#referralForm');
+                    dataForm.mage('validation', {});
+                }
+            });
+        </script>
+    </div>
+</div>
+
+<div class="block">
+    <div class="block-title">
+        <strong><?= __('Referrals') ?></strong>
+    </div>
+    <div class="block-content">
+        <?php if ($collection->count()): ?>
+            <div class="table-wrapper">
+                <table class="data-table table" id="referral-table">
+                    <thead>
+                    <tr class="first last">
+                        <th><?= __('Name') ?></th>
+                        <th><?= __('Email') ?></th>
+                        <th><?= __('Status') ?></th>
+                        <th class="last"><?= __('Points') ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($collection as $referral): ?>
+                        <tr>
+                            <td data-th="<?= __('Name') ?>"><?= $referral->getName() ? $block->escapeHtml($referral->getName()) : __('Referred by link') ?></td>
+                            <td data-th="<?= __('Email') ?>"><?= $referral->getEmail() ? $referral->getEmail() : '-' ?></td>
+                            <td data-th="<?= __('Status') ?>"><?= $referral->getStatusName() ?></td>
+                            <td data-th="<?= __('Points') ?>" class="last">
+                                <?php if ($referral->getPointsAmount()): ?>
+                                    <?= $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($referral->getPointsAmount()) ?>
+                                <?php else: ?>
+                                    -
+                                <?php endif ?>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php if ($block->getPagerHtml()): ?>
+                <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+            <?php endif ?>
+        <?php else: ?>
+            <p><?= __('There are no Referrals') ?></p>
+        <?php endif ?>
+    </div>
+</div>

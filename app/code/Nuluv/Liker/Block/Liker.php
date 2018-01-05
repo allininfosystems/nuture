@@ -32,31 +32,31 @@ public function getPageType()
 {
 
     $this->_request->getFullActionName();
-    if($this->_request->getFullActionName() == 'catalog_product_view'){
+    if($this->_request->getFullActionName() == 'catalog_product_view' || $this->_request->getFullActionName() == 'catalog_category_view'){
         $page_type=1;
     }else{
-       $page_type=2; 
+       $page_type=2;
     }
     return $page_type;
 }
 
-public function getLikeCount(){
+public function getLikeCount($prod_id =''){
        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $prod_id= $this->getCurrentProduct();
+       if($prod_id == '')$prod_id= $this->getCurrentProduct();
+        
         $like=1;
         $type_id=$this->getPageType();
         $likeModel = $objectManager->create('Nuluv\Liker\Model\Liker');
         $likecollection = $likeModel->getCollection()->addFieldToFilter('likes',array('eq'=>$like))->addFieldToFilter('page_type',array('eq'=>$type_id))->addFieldToFilter('product_id',array('eq'=>$prod_id));
 
-       // echo $likecollection->getSelect();die;
 
         $totalLikes=$likecollection->count();
         return $totalLikes;
 }
 
-function isLikeAlredySubmitted(){
+function isLikeAlredySubmitted($prod_id=''){
 
-    $prod_id= $this->getCurrentProduct();
+     if($prod_id == '')$prod_id= $this->getCurrentProduct();
     $ip=$this->getRealIpAddr();
     $like=1;
     $type_id=$this->getPageType();

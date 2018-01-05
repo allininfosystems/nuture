@@ -25,6 +25,7 @@ class Liker extends Template
 
 public function getCurrentProduct()
 {       
+    
     return $this->_registry->registry('current_product')->getId();
 }   
 

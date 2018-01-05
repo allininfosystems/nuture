@@ -1,0 +1,240 @@
+Forum,Forum
+Forums, Forums
+ID,ID
+Manage Forums,Manage Forums
+Manage Topics,Manage Topics
+Manage Posts,Manage Posts
+Manage Moderators,Manage Moderators
+Admin Profile Settings,Admin Profile Settings
+Configuration,Configuration
+Forum Manager,Forum Manager
+Add New Forum,Add New Forum
+Forum Name,Forum Name
+Topics, Topics
+Topics Manager, Topics Manager
+Delete Forum, Delete Forum
+Are you sure you wan't to delete selected forums?, Are you sure you wan't to delete selected forums?
+This forum no longer exists., This forum no longer exists.
+New Forum, New Forum
+Edit Forum, Edit Forum
+Delete Forum, Delete Forum
+Save Forum, Save Forum
+Edit Forum '%1', Edit Forum '%1'
+Forum Information, Forum Information
+Relative to Web Site Base URL and forum route, Relative to Web Site Base URL and forum route
+Forum Status, Forum Status
+You saved this forum.,You saved this forum.
+Something went wrong while saving the forum., Something went wrong while saving the forum.
+Invalid url text for forum "%1", its already exists, Invalid url text for forum "%1", its already exists
+Disable Forums, Disable Forums
+Are you sure you wan't to disable selected forums?, Are you sure you wan't to disable selected forums?
+Enable Forums, Enable Forums
+Are you sure you wan't to enable selected forums?, Are you sure you wan't to enable selected forums?
+Access Groups, Access Groups
+Leave empty for all groups, Leave empty for all groups
+Delete Topic, Delete Topic
+Are you sure you wan't to delete selected topics?, Are you sure you wan't to delete selected topics?
+Disable Topic, Disable Topic
+Are you sure you wan't to disable selected topics?, Are you sure you wan't to disable selected topics?
+Enable, Enable
+Enable Topic, Enable Topic
+Are you sure you wan't to enable selected topics?, Are you sure you wan't to enable selected topics?
+This topic no longer exists., This topic no longer exists.
+Edit Topic, Edit Topic
+New Topic, New Topic
+Save Topic, Save Topic
+Topic Information, Topic Information
+Topic Title, Topic Title
+Topic Description, Topic Description
+Invalid url text for topic "%1", its already exists, Invalid url text for topic "%1", its already exists
+You saved this topic., You saved this topic.
+Something went wrong while saving the topic., Something went wrong while saving the topic.
+Topic Meta Data, Topic Meta Data
+Parent Forum, Parent Forum
+Topic Status, Topic Status
+Forum Icons, Forum Icons
+Select Forum Icon, Select Forum Icon
+None, None
+Accept, Accept
+Cancel, Cancel
+Saint, Saint
+Evil, Evil
+Question, Question
+Cry, Cry
+Devil, Devil
+Shame, Shame
+Disappointed, Disappointed
+Smart, Smart
+Laughter, Laughter
+Smile, Smile
+Monkey, Monkey
+Sad, Sad
+Kiss, Kiss
+Wink, Wink
+Topic Icons, Topic Icons
+Select Topic Icon, Select Topic Icon
+Frontend, Frontend
+Forum Title, Forum Title
+Enable Search Field, Enable Search Field
+Search forum..., Search forum...
+Search, Search
+Enable Bookmarks, Enable Bookmarks
+Enable Jump to dropdown, Enable Jump to dropdown
+Enable Rss Link, Enable Rss Link
+Frontend General, Frontend General
+Enable Forum Icons, Enable Forum Icons
+Created By: "%1", Created By: "%1"
+Created, Created
+Total Topics, Total Topics
+Total Posts, Total Posts
+Latest Reply, Latest Reply
+Viewing All Forums, Viewing All Forums
+No Data Found, No Data Found
+Jump To Forum, Jump To Forum
+Newest, Newest
+Oldest, Oldest
+Sort By, Sort By
+View Forum "%1", View Forum "%1"
+Edit Topic '%1', Edit Topic '%1'
+Edit Forum '%1', Edit Forum '%1'
+Edit Topic, Edit Topic
+Views, Views
+Add Topic, Add Topic
+Manage Posts, Manage Posts
+Post Manager, Post Manager
+Add New Post, Add New Post
+This post no longer exists., This post no longer exists.
+New Post, New Post
+Edit Post, Edit Post
+Save Post, Save Post
+Delete Post, Delete Post
+Post Information, Post Information
+Post Status, Post Status
+Post Data, Post Data
+You saved this post., You saved this post.
+Something went wrong while saving the post., Something went wrong while saving the post.
+Enable Posts, Enable Posts
+Are you sure you wan't to enable selected posts?, Are you sure you wan't to enable selected posts?
+Disable Posts, Disable Posts
+Are you sure you wan't to disable selected posts?, Are you sure you wan't to disable selected posts?
+Delete Post, Delete Post
+Are you sure you wan't to delete selected posts?, Are you sure you wan't to delete selected posts?
+Are you sure you wan\'t to delete a post record?, Are you sure you wan\'t to delete a post record?
+Posts, Posts
+Posted: %1, Posted: %1
+Fast Reply, Fast Reply
+Add New Topic, Add New Topic
+Topic Details, Topic Details
+Topic successfully saved!, Topic successfully saved!
+Topic successfully updated!, Topic successfully updated!
+Post successfully saved!, Post successfully saved!
+Post successfully updated!, Post successfully updated!
+Post successfully saved and will be added after moderation!, Post successfully saved and will be added after moderation!
+Post successfully updated and will be added after moderation!, Post successfully updated and will be added after moderation!
+Topic successfully saved and will be added after moderation!, Topic successfully saved and will be added after moderation!
+Topic successfully updated and will be added after moderation!, Topic successfully updated and will be added after moderation!
+Admin profile information, Admin profile information
+Save Settings, Save Settings
+Edit Forum Adminsettings, Edit Forum Adminsettings
+Profile information, Profile information
+Forum Admin Profile, Forum Admin Profile
+Profile, Profile
+Signature, Signature
+Nickname, Nickname
+"alowed tags: <b>, <ul>, <em>", "alowed tags: <b>, <ul>, <em>"
+Something went wrong while saving the admin settings., Something went wrong while saving the admin settings.
+You saved admin settings., You saved admin settings.
+Not Set, Not Set
+Avatar, Avatar
+Total posts: <strong>%1</strong>, Total posts: <strong>%1</strong>
+Joined: <strong>%1</stron>, Joined: <strong>%1</stron>
+Posted: <strong>%1</strong>, Posted: <strong>%1</strong>
+Posted By: <strong><a href="%1">%2</a></strong>, Posted By: <strong><a href="%1">%2</a></strong>
+Posted by, Posted by
+Statistic, Statistic
+Total Forums, Total Forums
+Total Topics, Total Topics
+Total Posts, Total Posts
+Total Active Members, Total Active Members
+In total there is <b>%1</b> user online :: <b>%2</b> logged customers and <b>%3</b> guest (based on users active over the past 5 minutes), In total there is <b>%1</b> user online :: <b>%2</b> logged customers and <b>%3</b> guest (based on users active over the past 5 minutes)
+Who is online, Who is online
+Users browsing this forum <b>%1</b> user online :: <b>%2</b> logged customers and <b>%3</b> guest (based on users active over the past 5 minutes), Users browsing this forum <b>%1</b> user online :: <b>%2</b> logged customers and <b>%3</b> guest (based on users active over the past 5 minutes)
+Enable Forum Statistic, Enable Forum Statistic
+Enable Forum Whoisonline Block, Enable Forum Whoisonline Block
+Something went wrong while deleteing the forum., Something went wrong while deleteing the forum.
+You successfully delete forum, You successfully delete forum
+Total %1 topic(s) deleted, Total %1 topic(s) deleted
+Total %1 post(s) deleted, Total %1 post(s) deleted
+Something went wrong while deleteing the topic., Something went wrong while deleteing the topic.
+You successfully delete topic, You successfully delete topic
+You successfully delete post, You successfully delete post
+Something went wrong while deleteing the post., Something went wrong while deleteing the post.
+Total %1 forum(s) deleted, Total %1 forum(s) deleted
+Total %1 forum(s) disabled, Total %1 forum(s) disabled
+Total %1 topic(s) disabled, Total %1 topic(s) disabled
+Total %1 post(s) disabled, Total %1 post(s) disabled
+Something went wrong while disabling the forum., Something went wrong while disabling the forum.
+Total %1 forum(s) enabled, Total %1 forum(s) enabled
+Total %1 topic(s) enabled, Total %1 topic(s) enabled
+Total %1 post(s) enabled, Total %1 post(s) enabled
+Something went wrong while enabling the forum., Something went wrong while enabling the forum.
+Something went wrong while disabling the topic., Something went wrong while disabling the topic.
+Something went wrong while enabling the topic., Something went wrong while enabling the topic.
+Something went wrong while disabling the post., Something went wrong while disabling the post.
+Something went wrong while enabling the post., Something went wrong while enabling the post.
+Topic: %1, Topic: %1
+My Forum Account, My Forum Account
+"width: 100px, .jpg, .png, .gif, .jpeg", "width: 100px, .jpg, .png, .gif, .jpeg"
+You succesfully updated your forum settings, You succesfully updated your forum settings
+Remove Avatar, Remove Avatar
+Search Forum: "%1", Search Forum: "%1"
+Search Results for "%1", Search Results for "%1"
+Search By Topic, Search By Topic
+Search By Post, Search By Post
+Search Results, Search Results
+Topic: "%1", Topic: "%1"
+View Post, View Post
+Topic: <strong><a href="%2">%1"</a></strong>, Topic: <strong><a href="%2">%1"</a></strong>
+Add to Bookmark, Add to Bookmark
+You have <span id="wio-forum-zero-bookmarks">0</span><a href="javascript:void(0)" onclick="WIO_FORUM_BOOKMARKS.goToBookmarkPage()" id="wio-forum-bookmarks-link"></a> bookmarked items, You have <span id="wio-forum-zero-bookmarks">0</span><a href="javascript:void(0)" onclick="WIO_FORUM_BOOKMARKS.goToBookmarkPage()" id="wio-forum-bookmarks-link"></a> bookmarked items
+Bookmarks, Bookmarks
+My Bookmarks, My Bookmarks
+Post ID: %1, Post ID: %1
+Forum Post with ID: %1, Forum Post with ID: %1
+Allow customer delete own topics, Allow customer delete own topics
+My Forum Topics, My Forum Topics
+My Forum Posts, My Forum Posts
+Parent Topic: <strong>"%1"</strong>, Parent Topic: <strong>"%1"</strong>
+Posted: <em>%1</em>, Posted: <em>%1</em>
+Back to Forum, Back to Forum
+Added: <em>%1</em>, Added: <em>%1</em>
+Show forum top controls, Show forum top controls
+"My forum account, My forum posts, My forum topics", "My forum account, My forum posts, My forum topics"
+You have no access to view this forum, You have no access to view this forum
+Private Forum, Private Forum
+Notify me if someone post on this Topic, Notify me if someone post on this Topic
+You are unsubscribed from Topic, You are unsubscribed from Topic
+New post were added, New post were added
+Added, Added
+"To stop receiving notifications for this topic, use this link", "To stop receiving notifications for this topic, use this link"
+View Forum User, View Forum User
+User Details "%1", User Details "%1"
+User Role: <strong>%1</strong>, User Role: <strong>%1</strong>
+Total topics: <strong>%1</strong>, Total topics: <strong>%1</strong>
+Forum Bookmarks, Forum Bookmarks
+"Forum Add / Edit / Topic / Post", "Forum Add / Edit / Topic / Post"
+Moderators, Moderators
+Manage Moderators, Manage Moderators
+Delete Moderator, Delete Moderator
+Total %1 moderator(s) deleted, Total %1 moderator(s) deleted
+Something went wrong while deleteing the moderator, Something went wrong while deleteing the moderator
+Something went wrong while assign moderator, Something went wrong while assign moderator
+Total %1 moderator(s) assigned, Total %1 moderator(s) assigned
+You are logged as moderator, You are logged as moderator
+Moderator, Moderator
+Forum Layout, Forum Layout
+Default Meta Data, Default Meta Data
+Default Forum Title Tag, Default Forum Title Tag
+Default Meta Keywords, Default Meta Keywords
+Default Meta Description, Default Meta Description
+

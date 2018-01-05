@@ -1,0 +1,15 @@
+<?php
+$shouldWarnGuest = $block->getShowWarningTextMessage();
+?>
+<?php if ($points = $block->getSpendPoints()): ?>
+    <tr>
+        <td class="a-right cart-points-total_earned" colspan="<?= $block->getColspan(); ?>">
+            <div class=""><b><?= __('You Spend') ?></b></div>
+        </td>
+        <td style="" class="a-right cart-points-total_spent">
+            <span class="price">
+                <?= $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($points) ?>
+            </span>
+        </td>
+    </tr>
+<?php endif; ?>

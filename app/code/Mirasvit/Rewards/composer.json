@@ -1,0 +1,25 @@
+{
+    "name": "mirasvit/module-rewards",
+    "description": "Reward Points + Referral program",
+    "version": "2.1.6",
+    "require": {
+
+        "magento/module-store": "100.1.*|100.2.*",
+        "magento/module-backend": "100.1.*|100.2.*",
+        "mirasvit/module-core": "^1.2",
+        "abraham/twitteroauth": "0.6.2",
+        "mirasvit/module-report": "^1"
+    },
+    "type": "magento2-module",
+    "license": [
+      "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "src/Rewards/registration.php"
+        ],
+        "psr-4": {
+            "Mirasvit\\Rewards\\": "src/Rewards"
+        }
+    }
+}

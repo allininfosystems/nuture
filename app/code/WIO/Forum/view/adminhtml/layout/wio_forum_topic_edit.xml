@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    
+  <body>
+    <update handle="editor"/>
+    <referenceContainer name="content">
+      <block class="WIO\Forum\Block\Adminhtml\Topic\Edit" name="forum_topic_edit"/>
+    </referenceContainer>
+    <referenceContainer name="left">
+      <block class="WIO\Forum\Block\Adminhtml\Topic\Edit\Tabs" name="forum_topic_edit_tabs">
+        <block class="WIO\Forum\Block\Adminhtml\Topic\Edit\Tab\Main" name="forum_topic_edit_tab_main"/>
+        <block class="WIO\Forum\Block\Adminhtml\Topic\Edit\Tab\MetaData" name="forum_topic_edit_tab_meta_data"/>
+        <block class="WIO\Forum\Block\Adminhtml\Topic\Edit\Tab\Icon" name="forum_topic_edit_tab_icon" template="topic/icons.phtml" />
+        <action method="addTab">
+          <argument name="name" xsi:type="string">main_section</argument>
+          <argument name="block" xsi:type="string">forum_topic_edit_tab_main</argument>
+        </action>
+        <action method="addTab">
+          <argument name="name" xsi:type="string">meta_data</argument>
+          <argument name="block" xsi:type="string">forum_topic_edit_tab_meta_data</argument>
+        </action>
+        <action method="addTab">
+          <argument name="name" xsi:type="string">icons</argument>
+          <argument name="block" xsi:type="string">forum_topic_edit_tab_icon</argument>
+        </action>
+      </block>
+    </referenceContainer>
+  </body>
+</page>

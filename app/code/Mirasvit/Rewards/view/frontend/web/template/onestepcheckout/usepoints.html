@@ -1,0 +1,59 @@
+<!-- ko if: isShowRewards() -->
+<hr>
+<form id="reward-points-form" data-bind="attr: { action: ApplayPointsUrl }" method="post">
+    <div style="display: inline-block; width: 100%;">
+        <!-- ko foreach: getRegion('rewards-messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+    </div>
+    <div class="rewards__checkout-cart-usepoints magestore-onepagecheckout">
+        <h3><!-- ko i18n: 'Use Reward Points'--><!-- /ko --></h3>
+        <div class="discount-form">
+            <p>
+                <!-- ko i18n: 'You have'--><!-- /ko --> <b data-bind="text: rewardsPointsAvailble"></b> <!-- ko i18n: 'available.'--><!-- /ko -->
+            </p>
+
+            <input type="hidden" name="remove-points" id="remove-points" data-bind="value: isRemovePoints"/>
+
+            <div class="input-box">
+                <input type="text" class="input-text" id="points_amount" name="points_amount"
+                    data-bind='
+                        value: rewardsPointsUsed,
+                        attr: {
+                            "data-validate": addRequireClass
+                         },
+                        event: { change: validatePointsAmount }
+                    '
+                    data-validate="{'required-entry':true}" required
+                />
+                <label for="points_amount"><!-- ko i18n: 'Enter amount of points to spend'--><!-- /ko --></label>
+            </div>
+
+            <div>
+                <button type="button" class="button" data-bind="click: rewardsFormSubmit.bind($data, false)">
+                    <span><!-- ko i18n: 'Apply Points'--><!-- /ko --></span>
+                </button>
+                <button type="button" class="button" data-bind="click: rewardsFormSubmit.bind($data, true)">
+                    <span><!-- ko i18n: 'Cancel Points'--><!-- /ko --></span>
+                </button>
+            </div>
+
+            <div class="onestepcheckout-newsletter checkbox-group">
+                <input type="checkbox" id="points_all" name="points_all"
+                       class="checkbox osc-additional-data" data-bind="
+                    click: setMaxPoints,
+                    checked: useMaxPoints
+                ">
+                <label class="label--checkbox" for="points_all">
+                    <span class="check"></span>
+                    <span class="box-check"></span>
+                    <span class="checkout-rewards-all-block">
+                        <span data-bind="i18n: 'Use maximum'"></span>
+                        <b data-bind="text: chechoutRewardsPointsMax"></b>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- /ko -->

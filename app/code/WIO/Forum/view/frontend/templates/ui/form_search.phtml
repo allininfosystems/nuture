@@ -1,0 +1,33 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+if ($block->getIsEnabled()):
+  ?>
+  <div class="forum-search-container">
+    <form data-mage-init='{"validation": {"errorClass": "mage-error"}}' id="search-forum-form" class="search-forum-form" method="post" action="<?php echo $this->getSearchAction() ?>">
+      <div class="field search-forum">
+        <input type="text" name="<?php echo $block->getNameSearch() ?>" value="<?php echo $block->getSearchPhrase(); ?>" data-validate="{required:true}" placeholder="<?php echo __('Search forum...') ?>." /> 
+      </div>
+      <div class="actions">
+        <button class="action primary" title="<?php echo __('Search') ?>" type="submit">
+          <span><?php echo __('Search') ?></span>
+        </button>
+        <?php if ($block->getSearchPhrase()): ?> 
+
+          <button onclick="document.location.href='<?php echo $block->getResetAction() ?>';" class="action secondary" title="<?php echo __('Resest Search') ?>" type="button">
+            <span><?php echo __('Resest Search') ?></span>
+          </button>
+        <?php endif; ?>
+      </div>
+    </form>
+  </div>
+<?php endif; ?>

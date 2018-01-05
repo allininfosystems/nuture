@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <css src="WIO_Forum/css/forum.css"/>
+  </head>
+  <body>
+    <referenceBlock name="breadcrumbs">
+      <action method="addCrumb">
+        <argument name="crumbName" xsi:type="string">Home</argument>
+        <argument name="crumbInfo" xsi:type="array">
+          <item translate="true" name="title" xsi:type="string">Home</item>
+          <item translate="true" name="label" xsi:type="string">Home</item>
+          <item name="link" xsi:type="string">/</item>
+        </argument>
+      </action>
+    </referenceBlock>
+    <referenceContainer name="content">
+      <block cacheable="false" class="WIO\Forum\Block\Search\Index" name="forum.search.index" template="WIO_Forum::search/index.phtml">
+        <block class="WIO\Forum\Block\Forum\Top\Block" name="forum.index.top" template="WIO_Forum::forum/top/block.phtml">
+          <block class="WIO\Forum\Block\Ui\FormSearch" name="forum.ui.search" template="WIO_Forum::ui/form_search.phtml" />
+        </block>
+        <block cacheable="false" class="WIO\Forum\Block\Search\Index\GridTopic" name="forum.search.grid.topics" template="WIO_Forum::search/index/topics.phtml">
+        </block>
+        <block cacheable="false" class="WIO\Forum\Block\Search\Index\Grid" name="forum.search.grid.posts" template="WIO_Forum::search/index/posts.phtml">
+        </block>
+      </block>
+    </referenceContainer>
+  </body>
+</page>    

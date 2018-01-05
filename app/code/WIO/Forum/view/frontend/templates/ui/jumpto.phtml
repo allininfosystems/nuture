@@ -1,0 +1,35 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+if ($block->getIsEnabled()):
+  $forums = $block->getAllForums();
+  if ($forums->getSize()):
+    ?>
+
+    <div class="forum-jumpto-container">
+      <div class="forum-jump-to-label">&lt; <?php echo __('Jump To Forum') ?> &gt;</div>
+      <select onchange="wioForumRedirectTo(this.value)">
+        <option value=""><?php echo __('Select Forum') ?></option>
+        <?php foreach ($forums as $forum) : ?>
+          <option value="<?php echo $block->getForumViewUrl($forum) ?>"><?php echo $forum->getTitle() ?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
+    <script type="text/javascript">
+      function wioForumRedirectTo(url){
+        if(url) {
+          document.location.href = url
+        }
+      }
+    </script>
+  <?php endif; ?>
+<?php endif; ?>

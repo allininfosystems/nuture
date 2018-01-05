@@ -1,0 +1,20 @@
+<?php
+/**
+ $block->getRewardsData()  \Mirasvit\Rewards\Helper\Data  $_rewardsData
+ */
+?>
+<?php
+$shouldWarnGuest = $block->getShowWarningTextMessage();
+?>
+<?php if ($points = $block->getEarnPoints()): ?>
+    <tr>
+        <th class="cart-points-total_earned" colspan="<?= $block->getColspan(); ?>">
+            <div class=""><b><?= __('You Earn') ?></b></div>
+        </th>
+        <td style="" class="a-right cart-points-total_earned">
+            <span class="price">
+                <?= $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($points) ?>
+            </span>
+        </td>
+    </tr>
+<?php endif; ?>

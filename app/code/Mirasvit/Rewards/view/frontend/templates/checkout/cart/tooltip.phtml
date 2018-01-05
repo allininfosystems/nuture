@@ -1,0 +1,23 @@
+<div class="reward-message <?= $block->getWrapperClass()?>">
+    <ul class="messages">
+    	<li class="success-msg">
+    		<ul>
+    			<li>
+					<?php if ($block->getEarnPoints()): ?>
+						<span>
+							<?= __(
+								'Checkout now and earn <b>%1</b> for this order.',
+								$this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getEarnPoints())
+							)?>
+						</span>
+						<?php if ($block->hasGuestNote()):?>
+							<p class="limit">
+								<?= __('Applies only to registered customers, may vary when logged in.')?>
+							</p>
+						<?php endif;?>
+					<?php endif;?>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>

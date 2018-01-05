@@ -1,0 +1,20 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+if ($block->getIsEnabled()):
+  ?>
+
+  <div class="forum-rss-container">
+    <img src="<?php echo $block->getViewFileUrl('WIO_Forum/images/rss.png') ?>" />
+    <a href="<?php echo $block->getLinkUrl() ?>" target="_blank"><?php echo __('RSS'); ?></a>
+  </div>
+<?php endif; ?>

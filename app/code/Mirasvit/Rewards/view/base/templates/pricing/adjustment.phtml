@@ -1,0 +1,15 @@
+<?php /** @var \Mirasvit\Rewards\Pricing\Render\Adjustment $block */ ?>
+<script>
+    //<![CDATA[
+    require(['Mirasvit_Rewards/js/product/view'], function () {})
+    //]]>
+</script>
+<?php if ($block->isShowPoints()): ?>
+    <?php
+    $label = $block->getPointsFormatted();
+    ?>
+    <span class="rewards__product-points">
+        <span data-points="<?= $block->getCurrentPoints() ?>" data-current-points="<?= $block->getCurrentPoints() ?>"
+              data-label="<?= $label ?>" class="price"><?= $label ?></span>
+    </span>
+<?php endif; ?>

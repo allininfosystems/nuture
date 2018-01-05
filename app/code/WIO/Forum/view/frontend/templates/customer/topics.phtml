@@ -1,0 +1,110 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+$topicsCollection = $block->getCollection();
+if ($topicsCollection):
+  ?>
+  <?php if ($block->getIsModerator()): ?>
+    <div class="forum-logged-moderator">
+      <?php echo __('You are logged as moderator'); ?>
+    </div>
+  <?php endif; ?>
+  <div class="forum-myaccount-grid-containerr">
+
+    <?php if (!$topicsCollection->getSize()): ?>
+      <div class="forum-grid-no-data">
+        <?php echo __('No Data Found') ?>
+      </div>
+    <?php else: ?>
+
+      <div class="toolbar top forum-toolbar">
+        <?php echo $block->getPagerHtml(); ?>
+      </div>
+    
+      <div class="forum-sort">
+        <?php echo __('Sort By') ?>
+        &nbsp;&nbsp;
+        <a <?php echo ($this->getSortType() == 'asc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl('asc') ?>"><?php echo __('Oldest') ?></a>
+        &nbsp;|&nbsp;
+        <a <?php echo ($this->getSortType() == 'desc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl('desc') ?>"><?php echo __('Newest') ?></a>
+      </div>
+
+      <table class="forum-grid forum-list grid forum-my-topics">
+        <thead>
+          <tr>
+            <th>
+              <?php echo __('Parent Forum'); ?>
+            </th>
+            <th>
+              <?php echo __('Topic Details') ?>
+            </th>
+            <th width="1%">
+              <?php echo __('Action') ?>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($topicsCollection as $_topic):
+            $parentForum = $block->getParentForum($_topic);
+            ?>
+            <tr>
+              <td>
+                <div class="forum-myaccount-parent-forum">
+                  <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_forum.png'); ?>" />
+                  <a href="<?php echo $block->getParentForumUrl($parentForum) ?>">
+                    <?php echo $parentForum->getTitle(); ?>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <div class="forum-myaccount-topic">
+                  <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_topic.png'); ?>" />
+                  <a href="<?php echo $block->getTopicUrl($parentForum, $_topic) ?>">
+                    <?php echo $_topic->getTitle(); ?>
+                  </a>
+                </div>
+
+                <span class="forum-myaccount-post-description-posted">
+                  <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'clock_icon.png'); ?>" />
+                  <?php echo __('Added: <em>%1</em>', $block->getTimeAccordingToTimeZone($_topic->getCreatedTime())) ?>
+                </span>
+              </td>
+              <td>
+                <?php if ($block->getIsCustomerAllowedDeleteTopics()): ?>
+                  <a href="<?php echo $block->getDeleteLink($_topic) ?>" class="my-forum-account delete-link">
+                    <nobr><img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'delete_icon.png'); ?>" />
+                      <?php echo __('Delete'); ?></nobr>
+                  </a>
+                <?php endif; ?>
+                <a href="<?php echo $block->getEditLink($_topic) ?>" class="my-forum-account edit-link">
+                  <nobr><img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'edit_icon.png'); ?>" />
+                    <?php echo __('Edit'); ?></nobr>
+                </a>
+                <a href="<?php echo $block->getViewLink($_topic) ?>" class="my-forum-account view-link">
+                  <nobr><img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'view_icon.png'); ?>" />
+                    <?php echo __('View'); ?></nobr>
+                </a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    <?php endif; ?>
+    <div class="clearfix back-to-forum-url">
+      <a href="<?php echo $block->getForumUrl() ?>">
+        <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'back_icon.png'); ?>" />
+        <?php echo __('Back to Forum') ?>
+      </a>
+    </div>
+  </div>
+<?php endif; ?>

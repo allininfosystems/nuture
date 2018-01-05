@@ -9,14 +9,14 @@
  *
  * @category  Mirasvit
  * @package   mirasvit/module-core
- * @version   1.2.21
+ * @version   1.2.48
  * @copyright Copyright (C) 2017 Mirasvit (https://mirasvit.com/)
  */
 
 
+
 namespace Mirasvit\Core\Observer;
 
-use Magento\Framework\App\Response\Http as HttpResponse;
 use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\Event\ObserverInterface;
 use Mirasvit\Core\Model\LicenseFactory;
@@ -55,15 +55,25 @@ class OnLayoutRenderElementObserver implements ObserverInterface
                 if ($block instanceof \Mirasvit\Core\Block\Adminhtml\Menu) {
                     return;
                 }
+                if ($block instanceof \Mirasvit\Core\Block\Adminhtml\License) {
+                    return;
+                }
+
 
                 $status = $this->licenseFactory->create()->getStatus(get_class($block));
 
                 if ($status === true) {
                     return;
                 }
+
                 $transport = $event->getData('transport');
 
-                $transport->setData('output', "<div class='message message-warning warning'>$status</div>");
+                if (!OnActionPredispatchObserver::$notified) {
+                    $transport->setData('output', "<div class='message message-warning warning'>$status</div>");
+                    OnActionPredispatchObserver::$notified = true;
+                } else {
+                    $transport->setData('output', "");
+                }
             }
         }
     }

@@ -1,0 +1,6 @@
+<?php /** @var \Mirasvit\Rewards\Block\Product\Message $block */ ?>
+<?php if ($messages = $block->getMessage()): ?>
+    <ul class="rewards-notification-block">
+        <li><?= $messages ?></li>
+    </ul>
+<?php endif; ?>

@@ -1,0 +1,34 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+$forumIcons = $block->getAllIcons();
+$forumIconPath = $block->getIconPath();
+?>
+<fieldset class="fieldset">
+  <legend class="legend">
+    <span><?php echo __('Select Topic Icon') ?></span>
+  </legend>
+  <div class="wio-forum-icons">
+    <ul class="wio-forum-icons-list">
+      <li class="wio-forum-icon-item" id="icon-none">
+        <input type="radio" id="input-icon-none" <?php if ($block->getCurrentIcon() == ''): ?> checked="checked" <?php endif ?>  name="icon_id[]" value="" />
+        <label for="input-icon-none" > <?php echo __('None') ?></label>
+      </li>
+      <?php foreach ($forumIcons['ids'] as $forumIconId): ?>
+        <li class="wio-forum-icon-item" id="icon-<?php echo $forumIconId ?>">
+          <input <?php if ($block->getCurrentIcon() == $forumIconId): ?> checked="checked" <?php endif; ?> type="radio" id="input-icon-<?php echo $forumIconId ?>" name="icon_id[]" value="<?php echo $forumIconId ?>" />
+          <label for="input-icon-<?php echo $forumIconId ?>" ><img src="<?php echo $block->getViewFileUrl('WIO_Forum::' . $forumIconPath . $forumIcons['img'][$forumIconId]) ?>" /> <?php echo __($forumIcons['key'][$forumIconId]) ?></label>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+</fieldset>

@@ -1,0 +1,23 @@
+<?php
+/** @var Mirasvit\Rewards\Block\Buttons\Pinterest\Pin $block */
+?>
+<?php
+$currentUrl = $block->getCurrentUrl();
+?>
+<div id="buttons-pinterest-pin" class="buttons-pinterest-pin">
+    <a href="https://www.pinterest.com/pin/create/button/?url=<?= $block->getCurrentEncodedUrl($currentUrl) ?>&media=<?= $block->getMediaUrl() ?>&description=<?= urlencode($block->getProduct()->getName()) ?>"
+    data-pin-do="buttonPin"
+    data-pin-config="none" target="_blank">
+        <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+    </a>
+    <script>
+        var rewardsPinUrl = '<?= $block->getPinUrl(); ?>';
+    </script>
+    <?php if ($block->getEstimatedEarnPoints() > 0): ?>
+        <?php if ($block->isAuthorized() && !$block->isLiked()): ?>
+            <div id="pinterest-message">
+                <?= __('Pin this page and earn %1',  $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getEstimatedEarnPoints())); ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

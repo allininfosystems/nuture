@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <link src="WIO_Forum/tinymce/tinymce.min.js"/>
+    <link src="WIO_Forum/wioforum/js/init.js"/>
+  </head>
+  <body>
+    <referenceContainer name="content">
+      <block class="WIO\Forum\Block\Adminhtml\Post\Edit" name="forum_post_edit"/>
+    </referenceContainer>
+    <referenceContainer name="left">
+      <block class="WIO\Forum\Block\Adminhtml\Post\Edit\Tabs" name="forum_post_edit_tabs">
+        <block class="WIO\Forum\Block\Adminhtml\Post\Edit\Tab\Main" name="forum_post_edit_tab_main"/>
+        <action method="addTab">
+          <argument name="name" xsi:type="string">main_section</argument>
+          <argument name="block" xsi:type="string">forum_post_edit_tab_main</argument>
+        </action>
+      </block>
+    </referenceContainer>
+  </body>
+</page>

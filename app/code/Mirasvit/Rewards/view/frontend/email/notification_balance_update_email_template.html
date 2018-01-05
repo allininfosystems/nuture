@@ -1,0 +1,21 @@
+<!--@subject Your balance at {{var store.getFrontendName()}} has been updated@-->
+
+{{template config_path="design/email/header_template"}}
+
+{{depend message}}
+    {{var message|text}}
+{{/depend}}
+{{depend no_message}}
+    <p>Dear {{var customer.name}},</p>
+    <p>Your account balance has been updated at <a href="{{store url=""}}">{{var store.getFrontendName()}}</a>. </p>
+    Balance Update: <b>{{var transaction_amount}}</b><br>
+    Comment: {{var transaction_comment}}<br>
+    Balance Total: <b>{{var balance_total}}</b><br>
+    <br>
+    Thank you,<br>
+    <strong>{{var store.getFrontendName()}}</strong>
+{{/depend}}
+<br><br>
+<span style="color:#d4c8c8;font-size:12px;">To unsubscribe from points expiring notification click <a style="color:#d4c8c8;text-decoration:underline;" href="{{store url="rewards/account/unsubscribe"}}">here</a></span>
+
+{{template config_path="design/email/footer_template"}}

@@ -2470,6 +2470,7 @@ span#back-to-top {right: 22px; width: 40px; height: 40px; background: #7e6674; z
  width: 40px; height: 40px; background-size: cover; position: absolute; top: 0; margin-top: 0;}
 .newsletter .actions button.action.subscribe.primary:hover,.newsletter .actions button.action.subscribe.primary:active{background: url(../images/newslatter-arrow.png) top center no-repeat !important; 
  background-size: cover !important; box-shadow:none;} 
+ 
 .newsletter .actions {display: inline-block;}
 
 /*===== End footer ====*/

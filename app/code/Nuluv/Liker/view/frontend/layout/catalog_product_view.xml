@@ -4,5 +4,6 @@
         <!-- <referenceContainer name="product.info.extrahint" after="-">
             <block class="Nuluv\Liker\Block\Liker" name="nuluv_liker" template="Nuluv_Liker::likes.phtml"/>
         </referenceContainer> -->
+        
     </body>
 </page>

@@ -9,33 +9,46 @@
  *
  * @category  Mirasvit
  * @package   mirasvit/module-core
- * @version   1.2.21
+ * @version   1.2.48
  * @copyright Copyright (C) 2017 Mirasvit (https://mirasvit.com/)
  */
 
 
+
 namespace Mirasvit\Core\Observer;
 
-use Magento\Framework\App\Response\Http as HttpResponse;
 use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\Event\ObserverInterface;
-use Mirasvit\Core\Model\LicenseFactory;
 use Mirasvit\Core\Model\NotificationFeedFactory;
+use Magento\Framework\Message\ManagerInterface;
+use Mirasvit\Core\Model\LicenseFactory;
 
 class OnActionPredispatchObserver implements ObserverInterface
 {
+    public static $notified = false;
     /**
      * @var NotificationFeedFactory
      */
-    protected $feedFactory;
+    private $feedFactory;
 
     /**
-     * @param NotificationFeedFactory $feedFactory
+     * @var ManagerInterface
      */
+    private $manager;
+
+    /**
+     * @var LicenseFactory
+     */
+    private $licenseFactory;
+
     public function __construct(
-        NotificationFeedFactory $feedFactory
+        NotificationFeedFactory $feedFactory,
+        ManagerInterface $manager,
+        LicenseFactory $licenseFactory
     ) {
         $this->feedFactory = $feedFactory;
+        $this->manager = $manager;
+        $this->licenseFactory = $licenseFactory;
     }
 
     /**
@@ -43,6 +56,22 @@ class OnActionPredispatchObserver implements ObserverInterface
      */
     public function execute(EventObserver $observer)
     {
+        $action = $observer->getData('controller_action');
+
+        if (is_object($action) && substr(get_class($action), 0, 9) == 'Mirasvit\\') {
+            $status = $this->licenseFactory->create()->getStatus(get_class($action));
+
+            if ($status !== true) {
+                if (!self::$notified) {
+                    $this->manager->addErrorMessage($status);
+                    self::$notified = true;
+                }
+                $observer->getRequest()->setRouteName('no_route');
+//                print_r(get_class_methods($observer->getRequest()));
+//                die();
+            }
+        }
+
         $feedModel = $this->feedFactory->create();
         $feedModel->checkUpdate();
     }

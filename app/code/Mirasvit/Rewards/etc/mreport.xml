@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../module-reports/src/Reports/etc/map.xsd">
+    <table name="mst_rewards_points_aggregated_hour">
+        <columns>
+            <column name="period_filter" label="Purchased On" fields="period" type="date" class="Mirasvit\Rewards\Model\Query\Column\Date\Range"/>
+
+            <column name="hour_of_day" label="Hour of day" fields="period" class="Mirasvit\Report\Model\Query\Column\Date\Hour"/>
+
+            <column name="day" label="Day" fields="period" class="Mirasvit\Report\Model\Query\Column\Date\Day"/>
+
+            <column name="week" label="Week" fields="period" class="Mirasvit\Report\Model\Query\Column\Date\Week"/>
+
+            <column name="month" label="Month" fields="period" class="Mirasvit\Report\Model\Query\Column\Date\Month"/>
+
+            <column name="quarter" label="Quarter" fields="period" class="Mirasvit\Report\Model\Query\Column\Date\Quarter"/>
+
+            <column name="year" label="Year" fields="period" class="Mirasvit\Report\Model\Query\Column\Date\Year"/>
+
+            <column name="store_id" label="Store" fields="store_id" class="Mirasvit\Report\Model\Query\Column\Store"/>
+            <column name="customer_group_id" label="Customer Groups" fields="customer_group_id" class="Mirasvit\Rewards\Model\Query\Column\CustomerGroup"/>
+
+            <column name="total_points_earned" label="Total Earned Points" fields="total_points_earned" type="number" expr="SUM(%1)"/>
+            <column name="total_points_spent" label="Total Spent Points" fields="total_points_spent" type="number" expr="SUM(%1)"/>
+            <column name="total_points_spent_in_money" label="Total Spent Points in money equivalent" fields="total_points_spent_in_money" type="price" expr="SUM(%1)"/>
+            <column name="average_points_earned" label="Avarage Earned Points" fields="average_points_earned" type="number" expr="AVG(%1)"/>
+            <column name="average_points_spent" label="Avarage Spent Points" fields="average_points_spent" type="number" expr="AVG(%1)"/>
+            <column name="total_expired_points" label="Total Expired Points" fields="total_expired_points" type="number" expr="SUM(%1)"/>
+        </columns>
+    </table>
+    <table name="customer_entity">
+        <columns>
+            <column name="name" label="Customer" fields="firstname" expr="CONCAT(firstname, ' ', lastname)" type="text"/>
+        </columns>
+    </table>
+    <relation name="mst_rewards_points_aggregated_hour2customer_entity">
+        <leftTable>mst_rewards_points_aggregated_hour</leftTable>
+        <rightTable>customer_entity</rightTable>
+        <condition>%1.customer_id=%2.entity_id</condition>
+        <type>n1</type>
+    </relation>
+    <table name="store">
+        <columns>
+            <column name="name" label="Store" fields="name" type="text"/>
+        </columns>
+    </table>
+    <relation name="customer_entity2store">
+        <leftTable>customer_entity</leftTable>
+        <rightTable>store</rightTable>
+        <condition>%1.store_id=%2.store_id</condition>
+        <type>11</type>
+    </relation>
+</config>

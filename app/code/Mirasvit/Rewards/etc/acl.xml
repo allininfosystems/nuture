@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+<acl>
+    <resources>
+        <resource id="Magento_Backend::admin">
+            <resource id="Mirasvit_Rewards::reward" title="Reward Points">
+                <resource id="Mirasvit_Rewards::reward_points" title="Reward Points" sortOrder="10">
+                    <resource id="Mirasvit_Rewards::reward_points_earning_rule" title="Earning Rules" sortOrder="10"/>
+                    <resource id="Mirasvit_Rewards::reward_points_spending_rule" title="Spending Rules" sortOrder="20"/>
+                    <resource id="Mirasvit_Rewards::reward_points_notification_rule" title="Notification Rules"
+                              sortOrder="30"/>
+                    <resource id="Mirasvit_Rewards::reward_points_transaction" title="Transactions" sortOrder="40"/>
+                    <resource id="Mirasvit_Rewards::reward_points_referral" title="Referrals" sortOrder="50"/>
+                    <resource id="Mirasvit_Rewards::reward_points_settings" title="Settings" sortOrder="60"/>
+                    <resource id="Mirasvit_Rewards::reward_points_report" title="Report" sortOrder="70"/>
+                </resource>
+            </resource>
+            <resource id="Magento_Backend::stores">
+                <resource id="Magento_Backend::stores_settings">
+                    <resource id="Magento_Config::config">
+                        <resource id="Mirasvit_Rewards::config_reward_points" title="Mirasvit Reward Points"
+                                  sortOrder="1000"/>
+                        <resource id="Mirasvit_Rewards::config_reward_social" title="Mirasvit Reward Social"
+                                  sortOrder="1010"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resource>
+    </resources>
+</acl>
+</config>

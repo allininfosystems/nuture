@@ -1,0 +1,19 @@
+<?php /** @var \Mirasvit\Rewards\Block\Buttons\Facebook\Like $block */ ?>
+<div class="buttons-facebook-like">
+    <div class="fb-like" data-href="<?= $block->getEncodedPageUrl()?>"
+         data-layout="button"
+         data-action="like"
+         data-show-faces="false"
+         data-share="false"
+         data-font="arial"
+         data-width="61"
+         data-height="20"
+         data-colorscheme="light"></div>
+    <?php if ($block->getEstimatedEarnPoints() > 0): ?>
+        <?php if ($block->isAuthorized() && !$block->isLiked()): ?>
+            <div id='facebook-message'>
+            <?= __('Like this page and earn %1',  $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getEstimatedEarnPoints())); ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

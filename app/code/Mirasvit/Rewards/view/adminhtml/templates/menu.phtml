@@ -1,0 +1,30 @@
+<?php
+/** @var Mirasvit\Rewards\Block\Adminhtml\Menu $block */
+?>
+<style>
+    .page-title-wrapper .page-title {
+        display: none;
+    }
+</style>
+<div class="admin__action-dropdown-wrap rewards__menu">
+    <button
+        type="button"
+        class="admin__action-dropdown"
+        data-mage-init='{"dropdown":{}}'
+        data-toggle="dropdown"
+        aria-haspopup="true">
+        <span class="admin__action-dropdown-text" ><?php /* @escapeNotVerified */ echo $block->getCurrentSelectionTitle() ?></span>
+    </button>
+
+    <ul class="admin__action-dropdown-menu">
+        <?php foreach ($block->getItems() as $item): ?>
+            <li class="<?php if ($item->getIsActive()) {
+    echo 'current';
+} ?>">
+                <a href="<?php echo $item->getUrl() ?>">
+                    <?php echo $block->escapeHtml($item->getTitle()) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

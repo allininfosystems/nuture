@@ -1,0 +1,68 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="EarnTwitterPoints" xsi:type="object">Mirasvit\Rewards\Console\Command\EarnTwitterPointsCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Mirasvit\Rewards\Api\RewardsInterface" type="Mirasvit\Rewards\Model\Checkout\Rewards" />
+    <preference for="Mirasvit\Rewards\Api\Data\RewardsInterface" type="Mirasvit\Rewards\Model\Data\Rewards" />
+
+    <type name="Magento\Framework\Pricing\Adjustment\Collection">
+        <arguments>
+            <argument name="adjustments" xsi:type="array">
+                <item name="rewards_earn" xsi:type="const">Mirasvit\Rewards\Pricing\Adjustment::ADJUSTMENT_CODE</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Pricing\Adjustment\Pool">
+        <arguments>
+            <argument name="adjustments" xsi:type="array">
+                <item name="rewards_earn" xsi:type="array">
+                    <item name="className" xsi:type="string">Mirasvit\Rewards\Pricing\Adjustment</item>
+                    <item name="sortOrder" xsi:type="string">30</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Mirasvit\Report\Api\Repository\ReportRepositoryInterface">
+        <arguments>
+            <argument name="reports" xsi:type="array">
+                <item name="rewards_overview" xsi:type="string">Mirasvit\Rewards\Reports\Overview</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Mirasvit\Report\Ui\DataProvider">
+        <plugin name="override_filter" type="Mirasvit\Rewards\Plugin\DataProviderGroupFilter" sortOrder="1"/>
+    </type>
+    <type name="Mirasvit\Report\Model\Config\Map">
+        <plugin name="rewards.columns" type="Mirasvit\Rewards\Plugin\ReportConfigMapPlugin" sortOrder="10"/>
+    </type>
+    <type name="Magento\Config\Model\Config\Structure">
+        <plugin name="rewards.config.structure" type="Mirasvit\Rewards\Plugin\Model\Config\StructurePlugin"
+                sortOrder="100"/>
+    </type>
+    <type name="Magento\SalesRule\Model\Validator">
+        <plugin name="RewardsRuleValidator" type="Mirasvit\Rewards\Plugin\SalesRuleValidator" sortOrder="10"/>
+    </type>
+    <type name="Magento\Tax\Model\Config">
+        <plugin name="RewardsTaxCalculation" type="Mirasvit\Rewards\Plugin\TaxConfig" sortOrder="10"/>
+    </type>
+
+    <!--UI-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="rewards_earning_rule_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Earning\Grid\Collection</item>
+                <item name="rewards_spending_rule_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Spending\Grid\Collection</item>
+                <item name="rewards_notification_rule_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Notification\Grid\Collection</item>
+                <item name="rewards_transaction_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Transaction\Grid\Collection</item>
+                <item name="rewards_referral_listing_data_source" xsi:type="string">Mirasvit\Rewards\Model\ResourceModel\Referral\Grid\Collection</item>
+                <item name="rewards_customer_grid_data_source" xsi:type="string">Magento\Customer\Model\ResourceModel\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

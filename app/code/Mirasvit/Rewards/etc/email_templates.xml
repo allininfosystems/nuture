@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Email/etc/email_templates.xsd">
+    <template id="rewards_notification_balance_update_email_template" label="Rewards - Balance update Email" file="notification_balance_update_email_template.html" type="html" module="Mirasvit_Rewards" area="frontend"/>
+    <template id="rewards_notification_points_expire_email_template" label="Rewards - Points expire Email" file="notification_points_expire_email_template.html" type="html" module="Mirasvit_Rewards" area="frontend"/>
+    <template id="rewards_referral_invitation_email_template" label="Rewards - Invitation Email Template" file="referral_invitation_email_template.html" type="html" module="Mirasvit_Rewards" area="frontend"/>
+</config>

@@ -1,0 +1,18 @@
+<div class="admin__action-dropdown-wrap report__toolbar-customer-group reports__dropdown"
+        data-bind="collapsible">
+    <button
+            class="admin__action-dropdown"
+            type="button"
+            data-bind="toggleCollapsible, css: {_active: $collapsible.opened}"
+            aria-haspopup="true">
+        <span class="admin__action-dropdown-text" data-bind="text: current"></span>
+    </button>
+
+    <ul class="admin__action-dropdown-menu">
+        <!-- ko foreach: { data: customerGroups, as: 'group' } -->
+        <li data-bind="css: group.type">
+            <span data-bind="text: group.label, click: $parent.onChangeCustomerGroup"></span>
+        </li>
+        <!-- /ko -->
+    </ul>
+</div>

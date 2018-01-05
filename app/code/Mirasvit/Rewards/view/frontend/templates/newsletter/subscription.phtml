@@ -1,0 +1,12 @@
+<?php /** @var $block \Mirasvit\Rewards\Block\Newsletter\Unsubscribe */ ?>
+<?php if ($block->isAllow()): ?>
+    <div class="field choice">
+        <input type="checkbox" name="rewards_subscription" id="rewards_subscription" value="1"
+           title="<?php echo __('Subscription to Points Expiration Notification') ?>"
+            <?php if ($block->isRewardsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox">
+        <label for="rewards_subscription" class="label">
+            <span><?= __('Subscription to Points Expiration Notification') ?></span>
+        </label>
+        <input type="hidden" name="rewards_subscription_key" value="1">
+    </div>
+<?php endif; ?>

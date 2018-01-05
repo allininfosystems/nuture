@@ -1,0 +1,40 @@
+<?php
+/** @var Mirasvit\Rewards\Block\Buttons\Twitter\Tweet $block */
+?>
+<?php
+$currentUrl = $block->getCurrentUrl();
+?>
+<div class="buttons-twitter-like">
+    <a href="https://twitter.com/share"
+        class="twitter-share-button mst-rewardssocial-tweet"
+        data-url="<?php echo $block->getCurrentEncodedUrl($currentUrl) ?>" data-count="none"
+        data-text=""><?php echo __('Tweet')?></a>
+    <?php if ($block->getEstimatedEarnPoints() > 0): ?>
+        <?php if ($block->isAuthorized() && !$block->isLiked()): ?>
+            <div id='twitter-message'>
+                <?php echo __(
+                    'Tweet this page and earn %1',
+                    $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getEstimatedEarnPoints())
+                ); ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+
+    <script type="text/javascript">
+        var rewardsTwitterUrl = '<?php echo $block->getTweetUrl(); ?>';
+        var rewardsCurrentTwiiterUrl = '<?php echo $block->getCurrentEncodedUrl($currentUrl); ?>';
+
+        var rewardsTwitterHash = Math.random().toString(36).slice(2);
+
+        var rewardsDefaultTwitterText = '<?php echo $block->getProductName() ?: __('Check this out!') ?> ';
+        var rewardsDefaultTwitterUrl = '<?php echo $currentUrl ?>';
+
+        var parser = document.createElement('a');
+        parser.href = rewardsDefaultTwitterUrl;
+        if (parser.search) {
+            rewardsCurrentTwiiterUrl = rewardsDefaultTwitterUrl + '&' + rewardsTwitterHash;
+        } else {
+            rewardsCurrentTwiiterUrl = rewardsDefaultTwitterUrl + '?' + rewardsTwitterHash;
+        }
+    </script>
+</div>

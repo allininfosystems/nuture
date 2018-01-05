@@ -9,7 +9,7 @@
  *
  * @category  Mirasvit
  * @package   mirasvit/module-core
- * @version   1.2.21
+ * @version   1.2.48
  * @copyright Copyright (C) 2017 Mirasvit (https://mirasvit.com/)
  */
 
@@ -45,10 +45,12 @@ class ParseVariables extends AbstractHelper implements ParseVariablesHelperInter
     public function __construct(
         Context $context,
         PricingHelper $pricingHelper,
-        EavConfig $eavConfig
+        EavConfig $eavConfig,
+        \Magento\Framework\Escaper $escaper
     ) {
         $this->pricingHelper = $pricingHelper;
         $this->eavConfig = $eavConfig;
+        $this->escaper = $escaper;
 
         parent::__construct($context);
     }
@@ -222,6 +224,6 @@ class ParseVariables extends AbstractHelper implements ParseVariablesHelperInter
             }
         }
 
-        return $value;
+        return $this->escaper->escapeHtml($value);
     }
 }

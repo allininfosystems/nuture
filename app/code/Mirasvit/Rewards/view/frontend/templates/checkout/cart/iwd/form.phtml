@@ -1,0 +1,61 @@
+<?php
+/**
+ $block->getRewardsData()  \Mirasvit\Rewards\Helper\Data  $_rewardsData
+ */
+?>
+<form id="opc-rewards-form"
+      action="<?= $block->getUrl('checkout/cart/couponPost', ['_secure' => $block->getRequest()->isSecure()]) ?>"
+      method="post">
+    <div class="discount">
+        <div class="discount-form">
+            <label
+                for="points_amount"><?= __('You have <b>%1</b> available.', $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getBalancePoints() - $block->getPurchase()->getSpendPoints())) ?>
+                <br>
+
+                <?= __('Enter amount of points to spend:'); ?>
+            </label>
+
+            <div class="input-box">
+                <input class="input-text" id="points_amount" name="points_amount"
+                       value="<?= $block->getPointsAmount() ? (int)$block->getPointsAmount() : '' ?>"/>
+            </div>
+            <div class="input-box">
+                <input type='checkbox' id="points_all" name="points_all"
+                    <?= $block->getPointsAmount() == $block->getMaxPointsNumberToSpent() ? 'checked' : '' ?> />
+                <label
+                    for="points_all"><?= __('Use maximum %1', $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getMaxPointsNumberToSpent())) ?></label>
+            </div>
+            <div class="buttons-set">
+                <button type="button" title="<?= __('Apply Points') ?>"
+                        class="button apply-points" value="<?= __('Apply Points') ?>">
+                    <span><span><?= __('Apply') ?></span></span></button>
+                <?php if ($block->getPointsAmount()): ?>
+                    <button type="button" title="<?= __('Cancel Points') ?>"
+                                   class="button remove-points right" value="<?= __('Cancel Points') ?>">
+                        <span><span><?= __('Cancel') ?></span></span></button>
+                <?php endif ?>
+                </span>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    var rewardsForm = new VarienForm('reward-points-form');
+
+    Event.observe($('points_all'), 'click', function () {
+        if ($('points_amount').value == <?= $block->getMaxPointsNumberToSpent() ?>) {
+            $('points_amount').value = '';
+        } else {
+            $('points_amount').value = <?= $block->getMaxPointsNumberToSpent() ?>;
+        }
+    });
+    Event.observe($('points_amount'), 'keyup', function () {
+        var val = parseInt($('points_amount').value);
+        if (isNaN(val) || val < <?= $block->getMaxPointsNumberToSpent() ?>) {
+            $('points_all').checked = false;
+        } else {
+            $('points_all').checked = true;
+            $('points_amount').value = <?= $block->getMaxPointsNumberToSpent() ?>;
+        }
+    });
+</script>

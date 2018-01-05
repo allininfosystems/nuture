@@ -1,0 +1,391 @@
+
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>-->
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$request = $objectManager->get('Magento\Framework\App\Action\Context')->getRequest();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
+$request = $objectManager->get('\Magento\Framework\App\Request\Http');
+$cartObj = $objectManager->get('\Magento\Checkout\Model\Cart');
+$store = $storeManager->getStore();
+$baseurl = $store->getBaseUrl();
+$blogurl = $store->getBaseUrl() . 'blog';
+$u = explode('?___', $store->getCurrentUrl());
+$module_name = $request->getModuleName();
+$controller_name = $request->getControllerName();
+$urlInterface = $objectManager->get('Magento\Framework\UrlInterface');
+$current = $urlInterface->getCurrentUrl();
+
+
+// $module_url= $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('kb/general/base_url');
+// $KnowledgehubUrl=$module_url.'.html';
+$KnowledgehubUrl = $baseurl . 'knowledge-hub.html';
+if ($store->getBaseUrl() != $u[0]) {
+    ?>
+    <!-- 	<link href="http://projects.kleward.com:8888/nuluv/pub/static/frontend/Bluethink/Theme/en_US/css/styles-m.css" rel="stylesheet"> -->
+    <?php
+}
+
+if ($current == $KnowledgehubUrl || $current == $blogurl || $module_name == "mpblog" || $module_name == "kbase" || $module_name == 'faq' || $controller_name == "category") {
+    ?>
+    <style >
+        /*        nav.navigation .border-1{
+                    height: 81px;
+                }*/
+        .header-bg .head-title{
+            margin-top: 54px;
+        }
+
+    </style>
+    <?php
+}
+/*
+if ($current == $store->getBaseUrl() || $module_name == 'checkout' || $module_name == 'customer' || $module_name == "rewardpoints" || $controller_name == "product" || $module_name == "cms" || $module_name == "search") {
+    ?>
+    <style type="text/css">
+                .homepage{
+                    display: none;
+                
+    </style>
+    <?php
+} */
+?>
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:300,400,500,600,700,800|Sofia|Roboto:300,400,500" rel="stylesheet">
+<!-- <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'> -->
+
+<header class="nuluv <?php
+if ($request->getFullActionName() != 'cms_index_index') {
+    echo 'header-bg yellow';
+}
+?>">
+    <div class="sticky-nav nav-opens">
+        <div class="top-wrap">
+            <div class="container clearfix">
+                <ul class="social-icons">
+                    <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('social_icon')->toHtml(); ?>
+                </ul>
+<!--custome code -->
+              
+<!--end of custom code-->
+                <ul class="login-signup">
+                    <?php
+                    $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+                    if ($customerSession->isLoggedIn()) {
+                        ?>
+                        <li><a href="<?php echo $block->geturl("customer/account/"); ?>">Hi <?php echo $customerSession->getCustomer()->getFirstname(); ?></a></li>
+                        <li><a href="<?php echo $block->geturl("customer/account/logout"); ?>">Sign Out</a></li>
+                    <?php } else { ?>
+                       <!-- <li class="login"><a id="login" href="<?php echo $block->geturl("customer/account/login"); ?>">-->
+                        <li class="login"><a id="login" href="# <?php //echo $block->geturl("customer/account/login"); ?>">Log In</a>
+                        <div id="login-form"><?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Form\Login')->setTemplate('Magento_Customer::form/loginnew.phtml')->toHtml();?></div>
+                        </li>
+                        <!--<li><a href="<?php echo $block->geturl("customer/account/create"); ?>">Sign Up</a></li>-->
+                    <?php } ?>	
+                </ul>
+                <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header_top_nav_text')->toHtml(); ?>
+            </div>
+        </div>
+        <nav class="navigation">
+            <div class="container border-1 clearfix">
+                <div class="responsive-menu clearfix">
+                    <a class="brand-logo sm-show" href=""><img src="<?php echo $this->getViewFileUrl('images/nuluv-logo.png'); ?>"/></a>
+                    <div class="toggle-button"><span></span><span></span><span></span></div>
+                </div>
+                <div class="menu-toggle">
+                    <ul class="left-nav">
+                        <?php
+                        $catId = 2;
+                        $subcategory = $objectManager->create('Magento\Catalog\Model\Category')->load($catId);
+                        $subcats = $subcategory->getChildrenCategories();
+                        foreach ($subcats as $subcat) {
+                            if ($subcat->getIsActive()) {
+                                $subsubcategory = $objectManager->create('Magento\Catalog\Model\Category')->load($subcat->getId());
+                                $subsubcats = $subsubcategory->getChildrenCategories();
+                                ?>
+                                <li><p class="sublink"></p><a href="<?php echo $subcat->getUrl(); ?>"><?php echo $subcat->getName(); ?></a>
+                                    <div class="megamenu">
+                                        <?php
+                                        if (!empty(count($subsubcats))) {
+
+                                            $i = 0;
+                                            foreach ($subsubcats as $subsubcat) {
+                                                if ($subsubcat->getIsActive()) {
+                                                    if ($i == 0) {
+
+
+                                                        $subchildcategory = $objectManager->create('Magento\Catalog\Model\Category')->load($subsubcat->getId());
+                                                        $subchildcats = $subchildcategory->getChildrenCategories();
+                                                        ?>
+                                                        <div class="menu_col dcare_cat" style="background: url('<?php echo $subchildcategory->getImageUrl(); ?>') no-repeat top right">
+
+                                                            <div class="mg_cat_heading <?php if(count($subchildcats) > 0){ echo 'trigger-opn'; } ?> "><a href="<?php echo $subsubcat->getUrl(); ?>"><?php echo $subchildcategory->getName(); ?> </a></div>
+                                                            <ul class="open-submenu">
+                                                                <?php
+                                                                if (!empty(count($subchildcats))) {
+                                                                    foreach ($subchildcats as $subchildcat) {
+                                                                        if ($subchildcat->getIsActive()) {
+                                                                            //Third Level Category
+                                                                            ?>
+                                                                            <li><a href="<?php echo $subchildcat->getUrl(); ?>"><?php echo$subchildcat->getName(); ?></a></li>
+                                                                            <?php
+                                                                        }
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </ul>
+                                                            <div class="cls"></div>
+                                                            <div class="menuView">
+                                                                <a href="<?php echo $subsubcat->getUrl(); ?>" class="view_all">View All</a>
+                                                            </div>
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                }
+                                                $i++;
+                                            }
+                                            ?>
+
+                                            <div class="menu_col">
+                                                <?php
+                                                $j = 0;
+                                                foreach ($subsubcats as $subsubcat) {
+
+                                                    if ($subsubcat->getIsActive()) {
+                                                        if ($j == 1 || $j == 2) {
+
+
+                                                            $subchildcategory = $objectManager->create('Magento\Catalog\Model\Category')->load($subsubcat->getId());
+                                                            $subchildcats = $subchildcategory->getChildrenCategories();
+                                                            //Second Level Category
+                                                            ?>
+                                                            <div class="concern gifts" style="background: url('<?php echo $subchildcategory->getImageUrl(); ?>') no-repeat top right ">
+
+                                                                <div class="mg_cat_heading <?php if(count($subchildcats) > 0){ echo 'trigger-opn'; } ?> <?php
+                                                                if ($j == 2) {
+                                                                    echo 'bt_custom';
+                                                                }
+                                                                ?>"><a href="<?php echo $subsubcat->getUrl(); ?>"><?php echo $subsubcat->getName(); ?></a></div>
+                                                                     <?php if (!empty(count($subchildcats))) {
+                                                                         ?>
+                                                                    <ul class="open-submenu">
+                                                                        <?php
+                                                                        $a = 0;
+                                                                        foreach ($subchildcats as $subchildcat) {
+                                                                            if ($a == 4) {
+                                                                                break;
+                                                                            }
+                                                                            if ($subchildcat->getIsActive()) {
+                                                                                //Third Level Category
+                                                                                ?>
+                                                                                <li><a href="<?php echo $subchildcat->getUrl(); ?>"><?php echo $subchildcat->getName(); ?></a></li>
+                                                                                <?php
+                                                                            }
+                                                                            $a++;
+                                                                        }
+                                                                        ?>
+                                                                    </ul>
+                                                                    <div class="cls"></div>
+
+                                                                    <?php if ($a == 4) { ?>
+                                                                        <div class="menuView">	
+                                                                            <a href="<?php echo $subsubcat->getUrl(); ?>" class="view_all">View All</a>
+                                                                        </div>
+                                                                        <?php
+                                                                    }
+                                                                }
+                                                                ?> 
+
+
+                                                            </div>
+
+                                                            <?php
+                                                        }
+                                                    }
+                                                    $j++;
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="menu_col">
+                                                <?php
+                                                $k = 0;
+                                                foreach ($subsubcats as $subsubcat) {
+
+                                                    if ($subsubcat->getIsActive()) {
+                                                        if ($k == 3 || $k == 4) {
+
+
+                                                            $subchildcategory = $objectManager->create('Magento\Catalog\Model\Category')->load($subsubcat->getId());
+                                                            $subchildcats = $subchildcategory->getChildrenCategories();
+                                                            //Second Level Category
+                                                            ?>
+                                                            <div class="concern" style="background: url('<?php echo $subchildcategory->getImageUrl(); ?>') no-repeat  right 5px">
+
+                                                                <div class="mg_cat_heading <?php if(count($subchildcats) > 0){ echo 'trigger-opn'; } ?> <?php
+                                                                if ($k == 4) {
+                                                                    echo 'bt_custom';
+                                                                }
+                                                                ?>"><a class="menuText" href="<?php echo $subsubcat->getUrl(); ?>"><?php echo $subsubcat->getName(); ?></a></div>
+                                                         
+                                                                <?php  $b = 0; 
+                                                                if (!empty(count($subchildcats))) {
+                                                                    ?>
+
+                                                                    <ul class="open-submenu">
+                                                                        <?php
+                                                                       
+                                                                        foreach ($subchildcats as $subchildcat) {
+                                                                            if ($subchildcat->getIsActive()) {
+                                                                                if ($b == 4) {
+                                                                                    break;
+                                                                                }
+                                                                                //Third Level Category
+                                                                                ?>
+                                                                                <li><a href="<?php echo $subchildcat->getUrl(); ?>"><?php echo $subchildcat->getName(); ?></a></li>
+                                                                                <?php
+                                                                            }
+                                                                            $b++;
+                                                                        }
+                                                                        ?>
+                                                                    </ul>
+                                                                    <div class="cls"></div>
+                                                                    <?php
+                                                                }
+                                                                if ($b == 4) {
+                                                                    ?>
+                                                                    <div class="menuView">
+                                                                        <a href="<?php echo $subsubcat->getUrl(); ?>" class="view_all">View All</a>
+                                                                    </div>
+                                                                <?php } ?>
+
+                                                            </div>
+
+                                                            <?php
+                                                        }
+                                                    }
+                                                    $k++;
+                                                }
+                                                ?>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                        <div class="menu_col logo_menu">
+                                            <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('megamenu_image_brand')->toHtml(); ?>
+                                        </div>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                            ?>   
+
+                    </ul>
+                    <a class="brand-logo lg-show" href="<?php echo $baseurl; ?>">
+                        <?php echo $this->getLayout()->createBlock("Magento\Theme\Block\Html\Header\Logo")->setTemplate("Magento_Theme::html/header/logo.phtml")->toHtml(); ?>
+                    </a>
+                    <ul class="right-nav">
+                        <li class="headactive "><a href="<?php echo $KnowledgehubUrl; ?>">Knowledge Hub</a>
+                            <?php if ($current == $KnowledgehubUrl || $module_name == "kbase") { ?> <hr class="homepage" style="height:3px; background-color: #7e6674;"> <?php } else { ?> <hr class="homepage" style="height:0px; background-color: unset;"> <?php } ?></li>
+                        <li class="headactive "><a href="<?php echo $blogurl; ?>">Blog</a>
+                            <?php if ($current == $blogurl || $module_name == "mpblog") { ?> <hr class="homepage" style="height:3px; background-color: #7e6674;"><?php } else { ?> <hr  class="homepage" style="height:0px; background-color: unset;"> <?php } ?></li>
+                        <li class="headactive "><a href="#">Forum</a><hr class="homepage" style="height:0px; background-color: unset;"></li>
+                    </ul>      
+                </div>
+                <div class="cart-search">
+                    <span class="search-btn" id="searchcont"><i class="fa fa-search"></i>
+                    </span>
+                </div>
+                <?php echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Bluethink_Search::index/searchform.phtml')->toHtml(); ?>
+            </div>
+        </nav>
+    </div>
+    <!--====Shopping cart===-->
+
+	<div class="cus-container">
+		<?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+	</div>
+    <?php if ($request->getFullActionName() == 'cms_index_index') { ?>
+        <!--=======banner slider=======-->
+        <?php //echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('home_page_main_slider')->toHtml(); ?>
+    <?php } ?>
+
+
+</header>
+
+
+<script>
+    require(['jquery','jquery.owl.carousel'], function(jQuery) {
+        jQuery(document).ready(function() {
+			
+			jQuery('#owl-demo1').owlCarousel({
+				animateOut: 'fadeOut',
+				animateIn: 'fadeIn',
+				loop:true,
+				margin:10,
+				nav:true,
+				mouseDrag: true,
+				dots: true,
+				responsive:{
+					0:{ items:1 },
+					600:{ items:1 },
+					1000:{ items:1 }
+				}
+			});
+			
+			jQuery('.indicator').css("display", "none");            
+			
+            jQuery(".minicart-wrapper").insertAfter(".cart-search");
+            
+			jQuery(".minicart-content").hide();
+			jQuery(".minicart-btn").mouseover(function() {				  
+				  jQuery(".minicart-content").show();
+			});
+			jQuery(".minicart-btn").mouseout(function() {				  
+				  jQuery(".minicart-content").hide();
+			});
+			
+			// Hide Header on on scroll down
+            var didScroll;
+            var lastScrollTop = 0;
+            var delta = 5;
+            var navbarHeight = jQuery('.navigation').outerHeight();
+            var sticky = jQuery('.navigation');
+			var heading = jQuery('.head-title');
+            jQuery(window).scroll(function(event) {
+                didScroll = true;
+            });
+
+            setInterval(function() {
+                if (didScroll) {
+                    hasScrolled();
+                    didScroll = false;
+                }
+            }, 10);
+
+            function hasScrolled() {
+                var st = jQuery(this).scrollTop();
+                // Make sure they scroll more than delta
+                if (Math.abs(lastScrollTop - st) <= delta) {
+                    //sticky.removeClass('fixed');
+                    return;
+                }
+
+                if (st <= 32) {
+                    //sticky.removeClass('fixed');
+					//heading.removeClass('fixed');
+                } else {
+                    //sticky.addClass('fixed');
+					//heading.addClass('fixed');
+                }
+
+                lastScrollTop = st;
+            }
+        });
+
+    });
+</script>    
+<style type="text/css">
+
+.blogimage{overflow: hidden; height: 215px;}
+.cart-box {visibility: visible; opacity: 1;}
+</style>

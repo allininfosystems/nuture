@@ -27,6 +27,8 @@ use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\SocialLogin\Helper\Social as SocialHelper;
 use Mageplaza\SocialLogin\Model\Social;
 use Magento\Customer\Model\Session;
+use Magento\Framework\Controller\ResultFactory;
+
 
 /**
  * Class AbstractSocial
@@ -273,7 +275,8 @@ class Login extends Action
 				$this->accountRedirect->clearRedirectCookie();
 			}
 		}
-
-		return $url;
+		$resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+        $customurl=$this->_redirect->getRefererUrl();
+		return $customurl;
 	}
 }

@@ -80,7 +80,6 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                     }
                     ?>
                     <?php // Product Image ?>
-					 <?php if($customerEmail!=''){ ?> <div class="notmess<?php echo $_product->getId(); ?>"></div><?php } ?>
                     <div class="product-image">
                         <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
                             <?php echo $productImage->toHtml(); ?>
@@ -96,7 +95,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                 <div class="overlay sold-out">
                                     <div class="overlay-sold-out-content"><a class="sold-out-btn" href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">Sold Out</a></div>
                                 </div>
-								<a href="<?php if($customerEmail!=''){ echo 'javascript:void(0)'; }else{ echo $_product->getProductUrl(); }  ?>" <?php if($customerEmail!=''){ ?>onclick="notification(<?php echo $_product->getId(); ?>)"<?php }  ?> class="get-info">Get Info</a>
+								<a href="<?php if($customerEmail!=''){ echo 'javascript:void(0)'; }else{ echo $_product->getProductUrl(); }  ?>" <?php if($customerEmail!=''){ ?>onclick="notification(<?php echo $_product->getId(); ?>)"<?php }  ?> class="get-info notmess<?php echo $_product->getId(); ?>">Get Notified</a>
                             <?php endif; ?>
                     </div>
                     <div class="product details product-item-details">
@@ -184,7 +183,6 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
 <script>
     function notification(pid){
 		require(['jquery'],function(jQuery){
-			jQuery('.notmess' + pid).html('Loading....');
 			var url = '<?php echo $baseUrl; ?>stocknotification/custom/index';
 			var email = '<?php echo $customerEmail; ?>';
 			var customer_id = '<?php echo $customerid; ?>';

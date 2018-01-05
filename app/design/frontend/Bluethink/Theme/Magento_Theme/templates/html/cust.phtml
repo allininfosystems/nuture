@@ -34,22 +34,27 @@ $urlInterface = $objectManager->get('Magento\Framework\UrlInterface');
   ?>
   <section class="container">
       <div class="product-filter filter"> 
-      	<a class="tab-link <?php if(count($urlstr)==1){echo "current";} ?>" href="<?php echo $categoryurl; ?>">Shop All</a>
       	 <?php
+		      $actarr=array();
+			   $cathtml='';
               foreach ($childrenCategories as  $value) 
               { 
-			    if(count($urlstr)==1){
-					echo '<a class="tab-link" href="'.$categoryurl.'?cat='.$value->getId().'">'.$value->getName().'</a>';
-				}else{
-					$act='';
-					$links=$categoryurl.'?cat='.$value->getId();
-					if($catsarr[0]==$value->getId()){
+			        $act='';
+					if($categoryId==$value->getId()){
 						$act='current';
-						$links='';
+						$actarr[]=$act;
 					}
-					echo '<a class="tab-link '.$act.'" href="'.$links.'">'.$value->getName().'</a>';
-				}
-			  }  ?>
+					$cathtml.='<a class="tab-link '.$act.'" href="'.$value->getUrl().'">'.$value->getName().'</a>';
+			  }
+			  
+			  if(in_array('current',$actarr)){
+				  $mainact='';
+			  }else{
+				  $mainact='current'; 
+			  }
+			 echo '<a class="tab-link '.$mainact.'" href="'.$categoryurl.'">Shop All</a>';
+			 echo $cathtml;
+			  ?>
       	</div>
   </section>
   <script>

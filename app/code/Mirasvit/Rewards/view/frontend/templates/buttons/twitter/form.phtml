@@ -1,0 +1,38 @@
+<?php
+/** @var Mirasvit\Rewards\Block\Buttons\Twitter\Form $block */
+?>
+<div class="hdmx__contact-overlay" id="helpdesk-contact-form-overlay" style="display:none;">&nbsp;</div>
+<div id="hdmx__contact-popup" class="hdmx__contact-popup" style="display: none;">
+    <div class="hdmx__wrapper">
+        <form action="<?= $block->getTweetUrl() ?>" method="POST" id="helpdesk-contact-form"
+              class="hdmx__contact-form" data-mage-init='{"validation":{}}'>
+
+            <?= $block->getBlockHtml('formkey') ?>
+
+            <button type="button" class="action close">
+                <span>&times;</span>
+            </button>
+
+            <fieldset class="fieldset">
+                <legend class="legend"><?= __('What\'s happening?') ?></legend>
+                <div class="field required">
+                    <div class="control">
+                        <textarea name="message" id="message" class="input-text" rows="3"
+                                  placeholder="<?php echo $block->getDefaultTweet(); ?>"
+                                  data-validate="{required:true}"><?php
+                            echo $block->getDefaultTweet();
+                            ?></textarea>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="actions-toolbar">
+                <input type="hidden" name="hideit" id="hideit" value="">
+                <input type="hidden" name="url" id="url" value="<?php echo $block->getCurrentUrl(); ?>">
+                <button type="submit" title="<?= __('Tweet') ?>" class="action primary" id="hdmx-submit-btn">
+                    <span><?= __('Tweet') ?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

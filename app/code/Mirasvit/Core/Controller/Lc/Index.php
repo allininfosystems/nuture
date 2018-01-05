@@ -9,7 +9,7 @@
  *
  * @category  Mirasvit
  * @package   mirasvit/module-core
- * @version   1.2.21
+ * @version   1.2.48
  * @copyright Copyright (C) 2017 Mirasvit (https://mirasvit.com/)
  */
 
@@ -19,37 +19,60 @@ namespace Mirasvit\Core\Controller\Lc;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\Module\ModuleList;
+use Mirasvit\Core\Model\ModuleFactory;
+use Mirasvit\Core\Model\LicenseFactory;
 
 class Index extends Action
 {
     /**
-     * @var ModuleList
+     * @var ModuleFactory
      */
-    protected $moduleList;
+    private $moduleFactory;
 
     /**
-     * @param ModuleList $moduleList
-     * @param Context $context
+     * @var LicenseFactory
      */
+    private $licenseFactory;
+
     public function __construct(
-        ModuleList $moduleList,
+        ModuleFactory $moduleFactory,
+        LicenseFactory $licenseFactory,
         Context $context
     ) {
-        $this->moduleList = $moduleList;
+        $this->moduleFactory = $moduleFactory;
+        $this->licenseFactory = $licenseFactory;
 
         parent::__construct($context);
     }
+
     /**
-     * @return \Magento\Backend\Model\View\Result\Page
+     * {@inheritdoc}
+     * @SuppressWarnings(PHPMD)
      */
     public function execute()
     {
         echo '<pre>';
-        foreach ($this->moduleList->getNames() as $name) {
-            if (substr($name, 0, 9) == 'Mirasvit_') {
-                echo substr($name, 9).PHP_EOL;
+        $module = $this->moduleFactory->create();
+        foreach ($module->getInstalledModules() as $moduleName) {
+
+            $moduleName = str_replace('Mirasvit_', '', $moduleName);
+
+            echo $moduleName;
+
+            $info = $module->getComposerInformation('Mirasvit_' . $moduleName);
+            if ($info) {
+                echo ' ' . $info['version'];
             }
+
+            $license = $this->licenseFactory->create();
+
+            echo ' ' . $license->load('\\' . $moduleName);
+
+            $license->clear();
+
+            echo ' = ' . $license->getStatus('\\' . $moduleName);
+
+            echo PHP_EOL;
         }
 
         exit;

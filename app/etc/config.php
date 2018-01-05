@@ -132,6 +132,8 @@ return array (
     'Magestore_Rewardpoints' => 1,
     'Mirasvit_Core' => 1,
     'Mirasvit_Kb' => 1,
+    'Mirasvit_Report' => 1,
+    'Mirasvit_Rewards' => 1,
     'Nuluv_Freeshipamt' => 1,
     'Nuluv_Liker' => 1,
     'Nuluv_Lookingfor' => 1,

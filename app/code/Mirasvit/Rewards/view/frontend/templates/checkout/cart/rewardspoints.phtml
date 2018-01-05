@@ -1,0 +1,35 @@
+<?php
+/** @var \Mirasvit\Rewards\Block\Checkout\Cart\RewardsPoints $block */
+// @codingStandardsIgnoreFile
+if (!$block->getMaxPointsNumberToSpent()) {
+    return;
+}
+?>
+<?php /** @var $block \Mirasvit\Rewards\Block\Checkout\Cart\RewardsPoints */ ?>
+
+<div id="block-rewards-form" class="block shipping" data-mage-init='{"collapsible":{"openedState": "active", "saveState": true}}'>
+    <div class="title" data-role="title">
+        <strong id="block-rewards-form-heading" role="heading" aria-level="2">
+            <?php echo __('Use Reward Points') ?>
+        </strong>
+    </div>
+    <div id="block-rewards-points-form" data-bind="scope:'block-rewards-points-form'" class="content" data-role="content" aria-labelledby="block-rewards-form-heading">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <script type="text/x-magento-init">
+            {
+                "#block-rewards-points-form": {
+                    "Magento_Ui/js/core/app": <?php /* @escapeNotVerified */ echo $block->getJsLayout();?>
+                }
+            }
+        </script>
+        <script>
+            require([
+                'mage/url',
+                'Magento_Ui/js/block-loader'
+            ], function(url, blockLoader) {
+                blockLoader("<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('images/loader-1.gif'); ?>");
+                return url.setBaseUrl('<?php /* @escapeNotVerified */ echo $block->getBaseUrl();?>');
+            })
+        </script>
+    </div>
+</div>

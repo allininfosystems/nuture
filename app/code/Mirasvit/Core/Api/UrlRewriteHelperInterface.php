@@ -9,7 +9,7 @@
  *
  * @category  Mirasvit
  * @package   mirasvit/module-core
- * @version   1.2.21
+ * @version   1.2.48
  * @copyright Copyright (C) 2017 Mirasvit (https://mirasvit.com/)
  */
 
@@ -74,9 +74,10 @@ interface UrlRewriteHelperInterface
      * @param string $type
      * @param object $entity
      * @param array  $values
+     * @param int    $storeId
      * @return bool
      */
-    public function updateUrlRewrite($module, $type, $entity, $values);
+    public function updateUrlRewrite($module, $type, $entity, $values, $storeId);
 
     /**
      * Delete url rewrite

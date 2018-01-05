@@ -1,0 +1,74 @@
+<?php
+/**
+ $block->getRewardsData()  \Mirasvit\Rewards\Helper\Data  $_rewardsData
+ */
+?>
+<?php
+if (!$block->getMaxPointsNumberToSpent()) {
+    return;
+}
+$secure = Mage::app()->getFrontController()->getRequest()->isSecure();
+?>
+<div id="coupon-discount" class="firecheckout-section">
+    <div class="block-title"><span><?= __('Use Reward Points') ?></span></div>
+    <div class="discount-form" id="discount-code">
+        <?php
+;
+        $block->getMessagesBlock()->getMessageCollection()->clear();
+        ?>
+        <label for="points_amount"><?= __('You have <b>%1</b> available.', $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getBalancePoints())) ?><br>
+            <?= __('Enter amount of points to spend:'); ?>
+        </label>
+        <input type="hidden" name="remove-points" id="remove-points" value="0" />
+        <div class="input-box">
+            <input class="input-text" id="points_amount" name="points_amount" value="<?= $block->getPointsAmount() ? $block->htmlEscape($block->getPointsAmount()) : '' ?>" style="width: 90%;"/>
+        </div>
+        <div class="input-box">
+            <input type='checkbox' id="points_all" name="points_all"
+                <?= $block->getPointsAmount() == $block->getMaxPointsNumberToSpent() ? 'checked' : ''?> />
+            <label for="points_all"><?= __('Use maximum %1', $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getMaxPointsNumberToSpent()))?></label>
+        </div>
+        <div>
+            <button type="button" title="<?= __('Apply Points') ?>"  id="apply_points" class="button" value="<?= __('Apply Points') ?>"><span><span><?= __('Apply Points') ?></span></span></button>
+
+            &nbsp; <button type="button" <?php if (!$block->getPointsAmount()): ?>style="display: none;"<?php endif?> title="<?= __('Cancel Points') ?>"  id="cancel_points"  class="button" value="<?= __('Cancel Points') ?>"><span><span><?= __('Cancel Points') ?></span></span></button>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+
+        Event.observe($('points_all'), 'click', function(){
+            if ($('points_amount').value == <?= $block->getMaxPointsNumberToSpent() ?>) {
+                $('points_amount').value = '';
+            } else {
+                $('points_amount').value = <?= $block->getMaxPointsNumberToSpent() ?>;
+            }
+        });
+        Event.observe($('points_amount'), 'keyup', function(){
+            var val = parseInt($('points_amount').value);
+            if (isNaN(val) || val < <?= $block->getMaxPointsNumberToSpent() ?>) {
+                $('points_all').checked = false;
+            } else {
+                $('points_all').checked = true;
+                $('points_amount').value = <?= $block->getMaxPointsNumberToSpent() ?>;
+            }
+        });
+
+        $('apply_points') && $('apply_points').observe('click', function(e) {
+            checkout.update('<?= $block->getUrl('rewards/checkout_firecheckout/applyPoints', ['_secure' => $secure]) ?>', {
+                'review': 1
+            });
+            $('cancel_points').show();
+        });
+        $('cancel_points') && $('cancel_points').observe('click', function(e) {
+            $('points_amount').value = '';
+            $('points_all').checked = false;
+            checkout.update('<?= $block->getUrl('rewards/checkout_firecheckout/applyPoints', ['_secure' => $secure]) ?>', {
+                'review': 1
+            });
+            $('cancel_points').hide();
+        });
+        //]]>
+    </script>
+</div>

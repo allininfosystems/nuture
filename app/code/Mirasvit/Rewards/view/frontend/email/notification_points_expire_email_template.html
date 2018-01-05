@@ -1,0 +1,17 @@
+<!--@subject Your points at {{var store.getFrontendName()}} are about to expire@-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>Dear {{var customer.name}},</p>
+<p>Please, note that your {{var transaction_amount}}
+    at <a href="{{store url=""}}">{{var store.getFrontendName()}}</a>
+    will expire in <b>{{var transaction_days_left}} days</b>. </p>
+<p>To use points <a href="{{store url="customer/account/login"}}">login to your account</a> and spend points for new purchases.
+</p>
+Thank you,<br>
+<strong>{{var store.getFrontendName()}}</strong>
+
+<br><br>
+<span style="color:#d4c8c8;font-size:12px;">To unsubscribe from points expiring notification click <a style="color:#d4c8c8;text-decoration:underline;" href="{{store url="rewards/account/unsubscribe"}}">here</a></span>
+
+{{template config_path="design/email/footer_template"}}

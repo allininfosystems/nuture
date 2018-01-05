@@ -1,0 +1,73 @@
+<?php
+/** @var \Mirasvit\Rewards\Block\Account\Listing $block */
+$collection = $block->getTransactionCollection();
+?>
+<div class="block block-rewards-account-summary">
+    <div class="block-title">
+        <strong><?= __('Points Summary') ?></strong>
+        <?php if ($block->isCustomerSubscribed()): ?>
+            <span class="unsubscribe"><?= __('To unsubscribe from points expiring notification click %1', '<a href="'.$block->getUnsubscribeUrl().'">'.__('here').'</a>'); ?></span>
+        <?php endif; ?>
+    </div>
+
+    <div class="block-content">
+        <p><?= __('You have <b>%1</b> in your account.', $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getBalancePoints())); ?></p>
+        <p><?= $block->getChildHtml('rewards.notification') ?></p>
+    </div>
+</div>
+
+<div class="block block-rewards-account-summary">
+    <div class="block-content">
+        <p><?php echo $block->getChildHtml('rewards.customer.twitter') ?></p>
+    </div>
+</div>
+
+<div class="block block-rewards-account-summary">
+    <div class="block-title">
+        <strong><?= __('Transactions History') ?></strong>
+    </div>
+
+    <div class="block-content">
+        <div class="table-wrapper orders-recent">
+            <?php if ($collection->count()): ?>
+                <?= $block->getToolbarHtml() ?>
+                <table class="data-table table">
+                    <thead>
+                    <tr>
+                        <th><?= __('ID') ?></th>
+                        <th><?= __('Comment') ?></th>
+                        <th><?= __('Points') ?></th>
+                        <th><?= __('Created') ?></th>
+                        <th><?= __('Expires') ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php $odd = 0 ?>
+                    <?php foreach ($collection as $transaction): ?>
+                        <tr class="<?= ++$odd % 2 ? 'odd' : 'even' ?> <?= $collection->getLastItem() == $transaction ? 'last' : '' ?>">
+                            <td data-th="<?= __('ID') ?>"><?= $transaction->getId() ?></td>
+                            <td data-th="<?= __('Comment') ?>"><?= __($transaction->getComment()) ?></td>
+                            <td data-th="<?= __('Points') ?>"><?php
+                                if ($transaction->getAmount() > 0) {
+                                    echo '<span class="green">+' . $transaction->getAmount() . '</span>';
+                                } else if ($transaction->getAmount() < 0) {
+                                    echo '<span class="red">' . $transaction->getAmount() . '</span>';
+                                } else {
+                                    echo '<span>' . $transaction->getAmount() . '</span>';
+                                }
+                                ?></td>
+                            <td data-th="<?= __('Created') ?>"><?= $block->formatDate($transaction->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?></td>
+                            <td data-th="<?= __('Expires') ?>"><?= $transaction->getExpiresAtFormatted() ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p><?= __('There are no Transactions.') ?></p>
+            <?php endif ?>
+        </div>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+        <?php endif ?>
+    </div>
+</div>

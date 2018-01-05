@@ -7,7 +7,9 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Mirasvit_Core::core_settings" title="Core" sortOrder="20"/>
+                            <resource id="Mirasvit_Core::core_settings" title="Core" sortOrder="20">
+                                <resource id="Mirasvit_Core::validator" title="Mirasvit Extensions Validator" sortOrder="0"/>
+                            </resource>
                         </resource>
                     </resource>
                 </resource>

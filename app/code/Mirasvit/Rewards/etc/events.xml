@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+    <!--<event name="core_block_abstract_to_html_after">-->
+        <!--<observer name="mst_reward_model_observer_output" instance="\Mirasvit\Rewards\Model\Observer\Output" method="afterOutput"/>-->
+    <!--</event>-->
+    <event name="checkout_submit_all_after">
+        <observer name="rewards" instance="\Mirasvit\Rewards\Observer\OrderPlaceAfter"/>
+    </event>
+    <event name="order_cancel_after">
+        <observer name="rewards" instance="\Mirasvit\Rewards\Observer\OrderCancelAfter"/>
+    </event>
+    <!-- compatibility with Ebizmarts SagePay -->
+    <event name="sales_order_place_after">
+        <observer name="rewards" instance="\Mirasvit\Rewards\Observer\OrderPlaceAfter"/>
+    </event>
+    <event name="controller_action_predispatch_checkout_onepage_success">
+        <observer name="rewards" instance="\Mirasvit\Rewards\Observer\OrderCheckoutSuccess"/>
+    </event>
+    <event name="paypal_express_place_order_success">
+        <observer name="rewards" instance="\Mirasvit\Rewards\Observer\OrderPlaceAfter"/>
+    </event>
+    <event name="sales_order_invoice_save_commit_after">
+        <observer name="mst_reward_model_observer_invoice" instance="\Mirasvit\Rewards\Observer\OrderAfterInvoiceSave"/>
+    </event>
+    <event name="model_save_commit_after">
+        <observer name="mst_reward_model_observer_shipment" instance="\Mirasvit\Rewards\Observer\OrderAfterShipmentSave"/>
+    </event>
+    <event name="sales_order_creditmemo_refund">
+        <observer name="mst_reward_model_observer_refund" instance="\Mirasvit\Rewards\Observer\OrderAfterRefundSave"/>
+    </event>
+    <event name="newsletter_subscriber_save_commit_after">
+        <observer name="rewards" instance="\Mirasvit\Rewards\Observer\BehaviorCustomerSubscribed"/>
+    </event>
+    <event name="advn_subscribe_customer_after">
+        <observer name="rewards" instance="\Mirasvit\Rewards\Observer\BehaviorAdvnCustomerSubscribed"/>
+    </event>
+    <event name="customer_save_before">
+        <observer name="mst_rewards_model_customer_save_before" instance="\Mirasvit\Rewards\Observer\BehaviorCustomerBeforeSave"/>
+    </event>
+    <event name="customer_register_success">
+        <observer name="mirasvit_rewards_customer_checkput_register" instance="\Mirasvit\Rewards\Observer\BehaviorCustomerPlumrocketRegisterSuccess"/>
+    </event>
+    <event name="customer_save_after_data_object">
+        <observer name="mirasvit_rewards_customer_checkput_register" instance="\Mirasvit\Rewards\Observer\BehaviorCustomerRegisterSuccess"/>
+    </event>
+    <event name="sales_order_save_after">
+        <observer name="mst_rewards_model_order_save_after" instance="\Mirasvit\Rewards\Observer\OrderSaveAfter"/>
+    </event>
+    <event name="cms_controller_router_match_before">
+        <observer name="mst_rewards" instance="\Mirasvit\Rewards\Observer\ReferralRoute"/>
+    </event>
+    <event name="securecheckout_get_reload_section_after">
+        <observer name="mst_rewards_onepagecheckout" instance="\Mirasvit\Rewards\Observer\SecureCheckout"/>
+    </event>
+    <event name="mirasvit_rewards_behavior_rule_process">
+        <observer name="mirasvit_rewards_behavior_rule_process" instance="\Mirasvit\Rewards\Observer\CustomeBehaviorRule"/>
+    </event>
+    <event name="email_invoice_set_template_vars_before">
+        <observer name="mirasvit_rewards_invoice_add_vars" instance="\Mirasvit\Rewards\Observer\AddVarsToEmail"/>
+    </event>
+    <event name="email_order_set_template_vars_before">
+        <observer name="mirasvit_rewards_order_add_vars" instance="\Mirasvit\Rewards\Observer\AddVarsToEmail"/>
+    </event>
+    <event name="email_creditmemo_set_template_vars_before">
+        <observer name="mirasvit_rewards_creditmemo_add_vars" instance="\Mirasvit\Rewards\Observer\AddVarsToEmail"/>
+    </event>
+    <event name="entity_manager_save_before">
+        <observer name="mst_rewards_model_pushnotification_subscriber"
+                  instance="\Mirasvit\Rewards\Observer\PushNotificationSubscriberSaveAfter"/>
+    </event>
+</config>

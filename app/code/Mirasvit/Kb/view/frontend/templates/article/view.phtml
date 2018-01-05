@@ -260,7 +260,8 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 						jQuery.post( "<?php echo $this->getUrl().'kbase/article/comment'?>" , { postId: aId, comment:comment} )
 						  .done(function( data ) {
 						jQuery('#ajax-loading').hide();
-						jQuery('#comentdiv').html('<p style="color:green;">Your comment is submitted successsfully</p>');							
+						jQuery('#comentdiv').html('<p style="color:green;">Your comment has been submitted successsfully</p>');							
+						jQuery('#cust_cmnt').val('');							
 							/*window.location.reload();*/
 							
 						  });

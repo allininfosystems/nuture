@@ -167,16 +167,19 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 									<textarea class="default-cmt__content__cmt-block__cmt-box__cmt-input" id="cust_cmnt" maxlength="255" placeholder="Type comments here..."></textarea>
 									<div style="color:red; display:none" id="comment-error">Required field</div>
 									<div class="default-cmt__content__cmt-block__cmt-box__cmt-btn">
-										<button class="default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit btn-primary" <?=$customerSession->isLoggedIn()?'':'disabled' ?> onclick="submitComment()">Posted as username</button>
+									
+										<?php if($customerSession->isLoggedIn()) { ?>
+											<button class="default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit btn-primary" onclick="submitComment()">Post Your Comment</button>
+											
+										<?php } else {	?>
+											
+											<a class="content-login-cls" href="<?=$baseUrl ?>customer/account/login/" style="color: red; margin-right:10px;">After login</a>
+											
+										<?php }	?>
+										
 										<div id="ajax-loading" style="display:none">
 											<img src="<?=$mediaUrl ?>wysiwyg/ajax-loader.gif">
 										</div>
-										
-										<?php if(!$customerSession->isLoggedIn()) { ?>
-											<a class="content-login-cls" href="<?=$baseUrl ?>customer/account/login/" style="color: red; margin-right:10px;">
-												Please login for comment
-											</a>
-										<?php }	?>
 										
 									</div>
 								</div>

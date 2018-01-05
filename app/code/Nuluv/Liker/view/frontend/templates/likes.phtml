@@ -11,16 +11,18 @@ if($client_like_count){
 	$value='Unlike';
 	$type_id=0;
 }else{
-$value='Like';
+	$value='Like';
 	$type_id=1;
 }
 
 ?>
-<div class="post">
 
-	<div class="post-action">
+<div class="like-action">
 
-		<input type="button" value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $product_id; ?>" class="like" />&nbsp;(<span id="likes_<?php echo $product_id; ?>"><?php echo $total_likes; ?></span>)&nbsp;</div>
+	<input type="button" value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $product_id; ?>" class="like" />&nbsp;(<span id="likes_<?php echo $product_id; ?>"><?php echo $total_likes; ?></span>)
+	&nbsp;
+
 </div>
+
 
 

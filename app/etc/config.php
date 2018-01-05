@@ -129,7 +129,7 @@ return array (
     'Mageplaza_Shopbybrand' => 0,
     'Mageplaza_SocialLogin' => 1,
     'Magestore_OneStepCheckout' => 1,
-    'Magestore_Rewardpoints' => 1,
+    'Magestore_Rewardpoints' => 0,
     'Mirasvit_Core' => 1,
     'Mirasvit_Kb' => 1,
     'Mirasvit_Report' => 1,

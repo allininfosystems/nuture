@@ -28,6 +28,7 @@
     // echo "<pre>";
     // print_r($wishlist_id);
     // echo "</pre>";
+        
    
   }
  ?>
@@ -51,6 +52,8 @@
             </div>
         </div>
         <?php endif; ?>
+
+
         <div class="actions">
             <button type="submit"
                     title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
@@ -60,7 +63,7 @@
             </button>
             <?php echo $block->getChildHtml('', true) ?>
             <?php $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($_product->getId());?>
-
+       <?php echo $this->getLayout()->createBlock("Nuluv\Liker\Block\Liker")->setTemplate("Nuluv_Liker::likes.phtml")->toHtml();?>
         <div class="like_count"><a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><span>
          <?php
                     if ($customerSession->isLoggedIn()) {

@@ -159,6 +159,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 				</div>
 				
 				<div class="row">
+				    <div id="comentdiv"></div>
 					<div class="col-xs-12 commentmp">
 						<div class="default-cmt__content">
 							<div class="default-cmt__content__cmt-block">
@@ -259,8 +260,8 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 						jQuery.post( "<?php echo $this->getUrl().'kbase/article/comment'?>" , { postId: aId, comment:comment} )
 						  .done(function( data ) {
 						jQuery('#ajax-loading').hide();
-							
-							window.location.reload();
+						jQuery('#comentdiv').html('<p style="color:green;">Your comment is submitted successsfully</p>');							
+							/*window.location.reload();*/
 							
 						  });
 					} else {

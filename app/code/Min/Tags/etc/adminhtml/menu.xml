@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Min_Tags::tags" title="Product tags" module="Min_Tags" parent="Min_Base::top_level" sortOrder="101" action="min_tags/tags" resource="Min_Tags::tags"/>
+    </menu>
+</config>

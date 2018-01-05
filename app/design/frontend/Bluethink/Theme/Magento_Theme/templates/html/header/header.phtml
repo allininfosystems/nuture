@@ -20,6 +20,7 @@ $current = $urlInterface->getCurrentUrl();
 // $module_url= $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('kb/general/base_url');
 // $KnowledgehubUrl=$module_url.'.html';
 $KnowledgehubUrl = $baseurl . 'knowledge-hub.html';
+$forumUrl = $baseurl . 'forum';
 if ($store->getBaseUrl() != $u[0]) {
     ?>
     <!-- 	<link href="http://projects.kleward.com:8888/nuluv/pub/static/frontend/Bluethink/Theme/en_US/css/styles-m.css" rel="stylesheet"> -->
@@ -288,7 +289,7 @@ if ($request->getFullActionName() != 'cms_index_index') {
                             <?php if ($current == $KnowledgehubUrl || $module_name == "kbase") { ?> <hr class="homepage" style="height:3px; background-color: #7e6674;"> <?php } else { ?> <hr class="homepage" style="height:0px; background-color: unset;"> <?php } ?></li>
                         <li class="headactive "><a href="<?php echo $blogurl; ?>">Blog</a>
                             <?php if ($current == $blogurl || $module_name == "mpblog") { ?> <hr class="homepage" style="height:3px; background-color: #7e6674;"><?php } else { ?> <hr  class="homepage" style="height:0px; background-color: unset;"> <?php } ?></li>
-                        <li class="headactive "><a href="#">Forum</a><hr class="homepage" style="height:0px; background-color: unset;"></li>
+                        <li class="headactive "><a href="<?php echo $forumUrl; ?>">Forum</a><hr class="homepage" style="height:0px; background-color: unset;"></li>
                     </ul>      
                 </div>
                 <div class="cart-search">

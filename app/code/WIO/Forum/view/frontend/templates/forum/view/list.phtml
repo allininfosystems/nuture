@@ -1,0 +1,145 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+$topics = $block->getDisplayTopics();
+?>
+<div class="forum-list-container controls-exists clearfix">
+  <h3 class="grid-title">
+    <?php if ($block->getIsIconsEnabled() && $block->getIconSrc()): ?>
+      <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getIconSrc()) ?>" />
+    <?php endif; ?>
+    <?php echo __('View Forum "%1"', $block->getForumTitle()) ?>
+  </h3>
+  <div class="forum-grid-controls">
+    <button onclick="document.location.href = '<?php echo $block->getAddNewUrl() ?>'" class="action primary" title="<?php echo __('Add Topic') ?>">
+      <span><?php echo __('Add Topic') ?></span>
+    </button>
+  </div>
+  <div class="clearfix">&nbsp;</div>
+  <?php if (!$topics || !$topics->getSize()): ?>
+    <div class="forum-grid-no-data">
+      <?php echo __('No Data Found') ?>
+    </div>
+  <?php else: ?>
+    <div class="toolbar top forum-toolbar">
+      <?php echo $block->getPagerHtml(); ?>
+    </div>
+
+    <div class="forum-sort">
+      <?php echo __('Sort By') ?>
+      &nbsp;&nbsp;
+      <a <?php echo ($this->getSortType() == 'asc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl(null, 'asc') ?>"><?php echo __('Oldest') ?></a>
+      &nbsp;|&nbsp;
+      <a <?php echo ($this->getSortType() == 'desc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl(null, 'desc') ?>"><?php echo __('Newest') ?></a>
+    </div>
+    <table class="forum-grid forum-list grid data-table-forum-resp">
+      <thead>
+        <tr>
+          <th width="35%"><?php echo __('Topic') ?></th>
+          <th width="15%"><?php echo __('Total Posts') ?></th>
+          <th width="15%"><?php echo __('Views') ?></th>
+          <th width="35%"><?php echo __('Latest Reply') ?></th>
+        <tr>
+      </thead>
+      <tbody>
+        <?php foreach ($topics as $topic): ?>
+          <tr>
+            <td>
+              <div>
+                <div class="forum-icons">
+                  <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_topic.png'); ?>" />
+                  <?php if ($block->getIsIconsEnabled() && $block->getIconSrc($topic, true)): ?>
+                    <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getIconSrc($topic, true)) ?>" />
+                  <?php endif; ?>
+                </div>
+                <div class="forum-details">
+                  <a class="forum-display-description" href="<?php echo $block->getTopicViewUrl($topic); ?>">
+                    <?php echo $topic->getTitle() ?>
+                  </a>
+                  <?php if ($topic->getDescription()): ?>
+                    <div class="forum-topic-description">
+                      <?php echo $topic->getDescription() ?>
+                    </div>
+                  <?php endif; ?>
+                  <div class="forum-created-time">
+                    <?php echo __('Created') ?>: <?php echo $block->getTimeAccordingToTimeZone($topic->getCreatedTime()); ?>
+                  </div>
+                  <div class="forum-created-by">
+                    <?php echo __('Created By: "<a href=%2>%1</a>"', $block->getTopicCreatorName($topic), $block->getTopicCreatorLink($topic)) ?>
+                  </div>
+                  <?php if ($block->getIsOwner($topic)): ?>
+                    <div class="forum-topic-controls">
+                      <a href="<?php echo $block->getEditLink($topic) ?>" class="forum-topic-controls-edit">
+                        <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'edit_icon.png'); ?>" />
+                        <?php echo __('Edit') ?>
+                      </a>
+                      &nbsp;
+                      <?php if ($block->getIsCustomerAllowedDeleteTopics()): ?>
+                        <a href="<?php echo $block->getDeleteLink($topic) ?>" class="forum-topic-controls-delete">
+                          <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'delete_icon.png'); ?>" />
+                          <?php echo __('Delete') ?>
+                        </a>
+                      <?php endif; ?>
+                    </div>
+                  <?php endif; ?>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="total-posts-container">
+                <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'forum_post.png'); ?>" />
+                <?php echo $topic->getTotalPosts() ?>
+              </div>
+            </td>
+            <td>
+              <div class="total-views-container">
+                <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'view_icon.png'); ?>" />
+                <?php echo $topic->getTotalViews() ? $topic->getTotalViews() : '0'; ?>
+              </div>
+            </td>
+            <td>
+              <?php
+              $latest = $block->getLatestPostDetails($topic->getLastPostId());
+              ?>
+              <div class="forum-latest-reply">
+                <?php if (!$latest): ?>
+                  <?php echo __('No Data Found'); ?>
+                <?php else: ?>
+                  <?php if ($block->getIsIconsEnabled() && $block->getLatestIcon($latest)): ?>
+                    <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getLatestIcon($latest)) ?>" />
+                  <?php endif; ?>
+                  <a class="forum-display-description" href="<?php echo $block->getLatestViewUrl($latest); ?>"><?php echo $block->getLatestTopicTitle($latest); ?></a>
+                  <?php if ($block->getLatestTopicDescription($latest)): ?>
+                    <div class="forum-topic-description">
+                      <?php echo $block->getLatestTopicDescription($latest) ?>
+                    </div>
+                  <?php endif; ?>
+                  <div class="forum-latest-reply-date">
+                    <?php echo __('Posted: <strong>%1</strong>', $block->getLatestPostedDate($latest)); ?>
+                  </div>
+                  <div class="forum-latest-reply-user">
+                    <?php
+                    echo __('Posted By: <strong><a href="%1">%2</a></strong>', $block->getLatestPostedByUrl($latest), $block->getLatestPostedBy($latest));
+                    ?>
+                  </div>
+                <?php endif; ?>  
+              </div>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+    <script type="text/javascript">
+      WIO_Forum_Responsive_tables.init();
+    </script>
+  <?php endif; ?>
+</div>

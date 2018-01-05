@@ -1,0 +1,29 @@
+<!--
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+*/
+-->
+{{template config_path="design/email/header_template"}}
+
+{{trans "New post were added"}}:
+{{var url}}
+
+<strong>{{trans "Topic"}}:</strong></br> {{var topic_name}}<br>
+
+<strong>{{trans "Added"}}:</strong> {{var now}}
+<strong>{{trans "Posted by"}}:</strong> {{var posted_by}}
+<br>
+{{trans "To stop receiving notifications for this topic use this link"}}:
+{{var unsubscribe_link}}
+<br>
+
+{{template config_path="design/email/footer_template"}}
+
+

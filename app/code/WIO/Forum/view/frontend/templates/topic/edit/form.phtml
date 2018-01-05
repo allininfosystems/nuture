@@ -1,0 +1,88 @@
+<?php $currentTopic = $block->getEditTopic(); ?>
+<form method="post" action="<?php echo $block->getSubmitForumUrl() ?>" id="form-edit-topic">
+  <input type="hidden" value="<?php echo $block->getForumId() ?>" name="<?php echo $block->getForumIdParamName() ?>" />
+  <?php if ($block->getTopicId()): ?>
+    <input type="hidden" value="<?php echo $block->getTopicId() ?>" name="<?php echo $block->getTopicIdParamName() ?>" />
+  <?php endif; ?>
+  <?php if ($block->getPostId()): ?>
+    <input type="hidden" value="<?php echo $block->getPostId() ?>" name="<?php echo $block->getPostIdParamName() ?>" />
+
+  <?php endif; ?>
+  <?php if (!$currentTopic || ($block->getIsOwner($currentTopic))): ?>  
+    <fieldset class="fieldset topic-details">
+      <legend class="legend"><?php echo __('Topic Details') ?></legend>
+      <?php if ($block->getIsIconsEnabled()): ?>
+        <div class="field field-topic-icons">
+          <?php echo $block->getChildHtml('forum.edit.form.icons') ?>
+        </div>
+      <?php endif; ?>
+      <div class="field field-topic-title required">
+        <label for="forum-topic-title" class="label">
+          <span>
+            <?php echo __('Topic Title') ?>
+          </span>
+        </label>
+        <div class="control">
+          <input 
+            type="text" 
+            id="forum-topic-title" 
+            name="title" 
+            title="<?php echo __('Topic Title') ?>" 
+            class="input-text required-entry" 
+            data-validate="{required:true}" 
+            aria-required="true"
+            value="<?php echo $block->getTopicTitle() ?>"
+            >
+        </div>
+      </div>
+      <div class="field field-topic-description required">
+        <label for="forum-topic-description" class="label">
+          <span>
+            <?php echo __('Description') ?>
+          </span>
+        </label>
+        <div class="control">
+          <textarea id="forum-topic-description" name="description"><?php echo $block->getTopicDescription(); ?></textarea>
+        </div>
+      </div>
+    </fieldset>
+  <?php endif; ?>
+  <fieldset class="fieldset topic-post-details">
+    <legend class="legend"><?php echo __('Post') ?></legend>
+    <div class="field field-topic-post">
+      <textarea id="editable_post" name="post"><?php echo $block->getPostText(); ?></textarea>
+    </div>
+  </fieldset>
+  <?php if ($block->getIsCustomerNotificationEnabled()): ?>   
+    <div class="field field-topic-notification required">
+      <input type="checkbox" id="notify_my" name="notify_my" />
+      <span>
+        <label for="notify_my">
+          <?php echo __('Notify me if someone post on this Topic') ?>
+        </label>
+      </span>
+    </div>
+  <?php endif; ?>
+  <div class="actions-toolbar">
+    <div class="primary">
+      <button type="submit" class="action save primary" title="<?php echo __('Save') ?>">
+        <span><?php echo __('Save') ?></span>
+      </button>
+      <button class="action save secondary" title="<?php echo __('Cancel') ?>">
+        <span><?php echo __('Cancel') ?></span>
+      </button>
+    </div>
+  </div>
+</form>
+<?php echo $block->getChildHtml('forum.edit.editor') ?>
+<script type="text/javascript">
+  require([
+    'jquery',
+    'mage/mage'
+  ], function ($) {
+
+    var dataForm = $('#form-edit-topic');
+    dataForm.mage('validation', {});
+
+  });
+</script>

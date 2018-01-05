@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+    <referenceBlock name="customer_account_navigation">
+      <block class="Magento\Framework\View\Element\Html\Link\Current" name="forum_myaccount_posts">
+        <arguments>
+          <argument name="path" xsi:type="string">wio_forum/customer/posts</argument>
+          <argument name="label" translate="true" xsi:type="string">My Forum Posts</argument>
+        </arguments>
+      </block>
+      <block class="Magento\Framework\View\Element\Html\Link\Current" name="forum_myaccount_topics">
+        <arguments>
+          <argument name="path" xsi:type="string">wio_forum/customer/topics</argument>
+          <argument name="label" translate="true" xsi:type="string">My Forum Topics</argument>
+        </arguments>
+      </block>
+      <block class="Magento\Framework\View\Element\Html\Link\Current" name="forum_myaccount">
+        <arguments>
+          <argument name="path" xsi:type="string">wio_forum/customer</argument>
+          <argument name="label" translate="true" xsi:type="string">My Forum Account</argument>
+        </arguments>
+      </block>
+    </referenceBlock>
+  </body>
+</page>

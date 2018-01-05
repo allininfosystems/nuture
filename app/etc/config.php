@@ -140,6 +140,7 @@ return array (
     'Plumrocket_ProductFilter' => 1,
     'SR_ReCaptcha' => 0,
     'Tawk_Widget' => 1,
+    'WIO_Forum' => 1,
     'Webinse_Barcode' => 1,
     'Webinse_Core' => 1,
   ),

@@ -1,0 +1,11 @@
+<?php if ($block->getIsActive()): ?>
+  <div class="forum-who-is-online-block">
+    <h4>
+      <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'users.png'); ?>" />
+      <?php echo __('Who is online') ?>
+    </h4>
+    <?php
+    echo __('Users browsing this topic <b>%1</b> user online :: <b>%2</b> logged customers and <b>%3</b> guest (based on users active over the past 5 minutes)', $block->getTotalUsers(), $block->getLoggedInOnly(), $block->getQuestsOnly());
+    ?>
+  </div>
+<?php endif; ?>

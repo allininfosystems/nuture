@@ -1,0 +1,49 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+$userDetails = $block->getUserData();
+?>
+<div class="main-forum-container forum-user-view-container">
+  <div class="forum-top-block">
+    <?php echo $block->getChildHtml('forum.index.top'); ?>
+  </div>
+  <div class="forum-content-container ">
+    <?php if (empty($userDetails) || $userDetails['empty']): ?>
+      <div class="forum-grid-no-data">
+        <?php echo __('No Data Found') ?>
+      </div>
+    <?php else: ?>
+      <div class="forum-user-view">
+        <h2><?php echo __('User Details "%1"', $userDetails['nickname']) ?></h2>
+
+        <div class="forum-avatar-image-container">
+          <img src="<?php echo $userDetails['avatar'] ?>" class="forum-avatar-image"/>
+        </div>
+
+        <span class="forum-user-total-posts">
+          <?php echo __('Total topics: <strong>%1</strong>', $userDetails['total_topics']); ?>
+        </span>
+        <span class="forum-user-total-posts">
+          <?php echo __('Total posts: <strong>%1</strong>', $userDetails['total_posts']); ?>
+        </span>
+        <?php if ($userDetails['joined']): ?>
+          <span class="forum-user-joined">
+            <?php echo __('Joined: <strong>%1</strong>', $block->getTimeAccordingToTimeZone($userDetails['joined'])); ?>
+          </span>
+        <?php endif; ?>
+        <span class="forum-user-role">
+          <?php echo __('User Role: <strong>%1</strong>', $userDetails['role']); ?>
+        </span>
+      </div>
+    <?php endif; ?>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <css src="WIO_Forum/css/forum.css"/>  
+    <link src="WIO_Forum/tinymce/tinymce.min.js"/>
+    <link src="WIO_Forum/js/forum.js"/>
+  </head>
+  <body>
+    <referenceBlock name="breadcrumbs">
+      <action method="addCrumb">
+        <argument name="crumbName" xsi:type="string">Home</argument>
+        <argument name="crumbInfo" xsi:type="array">
+          <item name="title" translate="true" xsi:type="string">Home</item>
+          <item name="label" translate="true" xsi:type="string">Home</item>
+          <item name="link" xsi:type="string">/</item>
+        </argument>
+      </action>
+    </referenceBlock>
+    <referenceContainer name="content">
+      <block cacheable="false" class="WIO\Forum\Block\Topic\Index" name="forum.view.index" template="WIO_Forum::forum/index.phtml">
+        <block class="WIO\Forum\Block\Forum\Top\Block" name="forum.index.top" template="WIO_Forum::forum/top/block.phtml">
+          <block class="WIO\Forum\Block\Ui\FormSearch" name="forum.ui.search" template="WIO_Forum::ui/form_search.phtml" />
+          <block class="WIO\Forum\Block\Ui\Bookmarks" name="forum.ui.bookmarks" template="WIO_Forum::ui/bookmarks.phtml" />
+          <block class="WIO\Forum\Block\Ui\Jumpto" name="forum.ui.jumpto" template="WIO_Forum::ui/jumpto.phtml" />
+          <block class="WIO\Forum\Block\Ui\Rss" name="forum.ui.rss" template="WIO_Forum::ui/rss.phtml" />
+                    
+        </block>
+        
+        
+        <block class="WIO\Forum\Block\Topic\Index\ListPosts" name="forum.index.list" template="WIO_Forum::topic/index/list.phtml">
+          <block class="WIO\Forum\Block\Topic\Index" name="wio.editor.short" template="WIO_Forum::editor/init_short.phtml" />
+        </block>
+        
+        <block class="WIO\Forum\Block\Forum\Top\Block" name="forum.index.bottom" template="WIO_Forum::forum/bottom/block.phtml">
+          <block class="WIO\Forum\Block\Ui\Jumpto" name="forum.ui.jumpto.bottom" template="WIO_Forum::ui/jumpto.phtml" />
+          <block class="WIO\Forum\Block\Ui\Whoisonline" name="forum.ui.whoisonline.bottom" template="WIO_Forum::ui/whoisonline/topic.phtml" />
+        </block>
+      </block>
+    </referenceContainer>
+        
+  </body>
+</page>

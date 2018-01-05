@@ -1,0 +1,25 @@
+<script type="text/javascript">
+
+window.onload = function() {
+  tinymce.init({
+    selector: "textarea#editable_post",
+    height: 350,
+
+    plugins: [
+      "advlist autolink autosave link image lists charmap preview hr anchor pagebreak spellchecker",
+      "searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking",
+      "table contextmenu directionality emoticons textcolor paste textcolor colorpicker textpattern"
+    ],
+    relative_urls: false,
+    remove_script_host: false,
+    toolbar1: "bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
+    toolbar2: "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media | insertdatetime preview | forecolor backcolor",
+    toolbar3: "table | hr removeformat | subscript superscript | charmap emoticons | fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking pagebreak restoredraft",
+    menubar: false,
+    toolbar_items_size: 'small',
+
+  });
+}
+
+</script>
+

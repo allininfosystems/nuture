@@ -15,5 +15,6 @@
                 </arguments>
             </block>
         </referenceBlock>
+		<referenceBlock name="customer-account-navigation-wish-list-link" remove="true"/>   
     </body>
 </page>

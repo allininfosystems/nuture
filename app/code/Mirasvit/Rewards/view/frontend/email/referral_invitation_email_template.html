@@ -1,0 +1,14 @@
+<!--@subject {{var customer.name}} invites you to {{var store.getFrontendName()}} @-->
+
+{{template config_path="design/email/header_template"}}
+
+Dear {{var name}},<br><br>
+
+{{var customer.name}} invites you to visit <a href="{{var invitation_url}}">{{var store.getFrontendName()}}</a>:<br><br>
+
+{{depend message}}
+{{var message|text}} <br>
+{{/depend}}
+
+
+{{template config_path="design/email/footer_template"}}

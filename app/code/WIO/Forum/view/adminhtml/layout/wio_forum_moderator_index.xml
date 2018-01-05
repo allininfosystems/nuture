@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <!-- update handle="formkey"/ -->
+  <!--body>
+    <referenceContainer name="content">
+      <uiComponent name="moderator_index_listing"/>
+    </referenceContainer >
+  </body -->
+  <body>
+    <referenceContainer name="content">
+      <block class="WIO\Forum\Block\Adminhtml\Moderator\Index" name="moderator_manage" template="WIO_Forum::moderator/tabs.phtml" />
+    </referenceContainer>
+    
+    <referenceContainer name="left">
+      <block class="WIO\Forum\Block\Adminhtml\Moderator\Tabs" name="moderator_manage_tabs">
+        <block class="WIO\Forum\Block\Adminhtml\Moderator\Tab\Main" name="moderator_manage_tab_main" />
+        <block class="WIO\Forum\Block\Adminhtml\Moderator\Tab\Customers" name="moderator_manage_tab_customers" />
+        <!-- uiComponent name="moderator_index_listing" / -->
+        <action method="addTab">
+          <argument name="name" xsi:type="string">main_section</argument>
+          <argument name="block" xsi:type="string">moderator_manage_tab_main</argument>
+        </action>
+        <action method="addTab">
+          <argument name="name" xsi:type="string">customers_section</argument>
+          <argument name="block" xsi:type="string">moderator_manage_tab_customers</argument>
+          <!-- argument name="class"  xsi:type="string">ajax</argument -->
+        </action>
+      </block>
+    </referenceContainer>
+  </body>
+</page>

@@ -55,18 +55,57 @@ class Index extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
+    $zip=$this->getRequest()->getParam('postcode');
 
-      $post=$this->getRequest()->getPost('postcode');
-
-		echo 'rfgfdgfdg'.$post; 
+    function objectToArray($d) {
+        if (is_object($d)) {
+            // Gets the properties of the given object
+            // with get_object_vars function
+            $d = get_object_vars($d);
+        }
 		
-	$response = '{"response":'.$post.'}';
+        if (is_array($d)) {
+            /*
+            * Return array converted to object
+            * Using __FUNCTION__ (Magic constant)
+            * for recursive call
+            */
+            return array_map(__FUNCTION__, $d);
+        }
+        else {
+            // Return array
+            return $d; 
+        }
+    }
 	
-   // echo  $response;
-   
- $zip='201301';
-   
- $url =  'http://postalpincode.in/api/pincode/'.$zip
+$response = file_get_contents('http://postalpincode.in/api/pincode/'.$zip);
+$obj = json_decode($response); 
+//print_r($obj);
+
+$array = objectToArray($obj);
+
+if($array['Status']=='Error')
+
+{
+echo $response = '{"city":"","state":""}';
+}
+
+else
+{
+foreach($array['PostOffice'] as $arr)
+{
+
+$city[] = $arr['District'];
+$state[] = $arr['State']; 
+}
+
+echo $response = '{"city":"'.$city[0].'","state":"'.$state[0].'"}';
+
+}
+//echo  $response;
+
+
+/*  $url =  'http://postalpincode.in/api/pincode/'.$zip
 
  $obj = json_decode($yourJSONString); to convert it to an object.
 
@@ -75,7 +114,7 @@ foreach($obj->response->docs as $doc)
 $doc->student_id 
 $doc->student_name[0].
 }
-        //print_r($this->getRequest()->getPost('input'));
+ */        //print_r($this->getRequest()->getPost('input'));
         //$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         //$customerSession = $objectManager->create('Magento\Customer\Model\Session');
         //$customerSession->setPincode($this->getRequest()->getPost('input'));

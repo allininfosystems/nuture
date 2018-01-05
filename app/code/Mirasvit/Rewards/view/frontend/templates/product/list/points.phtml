@@ -1,0 +1,8 @@
+<?php
+/**
+ $block->getRewardsData()  \Mirasvit\Rewards\Helper\Data  $_rewardsData
+ */
+?>
+<?php if ($points = $block->getProductPoints()):?>
+<b><?= __('Earning %1', $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($points))?></b>
+<?php endif;?>

@@ -9,7 +9,7 @@
  *
  * @category  Mirasvit
  * @package   mirasvit/module-core
- * @version   1.2.21
+ * @version   1.2.48
  * @copyright Copyright (C) 2017 Mirasvit (https://mirasvit.com/)
  */
 
@@ -21,6 +21,7 @@ use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\DataObject;
 use Magento\Framework\Filter\FilterManager;
+use Magento\Store\Model\StoreManagerInterface;
 use Mirasvit\Core\Api\UrlRewriteHelperInterface;
 use Mirasvit\Core\Model\ResourceModel\UrlRewrite\CollectionFactory as UrlRewriteCollectionFactory;
 use Mirasvit\Core\Model\UrlRewriteFactory;
@@ -69,17 +70,20 @@ class UrlRewrite extends AbstractHelper implements UrlRewriteHelperInterface
      * @param UrlRewriteFactory           $urlRewriteFactory
      * @param UrlRewriteCollectionFactory $urlRewriteCollectionFactory
      * @param FilterManager               $filter
+     * @param StoreManagerInterface       $storeManager
      * @param Context                     $context
      */
     public function __construct(
         UrlRewriteFactory $urlRewriteFactory,
         UrlRewriteCollectionFactory $urlRewriteCollectionFactory,
         FilterManager $filter,
+        StoreManagerInterface $storeManager,
         Context $context
     ) {
         $this->urlRewriteFactory = $urlRewriteFactory;
         $this->urlRewriteCollectionFactory = $urlRewriteCollectionFactory;
         $this->filter = $filter;
+        $this->storeManager = $storeManager;
         $this->urlManager = $context->getUrlBuilder();
         $this->scopeConfig = $context->getScopeConfig();
 
@@ -149,8 +153,11 @@ class UrlRewrite extends AbstractHelper implements UrlRewriteHelperInterface
                 $collection = $this->urlRewriteCollectionFactory->create()
                     ->addFieldToFilter('module', $module)
                     ->addFieldToFilter('type', $type)
-                    ->addFieldToFilter('entity_id', $entity->getId());
+                    ->addFieldToFilter('entity_id', $entity->getId())
+                    ->addFieldToFilter('store_id', ['in' => [0, $this->storeManager->getStore()->getId()]])
+                ;
                 if ($collection->count()) {
+                    /** @var \Mirasvit\Core\Model\UrlRewrite $rewrite */
                     $rewrite = $collection->getFirstItem();
                     return $this->getUrlByKey($basePath, $rewrite->getUrlKey());
                 } else {
@@ -171,14 +178,16 @@ class UrlRewrite extends AbstractHelper implements UrlRewriteHelperInterface
      * @param string $type     path type (category, article etc)
      * @param string $path     path url key
      * @param string $entityId entity id
-     * @param int    $i        additional
+     * @param int    $storeId  store id
+     * @param array  $i        additional
      * @return string
      */
-    protected function getUniquePath($module, $type, $path, $entityId, $i = 0)
+    protected function getUniquePath($module, $type, $path, $entityId, $storeId, $i = [])
     {
-        if ($i) {
-            $pathToCheck = $path . '-' . $i;
+        if (isset($i[$storeId])) {
+            $pathToCheck = $path . '-' . $i[$storeId];
         } else {
+            $i[$storeId] = 0;
             $pathToCheck = $path;
         }
 
@@ -188,10 +197,12 @@ class UrlRewrite extends AbstractHelper implements UrlRewriteHelperInterface
             ->addFieldToFilter('type', $type)
             ->addFieldToFilter('url_key', $pathToCheck)
             ->addFieldToFilter('entity_id', ['neq' => $entityId])
+            ->addFieldToFilter('store_id', $storeId)
             ->setOrder('url_key', 'asc');
 
         if ($collection->count()) {
-            return $this->getUniquePath($module, $type, $path, $entityId, ++$i);
+            ++$i[$storeId];
+            return $this->getUniquePath($module, $type, $path, $entityId, $storeId, $i);
         }
 
         return $pathToCheck;
@@ -200,7 +211,7 @@ class UrlRewrite extends AbstractHelper implements UrlRewriteHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function updateUrlRewrite($module, $type, $entity, $values)
+    public function updateUrlRewrite($module, $type, $entity, $values, $storeId)
     {
         if (!isset($this->config[$module])) {
             return false;
@@ -215,16 +226,19 @@ class UrlRewrite extends AbstractHelper implements UrlRewriteHelperInterface
         }
 
         $path = trim($path, '/');
-        $path = $this->getUniquePath($module, $type, $path, $objectId);
+        $path = $this->getUniquePath($module, $type, $path, $objectId, $storeId);
 
         $collection = $this->urlRewriteCollectionFactory->create()
             ->addFieldToFilter('module', $module)
             ->addFieldToFilter('type', $type)
-            ->addFieldToFilter('entity_id', $objectId);
+            ->addFieldToFilter('entity_id', $objectId)
+            ->addFieldToFilter('store_id', $storeId)
+        ;
         if ($collection->count()) {
             /** @var \Mirasvit\Core\Model\UrlRewrite $rewrite */
             $rewrite = $collection->getFirstItem();
             $rewrite->setUrlKey($path)
+                ->setStoreId($storeId) //compatibility with old versions
                 ->save();
         } else {
             $rewrite = $this->urlRewriteFactory->create();
@@ -233,6 +247,7 @@ class UrlRewrite extends AbstractHelper implements UrlRewriteHelperInterface
                 ->setType($type)
                 ->setEntityId($objectId)
                 ->setUrlKey($path)
+                ->setStoreId($storeId)
                 ->save();
         }
 

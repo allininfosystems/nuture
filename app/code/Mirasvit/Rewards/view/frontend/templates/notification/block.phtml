@@ -1,0 +1,6 @@
+<?php /** @var \Mirasvit\Rewards\Block\Notification\Message $block */ ?>
+<ul class="rewards-notification-block">
+    <?php foreach ($block->getRules() as $rule): ?>
+        <li><?= $block->getMessage($rule) ?></li>
+    <?php endforeach ?>
+</ul>

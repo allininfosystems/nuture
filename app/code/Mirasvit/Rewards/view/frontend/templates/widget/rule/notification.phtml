@@ -1,0 +1,8 @@
+<?php /** @var \Mirasvit\Rewards\Block\Widget\NotificationRuleList $block */?>
+<div class="messages">
+    <?php foreach ($block->getRules() as $rule): ?>
+        <div class="message message-success success">
+            <div data-ui-id="rewards-tooltip-message-success"><?= $block->prepareRuleMessage($rule); ?></div>
+        </div>
+    <?php endforeach; ?>
+</div>

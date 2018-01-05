@@ -1,0 +1,30 @@
+.admin__menu .level-0.item-forum > a:before{
+  content:'\263a';
+}
+.admin__menu .level-0.item-forum .submenu-title:before{
+  content:'\263a';
+  font-size: 37px;
+  display: inline-block;
+  width: 39px;
+  position: relative;
+  top: 3px;
+}
+.admin__menu .item-forum .level-1  >a:before{
+  content:'\2609';
+  display:inline-block;
+  width:27px;
+  font-size: 17px;
+  padding: 1px;
+  position: relative;
+  top: 2px;
+}
+
+
+.wio-forum-icons-list {
+  list-style-type:none;
+}
+
+.wio-forum-icons-list li label{
+  position: relative;
+  top: 3px;
+}

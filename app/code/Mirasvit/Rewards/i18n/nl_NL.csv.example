@@ -1,0 +1,326 @@
+Reward Points,Spaarpunten,module,Mirasvit_Rewards
+Rewards Information,Spaarpunt informatie,module,Mirasvit_Rewards
+Available Points Balance,Beschikbare spaarpunten,module,Mirasvit_Rewards
+Change Balance,Pas balans aan,module,Mirasvit_Rewards
+Enter positive or negative number of points. E.g. 10 or -10,Voor een positief of negatief aantal punten in zoals 10 of -10,module,Mirasvit_Rewards
+Message in the rewards history,Bericht in de spaarpunten geschiedenis,module,Mirasvit_Rewards
+Customer will see this in his account,De klant ziet dit in zijn account,module,Mirasvit_Rewards
+No Records Found,Geen gegevens gevonden,module,Mirasvit_Rewards
+ID,ID,module,Mirasvit_Rewards
+Balance Change,Aanpassing spaarpunten,module,Mirasvit_Rewards
+Comment,Reactie,module,Mirasvit_Rewards
+Created At,Gemaakt op,module,Mirasvit_Rewards
+Expires At,Verloopt op,module,Mirasvit_Rewards
+Earning Rules,Verdien regels,module,Mirasvit_Rewards
+Add New Earning Rule,Voeg een nieuwe verdien regel toe,module,Mirasvit_Rewards
+Save,Opslaan,module,Mirasvit_Rewards
+Delete,Verwijder,module,Mirasvit_Rewards
+Save And Continue Edit,Opslaan en doorgaan met bewerken,module,Mirasvit_Rewards
+Edit Earning Rule '%1',Pas verdienregel '%1' aan,module,Mirasvit_Rewards
+Create New Earning Rule,Maak een nieuwe verdien regel,module,Mirasvit_Rewards
+Conditions,Voorwaarden,module,Mirasvit_Rewards
+Event,Gebeurtenis,module,Mirasvit_Rewards
+Number of Inactive Days,Aantal inactieve dagen,module,Mirasvit_Rewards
+Actions,Acties,module,Mirasvit_Rewards
+Customer Earning Style,Verdien methode klant,module,Mirasvit_Rewards
+Number of points to give (X),Aantal punten om te geven (X),module,Mirasvit_Rewards
+Step (Y),Stap (Y),module,Mirasvit_Rewards
+Quantity Step (Z),Aantal Stap (Z),module,Mirasvit_Rewards
+Maximum number of earned points for one customer per day,Maximaal aantal te verdienen punten per klant per dag,module,Mirasvit_Rewards
+Set 0 to disable limit,Zet op 0 voor geen limiet,module,Mirasvit_Rewards
+Apply the rule only if the following conditions are met,Pas de regel alleen toe als de volgende voorwaarden van toepassing zijn,module,Mirasvit_Rewards
+Number of Points (X),Aantal punten (X),module,Mirasvit_Rewards
+Earn Maximum,Maximaal aantal punten om te verdienen,module,Mirasvit_Rewards
+Apply the rule only to cart items matching the following conditions (leave blank for all items),Pas de regel alleen toe op producten dia aan de de volgende voorwaarden voldoen. (laat leeg voor alle producten),module,Mirasvit_Rewards
+Apply To,Pas toe op,module,Mirasvit_Rewards
+Apply the rule only if the following conditions are met (leave blank for all products),Pas de regel alleen toe als de volgende voorwaarden van toepassing zijn (laat leeg voor alle producten),module,Mirasvit_Rewards
+General Information,Algemene informatie,module,Mirasvit_Rewards
+Rule Name,Regel naam,module,Mirasvit_Rewards
+Type,Type,module,Mirasvit_Rewards
+Is Active,Is Actief,module,Mirasvit_Rewards
+No,Nee,module,Mirasvit_Rewards
+Yes,Ja,module,Mirasvit_Rewards
+Active From,Actief van,module,Mirasvit_Rewards
+Active To,Actief tot,module,Mirasvit_Rewards
+Websites,Websites,module,Mirasvit_Rewards
+Customer Groups,Klantgroepen,module,Mirasvit_Rewards
+Stop further rules processing,Stop met verdere verwerking van regels,module,Mirasvit_Rewards
+Priority,Priotiteit,module,Mirasvit_Rewards
+Arranged in the ascending order. 0 is the highest.,Gerangschikt op stijgende volgorde (0 is het hoogst),module,Mirasvit_Rewards
+Notifications,Notificaties,module,Mirasvit_Rewards
+Message for customer notification email,Bericht voor de klant notificatie e-mail,module,Mirasvit_Rewards
+Filters,Filters,module,Mirasvit_Rewards
+Maximum Distributed Points,Maximaal gedistribueerde punten,module,Mirasvit_Rewards
+Conditions & Actions,Condities en Acties,module,Mirasvit_Rewards
+Number of points to earn,Aantal punten om te verdienen,module,Mirasvit_Rewards
+All,Alle,module,Mirasvit_Rewards
+Website,Website,module,Mirasvit_Rewards
+Disabled,Uitgeschakeld,module,Mirasvit_Rewards
+Enabled,Ingeschakeld,module,Mirasvit_Rewards
+Change status,Verander status,module,Mirasvit_Rewards
+Status,Status,module,Mirasvit_Rewards
+Are you sure?,Weet u dit zeker?,module,Mirasvit_Rewards
+Spending Rules,Uitgave Regels,module,Mirasvit_Rewards
+Notification Rules,Notificatie Regels,module,Mirasvit_Rewards
+Transactions,Transacties,module,Mirasvit_Rewards
+Customer Referrals,Klant referenties,module,Mirasvit_Rewards
+Settings,Instellingen,module,Mirasvit_Rewards
+Add New Notification Rule,Voeg een nieuwe notificatie regel toe,module,Mirasvit_Rewards
+Edit Notification Rule '%1',Pas notificatie regel '%1' aan,module,Mirasvit_Rewards
+Create New Notification Rule,Maak een nieuwe notificatie regel,module,Mirasvit_Rewards
+Show message on,Laat bericht zien wanneer,module,Mirasvit_Rewards
+Message,Bericht ,module,Mirasvit_Rewards
+"If you insert a variable like ##100.00, it will be converted to the price in currency of customer. E.g. ##100.00 will be displayed as '$100.00' in USD and as '€88' in Euro.<br><br>","Als je een variabele zoals ##100.00 invoegt, zal het worden omgezet naar de prijs in de valuta van de klant. Oftewel. ##100.00 zal worden getoond als '$100.00' in USD en als '€88' in Euros.<br><br>",module,Mirasvit_Rewards
+Edit Referral '%1',Pas klantreferentie '%1' aan,module,Mirasvit_Rewards
+Create New Referral,Maak nieuwe klantreferentie regel,module,Mirasvit_Rewards
+Affiliate Customer,Afnemer,module,Mirasvit_Rewards
+Referral Customer,Te refereren klant,module,Mirasvit_Rewards
+Referral Email,Referenties Email,module,Mirasvit_Rewards
+Referral Name,Referenties naam,module,Mirasvit_Rewards
+Store,Winkel,module,Mirasvit_Rewards
+Add New Spending Rule,Voeg nieuwe uitgave regel toe,module,Mirasvit_Rewards
+Edit Spending Rule '%1',Pas uitgave regel '%1' aan,module,Mirasvit_Rewards
+Create New Spending Rule,Maak een nieuwe uitgave regel,module,Mirasvit_Rewards
+For each spent X points,Voor elke X uitgegeven punten,module,Mirasvit_Rewards
+Customer receive Y discount,Ontvangt de klant Y korting,module,Mirasvit_Rewards
+Spend minimum,Uitgave minimum,module,Mirasvit_Rewards
+Spend maximum,Uitgave maximum,module,Mirasvit_Rewards
+Discount,Korting,module,Mirasvit_Rewards
+Are you sure ?,Weet u dit zeker ?,module,Mirasvit_Rewards
+Add New Transaction,Voeg nieuwe transactie toe,module,Mirasvit_Rewards
+Edit Transaction '%1',Pas transactie '%1' aan,module,Mirasvit_Rewards
+Create New Transaction,Maak een nieuwe transactie regel,module,Mirasvit_Rewards
+Name,Naam,module,Mirasvit_Rewards
+Email,Email,module,Mirasvit_Rewards
+Group,Groep,module,Mirasvit_Rewards
+Telephone,Telefoonnummer,module,Mirasvit_Rewards
+ZIP,Postcode,module,Mirasvit_Rewards
+Country,Land,module,Mirasvit_Rewards
+State/Province,Staat/Provincie,module,Mirasvit_Rewards
+Customer Since,Klant sinds,module,Mirasvit_Rewards
+Points Balance Change,Spaarpunten balans aanpassing,module,Mirasvit_Rewards
+Customer Name,Klantnaam,module,Mirasvit_Rewards
+Customer Email,Klant email,module,Mirasvit_Rewards
+Action,Actie,module,Mirasvit_Rewards
+Check this out! %1,Koop dit! %1,module,Mirasvit_Rewards
+Checkout now and earn <b>%1</b> for this order.,Reken nu af en <b>%1</b> voor deze order.,module,Mirasvit_Rewards
+"Applies only to registered customers, may vary when logged in.","Geldt alleen voor geregistreerde klanten,  kan anders zijn wanneer u bent ingelogd",module,Mirasvit_Rewards
+Rewards Points,Spaarpunten,module,Mirasvit_Rewards
+Grid,Grid,module,Mirasvit_Rewards
+List,List,module,Mirasvit_Rewards
+Referral %1,Referentie %1,module,Mirasvit_Rewards
+New Earning Rule,Nieuwe verdien regel,module,Mirasvit_Rewards
+Earning Rule was successfully deleted,Verdien regel is succesvol verwijderd,module,Mirasvit_Rewards
+The Earning Rule does not exist.,De verdienregel bestaat niet.,module,Mirasvit_Rewards
+Please select Earning Rule(s),Selecteer aub de verdien regel.,module,Mirasvit_Rewards
+Total of %1 record(s) were successfully updated,Het totaal van %1 record(s) is succesvol geupdate.,module,Mirasvit_Rewards
+Total of %1 record(s) were successfully deleted,Het totaal van %1 record(s) is succesvol verwijderd,module,Mirasvit_Rewards
+Earning Rule was successfully saved,Verdienregel is succesvol opgeslagen,module,Mirasvit_Rewards
+Unable to find Earning Rule to save,Kan de verdienregel om op te slaan niet vinden,module,Mirasvit_Rewards
+New Notification Rule,Nieuwe notificatie regel,module,Mirasvit_Rewards
+Notification Rule was successfully deleted,Notificatie regel is succesvol verwijderd,module,Mirasvit_Rewards
+The Notification Rule does not exist.,De notificatieregel bestaat niet,module,Mirasvit_Rewards
+Please select Notification Rule(s),Selecteer aub de notificatieregel,module,Mirasvit_Rewards
+Notification Rule was successfully saved,Notificatie regel is succesvol opgeslagen,module,Mirasvit_Rewards
+Unable to find Notification Rule to save,Kan de notificatieregel om op te slaan niet vinden,module,Mirasvit_Rewards
+Please select Referral(s),Selecteer aub de referenties,module,Mirasvit_Rewards
+New Spending Rule,Nieuwe verdien regel,module,Mirasvit_Rewards
+Spending Rule was successfully deleted,Uitgave regel is succesvol verwijderd,module,Mirasvit_Rewards
+The Spending Rule does not exist.,De uitgave regel bestaat niet,module,Mirasvit_Rewards
+Please select Spending Rule(s),Selecteer aub de uitgave regel,module,Mirasvit_Rewards
+Spending Rule was successfully saved,Uitgave regel is succesvol opgeslagen,module,Mirasvit_Rewards
+Unable to find Spending Rule to save,kan de uitgave regel om op te slaan niet vinden,module,Mirasvit_Rewards
+New Transaction,Nieuwe transactie,module,Mirasvit_Rewards
+Transaction was successfully deleted,Transactie is succesvol verwijderd,module,Mirasvit_Rewards
+Please select Transaction(s),Selecteer aub de transactie(s),module,Mirasvit_Rewards
+Transaction was successfully saved,Transactie is succesvol opgeslagen,module,Mirasvit_Rewards
+Unable to find Transaction to save,Kan de transactie om op te slaan niet vinden,module,Mirasvit_Rewards
+Cannot apply points.,Kan de punten niet toekennen.,module,Mirasvit_Rewards
+You've earned %1 for Facebook Like!,U hebt  %1 verdiend met een Facebook Like!,module,Mirasvit_Rewards
+Facebook Like Points has been canceled,Facebook Like punten zijn geannuleerd,module,Mirasvit_Rewards
+You've earned %1 for Google+!,U hebt  %1 verdiend met een Google+!,module,Mirasvit_Rewards
+G+1 Points has been canceled,G+1 punten zijn geannuleerd,module,Mirasvit_Rewards
+You've earned %1 for Pin!,U hebt  %1 verdiend met een Pin!,module,Mirasvit_Rewards
+Customer with email %1 has been already invited to our store,Klant met emailsdres %1 heeft al een uitnodiging ontvangen voor onze webshop,module,Mirasvit_Rewards
+Your invitations were sent. Thanks!,Je uitnodigingen zijn verstuurd. Bedankt!,module,Mirasvit_Rewards
+Error. PLease reload page and login twitter,Error. Ververs de pagina en log opnieuw in bij Twitter.,module,Mirasvit_Rewards
+You've earned %1 for Tweet!,Je hebt %1 verdiend met een Tweet!,module,Mirasvit_Rewards
+You'll get your%1 for Tweet shortly!,Je krijgt je %1 voor de Tweet snel!,module,Mirasvit_Rewards
+You received %1 for signing up,Je hebt %1 verdiend met het aanmelden,module,Mirasvit_Rewards
+You received %1 for sending this product,Je hebt %1 verdiend voor het delen van dit product,module,Mirasvit_Rewards
+You received %1 for sign up for newsletter,Je hebt %1 verdiend voor het aanmelden bij de nieuwsbrief,module,Mirasvit_Rewards
+You will receive %1 after approving of this tag,Je ontvangt %1 na goedkeuring van deze tag,module,Mirasvit_Rewards
+You will receive %1 after approving of this review,Je ontvangt %1 na goedkeuring van deze review,module,Mirasvit_Rewards
+You received %1 for sign up of referral customer.,Je ontvangt %1 voor het aanmelden van een referentie.,module,Mirasvit_Rewards
+You received %1 for order of referral customer.,Je hebt %1 ontvangen voor een order van een gerefereerde klant.,module,Mirasvit_Rewards
+Happy birthday! You received %1.,Gefeliciteerd met je verjaardag! Je hebt %1 ontvangen.,module,Mirasvit_Rewards
+%1 was applied.,%1 is toegepast.,module,Mirasvit_Rewards
+Minimum number is %1.,Minimale aantal is %1.,module,Mirasvit_Rewards
+Maximum number is %1.,Maximalte aantal is %1.,module,Mirasvit_Rewards
+%1 was canceled.,%1 is geannuleerd.,module,Mirasvit_Rewards
+Cannot apply %1.,Kan %1 niet toepassen.,module,Mirasvit_Rewards
+You can use the following variables:,Je kunt de volgende variabelen gebruiken:,module,Mirasvit_Rewards
+Pattern,Patroon,module,Mirasvit_Rewards
+Attribute Value,Attribuut waarde,module,Mirasvit_Rewards
+Default,Default,module,Mirasvit_Rewards
+Integer,Integer,module,Mirasvit_Rewards
+Price,Prijs,module,Mirasvit_Rewards
+Strip Tags,Verwijder tags,module,Mirasvit_Rewards
+Primary Attributes,Primaire attributen,module,Mirasvit_Rewards
+Stock Attributes,Voorraad attributen,module,Mirasvit_Rewards
+Prices & Taxes,Prijzen en BTW,module,Mirasvit_Rewards
+Images,Afbeeldingen,module,Mirasvit_Rewards
+Custom Attributes,Custom Attributen,module,Mirasvit_Rewards
+Mapping,Mapping,module,Mirasvit_Rewards
+Category,Categorie,module,Mirasvit_Rewards
+Amasty Meta Tags,Amasty Meta Tags,module,Mirasvit_Rewards
+Others Attributes,Andere attributen,module,Mirasvit_Rewards
+You Earn,Je verdiend,module,Mirasvit_Rewards
+You Spend,Je geeft uit,module,Mirasvit_Rewards
+Customer signs up in store,Klant meld zich aan voor webshop,module,Mirasvit_Rewards
+Customer emails product's link to a friend,Klant mailt product link naar een friend,module,Mirasvit_Rewards
+Newsletter sign up,Nieuwsbrief inschrijving,module,Mirasvit_Rewards
+Customer adds tag to a product,Klant voegt een tag toe aan een product,module,Mirasvit_Rewards
+Customer writes a product's review,Klant schrijft een review over een product,module,Mirasvit_Rewards
+Customer has a birthday,Klant is jarig,module,Mirasvit_Rewards
+Customer is not active for long time,Klant is al lange tijd niet actief in de webshop,module,Mirasvit_Rewards
+Facebook Like,Facebook Like,module,Mirasvit_Rewards
+Twitter Tweet,Twitter Tweet,module,Mirasvit_Rewards
+Google+ Like,Google+ Like,module,Mirasvit_Rewards
+Pinterest Pin,Pinterest Pin,module,Mirasvit_Rewards
+Referred customer signs up in store,Gerefereerde klant meldt zich aan voor webshop,module,Mirasvit_Rewards
+Order from referred customer,Order van een gerefereerde klant,module,Mirasvit_Rewards
+Points to Currency,Punten naar Valuta,module,Mirasvit_Rewards
+Currency to Points,Valuta naar punten,module,Mirasvit_Rewards
+Customer Account > My Reward Points,Klant account > Mijn spaarpunten,module,Mirasvit_Rewards
+Customer Account > My Referrals,Klant account > Mijn Referenties,module,Mirasvit_Rewards
+Cart Page,Winkelwagen,module,Mirasvit_Rewards
+Message Sent,Bericht verstuurd,module,Mirasvit_Rewards
+Signed Up,Aangemeld,module,Mirasvit_Rewards
+Made Order,Order aangemaakt,module,Mirasvit_Rewards
+Visited by Referral Link,Referentielink bezocht,module,Mirasvit_Rewards
+Subtotal + Tax,Subtotaal + BTW,module,Mirasvit_Rewards
+Subtotal + Tax + Shipping,Subtotaal + BTW + Verzending,module,Mirasvit_Rewards
+Product Rule,Product regel,module,Mirasvit_Rewards
+Cart Rule,Winkelwagen regel,module,Mirasvit_Rewards
+Behavior Rule,Gedrags regel,module,Mirasvit_Rewards
+Transaction #%1 is expired,Transactie #%1 is verlopen,module,Mirasvit_Rewards
+Update the Product,Update het Product,module,Mirasvit_Rewards
+Conditions Combination,Combinatie van voorwaarden,module,Mirasvit_Rewards
+Product attribute combination,Productattribuut combinatie,module,Mirasvit_Rewards
+Products subselection,Product subselectie,module,Mirasvit_Rewards
+Conditions combination,Combinatie van voorwaarden,module,Mirasvit_Rewards
+Cart Attribute,Winkelwagen Attribuut,module,Mirasvit_Rewards
+Last 7-days Clicks,Afgelopen 7 dagen clicks,module,Mirasvit_Rewards
+Last 7-days Orders,Afgelopen 7dagen orders,module,Mirasvit_Rewards
+Last 7-days Revenue,Afgelopen 7 dagen omzet,module,Mirasvit_Rewards
+Is Referral,Is referentie,module,Mirasvit_Rewards
+Lifetime Sales,Levenslange verkopen,module,Mirasvit_Rewards
+Number of Orders,Aantal orders,module,Mirasvit_Rewards
+Is subscriber of newsletter,Is aangemeld voor de nieuwsbrief,module,Mirasvit_Rewards
+Number of reviews,Aantal reviews,module,Mirasvit_Rewards
+Number of referred friends signups,Aantal referenties dat zich heeft aangemeld,module,Mirasvit_Rewards
+Number of referred friends orders,Aantal orders van gerefereerde klanten,module,Mirasvit_Rewards
+Sum of referred friends orders,Totaal van gerefereerde orders,module,Mirasvit_Rewards
+Number of referrals who ordered at least once,Aantal geregereerde klanten met een order,module,Mirasvit_Rewards
+Not registered,Niet geregistreerd,module,Mirasvit_Rewards
+Attribute Set,Attributenset,module,Mirasvit_Rewards
+Quantity,Aantal,module,Mirasvit_Rewards
+Product Type,Product type,module,Mirasvit_Rewards
+Base Image,Base Image,module,Mirasvit_Rewards
+Thumbnail,Thumbnail,module,Mirasvit_Rewards
+Small Image,Small Image,module,Mirasvit_Rewards
+Base Image Size (bytes),Base Image Size (bytes),module,Mirasvit_Rewards
+Thumbnail Size (bytes),Thumbnail Size (bytes),module,Mirasvit_Rewards
+Small Image Size (bytes),Small Image Size (bytes),module,Mirasvit_Rewards
+PHP Condition,PHP Conditie,module,Mirasvit_Rewards
+Open Chooser,Open kiezer,module,Mirasvit_Rewards
+Referred: Group,Referentie: Groep,module,Mirasvit_Rewards
+Referred: Lifetime Sales,Referentie: Levenslange verkopen,module,Mirasvit_Rewards
+Referred: Number of Orders,Referentie: Aantal orders,module,Mirasvit_Rewards
+Referred: Is subscriber of newsletter,Referentie: Is aangemeld voor nieuwsbrief,module,Mirasvit_Rewards
+Referred: Number of reviews,Referentie: Aantal reviews,module,Mirasvit_Rewards
+-- Please Select --,-- Selecteer alstublieft --,module,Mirasvit_Rewards
+- Disable these emails -,- Zet deze emails uit -,module,Mirasvit_Rewards
+Give X points to customer,Geef X punten aan klant,module,Mirasvit_Rewards
+Give X points for every spent Y,Geef X punten voor elke Y uitgegeven ,module,Mirasvit_Rewards
+Give X points for every Z quantity,Geef X punten voor elke Z aantal,module,Mirasvit_Rewards
+"For every Y, give X points","Voor elke Y, geef X punten",module,Mirasvit_Rewards
+Pending,Pending,module,Mirasvit_Rewards
+Approved,Goedgekeurd,module,Mirasvit_Rewards
+Discarded,Afgewezen,module,Mirasvit_Rewards
+-,-,module,Mirasvit_Rewards
+%1 has been added.,%1 is toegevoegd.,module,Mirasvit_Rewards
+%1 has been deducted.,%1 is afgetrokken.,module,Mirasvit_Rewards
+You earned %1 and spent %2 for this order.,Je hebt %1 verdiend en hebt %2 uitgegeven voor deze bestelling.,module,Mirasvit_Rewards
+You spent %1 for this order.,je hebt %1 uitgegeven voor deze bestelling.,module,Mirasvit_Rewards
+You earned %1 for this order.,Je hebt %1 verdiend aan deze bestelling.,module,Mirasvit_Rewards
+Earned points will be enrolled to your account after we finish processing your order.,Verdiende punten worden toegekent aan uw account als de order is verwerkt,module,Mirasvit_Rewards
+Points Summary,Samenvatting van uw punten,module,Mirasvit_Rewards
+You have <b>%1</b> in your account.,U heeft <b>%1</b> in uw account.,module,Mirasvit_Rewards
+Transactions History,Uitgave geschiedenis,module,Mirasvit_Rewards
+Points,Punten,module,Mirasvit_Rewards
+Created,Aangemaakt,module,Mirasvit_Rewards
+Expires,Verloopt,module,Mirasvit_Rewards
+There are no Transactions.,Er zijn geen transacties,module,Mirasvit_Rewards
+Your points balance will expire in %1 days.,Uw punten verlopen over %1 dagen.,module,Mirasvit_Rewards
+Visit My Reward Points Section,Bezoek uw spaarpuntenpagina,module,Mirasvit_Rewards
+Login to earn %1 for sharing!,Login om %1 te verdienen met het delen!,module,Mirasvit_Rewards
+Earn %1 for sharing!,Verdien %1 voor delen!,module,Mirasvit_Rewards
+Like this page and earn %1,Like deze pagina en verdien %1,module,Mirasvit_Rewards
+Plus this page and earn %1,Plus deze pagina en verdien %1,module,Mirasvit_Rewards
+Pin this page and earn %1,Pin deze pagina en verdien %1,module,Mirasvit_Rewards
+Refer Friends,Refereer vrienden,module,Mirasvit_Rewards
+Refer friend and earn %1. More friends more points!,"Refereer een vriend en verdien %1. Hoe meer vrienden, hoe meer punten!",module,Mirasvit_Rewards
+What's happening?,Wat is er aan de hand?,module,Mirasvit_Rewards
+Tweet,Tweet,module,Mirasvit_Rewards
+Tweet this page and earn %1,Tweet deze pagina en verdien %1,module,Mirasvit_Rewards
+Check this out!,Koop dit!,module,Mirasvit_Rewards
+You have <b>%1</b> available.,U heeft <b>%1</b> beschikbaar.,module,Mirasvit_Rewards
+Enter amount of points to spend:,Voer het aantal punten in om uit te geven:,module,Mirasvit_Rewards
+Use maximum %1,Gebruik maximale %1,module,Mirasvit_Rewards
+Apply Points,Pas uw punten toe,module,Mirasvit_Rewards
+Apply,Pas toe,module,Mirasvit_Rewards
+Cancel Points,Annuleer punten,module,Mirasvit_Rewards
+Cancel,Annuleer,module,Mirasvit_Rewards
+Use Reward Points,Gebruik spaarpunten,module,Mirasvit_Rewards
+Discount amount,Kortingsbedrag,module,Mirasvit_Rewards
+This is a required field,Dit is een verplich veld,module,Mirasvit_Rewards
+Earning %1,Verdiend: %1,module,Mirasvit_Rewards
+Earn %1,Verdien %1,module,Mirasvit_Rewards
+Buy to earn %1,Koop om %1 te verdienen,module,Mirasvit_Rewards
+You'll earn %1 for this item,U verdiend %1 voor dit product,module,Mirasvit_Rewards
+Share with Friends,Deel met vrienden,module,Mirasvit_Rewards
+Share the referral link in the social media and get points!,Deel de refereer link via social media en verdien punten.,module,Mirasvit_Rewards
+Tweet on Twitter,Tweet naar Twitter,module,Mirasvit_Rewards
+Your referral link:,Uw referentie link:,module,Mirasvit_Rewards
+Send Invitations,Stuur uitnodigingen,module,Mirasvit_Rewards
+Enter contacts of your friends to invite them.,Voer de gegevens van uw vrienden in om ze uit te nodigen,module,Mirasvit_Rewards
+Referrals,Referenties,module,Mirasvit_Rewards
+Referred by link,Gerefereerd met een link,module,Mirasvit_Rewards
+There are no Referrals,Er zijn geen referenties,module,Mirasvit_Rewards
+Point Unit Name,Naam van een punt,module,Mirasvit_Rewards
+"Reward points expire after, days","Spaarpunten verlopen na, dagen",module,Mirasvit_Rewards
+Approve earned points on invoice,Keur punten goed na een factuur,module,Mirasvit_Rewards
+Approve earned points on shipment,Keur punten goed na een verzending,module,Mirasvit_Rewards
+Approve earned points if order has status,Keur punten goed als bestelling een status heeft,module,Mirasvit_Rewards
+Cancel earned points after order refunding,Annuleer de verdiende punten na een credit,module,Mirasvit_Rewards
+Restore spent points after order refunding,Herstel de uitgegeven punten na een credit,module,Mirasvit_Rewards
+Allow to earn points from shipping charges,Sta toe om punten te verdienen met de verzendkosten,module,Mirasvit_Rewards
+Allow to spend points for shipping charges,Sta toe om punten uit te geven aan de verzendkosten,module,Mirasvit_Rewards
+Allow to place orders with grand total = 0,Sta toe om order te plaatsen met een totaalbedrag van 0,module,Mirasvit_Rewards
+Email Sender,Email zender,module,Mirasvit_Rewards
+Balance update Email,Balans update Email,module,Mirasvit_Rewards
+Points expire Email,Spaarpunten verlopen Email,module,Mirasvit_Rewards
+Send notification before points expiring (in days),Stuur notificatie voor het verlopen van punten (in dagen),module,Mirasvit_Rewards
+Enable Referral System,Schakel referentie systeem in,module,Mirasvit_Rewards
+Invitation Email Template,Uitnodigings email template,module,Mirasvit_Rewards
+Show number of points on the product page,Toon het aantal punten op de productpagina,module,Mirasvit_Rewards
+Social Networks Settings,Sociale netwerk instellingen,module,Mirasvit_Rewards
+Show Facebook Like button,Toon Facebook Like knop,module,Mirasvit_Rewards
+Facebook App ID,Facebook App ID,module,Mirasvit_Rewards
+Show Twitter Follow button,Toon Twitter volg knop,module,Mirasvit_Rewards
+Twitter Consumer Key,Twitter Consumer Key,module,Mirasvit_Rewards
+Twitter Consumer Secret,Twitter Consumer Secret,module,Mirasvit_Rewards
+Show Google Plus +1 button,Toon Google Plus +1 knop,module,Mirasvit_Rewards
+Show Pinterest pin button,Toon Pinterest pin knop,module,Mirasvit_Rewards

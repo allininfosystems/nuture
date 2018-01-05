@@ -1,0 +1,123 @@
+
+.hdmx__contact-popup {
+
+  z-index: 1000000;
+
+  .hdmx__wrapper {
+    .lib-clearfix();
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: white;
+    position: relative;
+  }
+}
+
+// Desktop
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .hdmx__contact-popup {
+    position: fixed;
+    top: 7rem;
+    left: 50%;
+
+    .hdmx__wrapper {
+      width: 650px;
+      left: -50%;
+    }
+  }
+}
+
+// Mobile
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .hdmx__contact-popup {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+
+    .hdmx__wrapper {
+      width: auto;
+      left: 0;
+    }
+  }
+}
+
+.hdmx__contact-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100000px;
+  height: 10000000px;
+  background: rgba(0, 0, 0, .3);
+  z-index: 900001;
+}
+
+.hdmx__contact-form {
+  .lib-clearfix();
+  margin-bottom: 1.5rem;
+
+  .action.close {
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    .lib-button-reset();
+    .lib-button-icon(
+    @icon-remove,
+    @_icon-font-color: #8f8f8f,
+    @_icon-font-size: 16px,
+    @_icon-font-line-height: 16px,
+    @_icon-font-text-hide: true
+    );
+  }
+
+  .fieldset {
+    margin-bottom: 0;
+
+    .legend {
+      font-size: 1.8rem;
+      line-height: 2.3rem;
+      font-weight: @font-weight__semibold;
+      margin-top: 1rem;
+      border-bottom: none;
+      padding-right: 2rem;
+    }
+
+    .group-2 {
+      .lib-clearfix();
+      margin-left: -1rem;
+      margin-right: -1rem;
+
+      .field {
+        float: left;
+        width: 50%;
+        box-sizing: border-box;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  }
+
+  .actions-toolbar {
+    .action.primary {
+      float: right;
+      padding: 1rem 2rem;
+      height: auto;
+    }
+  }
+
+  &.success {
+    .message-success {
+      text-align: center;
+      font-size: 17px;
+      font-weight: @font-weight__light;
+      margin-top: 5rem;
+    }
+  }
+}
+
+.helpdesk-contact-form.page-layout-empty {
+  .column.main {
+    padding-bottom: 0;
+  }
+}

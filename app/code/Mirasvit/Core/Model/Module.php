@@ -9,7 +9,7 @@
  *
  * @category  Mirasvit
  * @package   mirasvit/module-core
- * @version   1.2.21
+ * @version   1.2.48
  * @copyright Copyright (C) 2017 Mirasvit (https://mirasvit.com/)
  */
 
@@ -22,20 +22,44 @@ use Magento\Framework\Module\Dir\Reader as DirReader;
 
 class Module
 {
+    /**
+     * @var array
+     */
     private static $modules = null;
 
+    /**
+     * @var FullModuleList
+     */
     protected $fullModuleList;
 
+    /**
+     * @var DirReader
+     */
     protected $dirReader;
 
+    /**
+     * @var string
+     */
     protected $name;
 
+    /**
+     * @var string
+     */
     protected $moduleName;
 
+    /**
+     * @var string
+     */
     protected $installedVersion;
 
+    /**
+     * @var string
+     */
     protected $latestVersion;
 
+    /**
+     * @var string
+     */
     protected $url;
 
     public function __construct(
@@ -46,15 +70,25 @@ class Module
         $this->dirReader = $dirReader;
     }
 
+    /**
+     * @return array
+     */
     public function getAllModules()
     {
         if (self::$modules == null) {
-            self::$modules = json_decode(file_get_contents('http://mirasvit.com/pc/modules/'), true);
+            self::$modules = json_decode(@file_get_contents('http://mirasvit.com/pc/modules/'), true);
+
+            if (!is_array(self::$modules)) {
+                self::$modules = [];
+            }
         }
 
         return self::$modules;
     }
 
+    /**
+     * @return array
+     */
     public function getInstalledModules()
     {
         $modules = [];
@@ -67,12 +101,17 @@ class Module
         return $modules;
     }
 
+    /**
+     * @param string $moduleName
+     * @return $this
+     */
     public function load($moduleName)
     {
         $modules = $this->getAllModules();
 
-        if (key_exists(strtolower($moduleName), $modules)) {
-            $m = $modules[strtolower(strtolower($moduleName))];
+        if (array_key_exists(strtolower($moduleName), $modules)) {
+
+            $m = $modules[strtolower($moduleName)];
 
             $this->moduleName = $moduleName;
             $this->name = $m['name'];
@@ -89,43 +128,108 @@ class Module
         return $this;
     }
 
+    /**
+     * @param string $moduleName
+     * @return array|false
+     */
     public function getComposerInformation($moduleName)
     {
         $dir = $this->dirReader->getModuleDir("", $moduleName);
 
-        if (file_exists($dir.'/composer.json')) {
-            return json_decode(file_get_contents($dir.'/composer.json'), true);
+        if (file_exists($dir . '/composer.json')) {
+            return json_decode(file_get_contents($dir . '/composer.json'), true);
         }
 
-        if (file_exists($dir.'/../../composer.json')) {
-            return json_decode(file_get_contents($dir.'/../../composer.json'), true);
+        if (file_exists($dir . '/../../composer.json')) {
+            return json_decode(file_get_contents($dir . '/../../composer.json'), true);
         }
 
         return false;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * @return string
+     */
     public function getModuleName()
     {
         return $this->moduleName;
     }
 
+    /**
+     * @return string
+     */
     public function getInstalledVersion()
     {
         return $this->installedVersion;
     }
 
+    /**
+     * @return string
+     */
     public function getLatestVersion()
     {
         return $this->latestVersion;
     }
 
+    /**
+     * @return string
+     */
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Recursively retrieve names of the required Mirasvit modules for given $moduleName.
+     *
+     * @param string $moduleName
+     *
+     * @return string[]
+     */
+    public function getRequiredModuleNames($moduleName)
+    {
+        return $this->requiredModuleNames($moduleName, []);
+    }
+
+    /**
+     * @param string $moduleName
+     * @param array $modules
+     * @return array
+     */
+    public function requiredModuleNames($moduleName, array $modules)
+    {
+        $composerInfo = $this->getComposerInformation($moduleName);
+        if (!isset($composerInfo['require'])) {
+            return $modules;
+        }
+
+        foreach (array_keys($composerInfo['require']) as $package) {
+            if (strpos($package, "mirasvit/") === false) {
+                continue;
+            }
+            foreach ($this->getInstalledModules() as $installedModule) {
+                if (in_array($installedModule, $modules)) {
+                    continue;
+                }
+                $installedModuleInfo = $this->getComposerInformation($installedModule);
+                if (!$installedModuleInfo) {
+                    continue;
+                }
+                if ($package == $installedModuleInfo['name']) {
+                    $modules[] = $installedModule;
+                    $modules = $this->requiredModuleNames($installedModule, $modules);
+                }
+            }
+        }
+
+        return $modules;
     }
 }

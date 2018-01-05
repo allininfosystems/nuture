@@ -1,0 +1,95 @@
+<?php
+//@codingStandardsIgnoreFile
+if (!$block->getMaxPointsNumberToSpent()) {
+    return;
+}
+$helper = $this->helper('Mirasvit\Rewards\Helper\Data');
+?>
+<form id="reward-points-form" action="<?= $block->getApplyUrl() ?>" method="post">
+    <div class="rewards__checkout-cart-usepoints">
+        <h3><?= __('Use Reward Points') ?></h3>
+        <div class="discount-form">
+            <p>
+                <?= __('You have <b>%1</b> available.', $helper->formatPoints($block->getBalancePoints())) ?>
+                <br>
+                <?= __('Enter amount of points to spend:'); ?>
+            </p>
+
+            <input type="hidden" name="remove-points" id="remove-points" value="0"/>
+
+            <div class="amount">
+                <div class="field">
+                    <input type="text" class="input-text" id="points_amount" name="points_amount"
+                           value="<?= $block->getPointsAmount() ? (int)$block->getPointsAmount() : '' ?>"
+                        <?php if ($block->getPointsAmount()): ?> readonly="readonly"<?php endif ?>/>
+                </div>
+
+                <div class="actions-toolbar">
+                    <?php if (!$block->getPointsAmount()): ?>
+                        <button type="button" class="button" onclick="rewardsFormSubmit(false)">
+                            <span><?= __('Apply Points') ?></span>
+                        </button>
+                    <?php else: ?>
+                        <button type="button" class="button" onclick="rewardsFormSubmit(true)">
+                            <span><?= __('Cancel Points') ?></span>
+                        </button>
+                    <?php endif ?>
+                </div>
+            </div>
+
+            <?php if (!$block->getPointsAmount()): ?>
+                <div class="input-box">
+                    <input type='checkbox' id="points_all" name="points_all"
+                        <?= $block->getPointsAmount() == $block->getMaxPointsNumberToSpent() ? 'checked' : '' ?> />
+                    <label for="points_all">
+                        <?= __('Use maximum %1', $helper->formatPoints($block->getMaxPointsNumberToSpent())) ?>
+                    </label>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    //<![CDATA[
+
+    function rewardsFormSubmit(isRemove) {
+        if (isRemove) {
+            jQuery('#points_amount').removeClass('required-entry');
+            jQuery('#remove-points').val("1");
+        } else {
+            jQuery('#points_amount').addClass('required-entry');
+            jQuery('#remove-points').val("0");
+        }
+        jQuery('#reward-points-form').submit();
+    }
+    var maxPointsNumberToSpent = <?= $block->getMaxPointsNumberToSpent() ?>;
+
+    require([
+        "jquery"
+    ], function ($) {
+        $(document).ready(function () {
+            $('body').on('click', '#points_all', function (event) {
+//            event.preventDefault();
+                if ($('#points_amount').val() == maxPointsNumberToSpent) {
+                    $('#points_amount').val('');
+//                $('#points_all').removeProp('checked');
+                } else {
+                    $('#points_amount').val(maxPointsNumberToSpent);
+//                $('#points_all').prop('checked', 'checked');
+                }
+            });
+
+            $('body').on('keyup', '#points_amount', function () {
+                var val = parseInt($('#points_amount').val());
+                if (isNaN(val) || val < maxPointsNumberToSpent) {
+                    $('#points_all').removeProp('checked');
+                } else {
+                    $('#points_all').prop('checked', 'checked');
+                    $('#points_amount').val(maxPointsNumberToSpent);
+                }
+            });
+        });
+    });
+    //]]>
+</script>

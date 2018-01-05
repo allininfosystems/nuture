@@ -35,19 +35,11 @@
                     data-request="<?php echo $block->escapeHtml($filterItem->getFilter()->getRequestVar()) ?>"
                     <?php if ($isRadio): ?>data-radio="true"<?php endif; ?>
                     data-value="<?php echo $block->escapeHtml($value) ?>">
-                    <span><?php echo $filterItem->getLabel() ?>
-                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
-                        <span class="count"><?php echo $block->escapeHtml($filterItem->getCount()) ?><span class="filter-count-label"><?php if ($filterItem->getCount() == 1):?><?php echo $block->escapeHtml(__('item')) ?><?php else:?> <?php echo $block->escapeHtml(__('items')) ?><?php endif;?></span></span>
-                    <?php endif; ?>
-                    </span>
+                    <span><?php echo $filterItem->getLabel() ?></span>
                 </a>
             <?php else:?>
                 <span class="attr-dis">
                 <?php echo $filterItem->getLabel() ?>
-                <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
-                    <span class="count"><?php echo $block->escapeHtml($filterItem->getCount()) ?><span class="filter-count-label">
-                        <?php if ($filterItem->getCount() == 1):?><?php echo $block->escapeHtml(__('item')) ?><?php else:?><?php echo$block->escapeHtml( __('items')) ?><?php endif;?></span></span>
-                <?php endif; ?>
                 </span>
             <?php endif; ?>
         </li>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <head>
+        <script src="Mirasvit_Rewards::js/social.js" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="rewards.referral.list" class="Mirasvit\Rewards\Block\Referral\Listing" template="referral/list.phtml" cacheable="false">
+                <block class="Mirasvit\Rewards\Block\Notification\Message" name="rewards.notification" template="notification/block.phtml"></block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

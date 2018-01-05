@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <section id="rewards" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label" sortOrder="100">
+            <label>Reward Points</label>
+            <tab>mirasvit</tab>
+            <resource>Mirasvit_Rewards::config_reward_points</resource>
+            <group id="general" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                <label>General Settings</label>
+                <field id="point_unit_name" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Point Unit Name</label>
+                </field>
+                <field id="expires_after_days" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Reward points expire after, days</label>
+                </field>
+                <field id="is_earn_after_invoice" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Approve earned points on invoice</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_earn_after_shipment" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Approve earned points on shipment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="earn_in_statuses" translate="label" type="multiselect" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Approve earned points if order has status</label>
+                    <source_model>\Mirasvit\Rewards\Model\Config\Source\Order\Status</source_model>
+                </field>
+                <field id="is_cancel_after_refund" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cancel earned points after order refunding</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_restore_after_refund" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Restore spent points after order refunding</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_include_discount_earning" translate="label" type="select" sortOrder="75" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Include discount for Earning rules</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_include_tax_earning" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Include tax for Earning rules</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_include_tax_spending" translate="label" type="select" sortOrder="85" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Include tax for Spending rules</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_earn_shipping" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow to earn points from shipping charges</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_spend_shipping" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow to spend points for shipping charges</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_allow_zero_orders" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow to place orders with grand total = 0</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_display_product_points_as_money" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow to display product points as currency equivalent</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_display_max_for_configurable_product" translate="label" type="select" sortOrder="130" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow to display maximum amount of possible points for configurable product</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="notification" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                <label>Notification Settings</label>
+                <field id="sender_email" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="balance_update_email_template" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Balance update Email</label>
+                    <source_model>\Mirasvit\Rewards\Model\System\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="points_expire_email_template" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Points expire Email</label>
+                    <source_model>\Mirasvit\Rewards\Model\System\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="send_before_expiring_days" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send notification before points expiring (in days)</label>
+                </field>
+            </group>
+            <group id="referral" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                <label>Referrals</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Referral System</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="invitation_email_template" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Invitation Email Template</label>
+                    <source_model>\Mirasvit\Rewards\Model\System\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="display_options" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                <label>Display options</label>
+                <field id="is_show_points_menu" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show rewards points menu on frontend</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_show_points_on_frontend" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show rewards points on category page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="is_show_points_on_product_page" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show number of points on the product page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="advanced_settings" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                <label>Advanced Settings</label>
+                <field id="earning_points_rounding" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Round earning points down</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[As points can not be fractional, this option allows you to control how to round them: to the nearest lowest or highest number]]></comment>
+                </field>
+                <field id="custom_rules_list" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Custom Behavior Events</label>
+                    <comment><![CDATA[See detailed desciption in <a href="http://docs.mirasvit.com/module-rewards/current/rules/custom" target="_blank">documentation</a>]]></comment>
+                </field>
+            </group>
+        </section>
+        <section id="rewardssocial" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label" sortOrder="110">
+            <label>Social Networks Settings</label>
+            <tab>mirasvit</tab>
+            <resource>Mirasvit_Rewards::config_reward_social</resource>
+            <group id="facebook" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                <label>Facebook Settings</label>
+                <field id="app_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook App ID</label>
+                </field>
+                <field id="is_active" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Facebook Like button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_fb_share" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Facebook Share button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="twitter" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                <label>Twitter Settings</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Twitter Follow button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="consumer_key" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter Consumer Key</label>
+                    <comment><![CDATA[Create a twitter app via <a href="https://apps.twitter.com" target="_blank">https://apps.twitter.com/</a>. In Application Settings you’ll find a Consumer Key]]></comment>
+                </field>
+                <field id="consumer_secret" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter Consumer Secret</label>
+                    <comment><![CDATA[Create a twitter app via <a href="https://apps.twitter.com" target="_blank">https://apps.twitter.com/</a>. In Application Settings you’ll find a Consumer Secret]]></comment>
+                </field>
+            </group>
+            <group id="googleplus" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                <label>Google Plus Settings</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Google Plus +1 button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="pinterest" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                <label>Pinterest Settings</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Pinterest pin button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="addthis" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                <label>AddThis Settings</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show AddThis</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="code" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AddThis Code</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

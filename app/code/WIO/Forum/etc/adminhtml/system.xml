@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="wio" translate="label" sortOrder="500">
+            <label>WIO Extensions</label>
+        </tab>
+        <section id="wio_forum" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Magento Forum</label>
+            <tab>wio</tab>
+            <resource>WIO_Forum::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable WIO Forum</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        Enable Forum for frontend.
+                    </comment>
+                </field>
+                <field id="forum_route" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Forum Route</label>
+                    <comment>
+                        Default "forum".
+                    </comment>
+                </field>
+            </group>
+            <group id="frontend" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="0"
+                   showInStore="1">
+                <label>Frontend General</label>
+                <field id="forum_title" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Forum Title</label>
+                    
+                </field>
+                <field id="forum_search" translate="label comment" type="select" sortOrder="21" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Search Field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    
+                </field>
+                <field id="bookmarks" translate="label comment" type="select" sortOrder="22" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Bookmarks</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    
+                </field>
+                
+                <field id="jumpto" translate="label comment" type="select" sortOrder="23" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Jump to dropdown</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    
+                </field>
+                
+                <field id="rss" translate="label comment" type="select" sortOrder="24" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Rss Link</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    
+                </field>
+                
+                <field id="icons" translate="label comment" type="select" sortOrder="25" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Forum Icons</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    
+                </field>
+        
+                <field id="statistic" translate="label comment" type="select" sortOrder="26" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Forum Statistic</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    
+                </field>
+        
+                <field id="whoisonline" translate="label comment" type="select" sortOrder="27" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Forum Whoisonline Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    
+                </field>
+        
+                <field id="allowdeletetopic" translate="label comment" type="select" sortOrder="28" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Allow customer delete own topics</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    
+                </field>
+        
+                <field id="allowedcontrols" translate="label comment" type="select" sortOrder="29" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Show forum top controls</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>My forum account, My forum posts, My forum topics</comment>
+                    
+                </field>
+        
+                <field id="page_layout" translate="label comment" type="select" sortOrder="29" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Forum Layout</label>
+                    <source_model>WIO\Forum\Model\Source\Layout</source_model>
+                    
+                </field>
+            </group>
+      
+            <group id="meta_data" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="0"
+                   showInStore="1">
+             
+                <label>Default Meta Data</label>
+            
+            
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Default Forum Title Tag</label>          
+                </field>
+                <field id="meta_keywords" translate="label" type="textarea" sortOrder="3" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Default Meta Keywords</label>          
+                </field>
+                <field id="meta_description" translate="label" type="textarea" sortOrder="4" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Default Meta Description</label>          
+                </field>
+                
+            </group>
+          
+            <group id="notification" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="0"
+                   showInStore="1">
+             
+                <label>Notification</label>
+                <field id="senderemail" translate="label comment" type="text" sortOrder="1" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Sender Email Address</label>
+                </field>
+                <field id="sendername" translate="label comment" type="text" sortOrder="2" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Sender Email Name</label>          
+                </field>
+                <field id="customernotification" translate="label comment" type="select" sortOrder="5" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Allow Notify Customers Via Email</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

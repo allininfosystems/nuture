@@ -1,0 +1,146 @@
+.form-discount {
+    .checkbox-group {
+        margin-bottom: 10px;
+    }
+}
+
+.rewards-message-block {
+    float: left;
+    display: inline-block;
+    width: 100%;
+}
+.rewards__checkout-cart-usepoints {
+    margin-bottom: 1.5rem;
+
+    &.magestore-onepagecheckout {
+
+        #points_amount {
+            border: 0;
+            border-bottom: 1px solid silver;
+            &:focus {
+                border-bottom: 1px solid black;
+            }
+
+            &:focus + label,
+            &:valid + label, {
+                top: -12px;
+                font-size: 12px;
+            }
+        }
+
+        .button {
+            background-color: black;
+            color: white;
+            margin: 5px;
+        }
+
+        .input-box {
+            position: relative;
+
+            label {
+                position: absolute;
+                top: 5px;
+                color: #898989;
+            }
+        }
+    }
+
+    .input-box {
+        position: relative;
+
+        label {
+            position: absolute;
+            top: 5px;
+            left: 3px;
+            color: #898989;
+        }
+    }
+
+    #points_amount {
+
+        &:focus + label,
+        &:valid + label, {
+            top: -18px;
+            font-size: 12px;
+        }
+    }
+
+    .discount-form {
+        p {
+            margin-bottom: 15px;
+        }
+
+        .buttons-container {
+            margin-top: 5px;
+        }
+
+        .checkbox-group {
+            clear: both;
+            padding-top: 10px;
+        }
+    }
+
+    .amount {
+        display: table;
+        width: 100%;
+        margin-bottom: .5rem;
+
+        .field {
+            display: table-cell;
+        }
+
+        .actions-toolbar {
+            display: table-cell;
+            vertical-align: top;
+            width: 1%;
+
+            button {
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+                margin: 0 0 0 -1px;
+                white-space: nowrap;
+                width: auto;
+            }
+        }
+    }
+
+    label.magestore-onestepcheckout-lab-fix {
+        top: -2px !important;
+        left: inherit;
+        font-size: 14px !important;
+        color:#898989 !important;
+    }
+
+    .magestore-onestepcheckout-button-fix {
+        padding: 0 5px;
+        width: 105px;
+        height: 35px;
+        background-color: black !important;
+
+        span {
+            color: white;
+        }
+    }
+}
+
+.checkbox-group label span.checkout-rewards-all-block {
+    position: inherit;
+    margin-left: 25px;
+
+    span {
+        position: inherit;
+        display: inline-block;
+    }
+
+    b {
+        position: inherit;
+    }
+}
+
+.aw-onestep-sidebar-block .actions-toolbar.rewards-buttons-block {
+    max-width: inherit !important;
+
+    .primary button {
+        width: 49% !important;
+    }
+}

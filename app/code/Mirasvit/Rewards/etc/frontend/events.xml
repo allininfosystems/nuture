@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+    <event name="sales_quote_save_after">
+        <observer name="mst_rewards_model_sales_quote_save_after" instance="\Mirasvit\Rewards\Observer\OrderQuoteAfterSave"/>
+    </event>
+    <event name="sales_quote_remove_item">
+        <observer name="mst_rewards_model_sales_quote_save_after" instance="\Mirasvit\Rewards\Observer\QuoteAfterRemove"/>
+    </event>
+    <event name="sales_quote_collect_totals_after">
+        <observer name="mst_rewards_sales_quote_collect_totals_after" instance="\Mirasvit\Rewards\Observer\OrderQuoteTotalsCollectAfter"/>
+    </event>
+    <event name="controller_action_predispatch">
+        <observer name="mst_rewards_model_sales_quote_save_after" instance="\Mirasvit\Rewards\Observer\OrderActionPredispatch"/>
+    </event>
+    <event name="sendfriend_product">
+        <observer name="mst_rewards_send_product_link" instance="\Mirasvit\Rewards\Observer\SendFriendProduct" />
+    </event>
+    <event name="catalog_product_option_price_configuration_after">
+        <observer name="mst_rewards_bundle_price_config" instance="\Mirasvit\Rewards\Observer\BundlePriceConfig" />
+    </event>
+</config>

@@ -1,0 +1,50 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+?>
+<?php if ($block->getIsModerator()): ?>
+    <div class="forum-logged-moderator">
+    <?php echo __('You are logged as moderator'); ?>
+  </div>
+<?php endif; ?>
+<?php if ($block->getIsAllowedControls()): ?>
+  <div class="forum-top-controls">
+    <div clas="forum-top-controls-myaccount">
+      <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'my_account_icon.png'); ?>" />
+      <a href="<?php echo $block->getMyAccLink() ?>">
+        <?php echo __('My Forum Account') ?>
+      </a>
+    </div>
+    <div clas="forum-top-controls-myposts">
+      <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'forum_post.png'); ?>" />
+      <a href="<?php echo $block->getMyForumPostsLink() ?>">
+        <?php echo __('My Forum Posts') ?>
+      </a>
+    </div>
+    <div clas="forum-top-controls-mytopics">
+      <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_topic.png'); ?>" />
+      <a href="<?php echo $block->getMyForumTopicsLink() ?>">
+        <?php echo __('My Forum Topics') ?>
+      </a>
+    </div>
+  </div>
+<?php endif; ?>
+<h2 class="forum-title">
+  <?php echo $block->getForumTitle(); ?>
+</h2>
+<div class="forum-util clearfix">
+  <?php echo $block->getChildHtml('forum.ui.search'); ?>
+  <?php echo $block->getChildHtml('forum.ui.rss'); ?>
+  <?php echo $block->getChildHtml('forum.ui.bookmarks'); ?>
+  <div class="clearfix">&nbsp;</div>  
+  <?php echo $block->getChildHtml('forum.ui.jumpto'); ?>
+</div>

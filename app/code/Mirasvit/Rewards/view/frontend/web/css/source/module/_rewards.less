@@ -1,0 +1,36 @@
+.block-rewards-account-summary {
+  margin-bottom: 2rem !important;
+
+  .unsubscribe {
+    float: right;
+    font-size: 14px !important;
+    padding-top: 10px;
+  }
+}
+
+.rewards-notification-block {
+  list-style-type: none;
+  padding: 0;
+  background: #ECFDFF;
+
+  > li {
+    padding: 1rem;
+  }
+}
+
+.rewards-referral-link {
+  font-weight: 600;
+}
+
+.link.rewards {
+  .counter {
+    .lib-css(color, @text__color__muted);
+    white-space: nowrap;
+    &:before {
+      content: '(';
+    }
+    &:after {
+      content: ')';
+    }
+  }
+}

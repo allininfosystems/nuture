@@ -1,0 +1,13 @@
+<div class="buttons-googleplus-one">
+    <div class="g-plusone" data-size="medium" data-callback="rewardsGoogleplusEvent" data-annotation="none"></div>
+    <script type="text/javascript">
+        var rewardsOneUrl = '<?= $block->getOneUrl(); ?>';
+    </script>
+    <?php if ($block->getEstimatedEarnPoints() > 0): ?>
+        <?php if ($block->isAuthorized() && !$block->isLiked()): ?>
+            <div id="googleplus-message">
+                <?= __('Plus this page and earn %1',  $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getEstimatedEarnPoints())); ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

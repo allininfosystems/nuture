@@ -1,0 +1,14 @@
+<?php if($block->getIsActive()): ?>
+  <div class="forum-statistic-block">
+    <h4>
+      <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR  . 'stats.png'); ?>" />
+      <?php echo __('Statistic') ?>
+    </h4>
+    <div>
+      <?php echo __('Total Forums') ?>: <b><?php echo $block->getTotalForums() ?></b>.&nbsp; 
+      <?php echo __('Total Topics') ?>: <b><?php echo $block->getTotalTopics() ?></b>.&nbsp; 
+      <?php echo __('Total Posts') ?>: <b><?php echo $block->getTotalPosts() ?></b>.&nbsp; 
+      <?php echo __('Total Active Members') ?>: <b><?php echo $block->getTotalUsers() ?></b>.&nbsp; 
+    </div>
+  </div>
+<?php endif; ?>

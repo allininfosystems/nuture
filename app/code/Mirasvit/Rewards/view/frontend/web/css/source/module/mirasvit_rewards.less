@@ -1,0 +1,231 @@
+.rewardssocial-buttons {
+    font-size: 11px;
+    display: inline-block;
+    width: 100%;
+    line-height: 20px;
+    margin-bottom: 10px;
+    z-index: 2;
+    position: relative;
+
+    > div {
+        margin-bottom: 5px;
+    }
+
+    #facebook-message, #facebook-share-message, #twitter-message,
+    #referral-message, #googleplus-message, #pinterest-message {
+        display: none;
+        position: absolute;
+        background: #333;
+        padding: 2px 5px;
+        color: #fff;
+        margin-top: -25px;
+    }
+
+    .buttons-facebook-like {
+        &:hover {
+            #facebook-message {
+                display: block;
+            }
+        }
+        .fb-like > span {
+            width: 61px !important;
+            height: 20px !important;
+
+            iframe {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+    }
+
+    .buttons-googleplus-one {
+        &:hover {
+            #googleplus-message {
+                display: block;
+            }
+        }
+    }
+
+    .buttons-pinterest-pin {
+        &:hover {
+            #pinterest-message {
+                display: block;
+            }
+        }
+    }
+
+    .buttons-twitter-like {
+        &:hover {
+            #twitter-message {
+                margin-top: -50px;
+                display: block;
+            }
+        }
+    }
+
+    .buttons-referral-like {
+        > a {
+            text-decoration: none;
+            line-height: 18px;
+            border-radius: 2px;
+            padding: 0px 3px;
+            font-weight: bold;
+            color: #333;
+            font-size: 11px;
+            border: 1px solid #ccc;
+            background: #ffffff;
+            background: -moz-linear-gradient(top, #ffffff 0%, #eaeaea 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#eaeaea));
+            background: -webkit-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
+            background: -o-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
+            background: -ms-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
+            background: linear-gradient(to bottom, #ffffff 0%,#eaeaea 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+        }
+        &:hover {
+            #referral-message {
+                display: block;
+            }
+        }
+    }
+
+    .fb_iframe_widget {
+        margin-right: 10px;
+        display: block;
+        float: left;
+    }
+
+    .mst-rewardssocial-tweet {
+        margin-right: 10px;
+        display: block;
+        float: left;
+    }
+
+    .referral {
+        display: block;
+        float: left;
+    }
+
+    .status-message {
+        float: left;
+        margin-left: 10px;
+        color: #666;
+    }
+
+    .buttons-pinterest-pin {
+        >a {
+            margin-right: 10px;
+            float: left;
+        }
+    }
+
+    .buttons-googleplus-one {
+        >div {
+            float: left !important;
+            margin-right: 10px !important;
+        }
+    }
+}
+
+.rewards-notification-message {
+    border-style: solid !important;
+    border-width: 1px !important;
+    min-height: 24px !important;
+    padding: 8px 8px 6px 32px !important;
+    color: #3d6611;
+    border-color: #446423;
+    background-color: #eff5ea;
+    margin-bottom: 10px;
+}
+.rewards-notification-message li {
+    margin-top: 2px;
+}
+
+.rewards-social-buttons {
+    display: inline-block;
+    float: left;
+
+    > .fb {
+        position: relative;
+        display: inline-block;
+        margin-top: 0px;
+    }
+    > .tw {
+        position: relative;
+        display: inline-block;
+        padding-top:15px;
+    }
+    > .gp {
+        position: relative;
+        display: inline-block;
+        margin-top: 5px;
+    }
+}
+
+.block-rewards-referral-list div.rewards-social-buttons {
+    height: 20px;
+}
+.block-rewards-referral-list div.rewards-social-buttons div.tw {
+    padding-top: 0px;
+    position: relative;
+    top: -2px;
+}
+.block-rewards-referral-list div.rewards-social-buttons div.fb {
+    position: relative;
+    top: -6px;
+}
+
+div.rewardssocial-buttons {
+
+    div.buttons-pinterest-pin,
+    div.buttons-twitter-like {
+        height: 20px;
+    }
+
+    div.buttons-facebook-like,
+    div.buttons-pinterest-pin,
+    div.buttons-googleplus-one,
+    div.buttons-referral-like {
+        float: left;
+    }
+
+    div.buttons-twitter-like {
+        float: left;
+        margin-right: 10px;
+    }
+
+    div.buttons-fb-share {
+        float: left;
+        margin-right: 10px;
+
+        #rewards_fb_share {
+            border-radius: 3px;
+            font-size: 11px;
+            height: 20px;
+            padding: 0 10px 0 10px;
+            background: #4267b2;
+            border: 0px solid #4267b2;
+            color: #fff;
+            cursor: pointer;
+            font-family: Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            -webkit-user-select: none;
+            white-space: nowrap;
+            display: inline-block;
+            font-weight: bold;
+
+            ._49vg {
+                vertical-align: text-top;
+
+                img {
+                    margin-top: -10px;
+                }
+            }
+
+            .title {
+                vertical-align: top;
+            }
+        }
+    }
+}

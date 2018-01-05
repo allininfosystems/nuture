@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 webideaonline.com  All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+        
+    <add id="WIO_Forum::forum" title="Forum" module="WIO_Forum" sortOrder="50" resource="WIO_Forum::forum"/>
+    <add id="WIO_Forum::forum_manager" action="wio_forum/forum/index" title="Manage Forums" module="WIO_Forum" sortOrder="1" parent="WIO_Forum::forum"  resource="WIO_Forum::forum"/>
+    <add id="WIO_Forum::forum_add" action="wio_forum/forum/new" title="Add Forum" module="WIO_Forum" sortOrder="20" parent="WIO_Forum::forum" resource="WIO_Forum::forum"/>
+    <add id="WIO_Forum::topic_manager" action="wio_forum/topic/index" title="Manage Topics" module="WIO_Forum" sortOrder="30" parent="WIO_Forum::forum"  resource="WIO_Forum::forum"/>
+    <add id="WIO_Forum::topic_add" action="wio_forum/topic/new" title="Add Topic" module="WIO_Forum" sortOrder="31" parent="WIO_Forum::forum" resource="WIO_Forum::forum"/>
+    <add id="WIO_Forum::post_manager" action="wio_forum/post/index" title="Manage Posts" module="WIO_Forum" sortOrder="40" parent="WIO_Forum::forum"  resource="WIO_Forum::forum"/>
+    <add id="WIO_Forum::post_add" action="wio_forum/post/new" title="Add Post" module="WIO_Forum" sortOrder="41" parent="WIO_Forum::forum" resource="WIO_Forum::forum"/>
+            
+    <!-- add id="WIO_Forum::moderator_manager" action="adminhtml/wio_forum/moderator" title="Manage Moderators" module="WIO_Forum" sortOrder="4" parent="WIO_Forum::forum"  resource="WIO_Forum::forum"/ -->
+            
+    <add id="WIO_Forum::manage_moderators" action="wio_forum/moderator/index" title="Manage Moderators" module="WIO_Forum" sortOrder="50" parent="WIO_Forum::forum"  resource="WIO_Forum::forum"/>
+    <add id="WIO_Forum::admin_settings" action="wio_forum/adminsettings/index" title="Admin Profile Settings" module="WIO_Forum" sortOrder="60" parent="WIO_Forum::forum"  resource="WIO_Forum::forum"/>
+    <add id="WIO_Forum::configuration" action="adminhtml/system_config/edit/section/wio_forum" title="Configuration" module="WIO_Forum" sortOrder="70" parent="WIO_Forum::forum"  resource="WIO_Forum::forum"/>
+        
+  </menu>
+</config>

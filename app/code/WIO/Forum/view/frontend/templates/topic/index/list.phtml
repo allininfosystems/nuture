@@ -1,0 +1,159 @@
+<?php
+/**
+ * webideaonline.com.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://webideaonline.com/licensing/
+ *
+ */
+$posts = $this->getDisplayPosts();
+?>
+
+<div class="forum-list-container controls-exists clearfix">
+  <h3 class="grid-title">
+    <?php if ($block->getIsIconsEnabled() && $block->getIconSrc()): ?>
+      <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getIconSrc()) ?>" />
+    <?php endif; ?>
+    <?php echo __('View Topic "%1"', $block->getTopicTitle()) ?>
+  </h3>
+  <div class="forum-grid-controls">
+    <button onclick="document.location.href = '<?php echo $block->getAddNewUrl() ?>'" class="action primary" title="<?php echo __('Add Topic') ?>">
+      <span><?php echo __('Add Topic') ?></span>
+    </button>
+    <button onclick="document.location.href = '<?php echo $block->getAddPostNewUrl() ?>'" class="action primary" title="<?php echo __('Add Post') ?>">
+      <span><?php echo __('Add Post') ?></span>
+    </button>
+  </div>
+  <div class="clearfix">&nbsp;</div>
+  <?php if (!$posts || !$posts->getSize()): ?>    
+    <div class="forum-grid-no-data">
+      <?php echo __('No Data Found') ?>
+    </div>
+  <?php else: ?>
+    <div class="toolbar top forum-toolbar">
+      <?php echo $block->getPagerHtml(); ?>
+    </div>
+    <div class="forum-sort">
+      <?php echo __('Sort By') ?>
+      &nbsp;&nbsp;
+      <a <?php echo ($this->getSortType() == 'asc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl(null, 'asc') ?>"><?php echo __('Oldest') ?></a>
+      &nbsp;|&nbsp;
+      <a <?php echo ($this->getSortType() == 'desc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl(null, 'desc') ?>"><?php echo __('Newest') ?></a>
+    </div>
+    <table class="forum-grid forum-list grid">
+      <thead>
+        <tr>
+          <th width="25%"></th>
+          <th width="75%">
+            <?php echo __('Posts') ?>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($posts as $post):
+          $userDetails = $block->getUserDetails($post->getSystemUserId());
+          ?>
+          <tr>
+            <td>
+              <div class="forum-avatar-image-container">
+                <img src="<?php echo $userDetails['avatar'] ?>" class="forum-avatar-image"/>
+              </div>
+              <div class="forum-user-data-container">
+                <span class="forum-user-nickname">
+                  <a href="<?php echo $userDetails['link'] ?>">
+                    <?php echo $userDetails['nickname'] ?>
+                  </a>
+                </span>
+                <span class="forum-user-total-posts">
+                  <?php echo __('Total posts: <strong>%1</strong>', $userDetails['total_posts']); ?>
+                </span>
+                <?php if ($userDetails['joined']): ?>
+                  <span class="forum-user-joined">
+                    <?php echo __('Joined: <strong>%1</stron>', $block->getTimeAccordingToTimeZone($userDetails['joined'])); ?>
+                  </span>
+                <?php endif; ?>
+              </div>
+            </td>
+            <td>
+              <div class="forum-post-view-container" id="<?php echo $block->getPostBlockId($post) ?>">
+                <?php echo $post->getPost() ?>
+              </div>
+              <?php if ($userDetails['signature']): ?>
+                <div class="forum-user-signater">
+                  <?php echo $userDetails['signature'] ?>
+                  <hr>
+                </div>
+              <?php endif; ?>
+              <?php if ($block->getIsOwner($post)): ?>
+                <div class="forum-post-controls">
+                  <a href="<?php echo $block->getEditPostUrl($post) ?>" class="forum-post-edit" title="<?php echo __('Edit') ?>">
+                    <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'edit_icon.png'); ?>" />
+                    <?php echo __('Edit') ?>
+                  </a>
+                  <a href="<?php echo $block->getDeletePostUrl($post); ?>" class="forum-post-delete" title="<?php echo __('Delete') ?>">
+                    <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'delete_icon.png'); ?>" />
+                    <?php echo __('Delete') ?>
+                  </a>
+                </div>
+              <?php endif; ?>
+              <?php echo __('Posted: %1', $this->getPostTime($post)) ?>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+
+    <div class="clearfix">&nbsp;</div>
+    <div class="forum-grid-controls">
+      <?php if ($block->getIsLoggedIn()): ?>
+        <button class="action primary" onclick="___wio_showEditor();" title="<?php echo __('Fast Reply') ?>">
+          <span><?php echo __('Fast Reply') ?></span>
+        </button>
+      <?php endif; ?>
+      <button onclick="document.location.href = '<?php echo $block->getAddNewUrl() ?>'" class="action primary" title="<?php echo __('Add Topic') ?>">
+        <span><?php echo __('Add Topic') ?></span>
+      </button>
+      <button onclick="document.location.href = '<?php echo $block->getAddPostNewUrl() ?>'" class="action primary" title="<?php echo __('Add Post') ?>">
+        <span><?php echo __('Add Post') ?></span>
+      </button>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <?php if ($block->getIsLoggedIn()): ?>
+      <div class="forum-editor" id="wio-editor" style="display:none;">
+        <form method="post" action="<?php echo $block->getActionPost() ?>">
+          <input type="hidden" value="<?php echo $block->getForumId() ?>" name="<?php echo $block->getForumIdParamName() ?>" />
+          <input type="hidden" value="<?php echo $block->getTopicId() ?>" name="<?php echo $block->getTopicIdParamName() ?>" />
+          <input type="hidden" value="1" name="post_only" />
+          <textarea name="post"></textarea>
+          <div class="clearfix"><br></div>
+          <?php if ($block->getIsCustomerNotificationEnabled()): ?>   
+            
+            <div class="field field-topic-notification required">
+              <input type="checkbox" id="notify_my" name="notify_my" />
+              <span>
+                <label for="notify_my">
+                  <?php echo __('Notify me if someone post on this Topic') ?>
+                </label>
+              </span>
+            </div>
+          <?php endif; ?>
+          <div class="forum-grid-controls">
+            <button onclick="___wio_hideEditor();" class="action secondary" type="button" title="<?php echo __('Cancel') ?>">
+              <span><?php echo __('Cancel') ?></span>
+            </button>
+            <button class="action primary" type="submit" title="<?php echo __('Save') ?>">
+              <span><?php echo __('Save') ?></span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <?php echo $block->getChildHtml('wio.editor.short'); ?>
+    <?php endif; ?>
+  <?php endif; ?>
+</div>

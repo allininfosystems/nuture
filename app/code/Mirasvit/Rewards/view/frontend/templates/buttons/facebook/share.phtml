@@ -1,0 +1,15 @@
+<?php /** @var \Mirasvit\Rewards\Block\Buttons\Facebook\Share $block */ ?>
+<div class="buttons-fb-share">
+    <div id="rewards_fb_share">
+        <!--    svg was copied from https://developers.facebook.com    -->
+        <span class="_49vg"><img class="_1pbs inlineBlock img" src="https://www.facebook.com/rsrc.php/v3/yq/r/5nnSiJQxbBq.png" alt="" width="16" height="16"></span>
+        <span class="title"><?php echo __("Share"); ?></span>
+    </div>
+    <?php if ($block->getEstimatedEarnPoints() > 0): ?>
+        <?php if ($block->isAuthorized() && !$block->isLiked()): ?>
+            <div id='facebook-share-message'>
+                <?= __('Share this page and earn %1',  $this->helper('Mirasvit\Rewards\Helper\Data')->formatPoints($block->getEstimatedEarnPoints())); ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

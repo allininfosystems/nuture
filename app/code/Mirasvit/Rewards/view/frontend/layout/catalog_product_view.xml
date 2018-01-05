@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.messages">
+            <block class="Mirasvit\Rewards\Block\Product\Message" name="rewards-notification"
+                   template="Mirasvit_Rewards::product/message.phtml" />
+        </referenceContainer>
+         <referenceContainer name="content" >
+             <block class="Mirasvit\Rewards\Block\Buttons" name="rewards.social.buttons"
+                    template="Mirasvit_Rewards::buttons.phtml" before="-" />
+        </referenceContainer>
+
+        <referenceContainer name='before.body.end'>
+            <block class="Mirasvit\Rewards\Block\Buttons" name="rewards.fbscript"
+                   template="Mirasvit_Rewards::buttons/facebook/script.phtml" />
+        </referenceContainer>
+    </body>
+</page>

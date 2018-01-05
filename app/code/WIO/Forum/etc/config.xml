@@ -1,0 +1,14 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <wio_forum>
+            <notification>
+                <senderemail>
+                    <![CDATA[owner@example.com]]>
+                </senderemail>
+                <sendername>
+                    <![CDATA[FirstName LastName]]>
+                </sendername>
+            </notification>
+        </wio_forum>
+    </default>
+</config>

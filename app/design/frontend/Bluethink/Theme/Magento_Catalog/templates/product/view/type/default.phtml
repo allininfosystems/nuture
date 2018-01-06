@@ -42,3 +42,20 @@ $attr = $_product->getResource()->getAttribute('product_brand');
     margin-right: 5px;
 }
 </style>
+<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+      $crossSellProducts = $_product->getCrossSellProducts(); 
+      if (!empty($crossSellProducts)) {
+		echo '<select name="crosssell" onchange="crosssell(this.value);">';
+		echo '<option>Please select varient</option>';
+		foreach ($crossSellProducts as $crossSellProduct) {
+			$product = $objectManager->create('Magento\Catalog\Model\Product')->load($crossSellProduct->getId());
+			echo '<option value="'.$crossSellProduct->getProductUrl().'">'.$product->getName().'</option>';       
+		}
+		echo '</select>';
+	}
+?>
+<script>
+   function crosssell(purl){
+	   window.location= purl;
+   }
+</script>

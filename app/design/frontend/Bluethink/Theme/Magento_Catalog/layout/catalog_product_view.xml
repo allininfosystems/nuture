@@ -169,6 +169,7 @@
             <container name="product.info.storelisting" htmlTag="div" htmlClass="storelisting">
                 <block class="Bluethink\Custom\Block\Index\Relatedproduct" name="product.info.storelisting.related" template="index/reletedproduct.phtml"/>
             </container>
+			
             <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
                 <arguments>
                     <argument name="triggers" xsi:type="array">

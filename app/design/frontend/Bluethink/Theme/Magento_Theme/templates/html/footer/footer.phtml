@@ -321,3 +321,177 @@ function newsletterSubmit(event){
         }
     }
 </script>
+<script>
+  function openElements(evt, categorytype) {
+    var i, storytabs, storyelelinks;
+    storytabs = document.getElementsByClassName("storytabs");
+    for (i = 0; i < storytabs.length; i++) {
+        storytabs[i].style.display = "none";
+		
+    }
+    storyelelinks = document.getElementsByClassName("storyelelinks");
+    for (i = 0; i < storyelelinks.length; i++) {
+        storyelelinks[i].className = storyelelinks[i].className.replace(" activele", "");
+    }
+    document.getElementById(categorytype).style.display = "block";
+    document.getElementById(categorytype).style.animation = "quickanimatefade 1s";
+    document.getElementById(categorytype).style.height = "600px";
+    evt.currentTarget.className += " activele";
+}
+
+
+
+
+
+
+  jQuery(".storyelelinks").click(function(){
+    jQuery(".oneleft").toggleClass('slideleft');
+
+    setTimeout(function() {
+    jQuery('.oneleft').removeClass('slideleft');
+},1000);
+
+});
+
+
+
+jQuery(".storyelelinks").click(function(){
+    jQuery(".oneright").toggleClass('slideleft');
+
+    setTimeout(function() {
+    jQuery('.oneright').removeClass('slideleft');
+},1000);
+
+});
+
+
+jQuery(".storyelelinks").click(function(){
+    jQuery(".innerright").toggleClass('slideright');
+
+    jQuery(".innerleft").toggleClass('slideright');
+
+      jQuery(".halftopdv").toggleClass('slidhalfrgt');
+
+});
+
+
+jQuery(".storyelelinks").click(function(){
+     setTimeout(function() {
+    jQuery('.totinr').removeClass('slideleft');
+},1000);
+
+});
+
+
+
+jQuery(".storyelelinks").click(function(){
+    jQuery(".totinr").toggleClass('slideleft');
+
+    setTimeout(function() {
+    jQuery('.totinr').removeClass('slideleft');
+},1000);
+
+});
+
+
+jQuery(".storyelelinks").click(function(){
+    jQuery(".onetopleft").toggleClass('slideleft');
+
+    setTimeout(function() {
+    jQuery('.onetopleft').removeClass('slideleft');
+},1000);
+
+});
+
+jQuery(".storyelelinks").click(function(){
+    jQuery(".onemd").toggleClass('slideleft');
+
+    setTimeout(function() {
+    jQuery('.onemd').removeClass('slideleft');
+},1000);
+
+});
+
+jQuery(".storyelelinks").click(function(){
+    jQuery(".twomd").toggleClass('slideleft');
+
+    setTimeout(function() {
+    jQuery('.twomd').removeClass('slideleft');
+},1000);
+
+});
+
+jQuery(".storyelelinks").click(function(){
+    jQuery(".onetopright").toggleClass('slideleft');
+
+    setTimeout(function() {
+    jQuery('.onetopright').removeClass('slideleft');
+},1000);
+
+});
+
+
+    
+
+setInterval(function(){ 
+    //alert("Hello"); 
+    jQuery("div.tofive").toggleClass("slideleft");
+
+}, 2000);
+
+
+setInterval(function(){ 
+    //alert("Hello"); 
+    jQuery("div.innerleft").toggleClass("slideright");
+
+}, 2000);
+
+setInterval(function(){ 
+    //alert("Hello"); 
+    jQuery("div.halftopdv").toggleClass("slidhalfrgt");
+
+}, 2000);
+
+setInterval(function(){ 
+    //alert("Hello"); 
+    jQuery("div.innerright").toggleClass("slideright");
+
+}, 2000);
+
+setInterval(function(){ 
+    //alert("Hello"); 
+    jQuery("div.totinr").toggleClass("brf");
+
+}, 2000);
+
+
+setInterval(function(){ 
+    //alert("Hello"); 
+    jQuery("div#All").addClass("showthis");
+
+}, 2000);
+
+setInterval(function(){ 
+    //alert("Hello"); 
+    jQuery("div#All").removeClass("showthis");
+
+}, 2000);
+
+
+
+
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("storytabs");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 4000); // Change image every 2 seconds
+}
+</script>

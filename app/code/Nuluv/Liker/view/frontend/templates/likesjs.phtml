@@ -17,7 +17,7 @@ require(['jquery'], function(){
         
         // AJAX Request
         jQuery.ajax({
-        	url: 'http://localhost/nuture/liker/liker/',
+        	url: '<?php echo $block->getUrl("liker/liker/index");?>',
         	type: 'post',
         	data: {type_id:type_id,product_id:product_id,page_type:page_type},
         	dataType: 'json',
@@ -33,9 +33,7 @@ require(['jquery'], function(){
         			jQuery('#'+id).val('Unlike');
         		}
         	}
-
         });
-
     });
 
 

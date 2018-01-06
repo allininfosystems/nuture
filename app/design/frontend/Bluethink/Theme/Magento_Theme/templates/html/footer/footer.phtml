@@ -494,4 +494,50 @@ function carousel() {
     x[myIndex-1].style.display = "block";  
     setTimeout(carousel, 4000); // Change image every 2 seconds
 }
+
+function openCondtion(condtionType) {
+    var i;
+    var x = document.getElementsByClassName("concerned");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    document.getElementById(condtionType).style.display = "block";  
+}
+
+
+function openMedia(condtionMode) {
+    var i;
+    var x = document.getElementsByClassName("mediacover");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    document.getElementById(condtionMode).style.display = "block";  
+}
+
+
+function openStory(condtionType) {
+    var i;
+    var x = document.getElementsByClassName("Storyset");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    document.getElementById(condtionType).style.display = "block";  
+}
+
+
+ jQuery(function () {
+	jQuery('.tabs-medias li').click(function() {
+		jQuery(this).addClass('active').siblings().removeClass('active');
+	});
+})
+
+
+jQuery(function () {
+    jQuery('.w3-bar button').click(function() {
+    jQuery(this).addClass('active').siblings().removeClass('active');
+});
+})
+
+
+ jQuery("div.main").toggleClass("content-para");
 </script>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Min_Base::top_level" title="Min Extensions" module="Min_Base" sortOrder="100" resource="Min_Base::top_level"/>
+    </menu>
+</config>

@@ -1,0 +1,15 @@
+<?php
+$tags = $this->getTags();
+if (!empty(array_filter($tags))) {
+    $count = count($tags) - 1;
+    echo __('Tags') ?> :
+    <?php
+    foreach ($tags as $index => $tag) {
+        $tag = ltrim($tag);
+        ?>
+        <a href="/tag/<?php echo urlencode(preg_replace('/\-{1,}/', '-', preg_replace('/\s{1,}/', '-', $tag))); ?>.html"><?php echo $tag; ?></a>
+        <?php echo $index < $count ? ',' : '' ?>
+        <?php
+    }
+}
+?>

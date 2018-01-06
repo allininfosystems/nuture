@@ -138,6 +138,7 @@ return array (
     'Mirasvit_Rewards' => 1,
     'Nuluv_Freeshipamt' => 1,
     'Nuluv_Liker' => 1,
+    'Nuluv_Loginredirect' => 1,
     'Nuluv_Lookingfor' => 1,
     'Nuluv_Removespace' => 1,
     'PayUIndia_Payu' => 1,

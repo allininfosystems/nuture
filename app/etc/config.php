@@ -139,6 +139,7 @@ return array (
     'Nuluv_Freeshipamt' => 1,
     'Nuluv_Liker' => 1,
     'Nuluv_Lookingfor' => 1,
+    'Nuluv_Removespace' => 1,
     'PayUIndia_Payu' => 1,
     'Plumrocket_Base' => 1,
     'Plumrocket_ProductFilter' => 1,

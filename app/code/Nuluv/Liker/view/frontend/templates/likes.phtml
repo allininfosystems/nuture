@@ -8,20 +8,21 @@ $product_id=$block->getCurrentProduct();
 $page_type = $block->getPageType();
 $client_like_count =$block->isLikeAlredySubmitted();
 if($client_like_count){
-	$value='Unlike';
-	$type_id=0;
+    $value='Unlike';
+    $type_id=0;
+	$class='liked';
 }else{
-	$value='Like';
-	$type_id=1;
+    $value='Like';
+    $type_id=1;
+	$class='';
 }
 
 ?>
 
 <div class="like-action">
-
-	<input type="button" value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $product_id; ?>" class="like" />&nbsp;(<span id="likes_<?php echo $product_id; ?>"><?php echo $total_likes; ?></span>)
-	&nbsp;
-
+	<button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $product_id; ?>" class="like <?php echo $class;?>">
+	</button>
+	(<span id="likes_<?php echo $product_id; ?>"><?php echo $total_likes; ?></span>)
 </div>
 
 

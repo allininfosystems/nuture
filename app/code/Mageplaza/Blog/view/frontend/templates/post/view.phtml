@@ -52,11 +52,13 @@ $page_type = $likeblock->getPageType();
 $total_likes =$likeblock->getLikeCount($_post->getPostId());
 $client_like_count =$likeblock->isLikeAlredySubmitted($_post->getPostId());
 if($client_like_count){
-	$value='Unlike';
-	$type_id=0;
+    $value='Unlike';
+    $type_id=0;
+	$class='liked';
 }else{
-	$value='Like';
-	$type_id=1;
+    $value='Like';
+    $type_id=1;
+	$class='';
 }
 
 
@@ -129,12 +131,11 @@ if ($checkRss):
 		<div class="mpcss blogSharing">
 			<div id="sharing">
 				<div class="share-col-left">
-
 					<div class="like-action">
-						<span class="number-cls">(<span id="likes_<?php echo $_post->getPostId(); ?>"><?php echo $total_likes; ?></span>)</span>
-                        <button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $_post->getPostId(); ?>" class="like"><span class="wishlist-cls"><i class="fa fa-heart"></i></span></button>				
-
-					</div>					
+						<button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $_post->getPostId(); ?>" class="like <?php echo $class;?>">
+						</button>
+						(<span id="likes_<?php echo $_post->getPostId(); ?>"><?php echo $total_likes; ?></span>)
+					</div>				
 				
 				</div>
 				<div class="share-col-right">

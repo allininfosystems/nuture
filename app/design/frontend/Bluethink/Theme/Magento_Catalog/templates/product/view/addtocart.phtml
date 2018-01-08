@@ -63,16 +63,13 @@
             </button>
             <?php echo $block->getChildHtml('', true) ?>
             <?php $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($_product->getId());?>
-       <?php echo $this->getLayout()->createBlock("Nuluv\Liker\Block\Liker")->setTemplate("Nuluv_Liker::likes.phtml")->toHtml();?>
-        <div class="like_count"><a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><span>
-         <?php
-                    if ($customerSession->isLoggedIn()) {
-                      if (!in_array($_product->getId(), $wishlist_id )) { ?>
-                    <i class="fa fa-heart-o"><?php }else{ ?> <i class="fa fa-heart"> <?php  } }else{ ?><i class="fa fa-heart-o"><?php } ?></i></span></a></div>
-         <div class="comment_count" id="reviewcom"><a href="#" ?><i class="fa fa-comment-o"></i></a> (<?php
-                          if ($RatingOb->getCount()) {
-                            echo $RatingOb->getCount();
-                           }else{echo '0';}?>)</div>
+            <?php echo $this->getLayout()->createBlock("Nuluv\Liker\Block\Liker")->setTemplate("Nuluv_Liker::likes.phtml")->toHtml();?>
+		
+			<div class="comment_count" id="reviewcom"><a href="#" ?><i class="fa fa-comment-o"></i></a> (<?php
+				if ($RatingOb->getCount()) {
+				echo $RatingOb->getCount();
+				}else{echo '0';}?>)
+			</div>
         </div>
         
     </div>

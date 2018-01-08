@@ -27,10 +27,12 @@ require(['jquery'], function(){
         		if(type_id == 0){
         			jQuery('#'+id).attr('type-id','1');
         			jQuery('#'+id).val('Like');
+					jQuery('#'+id).removeClass('liked');
         		}
         		else{
         			jQuery('#'+id).attr('type-id','0');
         			jQuery('#'+id).val('Unlike');
+					jQuery('#'+id).addClass('liked');
         		}
         	}
         });

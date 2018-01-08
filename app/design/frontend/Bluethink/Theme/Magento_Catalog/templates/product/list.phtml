@@ -137,22 +137,24 @@ $client_like_count =$likeblock->isLikeAlredySubmitted($_product->getId());
 if($client_like_count){
     $value='Unlike';
     $type_id=0;
+	$class='liked';
 }else{
     $value='Like';
     $type_id=1;
+	$class='';
 }
 ?>
 
 <span class="cta"> 
 
     <div class="like-action">
-	    
-        <button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $_product->getId(); ?>" class="like">
-		<i class="fa fa-heart-o">
+
+        <button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $_product->getId(); ?>" class="like <?php echo $class;?>">
 		</button>
-		<span>(<span id="likes_<?php echo $_product->getId(); ?>"><?php echo $total_likes; ?></span>)</span>
-    </div>
-    <b>
+		(<span id="likes_<?php echo $_product->getId(); ?>"><?php echo $total_likes; ?></span>)
+
+
+    </div>    
         <?php $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($_product->getId()); ?>
         <b>
             <a href="<?php echo $_product->getProductUrl(); ?>">

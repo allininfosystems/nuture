@@ -327,7 +327,9 @@ p.head-small { font-size: 15px; color: #ababab; font-family: 'Sofia', cursive; d
 .tab-content { display: none; }
 .tab-content.current { display: inherit; }
 .product-box .product-details { width: 100%; height: auto; text-align: left; }
-.product-box .product-details h5 { font-size: 16px; color: #2f2f2f; line-height: 24px; font-weight: 500; min-height: 50px; margin: 5px 0 3px; }
+.product-box .product-details h5 {font-size: 15px; color: #2f2f2f; line-height: 24px; font-weight: 500; min-height: 50px; margin: 5px 0 3px; 
+ white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.product-box .product-details h5 a{color: #2f2f2f;}	
 .product-box .product-details p.p-category { color: #7e6674; font-size: 13px; font-weight: 500; font-family: 'Open Sans', sans-serif; 
  margin-bottom:9px; }
 .product-box .product-details p.p-price { font-size: 14px; text-transform: uppercase; color: #666666; font-family: 'Open Sans', sans-serif; }
@@ -2163,6 +2165,12 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
  width:20px; height:9px; font-size:0; display: inline-block; background-size: cover; line-height: 20px;}
 .toolbar-products{float:right; margin-bottom: 0;}
 
+.like-action {display: inline-block; margin-right: 10px;}
+.like-action .like{border:none; padding: 0;}
+.like-action .like:before{content: "\f08a"; font-family: "FontAwesome"; color: #333;}
+.like-action .like.liked:before{content: "\f004"; font-family: "FontAwesome"; color: #7e6674;}
+.like-action .like:hover:before{content: "\f004"; font-family: "FontAwesome"; color: #7e6674;}
+
 /*========== End Of Category ============*/
 
 /*============ Mini Cart ===========*/
@@ -2257,7 +2265,7 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .fotorama__thumb__arr--right .fotorama__thumb--icon {background-position: -25px -345px !important;}
 .fotorama__nav-wrap--vertical .fotorama__thumb__arr--left{padding-right: 10px;}
 .catalog-product-view .product-info-main .box-tocart {display: block;}
-
+.product-info-main .box-tocart .actions .like-action{float: left; width: 70px; height: 45px; line-height: 45px; border: 1px solid #e5e5e5;}
 
 
 /* 01-01-2018 by SJ */
@@ -2333,6 +2341,7 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .blog-post-nav a{color:#333 !important;}
 #sharing .share-col-left span{color: #9a9a9a; font-size: 20px; margin:0px 10px;}
 #sharing .share-col-left span:first-child {margin-left: 0;}
+#sharing .share-col-left .like-action span{margin:0; font-size:16px;}
 .post-list-content {background: #fafafa;}
 .mpcss.mp-comment.bottomcommentBox-cls h2 {text-align: center; border-bottom: 1px solid #dedede; padding-bottom: 15px; margin-bottom: 0;}
 .bottomcommentBox-cls .content-login-cls {background: #7e6674; color: #fff !important; padding: 15px 25px; display: inline-block;}

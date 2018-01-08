@@ -146,21 +146,13 @@ if($client_like_count){
 <span class="cta"> 
 
     <div class="like-action">
-
-        <input type="button" value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $_product->getId(); ?>" class="like" />&nbsp;(<span id="likes_<?php echo $_product->getId(); ?>"><?php echo $total_likes; ?></span>)
-        &nbsp;
-
+	    
+        <button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $_product->getId(); ?>" class="like">
+		<i class="fa fa-heart-o">
+		</button>
+		<span>(<span id="likes_<?php echo $_product->getId(); ?>"><?php echo $total_likes; ?></span>)</span>
     </div>
-    <b><a href="<?php echo $block->getUrl('wishlist', ['_secure' => true]); ?>" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action to wishlist" data-action="add-to-wishlist">
-        <?php
-        if ($customerSession->isLoggedIn()) {
-            if (!in_array($_product->getId(), $wishlist_id)) {
-                ?>
-                <i class="fa fa-heart-o"><?php } else { ?> <i class="fa fa-heart"> <?php
-            }
-        } else {
-            ?><i class="fa fa-heart-o"><?php } ?></i>
-        </a></b>
+    <b>
         <?php $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($_product->getId()); ?>
         <b>
             <a href="<?php echo $_product->getProductUrl(); ?>">

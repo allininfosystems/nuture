@@ -110,7 +110,29 @@
 </div>
 <div class="link-box">
 <h3>Trending Searches</h3>
-<div class="tags"><a href="<?php echo $baseurl.'blog/tag/wipes/'; ?>">wipes</a><a href="<?php echo $baseurl.'blog/tag/cough/'; ?>">cough</a><a href="<?php echo $baseurl.'blog/tag/illness1/'; ?>">illness</a><a href="<?php echo $baseurl.'blog/tag/pregnancy/'; ?>">Pregnancy</a><a href="<?php echo $baseurl.'blog/tag/breastfeeding/'; ?>">breastfeeding</a></div>
+<div class="tags">
+<?php 
+     $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+     $_productCollection = $productCollection->create()->addAttributeToSelect('*')->addAttributeToFilter('product_tags', array('neq' => ''))->load();
+	 $alltag=array();
+	 if (count($_productCollection)>0){ 
+		  foreach ($_productCollection as $_product){
+			  $product_tags=$_product->getProductTags();
+			  $tagcoll=explode(',', $product_tags);
+			  if(count($tagcoll)>0){
+				  foreach($tagcoll as $tag){
+					  $tag = ltrim($tag);
+					  if(!in_array($tag,$alltag)){
+						  $alltag[]=$tag;
+					      echo '<a href="'.$baseurl.'tag/'.urlencode(preg_replace('/\-{1,}/', '-', preg_replace('/\s{1,}/', '-', $tag))).'.html">'.$tag.'</a>';
+					  }
+					  
+				  }
+			  }
+		  }
+     }
+ ?>
+</div>
 </div>
 <?php 
 echo $this->getLayout()->createBlock("Magento\Newsletter\Block\Subscribe")->setTemplate("Magento_Newsletter::subscribe.phtml")->toHtml();

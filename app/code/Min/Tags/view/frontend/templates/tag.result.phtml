@@ -1,6 +1,7 @@
 <?php if ($block->getResultCount()): ?>
     <?php echo $block->getChildHtml('tagged_product_list_rss_link'); ?>
     <div class="search results">
+	    <h2 class="head-title serch-devider">Products Found</h2>
         <?php if ($messages = $block->getNoteMessages()):?>
             <div class="message notice">
                 <div>
@@ -13,7 +14,6 @@
         <?php echo $block->getProductListHtml() ?>
     </div>
 <?php else: ?>
-
     <div class="message notice">
         <div>
             <?php /* @escapeNotVerified */ echo($block->getNoResultText()) ? $block->getNoResultText() : __('Your search returned no results.') ?>

@@ -22,7 +22,9 @@ $cmsPage = $objectManager->get('\Magento\Cms\Model\Page');
 $action_name = $request->getActionName();
 $module_name = $request->getModuleName();
 $controller_name = $request->getControllerName();
+$scriptd=1;
 if ($action_name == 's' && $module_name == 'kbase' && $controller_name == 'article') {
+	$scriptd=0;
     ?>
     <div class="orderby">
         <span>Order By</span>
@@ -41,6 +43,8 @@ if ($action_name == 's' && $module_name == 'kbase' && $controller_name == 'artic
     </div>
 
     <?php
+}elseif($action_name == 'index' && $module_name == 'tag'){
+	
 }else {
 
     $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
@@ -103,40 +107,34 @@ if ($action_name == 's' && $module_name == 'kbase' && $controller_name == 'artic
             </a>
         <?php endif; ?>
     </div>
+    <script>
+		function productlistasc(){
+			require(['jquery'], function(jQuery) {
+				jQuery(document).ready(function() {
+					if (document.getElementById('sorter').value == "name&product_list_dir=asc") {
+						window.location.href = '<?php echo $cat_nameurlasc ?>';
+					}
 
+					if (document.getElementById('sorter').value == "name&product_list_dir=desc") {
+						window.location.href = '<?php echo $cat_nameurldesc ?>';
+					}
+
+					if (document.getElementById('sorter').value == "&product_list_dir=asc") {
+						window.location.href = '<?php echo $cat_priceurlasc ?>';
+					}
+
+					if (document.getElementById('sorter').value == "&product_list_dir=desc") {
+						window.location.href = '<?php echo $cat_priceurldesc ?>';
+					}
+					if (document.getElementById('sorter').value == "featured") {
+						window.location.href = '<?php echo $cat_featured ?>';
+					}
+
+
+
+				});
+			});
+
+		}
+	</script>
 <?php } ?>
-<script>
-
-    function productlistasc()
-    {
-
-        require(['jquery'], function(jQuery) {
-            jQuery(document).ready(function() {
-                if (document.getElementById('sorter').value == "name&product_list_dir=asc") {
-                    window.location.href = '<?php echo $cat_nameurlasc ?>';
-                }
-
-                if (document.getElementById('sorter').value == "name&product_list_dir=desc") {
-                    window.location.href = '<?php echo $cat_nameurldesc ?>';
-                }
-
-                if (document.getElementById('sorter').value == "&product_list_dir=asc") {
-                    window.location.href = '<?php echo $cat_priceurlasc ?>';
-                }
-
-                if (document.getElementById('sorter').value == "&product_list_dir=desc") {
-                    window.location.href = '<?php echo $cat_priceurldesc ?>';
-                }
-                if (document.getElementById('sorter').value == "featured") {
-                    window.location.href = '<?php echo $cat_featured ?>';
-                }
-
-
-
-            });
-        });
-
-    }
-
-</script>
-

@@ -9,9 +9,9 @@ $requestInterface = $objectManager->get('Magento\Framework\App\RequestInterface'
 $routeName      = $requestInterface->getRouteName();  
 $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
 $mediaUrl = $storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA ); 
-if(!empty($related_products)){
+if(!empty($related_products) && $routeName!='amasty_quickview'){
 ?>
-<div class="alsolike-products" <?php if($routeName=='amasty_quickview'){ echo 'style="display:none;"'; } ?>>
+<div class="alsolike-products">
 <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('relatedproductdetail')->toHtml();
 
 $customerSession = $objectManager->get('Magento\Customer\Model\Session');
@@ -106,7 +106,7 @@ $customerSession = $objectManager->get('Magento\Customer\Model\Session');
    </script>
 </div>
 <?php } ?>
-
+<?php if($routeName!='amasty_quickview'){ ?>
 <div class="prd_detail-blog">
         <div class="blog-list">    
             <?php 
@@ -152,12 +152,13 @@ $customerSession = $objectManager->get('Magento\Customer\Model\Session');
             <div class="clearfix"></div>
         </div>
 </div>
+<?php } ?>
 <?php
 	$storeManager1 =$objectManager->get('Magento\Store\Model\StoreManagerInterface');
 	$currentStore  = $storeManager1->getStore();
 	$mediaUrl      = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
 	$nn=$mediaUrl."kb";
-    if($knowledgebasestr){
+    if($knowledgebasestr && $routeName!='amasty_quickview'){
 		$knowledgebasearr = explode(',',$knowledgebasestr);
 		echo '<div class="knowledgehub-container"> <h2 class="head-title">Knowledge hub goes here...</h2> <p class="head-small">dolor sit amet, consectetur, adipisci velit...</p>';
 		if(count($knowledgebasearr)>0){

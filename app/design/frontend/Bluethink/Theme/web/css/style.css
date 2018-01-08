@@ -2150,7 +2150,6 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .page-products .category-view .product-filter a.tab-link:hover {text-decoration: none;}
 .page-products.catalog-category-view #layered-filter-block {display: inline-block; margin-top: 10px; margin-bottom: 0;}
 .page-products .toolbar-products .orderby{margin-top: 0;}
-.page-products .filter-options .filter-options-item:first-child {display: none;}
 .page-products .product-item-info {width: 100%;}
 .search-icon {left: 50%; margin-left: -50px; margin-top: -20px; animation: .5s zoom-in;}
 .cms-index-index .product-box .product-image:hover .overlay-content{margin-top: -20px; margin-left: -20px;}
@@ -2223,6 +2222,9 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 [type="checkbox"]:not(:checked) + label:after, [type="checkbox"]:checked + label:after{display:none !important;}
 #billing-new-address-form .field:before {width: auto; padding: 0;}
 .payment-method._active {width: 100%; float: left;}
+
+.order-title a.action.track:hover {text-decoration: none;}
+.order-title a.action.track {color: #fff;}
 
 
 /*========= End OF One Page Checkoutt ===========*/

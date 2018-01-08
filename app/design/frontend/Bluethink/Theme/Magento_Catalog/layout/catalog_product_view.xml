@@ -98,6 +98,7 @@
                         <argument name="add_attribute" xsi:type="string">itemprop="description"</argument>
                     </arguments>
                 </block>
+				<block class="Mirasvit\Rewards\Block\Buttons" name="rewards.social.buttons" template="Mirasvit_Rewards::buttons.phtml" after="product.info.extrahint" />
                 <container name="product.info.extrahint" as="extrahint" label="Product View Extra Hint">
                     <container name="product.info.social" label="Product social links container" htmlTag="div" htmlClass="product-social-links" after="product.info.overview">
                         <block class="Magento\Catalog\Block\Product\View" name="product.info.addto" as="addto" template="product/view/addto.phtml">

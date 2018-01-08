@@ -14,7 +14,7 @@
         </referenceContainer>
          <referenceContainer name="content" >
              <block class="Mirasvit\Rewards\Block\Buttons" name="rewards.social.buttons"
-                    template="Mirasvit_Rewards::buttons.phtml" before="-" />
+                    template="Mirasvit_Rewards::buttons.phtml" after="-" />
         </referenceContainer>
 
         <referenceContainer name='before.body.end'>

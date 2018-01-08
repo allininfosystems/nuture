@@ -1,5 +1,7 @@
 <?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?php $_product = $block->getProduct() ?>
 <?php 
+
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
 $categories = $product->getCategoryIds(); /*will return category ids array*/
@@ -15,5 +17,14 @@ $controller_name = $request->getControllerName();
   //$categoryName=$category->getName(); ?>
     <h3 class="prd_title"><?php echo $block->getProduct()->getData('name'); ?></h3>
 <?php if($controller_name == 'product'){ ?>
-  <h6 class="prd_type"><?php echo __('Nature’s baby Organics'); ?></h6>
+  <h6 class="prd_type sas"><?php $brandname= $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getProductBrand(), 'product_brand'); 
+               $getAttribute=explode(',', $brandname);
+               foreach ($getAttribute as $getAttributes) {
+				 $attr = $_product->getResource()->getAttribute('product_brand');
+				 if ($attr->usesSource()) {
+					 echo $attr->getSource()->getOptionText($getAttributes);
+				 } 
+			   } 
+			 ?>
+			 </h6>
   <?php } ?>

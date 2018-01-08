@@ -6,7 +6,7 @@
     <div class="container">
         <table  id="my-orders-table">
             <thead>
-                <tr>
+                <tr><th scope="col" class="col id"><?php /* @escapeNotVerified */ echo __('Order #') ?></th>
                     <th scope="col" ><?= /* @escapeNotVerified */ __('Date') ?></th>
                     <th scope="col" ><?= /* @escapeNotVerified */ __('Image ') ?></th>
                     <th scope="col" ><?= /* @escapeNotVerified */ __('Product Name') ?></th>
@@ -24,6 +24,7 @@
                 ?>  
                   <?php foreach($orderItems as $orderItemst) { ?>
                     <tr>
+					    <td data-th="<?php echo $block->escapeHtml(__('Order #')) ?>" class="col id"><?php /* @escapeNotVerified */ echo $_order->getRealOrderId() ?></td>
                         <td data-th="<?= $block->escapeHtml(__('Date')) ?>"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt()) ?></td>
                         <td class="product-img">
                         <?php

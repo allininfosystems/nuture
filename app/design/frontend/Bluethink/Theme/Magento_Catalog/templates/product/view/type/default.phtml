@@ -49,7 +49,8 @@ $attr = $_product->getResource()->getAttribute('product_brand');
 		echo '<option>Please select varient</option>';
 		foreach ($crossSellProducts as $crossSellProduct) {
 			$product = $objectManager->create('Magento\Catalog\Model\Product')->load($crossSellProduct->getId());
-			echo '<option value="'.$crossSellProduct->getProductUrl().'">'.$product->getName().'</option>';       
+			$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
+			echo '<option value="'.$crossSellProduct->getProductUrl().'">'.$product->getName().' - '.$priceHelper->currency($product->getFinalPrice(), true, false).'</option>';       
 		}
 		echo '</select>';
 	}

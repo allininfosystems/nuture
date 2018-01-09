@@ -19,6 +19,7 @@ use Magento\Framework\App\Action\Action;
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
 $store = $storeManager->getStore();
+$mediaUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
 $baseUrl=$store->getBaseUrl();
 $request = $objectManager->get('\Magento\Framework\App\Request\Http');
 $action_name = $request->getActionName();
@@ -152,7 +153,7 @@ if($client_like_count){
         <button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $_product->getId(); ?>" class="like <?php echo $class;?>">
 		</button>
 		(<span id="likes_<?php echo $_product->getId(); ?>"><?php echo $total_likes; ?></span>)
-
+   <img class="like-loader" id="like-loader-<?php echo $_product->getId()?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
 
     </div>    
         <?php $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($_product->getId()); ?>

@@ -1,0 +1,21 @@
+{
+    "name": "allin/module-fedexapi",
+    "description": "This extension used for insert fedex india tracking number custom.",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Allin\\FedexAPI\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

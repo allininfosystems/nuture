@@ -24,20 +24,13 @@ $forums = $block->getDisplayForums();
     <div class="toolbar top forum-toolbar">
       <?php echo $block->getPagerHtml(); ?>
     </div>
-    <div class="forum-sort">
-      <?php echo __('Sort By') ?>
-      &nbsp;&nbsp;
-      <a <?php echo ($this->getSortType() == 'asc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl('asc') ?>"><?php echo __('Oldest') ?></a>
-      &nbsp;|&nbsp;
-      <a <?php echo ($this->getSortType() == 'desc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl('desc') ?>"><?php echo __('Newest') ?></a>
-    </div>
     <table class="forum-grid forum-list grid data-table-forum-resp">
       <thead>
         <tr>
           <th width="35%"><?php echo __('Forum') ?></th>
-          <th width="15%"><?php echo __('Total Topics') ?></th>
-          <th width="15%"><?php echo __('Total Posts') ?></th>
-          <th width="35%"><?php echo __('Latest Reply') ?></th>
+          <th width="15%"><?php echo __('Topics') ?></th>
+          <th width="15%"><?php echo __('Posts') ?></th>
+          <th width="35%"><?php echo __('Freshness') ?></th>
         <tr>
       </thead>
       <tbody>
@@ -63,12 +56,6 @@ $forums = $block->getDisplayForums();
                       <?php echo $forum->getDescription() ?>
                     </div>
                   <?php endif; ?>
-                  <div class="forum-created-time">
-                    <?php echo __('Created') ?>: <?php echo $block->getTimeAccordingToTimeZone($forum->getCreatedTime()); ?>
-                  </div>
-                  <div class="forum-created-by">
-                    <?php echo __('Created By: "<a href=%2>%1</a>"', $block->getForumCreatorName($forum), $block->getForumCreatorLink($forum)) ?>
-                  </div>
                 </div>
               </div>
             </td>
@@ -99,19 +86,21 @@ $forums = $block->getDisplayForums();
                     <?php if ($block->getIsIconsEnabled() && $block->getLatestIcon($latest)): ?>
                       <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getLatestIcon($latest)) ?>" />
                     <?php endif; ?>
-                    <a class="forum-display-description" href="<?php echo $block->getLatestViewUrl($latest); ?>"><?php echo $block->getLatestTopicTitle($latest); ?></a>
-                    <?php if ($block->getLatestTopicDescription($latest)): ?>
+                    <!--<a class="forum-display-description" href="<?php //echo $block->getLatestViewUrl($latest); ?>"><?php //echo $block->getLatestTopicTitle($latest); ?></a>-->
+                    <?php /*if ($block->getLatestTopicDescription($latest)): ?>
                       <div class="forum-topic-description">
                         <?php echo $block->getLatestTopicDescription($latest) ?>
                       </div>
-                    <?php endif; ?>
-                    <div class="forum-latest-reply-date">
-                      <?php echo __('Posted: <strong>%1</strong>', $block->getLatestPostedDate($latest)); ?>
-                    </div>
+                    <?php endif;*/ ?>
                     <div class="forum-latest-reply-user">
                       <?php
-                      echo __('Posted By: <strong><a href="%1">%2</a></strong>', $block->getLatestPostedByUrl($latest), $block->getLatestPostedBy($latest));
+                      echo __('<strong><a href="%1">%2</a></strong>', $block->getLatestPostedByUrl($latest), $block->getLatestPostedBy($latest));
                       ?>
+                    </div>
+					<div class="forum-latest-reply-date">
+                      <?php     $postdate=$block->getLatestPostedDate($latest);
+					            $date = new DateTime($postdate);
+								echo $date->format('Y-m-d'); ?>
                     </div>
                   <?php endif; ?>  
                 <?php endif; ?>

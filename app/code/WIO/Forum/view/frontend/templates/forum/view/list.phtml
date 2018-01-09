@@ -45,9 +45,9 @@ $topics = $block->getDisplayTopics();
       <thead>
         <tr>
           <th width="35%"><?php echo __('Topic') ?></th>
-          <th width="15%"><?php echo __('Total Posts') ?></th>
+          <th width="15%"><?php echo __('Posts') ?></th>
           <th width="15%"><?php echo __('Views') ?></th>
-          <th width="35%"><?php echo __('Latest Reply') ?></th>
+          <th width="35%"><?php echo __('Freshness') ?></th>
         <tr>
       </thead>
       <tbody>
@@ -61,7 +61,7 @@ $topics = $block->getDisplayTopics();
                     <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getIconSrc($topic, true)) ?>" />
                   <?php endif; ?>
                 </div>
-                <div class="forum-details">
+                <div class="forum-details sdds">
                   <a class="forum-display-description" href="<?php echo $block->getTopicViewUrl($topic); ?>">
                     <?php echo $topic->getTitle() ?>
                   </a>

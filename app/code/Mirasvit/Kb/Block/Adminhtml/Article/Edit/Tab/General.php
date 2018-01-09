@@ -78,6 +78,28 @@ class General extends \Magento\Backend\Block\Widget\Form
                 </script>
             ',
         ]);
+		
+		$fieldset->addField('getting_pregnant', 'select', [
+            'label'  => __('Getting Pregnant'),
+            'name'   => 'getting_pregnant',
+            'value'  => $article->getGettingPregnant(),
+            'values' => $this->kbData->gettingpregnant(),
+        ]);
+		
+		$fieldset->addField('parenting', 'select', [
+            'label'  => __('Parenting'),
+            'name'   => 'parenting',
+            'value'  => $article->getParenting(),
+            'values' => $this->kbData->getParenting(),
+        ]);
+		
+		$fieldset->addField('pregnant_month', 'select', [
+            'label'  => __('Pregnant Month'),
+            'name'   => 'pregnant_month',
+            'value'  => $article->getPregnantMonth(),
+            'values' => $this->kbData->getPregnantMonth(),
+        ]);
+		
 		$fieldset->addField('onhome', 'text', [
             'label' => __('Display on home'),
             'name'  => 'onhome',

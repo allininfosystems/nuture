@@ -97,6 +97,11 @@ class Sidebar extends \Magento\Framework\View\Element\Template
 
         return false;
     }
+	
+	public function getCurrentCatId()
+	{
+		return $this->registry->registry('kb_current_category')->getId();
+	}
 
     /**
      * @return array|null

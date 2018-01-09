@@ -101,11 +101,11 @@
                     </tr>
                 <?php endif ?>
             </tbody>
-        <?php endforeach; ?>
-        <tfoot>
-            <?php echo $block->getChildHtml('order_totals') ?>
-        </tfoot>
+        <?php endforeach; ?>        
     </table>
+	<table class="my-orders-subtotal-cls" border="0">	
+        <?php echo $block->getChildHtml('order_totals') ?>        
+	</table>
 </div>
 <?php if ($_giftMessage): ?>
 <script type="text/x-magento-init">

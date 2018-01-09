@@ -26,7 +26,6 @@ require(['prototype'], function(){
             $('trackingC' + this.index).disabled = false;
             $('trackingT' + this.index).disabled = false;
             $('trackingN' + this.index).disabled = false;
-			$('trackingW' + this.index).disabled = false;
             this.bindCurrierOnchange();
         },
         deleteRow : function(event) {
@@ -82,19 +81,11 @@ require(['prototype'], function(){
                    value=""
                    disabled="disabled" />
         </td>
-        <td class="col-weight">
+        <td class="col-number">
             <input class="input-text admin__control-text required-entry"
                    type="text"
                    name="tracking[<%- data.index %>][number]"
                    id="trackingN<%- data.index %>"
-                   value=""
-                   disabled="disabled" />
-        </td>
-		<td class="col-number">
-            <input class="input-text admin__control-text required-entry"
-                   type="text"
-                   name="tracking[<%- data.index %>][weight]"
-                   id="trackingW<%- data.index %>"
                    value=""
                    disabled="disabled" />
         </td>
@@ -116,7 +107,6 @@ require(['prototype'], function(){
             <th class="col-carrier"><?php /* @escapeNotVerified */ echo __('Carrier') ?></th>
             <th class="col-title"><?php /* @escapeNotVerified */ echo __('Title') ?></th>
             <th class="col-number"><?php /* @escapeNotVerified */ echo __('Number') ?></th>
-			<th class="col-weight "><?php /* @escapeNotVerified */ echo __('Weight') ?></th>
             <th class="col-delete"><?php /* @escapeNotVerified */ echo __('Action') ?></th>
         </tr>
         </thead>

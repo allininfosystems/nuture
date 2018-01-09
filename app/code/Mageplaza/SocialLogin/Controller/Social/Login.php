@@ -133,6 +133,23 @@ class Login extends Action
 			], $this->getUserData($userProfile));
 
 			$customer = $this->createCustomer($user, $type);
+			/** set reward points **/
+			$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+			$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+			$connection = $resource->getConnection();
+			$code='signup-1';
+			$is_expired=0;
+			$is_expiration_email_sent=0;
+			$comment='signup & earn 200 points';
+			$amount=200;
+			$customer_id=$customer->getId();
+			$expires_at='2019-02-10 19:00:00';
+			$created_at=date('Y-m-d H:i:s');
+			$updated_at=date('Y-m-d H:i:s');
+			$tableName='mst_rewards_transaction';
+			$amount_used=0;
+			$sql = "INSERT INTO " . $tableName . " (customer_id,amount,amount_used,comment,code,is_expired,is_expiration_email_sent,expires_at,created_at,updated_at) VALUES (".$customer_id.", ".$amount.", ".$amount_used.", '".$comment."', '".$code."', ".$is_expired.", ".$is_expiration_email_sent.", '".$expires_at."','".$created_at."','".$updated_at."')";
+			$connection->query($sql);
 		}
 
 		return $this->_appendJs($customer);

@@ -2275,7 +2275,20 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .fotorama__thumb__arr--right .fotorama__thumb--icon {background-position: -25px -345px !important;}
 .fotorama__nav-wrap--vertical .fotorama__thumb__arr--left{padding-right: 10px;}
 .catalog-product-view .product-info-main .box-tocart {display: block;}
+
 .product-info-main .box-tocart .actions .like-action{float: left; width: 70px; height: 45px; line-height: 45px; border: 1px solid #e5e5e5;}
+.all-actions {width: 100%; float: left; margin: 20px 0px; padding-bottom: 15px; border-bottom: 1px solid #e5e5e5;}
+.all-actions .product-add-form {display: inline-block; float: left;}
+.all-actions .like-action {width: 70px;  float: left; height: 45px; text-align: center; line-height: 45px; border: 1px solid #e5e5e5;
+ position: relative;}
+.all-actions .like-action button {line-height: 1;}
+.all-actions #reviewcom .fa {color: #333;}
+.all-actions #reviewcom {width: 70px; float: left; height: 45px; text-align: center; line-height: 45px; border: 1px solid #e5e5e5;
+ font-family: "open sans";}
+.catalog-product-view .product-info-main .all-actions .box-tocart {margin: 0;}
+.catalog-product-view .product-info-main .all-actions .box-tocart .prd_control{padding-bottom: 0px; border-bottom: none;}
+.like-loader {position: absolute; top: -12px; width: 70px; height: auto;}
+.catalog-product-view .rewardssocial-buttons .status-message{display:none;}
 
 
 /* 01-01-2018 by SJ */
@@ -2512,6 +2525,13 @@ span#back-to-top {right: 22px; width: 40px; height: 40px; background: #7e6674; z
 .account .block-title strong {font-weight: 700 !important; text-transform: uppercase;}
 .account .block-title {padding: 15px 0px;}
 .account .buttons-set .action.primary{background: #7d6170; border: 1px solid #7d6170;}
+
+.sales-order-view .my-orders-subtotal-cls {float: right; width: 320px;}
+.sales-order-view .my-orders-subtotal-cls th {width:160px; background: #fff; color: #333; text-align: right; border:none !important;
+ border-bottom: 1px solid #ddd !important; display: inline-block;}
+.sales-order-view .my-orders-subtotal-cls .amount {width: 160px; text-align: right !important; border:none !important;
+ border-bottom: 1px solid #ddd !important; display: inline-block;}
+.sales-order-view .table-wrapper {width: 100%; float: left;}
 
 
 /*=========== End Of Account Page ==============*/

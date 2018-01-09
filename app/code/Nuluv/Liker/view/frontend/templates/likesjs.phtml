@@ -3,13 +3,18 @@
 require(['jquery'], function(){
 	jQuery(document).ready(function(){
 		
-
+        
 		jQuery(".like").click(function(){
         var id = this.id;   // Getting Button id
         var split_id = id.split("_");
 
+        
+        
+
         var text = split_id[0];
         var product_id = split_id[1];  
+        jQuery('#like-loader-'+product_id).show();
+        jQuery('#'+id).attr("disabled","disabled");
 
         var type_id= jQuery('#'+id).attr('type-id');
         var page_type= jQuery('#'+id).attr('page-type');
@@ -34,6 +39,8 @@ require(['jquery'], function(){
         			jQuery('#'+id).val('Unlike');
 					jQuery('#'+id).addClass('liked');
         		}
+                jQuery('#like-loader-'+product_id).hide();
+                jQuery('#'+id).removeAttr("disabled");
         	}
         });
     });

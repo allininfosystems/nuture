@@ -7,6 +7,11 @@ $total_likes =$block->getLikeCount();
 $product_id=$block->getCurrentProduct();
 $page_type = $block->getPageType();
 $client_like_count =$block->isLikeAlredySubmitted();
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+
 if($client_like_count){
     $value='Unlike';
     $type_id=0;
@@ -23,6 +28,7 @@ if($client_like_count){
 	<button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $product_id; ?>" class="like <?php echo $class;?>">
 	</button>
 	(<span id="likes_<?php echo $product_id; ?>"><?php echo $total_likes; ?></span>)
+	<img class="like-loader" id="like-loader-<?php echo $product_id?>" style="display:none;width:25px;height:auto" src="<?php echo $mediaUrl.'loader.gif'?>">
 </div>
 
 

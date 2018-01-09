@@ -66,6 +66,56 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         return $result;
     }
+	
+	public function gettingpregnant($emptyOption = false)
+    {
+        $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+		$eavConfig = $objectManager->get('\Magento\Eav\Model\Config');
+		$attribute = $eavConfig->getAttribute('catalog_product', 'getting_pregnant');
+		$options = $attribute->getSource()->getAllOptions();
+	 
+		 $result = [];
+		
+		foreach($options as $value) {
+			$result[] = ['value' => $value['label'], 'label' => $value['label']];
+		}
+		if ($emptyOption) {
+            array_push($result, ['value' => 0, 'label' => __('-- Please Select --')]);
+        }
+		return $result;
+    }
+	
+	public function getParenting($emptyOption = false)
+    {
+        $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+		$eavConfig = $objectManager->get('\Magento\Eav\Model\Config');
+		$attribute = $eavConfig->getAttribute('catalog_product', 'parenting');
+		$options = $attribute->getSource()->getAllOptions();
+	 
+		 $result = [];
+		
+		foreach($options as $value) {
+			$result[] = ['value' => $value['label'], 'label' => $value['label']];
+		}
+		if ($emptyOption) {
+            array_push($result, ['value' => 0, 'label' => __('-- Please Select --')]);
+        }
+		return $result;
+    }
+	
+	public function getPregnantMonth($emptyOption = false)
+    {
+        $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+		$eavConfig = $objectManager->get('\Magento\Eav\Model\Config');
+		$attribute = $eavConfig->getAttribute('catalog_product', 'pregnant_month');
+		$options = $attribute->getSource()->getAllOptions();
+		$result = [];
+		foreach($options as $value) 
+		{
+			$result[] = ['value' => $value['label'], 'label' => $value['label']];
+		}
+		return $result;
+    }
 
     /**
      * @return array

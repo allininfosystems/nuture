@@ -2,6 +2,7 @@
 /** @var \Mirasvit\Kb\Block\Category\Sidebar $block */
 
 $tree = $block->getCategoryTree();
+$currentCat = $block->getCurrentCatId();
 $minLevel = $block->getMinCategoryLevel();
 
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
@@ -20,6 +21,8 @@ $urlInterface = $objectManager->get('Magento\Framework\UrlInterface');
 $current = $urlInterface->getCurrentUrl();
 
 $param = $block->getRequest()->getParam('article');
+
+
 $articles4 = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
 
 $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
@@ -45,6 +48,8 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
             </ul>
         </div>
     </div>
+	<?php
+	if(strpos($current, 'health-a-z')){ ?>
     <div class="alpha_pagination">
         <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/A" style="<?php if ($param=='A') { echo "filterColor";} ?>">A</a>
         <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/B" style="<?php if ($param=='B') { echo "filterColor";} ?>">B</a>
@@ -72,7 +77,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
         <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/X" style="<?php if ($param=='X') { echo "filterColor";} ?>">X</a>
         <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/Y" style="<?php if ($param=='Y') { echo "filterColor";} ?>">Y</a>
         <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/Z" style="<?php if ($param=='Z') { echo "filterColor";} ?>">Z</a>
-<?php endif ?>
+
 <?php if ($action_name=='view' && $module_name=='kbase' ) { ?>
       <div class="kb__search-box hub_search">
     <div class="search-title">Expert advices for parenting and more!</div>
@@ -90,6 +95,59 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 <?php } ?>
 
 </div>
+	<?php } ?>
+	<?php endif ?>
+	
+	
+	<?php
+		$artarr=array();
+		$months = array();
+		$pregnant = array();
+		$parenting = array();
+		foreach ($articles4 as $article_1){
+			$months[] = $article_1->getPregnantMonth();
+			$pregnant[] = $article_1->getGettingPregnant();
+			$parenting[] = $article_1->getParenting();
+			$url=str_replace('.htm','.html',$article_1->getUrl());
+			if(!empty($article_1['image'])){ $imghtml=$nn.'/'.$article_1['image'];} else { $imghtml=$this->getViewFileUrl('images/hub_cat_01.jpg');}
+			$artarr[]=array('value'=>$article_1->getName(),'url'=>$url,'image'=>$imghtml,'desc'=>$article_1->getName());			
+		}
+	 ?>
+	
+	<div style="width:100%">
+		<ul>
+			<li>
+				<select name="month" style="width:10%; float:left;" onchange="monthVal(this.value)">
+					<option value="">Month</option>
+					<?php 
+					$months = array_unique($months);
+					sort($months);
+					foreach ($months as $month){ ?>
+						<option value="<?=$month ?>"><?=$month ?></option>
+					<?php } ?>
+				</select>
+				<select name="pregnant" style="width:10%; float:left;" onchange="pregnantVal(this.value)">
+					<option value="">Getting Pregnant</option>
+					<?php 
+					$pregnants = array_unique($pregnant);
+					sort($pregnants);
+					foreach ($pregnants as $pregnant){ ?>
+						<option value="<?=$pregnant ?>"><?=$pregnant ?></option>
+					<?php } ?>
+				</select>
+				<select name="parenting" style="width:10%;" onchange="parentingVal(this.value)">
+					<option value="">Parenting</option>
+					<?php 
+					$parentings = array_unique($parenting);
+					sort($parentings);
+					foreach ($parentings as $parenting){ ?>
+						<option value="<?=$parenting ?>"><?=$parenting ?></option>
+					<?php } ?>
+				</select>
+			</li>
+			
+		</ul>
+	</div>
 
 <style type="text/css">
 .filterColor{
@@ -103,15 +161,23 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
     margin-left:475px;
 }
 </style>
-<?php
-    $artarr=array();
-    foreach ($articles4 as $article_1){
-		$url=str_replace('.htm','.html',$article_1->getUrl());
-		if(!empty($article_1['image'])){ $imghtml=$nn.'/'.$article_1['image'];} else { $imghtml=$this->getViewFileUrl('images/hub_cat_01.jpg');}
-		$artarr[]=array('value'=>$article_1->getName(),'url'=>$url,'image'=>$imghtml,'desc'=>$article_1->getName());			
-	}
- ?>
+
 <script>	
+		function monthVal(month)
+		{
+			//alert('<?php echo $currentCat ?>');
+		}
+		
+		function pregnantVal(preg)
+		{
+			//alert(preg);
+		}
+		
+		function parentingVal(parent)
+		{
+			//alert(parent);
+		}
+	
         require([
             'jquery',
             'autocomplete'

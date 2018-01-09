@@ -12,9 +12,10 @@
  * @var $block \Magento\Catalog\Block\Product\View
  */
 ?>
+<?php $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();?>
 <?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
 <?php $_product = $block->getProduct(); ?>
-
+<div class="all-actions">
 <div class="product-add-form">
     <form action="<?php /* @escapeNotVerified */ echo $block->getSubmitUrl($_product) ?>" method="post"
           id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
@@ -37,6 +38,16 @@
         <?php echo $block->getChildHtml('form_bottom'); ?>
     </form>
 </div>
+
+            <?php $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($_product->getId());?>
+            <?php echo $this->getLayout()->createBlock("Nuluv\Liker\Block\Liker")->setTemplate("Nuluv_Liker::likes.phtml")->toHtml();?>
+        
+            <div class="comment_count" id="reviewcom"><a href="#" ?><i class="fa fa-comment-o"></i></a> (<?php
+                if ($RatingOb->getCount()) {
+                echo $RatingOb->getCount();
+                }else{echo '0';}?>)
+            </div>
+        </div>
 <script>
     require([
         'jquery',

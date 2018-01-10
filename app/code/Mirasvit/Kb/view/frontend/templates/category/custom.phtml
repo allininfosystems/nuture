@@ -22,7 +22,7 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 	if($_GET['sort']=='popular')
 	{
 		//$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.image image, mstart.name as name, liker_liker.* FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id left join liker_liker on mstart.article_id=liker_liker.product_id where liker_liker.page_type=3 $month $parenting $pregnant order by liker_liker.likes desc";
-		$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.image image, mstart.name as name, liker_liker.* FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id left join liker_liker on mstart.article_id=liker_liker.product_id where 1=1 $month $parenting $pregnant order by liker_liker.likes desc";
+		$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.image image, mstart.name as name, liker_liker_view.* FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id left join liker_liker_view on mstart.article_id=liker_liker_view.product_id where 1=1 $month $parenting $pregnant order by liker_liker_view.likes desc";
 		
 	} else {
 		

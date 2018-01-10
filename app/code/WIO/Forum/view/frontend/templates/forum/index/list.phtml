@@ -125,6 +125,16 @@ $forums = $block->getDisplayForums();
 									?>
 									
 									<?php /* custom */ 
+									
+									$start = strtotime($postdate1);
+									$end = strtotime($currdate);
+									$total_days = ceil(abs($end - $start) / 86400);
+									$full_year =  $total_days/365;
+									$year =  Intval($total_days/365);
+									$month = intval( $total_days/30);
+									$months = $actual_month = intval($month/12);
+
+									echo $year.' Year, '.$months.' months ago';
 											/* function printDiff($tz,$t1,$t2)
 											{
 												$d1 = new DateTime($t1, new DateTimeZone($tz));
@@ -137,6 +147,7 @@ $forums = $block->getDisplayForums();
 											
 											//printDiff("Australia/Melbourne");
 											?>
+											
 											
 									<?php /* End: custom */ ?>
 										

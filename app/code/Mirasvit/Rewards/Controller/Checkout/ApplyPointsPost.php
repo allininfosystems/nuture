@@ -30,7 +30,7 @@ class ApplyPointsPost extends \Mirasvit\Rewards\Controller\Checkout
 		$points_amount=$_REQUEST['points_amount'];
 		$removepoints=$_REQUEST['remove-points'];
         $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        if($points_amount % 20 == 0 || $removepoints == 1){
+        if($points_amount % 500 == 0 || $removepoints == 1){
 			$response = $this->processRequest();
 			if ($this->getRequest()->isXmlHttpRequest()) {
 				echo json_encode($response);
@@ -42,6 +42,7 @@ class ApplyPointsPost extends \Mirasvit\Rewards\Controller\Checkout
 				$this->messageManager->addError($response['message']);
 			}
 		}else{
+			$this->messageManager->addError('Spend reward points in multiple of 500 only');
 			$error_mess=array('error'=>'true','message'=>'Spend reward points in multiple of 500 only');
 			echo json_encode($error_mess);
 			exit;

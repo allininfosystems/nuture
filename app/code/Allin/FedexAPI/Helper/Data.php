@@ -1,27 +1,45 @@
 <?php
 
 namespace Allin\FedexAPI\Helper;
-
+								
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    public function someMethod()
-    {
-        return 1;
-    }
+	public $scopeConfigInterface;
+	public $fedex_account;
+	public $fedex_meter_number;
+	public $fedex_key;
+	public $fedex_password;
+	
+	
+	
+	public function __construct(
+	\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface
+	) {
+		$this->scopeConfig = $scopeConfigInterface;
+		$storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
+		$this->fedex_account = $this->scopeConfig->getValue("carriers/fedex/account",$storeScope);
+		$this->fedex_meter_number = $this->scopeConfig->getValue("carriers/fedex/meter_number",$storeScope);
+		$this->fedex_key = $this->scopeConfig->getValue("carriers/fedex/key",$storeScope);
+		$this->fedex_password = $this->scopeConfig->getValue("carriers/fedex/password",$storeScope);
+		
+		
+	}
+	
 	public function fedexNumber(){
 		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 		$wsdlBasePath = $objectManager->create('Magento\Framework\Module\Dir\Reader')->getModuleDir(Dir::MODULE_ETC_DIR, 'Allin_FedexAPI') . '/wsdl/';
 		$this->_shipServiceWsdl = $wsdlBasePath . 'ShipService_v21.wsdl';
 	}
+	
 	public function getProperty($var){
 
-		  if($var == 'key') Return 'Zrutkx8w3fRiT33C'; 
-			if($var == 'password') Return 'SiPjzBTILuLvoRnXFlDGhW6Sx';
+			if($var == 'key') Return $this->fedex_key; 
+			if($var == 'password') Return $this->fedex_password;
 			if($var == 'parentkey') Return 'XXX'; 
 			if($var == 'parentpassword') Return 'XXX'; 		
-			if($var == 'shipaccount') Return '604501202';
-			if($var == 'billaccount') Return '604501202';
-			if($var == 'dutyaccount') Return '604501202'; 
+			if($var == 'shipaccount') Return $this->fedex_account;
+			if($var == 'billaccount') Return $this->fedex_account;
+			if($var == 'dutyaccount') Return $this->fedex_account; 
 			if($var == 'freightaccount') Return 'XXX';  
 			if($var == 'trackaccount') Return 'XXX'; 
 			if($var == 'dutiesaccount') Return 'XXX';
@@ -33,13 +51,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 			if($var == 'printdocuments') Return true;
 			if($var == 'packagecount') Return '4';
 			if($var == 'validateaccount') Return 'XXX';
-			if($var == 'meter') Return '118994618';
+			if($var == 'meter') Return $this->fedex_meter_number;
 				
 			if($var == 'shiptimestamp') Return mktime(10, 0, 0, date("m"), date("d")+1, date("Y"));
 
 			if($var == 'spodshipdate') Return '2016-04-13';
 			if($var == 'serviceshipdate') Return '2013-04-26';
-		  if($var == 'shipdate') Return '2016-04-21';
+			if($var == 'shipdate') Return '2016-04-21';
 
 			if($var == 'readydate') Return '2014-12-15T08:44:07';
 			//if($var == 'closedate') Return date("Y-m-d");
@@ -172,6 +190,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 					)
 			);
 	}
+	
 	function setEndpoint($var){
 		if($var == 'changeEndpoint') Return false;
 		if($var == 'endpoint') Return 'XXX';

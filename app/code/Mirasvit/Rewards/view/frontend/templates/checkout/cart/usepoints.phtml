@@ -5,7 +5,7 @@ if (!$block->getMaxPointsNumberToSpent()) {
 }
 $helper = $this->helper('Mirasvit\Rewards\Helper\Data');
 ?>
-<form id="reward-points-form" action="<?= $block->getApplyUrl() ?>" method="post">
+<form id="reward-points-form" action="<?= $block->getApplyUrl() ?>" method="post" cid="1">
     <div class="rewards__checkout-cart-usepoints">
         <h3><?= __('Use Reward Points') ?></h3>
         <div class="discount-form">

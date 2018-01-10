@@ -4,6 +4,8 @@
 namespace Allin\FedexAPI\Observer\Sales;
 
 use Magento\Framework\Module\Dir;
+use Magento\Framework\Filesystem\Io\File;
+use Magento\Framework\App\Filesystem\DirectoryList;
 
 class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterface
 {
@@ -15,37 +17,90 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
      * @return void
      */
 	 
-	public $path_to_wsdl;
-	public $billaccount;
-	public $dutyaccount;
-	public function __construct(\Magento\Framework\Module\Dir\Reader $configReader) {
-		$wsdlBasePath = $configReader->getModuleDir(Dir::MODULE_ETC_DIR, 'Allin_FedexAPI') . '/wsdl/';
-		$this->path_to_wsdl = $wsdlBasePath . 'ShipService_v21.wsdl';
+	protected $path_to_wsdl;
+	protected $billaccount;
+	protected $dutyaccount;
+	protected $keyp;
+	protected $password;
+	protected $shipaccount;
+	protected $meter;
+	protected $order;
+	protected $_request;
+	protected $getShippingAddress;
+	protected $getBillingAddress;
+	protected $unit_of_measure;
+	protected $max_package_weight;
+	protected $packaging;
+	protected $scopeConfigInterface;
+	protected $pdfPath;
+    protected $_io;
+    protected $_directoryList;
+	
+	
+	public function __construct(
+		\Magento\Framework\Module\Dir\Reader $configReader,
+		\Magento\Sales\Api\Data\OrderInterface $order,
+		\Magento\Framework\App\RequestInterface $request,
+		\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface,
+		File $io,
+        DirectoryList $directoryList
+		) {
+			
+			$this->scopeConfig = $scopeConfigInterface;
+			$storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
+			$this->pdfPath = $wsdlBasePath = $configReader->getModuleDir(Dir::MODULE_ETC_DIR, 'Allin_FedexAPI') . '/wsdl/';
+			$this->path_to_wsdl = $wsdlBasePath . 'ShipService_v21.wsdl';
+			$this->order = $order;
+			$this->_request = $request;
+			$this->unit_of_measure = $this->scopeConfig->getValue("carriers/fedex/unit_of_measure",$storeScope);
+			$this->max_package_weight = $this->scopeConfig->getValue("carriers/fedex/max_package_weight",$storeScope);
+			$this->packaging = $this->scopeConfig->getValue("carriers/fedex/packaging",$storeScope);
+			$this->_io = $io;
+			$this->_directoryList = $directoryList;
+			$customPath = $this->_directoryList->getPath('media').'/fedexpdf';
+			if (!file_exists($customPath)) {
+				$this->_io->mkdir($this->_directoryList->getPath('media').'/fedexpdf', 0777);
+			} 
+			//die('hello dear');
 	}
 	
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
-        //Your observer code
+		//echo 'hello';
+		//die('testing');
+		
+		$orderId = $this->_request->getParam('order_id');
+        $orderData = $this->order->load($orderId);
+
+		$this->getShippingAddress = $orderData->getShippingAddress()->getData();
+		$this->getBillingAddress = $orderData->getBillingAddress()->getData();
+		
+		//Your observer code
 		//===========================================
-		//The WSDL is not included with the sample code.
 		//Please include and reference in $path_to_wsdl variable.
 		//$path_to_wsdl = "ShipService_v21.wsdl";
 		
 		
 		
 		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-		$key = $objectManager->create('Allin\FedexAPI\Helper\Data')->getProperty('key');
-		$password = $objectManager->create('Allin\FedexAPI\Helper\Data')->getProperty('password');
-		$shipaccount = $objectManager->create('Allin\FedexAPI\Helper\Data')->getProperty('shipaccount');
-		$meter = $objectManager->create('Allin\FedexAPI\Helper\Data')->getProperty('meter');
+		
+		$this->keyp = $objectManager->create('Allin\FedexAPI\Helper\Data')->getProperty('key');
+		$this->password = $objectManager->create('Allin\FedexAPI\Helper\Data')->getProperty('password');
+		$this->shipaccount = $objectManager->create('Allin\FedexAPI\Helper\Data')->getProperty('shipaccount');
+		$this->meter = $objectManager->create('Allin\FedexAPI\Helper\Data')->getProperty('meter');
 		$this->billaccount = $objectManager->create('Allin\FedexAPI\Helper\Data')->getProperty('billaccount');
 		$this->dutyaccount = $objectManager->create('Allin\FedexAPI\Helper\Data')->getProperty('dutyaccount');
 		
 		// PDF label files. Change to file-extension .png for creating a PNG label (e.g. shiplabel.png)
-		
-		define('SHIP_LABEL', 'shiplabel.pdf');  
-		define('COD_LABEL', 'codlabel.pdf'); 
+
+		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$mediaDirectory = $objectManager->get('Magento\Framework\Filesystem') ->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA); //media dir path change it as per your requirement
+        //$pdf = $mediaDirectory->getAbsolutePath('fedexpdf/'.$orderId.'-shiplabel.pdf');
+		$pdf = $this->_directoryList->getPath('media').'/fedexpdf/'.$orderId.'-shiplabel.pdf';
+		//$pdf = $this->pdfPath.$orderId.'-shiplabel.pdf';
+		//define('SHIP_LABEL', $pdf);  
+		//define('COD_LABEL', $orderId.'-codlabel.pdf'); 
 
 		ini_set("soap.wsdl_cache_enabled", "0");
 
@@ -53,14 +108,14 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 
 		$request['WebAuthenticationDetail'] = array(
 			'UserCredential' => array(
-				'Key' => $key, 
-				'Password' => $password
+				'Key' => $this->keyp, 
+				'Password' => $this->password
 			)
 		);
 
 		$request['ClientDetail'] = array(
-			'AccountNumber' => $shipaccount, 
-			'MeterNumber' => $meter
+			'AccountNumber' => $this->shipaccount, 
+			'MeterNumber' => $this->meter
 		);
 		
 		$request['TransactionDetail'] = array('CustomerTransactionId' => '*** Intra India Shipping Request using PHP ***');
@@ -74,7 +129,7 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 			'ShipTimestamp' => date('c'),
 			'DropoffType' => 'REGULAR_PICKUP', // valid values REGULAR_PICKUP, REQUEST_COURIER, DROP_BOX, BUSINESS_SERVICE_CENTER and STATION
 			'ServiceType' => 'STANDARD_OVERNIGHT', // valid values STANDARD_OVERNIGHT, PRIORITY_OVERNIGHT, FEDEX_EXPRESS_SAVER
-			'PackagingType' => 'YOUR_PACKAGING', // valid values FEDEX_BOX, FEDEX_PAK, FEDEX_TUBE, YOUR_PACKAGING, ...
+			'PackagingType' => $this->packaging, // valid values FEDEX_BOX, FEDEX_PAK, FEDEX_TUBE, YOUR_PACKAGING, ...
 			'Shipper' => $this->addShipper(),
 			'Recipient' => $this->addRecipient(),
 			'ShippingChargesPayment' => $this->addShippingChargesPayment(),
@@ -95,19 +150,19 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 				$newLocation = $client->__setLocation($objectManager->create('Allin\FedexAPI\Helper\Data')->setEndpoint('endpoint'));
 			}
 			
-			
 			$response = $client->processShipment($request); // FedEx web service invocation
-/* echo '<pre>';print_r($response);
-die('testingsssssss'); */
-			
+/* echo '<pre>';
+print_r($response);
+die('testingssssss'); */
 			if ($response->HighestSeverity != 'FAILURE' && $response->HighestSeverity != 'ERROR'){
 			   //$this->printSuccess($client, $response);
 
 				// Create PNG or PDF labels
 				// Set LabelSpecification.ImageType to 'PNG' for generating a PNG labels
-				/* $fp = fopen(SHIP_LABEL, 'wb');   
+				$fp = fopen($pdf, 'wb');   
 				fwrite($fp, ($response->CompletedShipmentDetail->CompletedPackageDetails->Label->Parts->Image));
 				fclose($fp);
+				/*
 				echo 'Label <a href="./'.SHIP_LABEL.'">'.SHIP_LABEL.'</a> was generated.';           
 				
 				$fp = fopen(COD_LABEL, 'wb');   
@@ -115,13 +170,12 @@ die('testingsssssss'); */
 				fclose($fp);
 				echo 'Label <a href="./'.COD_LABEL.'">'.COD_LABEL.'</a> was generated.';  
 				echo $response->CompletedShipmentDetail->AssociatedShipments->TrackingId->TrackingNumber;
-				echo '</br>';
 				echo $response->CompletedShipmentDetail->CompletedPackageDetails->TrackingIds->TrackingNumber;
-				echo '</br>';*/
+				*/
+				
 				$finalTrackingNumber = $response->CompletedShipmentDetail->CompletedPackageDetails->TrackingIds->TrackingNumber;
 				$tracks = $observer->getEvent()->getTrack();
 				$tracks->setTrackNumber($finalTrackingNumber);
-				//echo '<pre>';print_r($tracks->getData());
 			}else{
 				//printError($client, $response);
 			}
@@ -139,42 +193,67 @@ die('testingsssssss'); */
     }
 	
 	function addShipper(){
+
+		$personName = $companyName = $phoneNumber = $streetLines = $city = $stateOrProvinceCode = $postalCode = $countryCode='';
+		
+		$personName = $this->getShippingAddress['prefix'].' '.$this->getShippingAddress['firstname'].' '.$this->getShippingAddress['middlename'].' '.$this->getShippingAddress['lastname'];
+		$companyName = $this->getShippingAddress['company'];
+		$phoneNumber = $this->getShippingAddress['telephone'];
+		$streetLines = $this->getShippingAddress['street'];
+		$city = $this->getShippingAddress['city'];
+		$stateOrProvinceCode = $this->getShippingAddress['region'];
+		$postalCode = $this->getShippingAddress['postcode'];
+		$countryCode = $this->getShippingAddress['country_id'];
 		$shipper = array(
 			'Contact' => array(
-				'PersonName' => 'Sender Name',
-				'CompanyName' => 'Sender Company Name',
-				'PhoneNumber' => '1234567890'
+				'PersonName' => $personName,
+				'CompanyName' => $companyName,
+				'PhoneNumber' => $phoneNumber
 			),
 			'Address' => array(
-				'StreetLines' => '1 SENDER STREET',
-				'City' => 'Noida',
-				'StateOrProvinceCode' => 'UP',
-				'PostalCode' => '201301',
-				'CountryCode' => 'IN',
+				'StreetLines' => $streetLines,
+				'City' => $city,
+				'StateOrProvinceCode' => $stateOrProvinceCode,
+				'PostalCode' => $postalCode,
+				'CountryCode' => $countryCode,
 				'CountryName' => 'INDIA'
 			)
 		);
 		return $shipper;
 	}
+	
 	function addRecipient(){
+		
+		$personName = $companyName = $phoneNumber = $streetLines = $city = $stateOrProvinceCode = $postalCode = $countryCode='';
+		
+		$personName = $this->getBillingAddress['prefix'].' '.$this->getBillingAddress['firstname'].' '.$this->getBillingAddress['middlename'].' '.$this->getBillingAddress['lastname'];
+		$companyName = $this->getBillingAddress['company'];
+		$phoneNumber = $this->getBillingAddress['telephone'];
+		$streetLines = $this->getBillingAddress['street'];
+		$city = $this->getBillingAddress['city'];
+		$stateOrProvinceCode = $this->getBillingAddress['region'];
+		$postalCode = $this->getBillingAddress['postcode'];
+		$countryCode = $this->getBillingAddress['country_id'];
+		
 		$recipient = array(
 			'Contact' => array(
-				'PersonName' => 'Recipient Name',
-				'CompanyName' => 'Recipient Company Name',
-				'PhoneNumber' => '1234567890'
+				'PersonName' => $personName,
+				'CompanyName' => $companyName,
+				'PhoneNumber' => $phoneNumber
 			),
 			'Address' => array(
-				'StreetLines' => '1 RECIPIENT STREET',
-				'City' => 'NEWDELHI',
-				'StateOrProvinceCode' => 'DL',
-				'PostalCode' => '110010',
-				'CountryCode' => 'IN',
+				'StreetLines' => $streetLines,
+				'City' => $city,
+				'StateOrProvinceCode' => $stateOrProvinceCode,
+				'PostalCode' => $postalCode,
+				'CountryCode' => $countryCode,
 				'CountryName' => 'INDIA',
 				'Residential' => false
 			)
 		);
 		return $recipient;	                                    
 	}
+	
 	function addShippingChargesPayment(){
 		$shippingChargesPayment = array(
 			'PaymentType' => 'SENDER',
@@ -182,7 +261,7 @@ die('testingsssssss'); */
 				'ResponsibleParty' => array(
 					'AccountNumber' => $this->billaccount,
 					'Contact' => null,
-					'Address' => array('CountryCode' => 'IN')
+					'Address' => array('CountryCode' => $this->getShippingAddress['country_id'])
 				)
 			)
 		);
@@ -256,11 +335,11 @@ die('testingsssssss'); */
 				'Description' => 'Books',
 				'CountryOfManufacture' => 'IN',
 				'Weight' => array(
-					'Units' => 'LB', 
-					'Value' => 1.0
+					'Units' => 'KG', 
+					'Value' => 1.0 //this is change from admin
 				),
-				'Quantity' => 4,
-				'QuantityUnits' => 'EA',
+				'Quantity' => 1,
+				'QuantityUnits' => 'KG',
 				'UnitPrice' => array(
 					'Currency' => 'INR', 
 					'Amount' => 100.000000
@@ -273,24 +352,25 @@ die('testingsssssss'); */
 		);
 		return $customerClearanceDetail;
 	}
+	
 	function addPackageLineItem1(){
 		$packageLineItem = array(
 			'SequenceNumber'=>1,
 			'GroupPackageCount'=>1,
-			'InsuredValue' => array(
-				'Amount' => 80.00, 
+			/* 'InsuredValue' => array(
+				'Amount' => 100.00, 
 				'Currency' => 'INR'
-			),
+			), */
 			'Weight' => array(
-				'Value' => 20.0,
-				'Units' => 'LB'
-			),
+				'Value' => 68,//$this->max_package_weight,//get from fedex config from admin
+				'Units' => $this->unit_of_measure
+			)/* ,
 			'Dimensions' => array(
 				'Length' => 20,
 				'Width' => 10,
 				'Height' => 10,
 				'Units' => 'IN'
-			),
+			) */,
 			'CustomerReferences' => array(
 				'CustomerReferenceType' => 'CUSTOMER_REFERENCE', // valid values CUSTOMER_REFERENCE, INVOICE_NUMBER, P_O_NUMBER and SHIPMENT_INTEGRITY
 				'Value' => 'GR4567892'

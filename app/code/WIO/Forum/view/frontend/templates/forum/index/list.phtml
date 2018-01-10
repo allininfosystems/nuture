@@ -13,34 +13,35 @@
 $forums = $block->getDisplayForums();
 ?>
 <div class="forum-list-container clearfix">
-  <h3 class="grid-title">
-    <?php echo __('Viewing All Forums') ?>
-  </h3>
+  <!-- <h3 class="grid-title">
+    <?php //echo __('Viewing All Forums') ?>
+  </h3> -->
   <?php if (!$forums->getSize()): ?>
     <div class="forum-grid-no-data">
       <?php echo __('No Data Found') ?>
     </div>
   <?php else: ?>
-    <div class="toolbar top forum-toolbar">
-      <?php echo $block->getPagerHtml(); ?>
-    </div>
-    <table class="forum-grid forum-list grid data-table-forum-resp">
-      <thead>
-        <tr>
-          <th width="35%"><?php echo __('Forum') ?></th>
-          <th width="15%"><?php echo __('Topics') ?></th>
-          <th width="15%"><?php echo __('Posts') ?></th>
-          <th width="35%"><?php echo __('Freshness') ?></th>
-        <tr>
-      </thead>
-      <tbody>
+    <!-- <div class="toolbar top forum-toolbar">
+      <?php //echo $block->getPagerHtml(); ?>
+    </div> -->
+	<!-- forum -->
+    <ul class="forum-grid forum-list grid data-table-forum-resp">
+      <li class="bbp-header-cls">
+        <ul class="forum-titles-cls">
+          <li class="bbp-forum-info-cls"><?php echo __('Forum') ?></li>
+          <li class="bbp-forum-topic-count-cls"><?php echo __('Topics') ?></li>
+          <li class="bbp-forum-reply-count-cls"><?php echo __('Posts') ?></li>
+          <li class="bbp-forum-freshness-cls"><?php echo __('Freshness') ?></li>
+        </ul>
+      </li>
+      <li class="bbp-body-cls">
         <?php foreach ($forums as $forum): ?>
-          <tr>
-            <td>
+          <ul class="loop-item-cls">
+            <li class="bbp-forum-info-cls">
               <div>
                 <div class="forum-icons">
-
-                  <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_forum.png'); ?>" />
+                   <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'forum_post-icon.png'); ?>" />
+                  <!-- <img src="<?php //echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_forum.png'); ?>" /> -->
                   <?php if ($block->getIsIconsEnabled() && $block->getIcon($forum)): ?>
                     <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getIcon($forum)) ?>" />
                   <?php endif; ?>
@@ -58,20 +59,20 @@ $forums = $block->getDisplayForums();
                   <?php endif; ?>
                 </div>
               </div>
-            </td>
-            <td>
+            </li>
+            <li class="bbp-forum-topic-count-cls">
               <div class="total-topics-container">
-                <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_topic.png'); ?>" />
+                <!-- <img src="<?php //echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_topic.png'); ?>" /> -->
                 <?php echo $forum->getTotalTopics() ?>
               </div>
-            </td>
-            <td>
+            </li>
+            <li class="bbp-forum-reply-count-cls">
               <div class="total-posts-container">
-                <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'forum_post.png'); ?>" />
+                <!-- <img src="<?php //echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'forum_post.png'); ?>" /> -->
                 <?php echo $forum->getTotalPosts() ?>
               </div>
-            </td>
-            <td>
+            </li>
+            <li class="bbp-forum-freshness-cls">
               <?php
               $latest = $block->getLatestPostDetails($forum->getLastPostId());
               ?>
@@ -92,24 +93,74 @@ $forums = $block->getDisplayForums();
                         <?php echo $block->getLatestTopicDescription($latest) ?>
                       </div>
                     <?php endif;*/ ?>
+					<?php
+						/* $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+						$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+						$baseURL = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB); 
+						
+						$custId = $block->getCustId();
+						$customer = $objectManager->create('Magento\Customer\Model\Customer')->load($custId);
+						$customer->getData('avatar'); */
+						
+						$custId = $block->getCustId();
+						$userDetails = $block->getUserDetails($custId);
+                        // print_r($userDetails);			
+					?>
                     <div class="forum-latest-reply-user">
-                      <?php
-                      echo __('<strong><a href="%1">%2</a></strong>', $block->getLatestPostedByUrl($latest), $block->getLatestPostedBy($latest));
-                      ?>
+					 <!-- <img src="<?php // echo $baseURL .'media/avatar/' .$customer->getData('avatar'); ?>" height="30" width="30" alt="avatar"/> -->
+					 <img src="<?php echo $userDetails['avatar']; ?>" height="50" width="50" class="forum-avatar-image"/>
+                      
                     </div>
-					<div class="forum-latest-reply-date">
-                      <?php     $postdate=$block->getLatestPostedDate($latest);
-					            $date = new DateTime($postdate);
-								echo $date->format('Y-m-d'); ?>
-                    </div>
+					<div class="uploader-container-cls">
+						<div class="uploader-cls">
+							<?php
+							  echo __('<strong><a href="%1">%2</a></strong>', $block->getLatestPostedByUrl($latest), $block->getLatestPostedBy($latest));
+							  ?>
+						</div>
+						<div class="forum-latest-reply-date">
+						  <?php     $postdate=$block->getLatestPostedDate($latest);
+									$date = new DateTime($postdate);
+									$postdate1 =  $postdate;
+									$currdate =  date('Y-m-d');
+									?>
+									
+									<?php /* custom */ 
+									
+									$start = strtotime($postdate1);
+									$end = strtotime($currdate);
+									$total_days = ceil(abs($end - $start) / 86400);
+									$full_year =  $total_days/365;
+									$year =  Intval($total_days/365);
+									$month = intval( $total_days/30);
+									$months = $actual_month = intval($month/12);
+
+									echo $year.' Year, '.$months.' months ago';
+											/* function printDiff($tz,$t1,$t2)
+											{
+												$d1 = new DateTime($t1, new DateTimeZone($tz));
+												$d2 = new DateTime($t2, new DateTimeZone($tz));
+												$diff = $d1->diff($d2);
+												print($diff->format("%Y Year, %M months %D day ago"). PHP_EOL);
+											}
+											
+											 printDiff("UTC",$postdate1,$currdate);  */
+											
+											//printDiff("Australia/Melbourne");
+											?>
+											
+											
+									<?php /* End: custom */ ?>
+										
+						</div>
+					</div>
                   <?php endif; ?>  
                 <?php endif; ?>
               </div>
-            </td>
-          </tr>
+            </li>
+          </ul>
         <?php endforeach; ?>
-      </tbody>
-    </table>
+      </li>
+    </ul>
     <script type="text/javascript">
       WIO_Forum_Responsive_tables.init();
     </script>

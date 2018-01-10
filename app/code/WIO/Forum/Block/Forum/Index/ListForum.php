@@ -13,8 +13,11 @@
  */
 
 namespace WIO\Forum\Block\Forum\Index;
-
+use WIO\Forum\Block\Topic\Index\ListPosts;
 class ListForum extends \WIO\Forum\Block\Forum\Index {
+  
+   /* protected $_collection forum */
+  protected $_loadedUsers;
   
   protected $_collection = null;
 
@@ -89,6 +92,29 @@ class ListForum extends \WIO\Forum\Block\Forum\Index {
     }
     return true;
   }
+  
+  public function getCustId() {
+	  return $this->getCustomer()->getId();	  
+  }
+  
+  protected function getUserId() {
+    return $this->_registry->registry(\WIO\Forum\Helper\Constant::WIO_FORUM_USER_ID_PARAM);
+  }
+  
+  public function getUserData() {
+    $userId = $this->getUserId();
+    $userData = $this->_forumUser->getForumUserData($userId);
+    return $userData;
+  }
+  
+  public function getUserDetails($_systemUserId) {
+    if (!empty($this->_loadedUsers[$_systemUserId])) {
+      return $this->_loadedUsers[$_systemUserId];
+    }
+    $this->_loadedUsers[$_systemUserId] = $this->_forumUser->getForumUserData($_systemUserId);
+    return $this->_loadedUsers[$_systemUserId];
+  }
+  
   
   /**** LATEST ****/
   

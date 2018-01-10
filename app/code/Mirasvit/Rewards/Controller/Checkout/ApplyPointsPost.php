@@ -27,18 +27,25 @@ class ApplyPointsPost extends \Mirasvit\Rewards\Controller\Checkout
      */
     public function execute()
     {
+		$points_amount=$_REQUEST['points_amount'];
+		$removepoints=$_REQUEST['remove-points'];
         $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-
-        $response = $this->processRequest();
-        if ($this->getRequest()->isXmlHttpRequest()) {
-            echo json_encode($response);
-            exit;
-        }
-        if ($response['success']) {
-            $this->messageManager->addSuccess($response['message']);
-        } elseif ($response['message']) {
-            $this->messageManager->addError($response['message']);
-        }
+        if($points_amount % 20 == 0 || $removepoints == 1){
+			$response = $this->processRequest();
+			if ($this->getRequest()->isXmlHttpRequest()) {
+				echo json_encode($response);
+				exit;
+			}
+			if ($response['success']) {
+				$this->messageManager->addSuccess($response['message']);
+			} elseif ($response['message']) {
+				$this->messageManager->addError($response['message']);
+			}
+		}else{
+			$error_mess=array('error'=>'true','message'=>'Spend reward points in multiple of 500 only');
+			echo json_encode($error_mess);
+			exit;
+		}
         return $this->_goBack();
     }
 }

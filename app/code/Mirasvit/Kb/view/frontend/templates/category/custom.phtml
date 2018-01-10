@@ -8,7 +8,65 @@
       $currentStore    = $storeManager1->getStore();
       $mediaUrl        = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
       $nn=$mediaUrl."kb";
-     if ($category->getCategoryId() == 2 || $category->getCategoryId() == 9) 
+	  
+	  
+	  
+if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant'])) 
+{
+	$month = isset($_GET['month'])?" and mstart.pregnant_month='".$_GET['month']."'":'';
+			
+	$parenting = isset($_GET['parenting'])?" and mstart.parenting='".$_GET['parenting']."'":'';
+
+	$pregnant = isset($_GET['pregnant'])?" and mstart.getting_pregnant='".$_GET['pregnant']."'":'';
+
+	$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.image image, mstart.name as name FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id where 1=1 $month $parenting $pregnant";
+
+	$result = $connection->fetchAll($sql);
+	
+	$searchBy = '';
+    if(count($result) > 0){ 
+	$searchBy .= isset($_GET['month'])?$_GET['month'].' ':'';
+	$searchBy .= isset($_GET['parenting'])?$_GET['parenting'].' ':'';
+	$searchBy .= isset($_GET['pregnant'])?$_GET['pregnant']:'';
+	?>
+		<cite>Search Result For '<?=$searchBy ?>'</cite>
+		<div id="filter-tab-1" class="tab-content current">          
+			<ul class="hub_list">
+
+				<?php
+				foreach ($result as $article) 
+				{
+					$publish_datte  = $article['created_at'];
+					$tempDate       = $publish_datte;
+					$day            = date('l', strtotime($tempDate));
+					$month          = date('F jS Y ',strtotime($tempDate)); ?>
+					<li>
+						<div class="hub-box">
+							<a href="<?=$article['url'] ?>">
+								<div class="hub-box-image">
+									<img src="<?php if(!empty($article['image'])){ echo $nn.'/'.$article['image'];} else { echo $this->getViewFileUrl('images/hub_cat_01.jpg');} ?>"/>
+								</div>
+							</a>
+							<div class="hub-details">
+								<div class="hub_flex">
+									<span class="hub_type"><?php echo $article['catname'] ?></span>
+									<div class="hub_title">
+										<a href="<?php echo $article['url']; ?>"><?php echo $article['name']; ?></a>
+									</div>
+								</div>
+							</div>
+							<div class="box-bottom">
+								<div class="pull-left"><?php echo $month; ?></div>
+								<div class="pull-right"><i class="fa fa-heart"></i><?php //echo $article->getRating(); ?></div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</li>
+			<?php } ?>
+			</ul>
+		</div>
+		
+	<?php } else { echo "There is no article matching collections."; } } elseif ($category->getCategoryId() == 2 || $category->getCategoryId() == 9) 
      {
       $articles4 = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
        ?>

@@ -2,6 +2,7 @@
 return array (
   'modules' => 
   array (
+    'Allin_FedexAPI' => 1,
     'Allin_Knowledge' => 1,
     'Amasty_Base' => 1,
     'Amasty_Quickview' => 1,

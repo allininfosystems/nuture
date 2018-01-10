@@ -18,7 +18,10 @@ $request     = $objectManager->get('\Magento\Framework\App\Request\Http');
  $controller_name = $request->getControllerName();
 
 $urlInterface = $objectManager->get('Magento\Framework\UrlInterface');
-$current = $urlInterface->getCurrentUrl();
+$currentUrl = $urlInterface->getCurrentUrl();
+$curUrl = explode("?", $currentUrl);
+
+$current = rtrim($curUrl[0],'/');
 
 $param = $block->getRequest()->getParam('article');
 
@@ -49,34 +52,11 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
         </div>
     </div>
 	<?php
-	if(strpos($current, 'health-a-z')){ ?>
+	if(strpos($current, 'health-a-z') || $currentCat==2){  ?>
     <div class="alpha_pagination">
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/A" style="<?php if ($param=='A') { echo "filterColor";} ?>">A</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/B" style="<?php if ($param=='B') { echo "filterColor";} ?>">B</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/C" style="<?php if ($param=='C') { echo "filterColor";} ?>">C</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/D" style="<?php if ($param=='D') { echo "filterColor";} ?>">D</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/E" style="<?php if ($param=='E') { echo "filterColor";} ?>">E</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/F" style="<?php if ($param=='F') { echo "filterColor";} ?>">F</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/G" style="<?php if ($param=='G') { echo "filterColor";} ?>">G</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/H" style="<?php if ($param=='H') { echo "filterColor";} ?>">H</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/I" style="<?php if ($param=='I') { echo "filterColor";} ?>">I</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/J" style="<?php if ($param=='J') { echo "filterColor";} ?>">J</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/K" style="<?php if ($param=='K') { echo "filterColor";} ?>">K</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/L" style="<?php if ($param=='L') { echo "filterColor";} ?>">L</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/M" style="<?php if ($param=='M') { echo "filterColor";} ?>">M</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/N" style="<?php if ($param=='N') { echo "filterColor";} ?>">N</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/O" style="<?php if ($param=='O') { echo "filterColor";} ?>">O</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/P" style="<?php if ($param=='P') { echo "filterColor";} ?>">P</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/Q" style="<?php if ($param=='Q') { echo "filterColor";} ?>">Q</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/R" style="<?php if ($param=='R') { echo "filterColor";} ?>">R</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/S" style="<?php if ($param=='S') { echo "filterColor";} ?>">S</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/T" style="<?php if ($param=='T') { echo "filterColor";} ?>">T</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/U" style="<?php if ($param=='U') { echo "filterColor";} ?>">U</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/V" style="<?php if ($param=='V') { echo "filterColor";} ?>">V</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/W" style="<?php if ($param=='W') { echo "filterColor";} ?>">W</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/X" style="<?php if ($param=='X') { echo "filterColor";} ?>">X</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/Y" style="<?php if ($param=='Y') { echo "filterColor";} ?>">Y</a>
-        <a href="<?php echo $block->getUrl('kbase/category/filter');?>article/Z" style="<?php if ($param=='Z') { echo "filterColor";} ?>">Z</a>
+		<?php foreach (range('A', 'Z') as $i){ ?>
+			<a href="<?php echo $block->getUrl('kbase/category/filter');?>article/<?=$i?>" style="<?php if ($param==$i) { echo "filterColor";} ?>"><?=$i?></a>
+		<?php }?>
 
 <?php if ($action_name=='view' && $module_name=='kbase' ) { ?>
       <div class="kb__search-box hub_search">
@@ -117,31 +97,31 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 	<div style="width:100%">
 		<ul>
 			<li>
-				<select name="month" style="width:10%; float:left;" onchange="monthVal(this.value)">
+				<select name="month" id="months" style="width:10%; float:left;" onchange="monthVal(this.value)">
 					<option value="">Month</option>
 					<?php 
 					$months = array_unique($months);
 					sort($months);
 					foreach ($months as $month){ ?>
-						<option value="<?=$month ?>"><?=$month ?></option>
+						<option value="<?=$month ?>" <?php if(isset($_GET['month'])){ echo ($_GET['month']==$month?'selected':''); } ?>><?=$month ?></option>
 					<?php } ?>
 				</select>
-				<select name="pregnant" style="width:10%; float:left;" onchange="pregnantVal(this.value)">
+				<select name="pregnant" id="pregnants" style="width:10%; float:left;" onchange="pregnantVal(this.value)">
 					<option value="">Getting Pregnant</option>
 					<?php 
 					$pregnants = array_unique($pregnant);
 					sort($pregnants);
 					foreach ($pregnants as $pregnant){ ?>
-						<option value="<?=$pregnant ?>"><?=$pregnant ?></option>
+						<option value="<?=$pregnant ?>" <?php if(isset($_GET['pregnant'])){ echo ($_GET['pregnant']==$pregnant?'selected':''); } ?>><?=$pregnant ?></option>
 					<?php } ?>
 				</select>
-				<select name="parenting" style="width:10%;" onchange="parentingVal(this.value)">
+				<select name="parenting" id="parentings" style="width:10%;" onchange="parentingVal(this.value)">
 					<option value="">Parenting</option>
 					<?php 
 					$parentings = array_unique($parenting);
 					sort($parentings);
 					foreach ($parentings as $parenting){ ?>
-						<option value="<?=$parenting ?>"><?=$parenting ?></option>
+						<option value="<?=$parenting ?>" <?php if(isset($_GET['parenting'])){ echo ($_GET['parenting']==$parenting?'selected':''); } ?>><?=$parenting ?></option>
 					<?php } ?>
 				</select>
 			</li>
@@ -165,17 +145,59 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 <script>	
 		function monthVal(month)
 		{
-			//alert('<?php echo $currentCat ?>');
+			var curUrl = '<?php echo $current ?>';
+			
+			var preg = jQuery('#pregnants').val();
+			
+			var parenting = jQuery('#parentings').val();
+			
+			month = month==''?'?':'?month=' + month + '&';
+			
+			preg = preg==''?'':'pregnant=' + preg + '&';
+			
+			parenting = parenting==''?'':'parenting=' + parenting;
+			
+			var filterUrl = curUrl + month + preg + parenting;
+			
+			window.location.href = filterUrl;
 		}
 		
 		function pregnantVal(preg)
 		{
-			//alert(preg);
+			var curUrl = '<?php echo $current ?>';
+			
+			var month = jQuery('#months').val();
+			
+			var parenting = jQuery('#parentings').val();
+			
+			month = month==''?'?':'?month=' + month + '&';
+			
+			preg = preg==''?'':'pregnant=' + preg + '&';
+			
+			parenting = parenting==''?'':'parenting=' + parenting;
+			
+			var filterUrl = curUrl + month + preg + parenting;
+			
+			window.location.href = filterUrl;
 		}
 		
-		function parentingVal(parent)
+		function parentingVal(parenting)
 		{
-			//alert(parent);
+			var curUrl = '<?php echo $current ?>';
+			
+			var preg = jQuery('#pregnants').val();
+			
+			var month = jQuery('#months').val();
+			
+			month = month==''?'?':'?month=' + month + '&';
+			
+			preg = preg==''?'':'pregnant=' + preg + '&';
+			
+			parenting = parenting==''?'':'parenting=' + parenting;
+			
+			var filterUrl = curUrl + month + preg + parenting;
+			
+			window.location.href = filterUrl;
 		}
 	
         require([

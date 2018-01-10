@@ -25,9 +25,24 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
       $mediaUrl1        = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
       $nn=$mediaUrl1."kb";
 	  $articles4 = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
+	  
+$likeblock = $objectManager->create('Nuluv\Liker\Block\Liker');
+$page_type = 3; //For knowledge hub page 
 ?>
 
 <?= $block->getChildHtml('kb.search.form') ?>
+
+<?php
+   $total_likes =$likeblock->getLikeCount($postId);
+   $client_like_count =$likeblock->isLikeAlredySubmitted($postId);
+   if($client_like_count){
+	$value='Unlike';
+	$type_id=0;
+}else{
+	$value='Like';
+	$type_id=1;
+}
+?>
 
 <?= $block->getKbPageTitle() ?>
 <div class="row kkk">
@@ -47,10 +62,12 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 		
 		<div class="mpcss blogSharing">
 			<div id="sharing">
-				<div class="share-col-left">
-				<span class="number-cls">0</span>
-				 <span class="wishlist-cls"><i class="fa fa-heart"></i></span>
-				</div>
+				<div class="like-action">
+
+                <input type="button" value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $postId; ?>" class="like" />&nbsp;(<span id="likes_<?php echo $postId; ?>"><?php echo $total_likes; ?></span>)
+                
+
+            </div>
 				<div class="share-col-right">
 					<div class="post-sharing-button social-main-cls">
 						<label class="label-cls">Share: </label>

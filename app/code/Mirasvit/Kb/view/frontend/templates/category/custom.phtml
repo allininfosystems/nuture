@@ -18,8 +18,19 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 	$parenting = isset($_GET['parenting'])?" and mstart.parenting='".$_GET['parenting']."'":'';
 
 	$pregnant = isset($_GET['pregnant'])?" and mstart.getting_pregnant='".$_GET['pregnant']."'":'';
+	
+	if($_GET['sort']=='popular')
+	{
+		//$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.image image, mstart.name as name, liker_liker.* FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id left join liker_liker on mstart.article_id=liker_liker.product_id where liker_liker.page_type=3 $month $parenting $pregnant order by liker_liker.likes desc";
+		$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.image image, mstart.name as name, liker_liker.* FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id left join liker_liker on mstart.article_id=liker_liker.product_id where 1=1 $month $parenting $pregnant order by liker_liker.likes desc";
+		
+	} else {
+		
+		$sort = $_GET['sort']?" order by mstart.name ".$_GET['sort']:'';
+		
+		$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.image image, mstart.name as name FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id where 1=1 $month $parenting $pregnant $sort";
+	}
 
-	$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.image image, mstart.name as name FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id where 1=1 $month $parenting $pregnant";
 
 	$result = $connection->fetchAll($sql);
 	
@@ -66,7 +77,8 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 			</ul>
 		</div>
 		
-	<?php } else { echo "There is no article matching collections."; } } elseif ($category->getCategoryId() == 2 || $category->getCategoryId() == 9) 
+	<?php } else { echo "There is no article matching collections."; } 
+	} elseif ($category->getCategoryId() == 2 || $category->getCategoryId() == 9) 
      {
       $articles4 = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
        ?>

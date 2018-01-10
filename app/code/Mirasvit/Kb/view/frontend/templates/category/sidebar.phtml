@@ -126,6 +126,19 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 				</select>
 			</li>
 			
+			<li>
+				<div class="toolbar toolbar-products" style="display: block;">
+					<div class="orderby">
+						<span>Order By</span>
+						<select style="width:70%;" id="sorter" class="custom_select" onchange="articleListSorting(this.value);" name="sorterone">
+							<option value="asc" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='asc'?'selected':''; } ?>>Relevance</option>
+							<option value="desc" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='desc'?'selected':''; } ?>>Alphabetically, Z-A</option>
+							<option value="popular" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='popular'?'selected':''; } ?>>Popular</option>
+						</select>
+					</div>
+				</div>
+			</li>
+			
 		</ul>
 	</div>
 
@@ -143,6 +156,28 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 </style>
 
 <script>	
+
+		function articleListSorting(sortVal)
+		{
+			var curUrl = '<?php echo $current ?>';
+			
+			var preg = jQuery('#pregnants').val();
+			
+			var parenting = jQuery('#parentings').val();
+			
+			var month = jQuery('#months').val();
+			
+			month = month==''?'?':'?month=' + month + '&';
+			
+			preg = preg==''?'':'pregnant=' + preg + '&';
+			
+			parenting = parenting==''?'':'parenting=' + parenting + '&';
+			
+			var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
+			
+			window.location.href = filterUrl;
+		}
+
 		function monthVal(month)
 		{
 			var curUrl = '<?php echo $current ?>';
@@ -151,13 +186,15 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 			
 			var parenting = jQuery('#parentings').val();
 			
+			var sortVal = jQuery('#sorter').val();
+			
 			month = month==''?'?':'?month=' + month + '&';
 			
 			preg = preg==''?'':'pregnant=' + preg + '&';
 			
-			parenting = parenting==''?'':'parenting=' + parenting;
+			parenting = parenting==''?'':'parenting=' + parenting + '&';
 			
-			var filterUrl = curUrl + month + preg + parenting;
+			var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
 			
 			window.location.href = filterUrl;
 		}
@@ -170,13 +207,15 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 			
 			var parenting = jQuery('#parentings').val();
 			
+			var sortVal = jQuery('#sorter').val();
+			
 			month = month==''?'?':'?month=' + month + '&';
 			
 			preg = preg==''?'':'pregnant=' + preg + '&';
 			
-			parenting = parenting==''?'':'parenting=' + parenting;
+			parenting = parenting==''?'':'parenting=' + parenting + '&';
 			
-			var filterUrl = curUrl + month + preg + parenting;
+			var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
 			
 			window.location.href = filterUrl;
 		}
@@ -189,13 +228,15 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 			
 			var month = jQuery('#months').val();
 			
+			var sortVal = jQuery('#sorter').val();
+			
 			month = month==''?'?':'?month=' + month + '&';
 			
 			preg = preg==''?'':'pregnant=' + preg + '&';
 			
-			parenting = parenting==''?'':'parenting=' + parenting;
+			parenting = parenting==''?'':'parenting=' + parenting + '&';
 			
-			var filterUrl = curUrl + month + preg + parenting;
+			var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
 			
 			window.location.href = filterUrl;
 		}

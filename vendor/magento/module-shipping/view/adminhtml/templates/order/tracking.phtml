@@ -41,6 +41,8 @@ require(['prototype'], function(){
                 if (!elem.onchangeBound) {
                     elem.onchangeBound = true;
                     elem.valueInput = $(elem.parentNode.parentNode).select('.number-title')[0];
+					elem.valueInput1 = $(elem.parentNode.parentNode).select('.number-title1')[0];
+					elem.valueInput2 = $(elem.parentNode.parentNode).select('.weight-title')[0];
                     elem.observe('change', this.currierOnchange);
                 }
             }.bind(this));
@@ -50,6 +52,16 @@ require(['prototype'], function(){
             var option = elem.options[elem.selectedIndex];
             if (option.value && option.value != 'custom') {
                 elem.valueInput.value = option.text;
+				if(option.value && option.value=='fedex'){
+					elem.valueInput1.value = 'Auto Generated';
+					elem.valueInput1.readOnly = true;
+					elem.valueInput2.placeholder="KG";
+				}else{
+					elem.valueInput1.value = '';
+					elem.valueInput1.readOnly = false;
+					elem.valueInput2.placeholder="";
+				}
+				
             }
             else {
                 elem.valueInput.value = '';
@@ -82,16 +94,16 @@ require(['prototype'], function(){
                    value=""
                    disabled="disabled" />
         </td>
-        <td class="col-weight">
-            <input class="input-text admin__control-text required-entry"
+        <td class="col-number">
+            <input class="input-text admin__control-text required-entry number-title1"
                    type="text"
                    name="tracking[<%- data.index %>][number]"
                    id="trackingN<%- data.index %>"
                    value=""
                    disabled="disabled" />
         </td>
-		<td class="col-number">
-            <input class="input-text admin__control-text required-entry"
+		<td class="col-weight">
+            <input class="input-text admin__control-text required-entry weight-title"
                    type="text"
                    name="tracking[<%- data.index %>][weight]"
                    id="trackingW<%- data.index %>"
@@ -138,6 +150,6 @@ require([
     //<![CDATA[
     trackingControl.template = mageTemplate('#track_row_template');
     //]]>
-
+	
 });
 </script>

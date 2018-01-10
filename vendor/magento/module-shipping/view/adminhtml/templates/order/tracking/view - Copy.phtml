@@ -15,7 +15,6 @@
                 <th class="col-carrier"><?php /* @escapeNotVerified */ echo __('Carrier') ?></th>
                 <th class="col-title"><?php /* @escapeNotVerified */ echo __('Title') ?></th>
                 <th class="col-number"><?php /* @escapeNotVerified */ echo __('Number') ?></th>
-				<th class="col-weight"><?php /* @escapeNotVerified */ echo __('Weight') ?></th>
                 <th class="col-delete last"><?php /* @escapeNotVerified */ echo __('Action') ?></th>
             </tr>
         </thead>
@@ -44,13 +43,6 @@
                            name="number"
                            value="" />
                 </td>
-				<td class="col-weight">
-                    <input class="input-text admin__control-text"
-                           type="text"
-                           id="tracking_weight"
-                           name="weight"
-                           value="" />
-                </td>
                 <td class="col-delete last"><?php echo $block->getSaveButtonHtml() ?></td>
             </tr>
         </tfoot>
@@ -68,7 +60,6 @@
                     <div id="shipment_tracking_info_response_<?php /* @escapeNotVerified */ echo $_track->getId() ?>"></div>
                     <?php endif; ?>
                 </td>
-				<td class="col-weight"><?php echo $block->escapeHtml($_track->getWeight()).' KG'; ?></td>
                 <td class="col-delete last"><button class="action-delete" type="button" onclick="deleteTrackingNumber('<?php /* @escapeNotVerified */ echo $block->getRemoveUrl($_track) ?>'); return false;"><span><?php /* @escapeNotVerified */ echo __('Delete') ?></span></button></td>
             </tr>
         <?php endforeach; ?>

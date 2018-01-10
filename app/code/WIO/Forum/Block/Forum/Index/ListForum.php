@@ -16,7 +16,7 @@ namespace WIO\Forum\Block\Forum\Index;
 use WIO\Forum\Block\Topic\Index\ListPosts;
 class ListForum extends \WIO\Forum\Block\Forum\Index {
   
-   //protected $_collection;
+   /* protected $_collection forum */
   protected $_loadedUsers;
   
   protected $_collection = null;

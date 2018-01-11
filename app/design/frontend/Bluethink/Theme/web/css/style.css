@@ -2271,7 +2271,7 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 #pincodemessage{padding: 0 4%;}
 #pincodemessage p {padding-left: 15px;}
 #one-step-checkout-form .checkout-review-load .data-table tbody th.mark .value {padding: 5px 0px 0; display: block;}
-.field .message.warning {width: calc(100vh - 105px);}
+.field .message.warning {width: calc(45vh - 0px);}
 .minicart-wrapper .action.showcart {display: block !important;}
 footer.footer .brand-slider .owl-dots {display: none;}
 
@@ -2348,6 +2348,9 @@ footer.footer .brand-slider .owl-dots {display: none;}
 .catalog-product-view .product-add-form .box-tocart .actions .action.tocart{background: #7d6170; font-size: 14px; color: #fff; height: 45px; vertical-align: middle;
  width: 127px; text-align: center; padding: 10px; line-height: 26px; float: left; font-weight: normal; margin-right: 5px; border: none;}
 .catalog-product-view .product-add-form .box-tocart .actions {padding-top: 0;} 
+.product.info.detailed .actions-toolbar.review-form-actions {margin-top: 15px; margin-left: 49%;}
+.product.data.items .block.review-add div.mage-error[generated] {margin-top: 30px;}
+.product.data.items .block.review-add #review-form .review-field-nickname {margin-top: 20px;}
 
 
 /* 01-01-2018 by SJ */
@@ -3768,6 +3771,7 @@ div.rewardssocial-buttons div.buttons-facebook-like, div.rewardssocial-buttons d
 .slide-container.clearfix.hone, .slide-container.clearfix.htwo{min-height: inherit; padding: 20px 0 0;}
 section.moment-slide, .inner-moment-slide{height: auto;}
 .blog-detail{ padding: 45px 0px 25px;}
+.post-sharing-button.social-main-cls .social-media-icons-cls li{text-align:center}
 
 
 

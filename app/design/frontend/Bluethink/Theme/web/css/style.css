@@ -2275,7 +2275,7 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .minicart-wrapper .action.showcart {display: block !important;}
 footer.footer .brand-slider .owl-dots {display: none;}
 
-/*========= End OF One Page Checkoutt  ===========*/
+/*========= End OF One Page Checkoutt ===========*/
 
 /*=========== Product ============*/
 
@@ -2536,7 +2536,10 @@ footer.footer .brand-slider .owl-dots {display: none;}
 .kbmain-cls .toolbar-products .orderby{margin:0px;}
 .custom.container {padding: 0;}
 
-..mpcss.blogSharing .share-col-right{float:right;}
+.mpcss.blogSharing .share-col-right{float:right;}
+
+.search-result-for cite {font-size: 20px; font-family: 'Raleway', Times, serif; font-weight: 600; color: #333;}
+.search-result-for {width: 100%; float: left; margin-bottom: 15px;}
 
 
 /*======= End Of Knowledge Hub ==========*/
@@ -3764,6 +3767,7 @@ span.insta-title{text-align: center;}
 div.rewardssocial-buttons div.buttons-facebook-like, div.rewardssocial-buttons div.buttons-pinterest-pin, div.rewardssocial-buttons div.buttons-googleplus-one, div.rewardssocial-buttons div.buttons-referral-like{float: none; display: inline-block;}
 .slide-container.clearfix.hone, .slide-container.clearfix.htwo{min-height: inherit; padding: 20px 0 0;}
 section.moment-slide, .inner-moment-slide{height: auto;}
+.blog-detail{ padding: 45px 0px 25px;}
 
 
 

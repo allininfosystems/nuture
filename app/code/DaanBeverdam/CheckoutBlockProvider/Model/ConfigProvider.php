@@ -19,8 +19,18 @@ class ConfigProvider implements ConfigProviderInterface
     }
 
     public function constructBlock($blockId){
-        $block = $this->_layout->createBlock('Magento\Cms\Block\Block')
-                 ->setBlockId($blockId)->toHtml();
+		$zip='';
+	    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+		$connection = $resource->getConnection();
+		$sql = "SELECT * from `pincodelist` where pincode='".$zip."' ";
+		$html='';
+		$result = $connection->fetchAll($sql);
+		if(count($result)>0){
+			$message=$result[0]['message'];
+			$html='<p>Estimated delivery time is '.$message.'</p>';
+		}
+        $block = $html;
         return $block;
     }
 

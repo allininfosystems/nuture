@@ -54,13 +54,13 @@ require(['prototype'], function(){
                 elem.valueInput.value = option.text;
 				if(option.value && option.value=='fedex'){
 					elem.valueInput1.value = 'Auto Generated';
-					elem.valueInput1.style.display = "none";
+					//elem.valueInput1.style.display = "none";
 					elem.valueInput1.readOnly = true;
 					elem.valueInput2.placeholder="KG";
 				}else{
-					elem.valueInput1.value = '';
-					elem.valueInput1.style.display = "block";
 					elem.valueInput1.readOnly = false;
+					elem.valueInput1.value = '';
+					//elem.valueInput1.style.display = "block";
 					elem.valueInput2.placeholder="";
 				}
 				

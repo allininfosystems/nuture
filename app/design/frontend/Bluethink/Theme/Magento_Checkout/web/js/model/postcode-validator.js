@@ -32,6 +32,10 @@ define(['mageUtils'], function (utils) {
 					return (jQuery(this).text() == obj.state); //To select Blue
 				}).prop('selected', true);
 		  });
+		  jQuery.post("http://demo.demotoday.info/nuture/pincode/index/index/?postcode="+postCode, { a: 1 })
+		  .done(function( pdata ) {
+			 jQuery("#pincodemessage").html(pdata);
+		  });
 			
         });
     });

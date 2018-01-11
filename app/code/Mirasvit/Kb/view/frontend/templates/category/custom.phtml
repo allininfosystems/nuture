@@ -13,7 +13,7 @@
 	  
 	  
 	  
-if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant'])) 
+if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']) || isset($_GET['sort'])) 
 {
 	$month = isset($_GET['month'])?" and mstart.pregnant_month='".$_GET['month']."'":'';
 			

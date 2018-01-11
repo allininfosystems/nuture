@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Nuluv_Pincode::parent" title="Pincode" module="Nuluv_Pincode" sortOrder="100" resource="Nuluv_Pincode::parent"/>
+		<add id="Nuluv_Pincode::pincode" title="Nuluv Pincode" module="Nuluv_Pincode" sortOrder="20" parent="Nuluv_Pincode::parent" action="pincode/pincode" resource="Nuluv_Pincode::pincode"/>
+
+    </menu>
+</config>

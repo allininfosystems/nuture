@@ -23,7 +23,7 @@ $location = $mediaUrl.'fedexpdf/'.$orderid.'-shiplabel.pdf';
 			if($this->_request->getFullActionName() == 'sales_order_view'){
 				  $buttonList->add(
 					'fedpdf_download',
-					['label' => __('Fedex Download'), 'onclick' => 'setLocation("'.$location.'")', 'class' => 'reset'],
+					['label' => __('Fedex Download'), 'onclick' => 'openNewTab("'.$location.'")', 'class' => 'reset'],
 					-1
 				);
 			}
@@ -32,3 +32,9 @@ $location = $mediaUrl.'fedexpdf/'.$orderid.'-shiplabel.pdf';
     }
 }
 ?>
+
+<script type="text/javascript">
+    function openNewTab(url) {
+        window.open(url);
+    }
+</script>

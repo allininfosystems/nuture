@@ -24,62 +24,14 @@ define(['mageUtils'], function (utils) {
 				
 	require(["jquery"],function(jQuery) {
         jQuery(document).ready(function() {
-		
-jQuery.post("http://demo.demotoday.info/nuture/custom/index/index/?postcode="+postCode, { a: 1 })
-  .done(function( data ) {
-	var obj = JSON.parse(data);
-    //alert(obj.city);
-		jQuery("input[type='text'][name='city']").val(obj.city);
-		
-	//$('select[name="zoom_cat[]"] option[value="-1"]').attr('selected', 'selected');
-
-jQuery('select[name="region_id"] option').filter(function() { 
-    return (jQuery(this).text() == obj.state); //To select Blue
-}).prop('selected', true);
-
- // jQuery('select[name="region_id"]').val(obj.state);
-
-  });
-	
-	/* var customurl = "http://demo.demotoday.info/nuture/custom/index/index/?postcode="+postCode;
-            jQuery.ajax({
-                url: customurl,
-                type: 'GET',
-            complete: function(response) 
-			{ 
-			
-			//var obj = JSON.parse(response.responseText.city);
-    // var obj = JSON.parse();
-    // alert(obj.name);
-	
-	//alert(country); 
-	 var json = JSON.parse(response)
-    
-	
-	alert(json.response);
-		 
-	//input[type=text]
-	
-	jQuery("input[type='text'][name='city']").val(city);
-	
-//	jQuery("select[name='region_id']").val(state);
-	
-	
-	//jQuery("input[type='text'][name='city']").val(state);
-	//alert(title);
-   
-  
-
-		
-		// console.log(state+' '+country);
-				
-          // alert('Ajax response State!'+state);
-		   
-		   },
-                error: function (xhr, status, errorThrown) {
-                    console.log('Error happens. Try again.');
-                }
-            }); */
+		  jQuery.post("http://demo.demotoday.info/nuture/custom/index/index/?postcode="+postCode, { a: 1 })
+		  .done(function( data ) {
+			var obj = JSON.parse(data);
+				jQuery("input[type='text'][name='city']").val(obj.city);
+				jQuery('select[name="region_id"] option').filter(function() { 
+					return (jQuery(this).text() == obj.state); //To select Blue
+				}).prop('selected', true);
+		  });
 			
         });
     });

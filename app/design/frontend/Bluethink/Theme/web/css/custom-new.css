@@ -1,1 +1,20 @@
 /****************Mi CSS**************/
+.value ul{list-style: disc;}
+.one-step-checkout{font-family: 'Raleway', Times, serif !important;}
+.onestepcheckout-index-index select{
+	-moz-appearance: none;
+	-wekit-appearance:none;
+	appearance:none;
+}
+.checkout-payment-method .step-title{margin-bottom: 5px;}
+#checkout-review-table-wrapper{padding-bottom: 20px;}
+.one-step-checkout.three-columns-new-osc .onestepcheckout-discount .input-box{width: 70%;}
+.minicart-items-wrapper{clear: both}
+.block-minicart .items-total{margin-bottom: 20px;}
+
+/************************************/
+@media (min-width: 320px) and (max-width: 767px){
+	.choice label{font-size: 12px;}
+	.field._required.two-fields[name="shippingAddress.postcode"]{width: 100% !important}
+	.field.two-fields.last[name="shippingAddress.region_id"]{width: 100% !important}
+}

@@ -131,6 +131,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 				<span>Order By</span>
 				<select style="width:70%;" id="sorter" class="custom_select" onchange="articleListSorting(this.value);" name="sorterone">
 					<option value="asc" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='asc'?'selected':''; } ?>>Relevance</option>
+					<option value="asc" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='asc'?'selected':''; } ?>>Alphabetically, A-Z</option>
 					<option value="desc" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='desc'?'selected':''; } ?>>Alphabetically, Z-A</option>
 					<option value="popular" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='popular'?'selected':''; } ?>>Popular</option>
 				</select>

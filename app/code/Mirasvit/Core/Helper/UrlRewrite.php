@@ -211,7 +211,7 @@ class UrlRewrite extends AbstractHelper implements UrlRewriteHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function updateUrlRewrite($module, $type, $entity, $values, $storeId)
+    public function updateUrlRewrite($module='', $type='', $entity='', $values='', $storeId='')
     {
         if (!isset($this->config[$module])) {
             return false;

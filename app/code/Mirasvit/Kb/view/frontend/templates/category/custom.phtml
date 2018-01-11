@@ -8,6 +8,8 @@
       $currentStore    = $storeManager1->getStore();
       $mediaUrl        = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
       $nn=$mediaUrl."kb";
+      $likeblock = $objectManager->create('Nuluv\Liker\Block\Liker');
+      $page_type = 3; //For knowledge hub page 
 	  
 	  
 	  
@@ -50,7 +52,24 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 					$publish_datte  = $article['created_at'];
 					$tempDate       = $publish_datte;
 					$day            = date('l', strtotime($tempDate));
-					$month          = date('F jS Y ',strtotime($tempDate)); ?>
+					$month          = date('F jS Y ',strtotime($tempDate)); 
+          $postId         =$article['article_id'];
+          ?>
+
+          <?php
+        $total_likes =$likeblock->getLikeCount($postId);
+        $client_like_count =$likeblock->isLikeAlredySubmitted($postId);
+        if($client_like_count){
+          $value='Unlike';
+          $type_id=0;
+          $class='liked';
+        }else{
+          $value='Like';
+          $type_id=1;
+          $class='';
+        }
+
+        ?>
 					<li>
 						<div class="hub-box">
 							<a href="<?=$article['url'] ?>">
@@ -68,7 +87,15 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 							</div>
 							<div class="box-bottom">
 								<div class="pull-left"><?php echo $month; ?></div>
-								<div class="pull-right"><i class="fa fa-heart"></i><?php //echo $article->getRating(); ?></div>
+								<!-- <div class="pull-right"><i class="fa fa-heart"></i><?php //echo $article->getRating(); ?></div> -->
+                <div class="like-action pull-right">
+
+        <button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $postId; ?>" class="like <?php echo $class;?>">
+    </button>
+    (<span id="likes_<?php echo $postId; ?>"><?php echo $total_likes; ?></span>)
+   <img class="like-loader" id="like-loader-<?php echo $postId?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
+
+    </div>
 								<div class="clearfix"></div>
 							</div>
 						</div>
@@ -81,22 +108,41 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 	} elseif ($category->getCategoryId() == 2 || $category->getCategoryId() == 9) 
      {
       $articles4 = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
+      
        ?>
         <div id="filter-tab-1" class="tab-content current sdsdsds">          
               <ul class="hub_list">
                 <?php 
                 foreach ($articles4 as $article_1)
                 {
+
+
                   $publish_datte  = $article_1['created_at'];
                   $tempDate       = $publish_datte;
                   $day            = date('l', strtotime($tempDate));
                   $month          = date('F jS Y ',strtotime($tempDate));
+                  $postId         =$article_1['article_id'];
 
                   $sql_5      = "SELECT mstcat.* FROM mst_kb_category as mstcat
                   INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id
                   INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id where mstart.article_id=".$article_1->getArticleId()."";
                   $result5    = $connection->fetchAll($sql_5);
                 ?>
+
+                <?php
+        $total_likes =$likeblock->getLikeCount($postId);
+        $client_like_count =$likeblock->isLikeAlredySubmitted($postId);
+        if($client_like_count){
+          $value='Unlike';
+          $type_id=0;
+          $class='liked';
+        }else{
+          $value='Like';
+          $type_id=1;
+          $class='';
+        }
+
+        ?>
                 <li>
                   <div class="hub-box fff">
                       <a href="<?= $article_1->getUrl(); ?>"><div class="hub-box-image" ><img src="<?php if(!empty($article_1['image'])){ echo $nn.'/'.$article_1['image'];} else { echo $this->getViewFileUrl('images/hub_cat_01.jpg');} ?>"/></div></a>  
@@ -108,7 +154,14 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
                       </div>
                       <div class="box-bottom">
                           <div class="pull-left"><?php echo $month; ?></div>
-                            <div class="pull-right hubrate"><span><i class="fa fa-heart"></i></span><span><?php echo $article_1->getRating();?></span></div>
+                            <div class="like-action pull-right">
+
+        <button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $postId; ?>" class="like <?php echo $class;?>">
+    </button>
+    (<span id="likes_<?php echo $postId; ?>"><?php echo $total_likes; ?></span>)
+   <img class="like-loader" id="like-loader-<?php echo $postId?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
+
+    </div>
                           <div class="clearfix"></div>
                         </div>
                     </div>

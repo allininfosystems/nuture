@@ -2,6 +2,10 @@
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of Object Manager
 $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
 $store = $storeManager->getStore();
+$mediaUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$likeblock = $objectManager->create('Nuluv\Liker\Block\Liker');
+$page_type = 1;
+
 $baseUrl=$store->getBaseUrl();
 $priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
 $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
@@ -86,6 +90,20 @@ if ($customerSession->isLoggedIn()) {
                                 date_default_timezone_set('Asia/Kolkata');
                                 $paymentDate = date('Y-m-d H:i:s');
 
+
+$total_likes =$likeblock->getLikeCount($product->getId());
+$client_like_count =$likeblock->isLikeAlredySubmitted($product->getId());
+if($client_like_count){
+    $value='Unlike';
+    $type_id=0;
+	$class='liked';
+}else{
+    $value='Like';
+    $type_id=1;
+	$class='';
+}
+
+
                                 $RatingOb = $objectManager->create('Magento\Review\Model\Rating')->getEntitySummary($product->getId());
                                 ?><div class="pkg" >
                                     <div class="item">
@@ -131,14 +149,14 @@ if ($customerSession->isLoggedIn()) {
                                         </div>
                                     </div>
                                     <span class="cta">
-                                        <b><a  href="<?php echo $block->getUrl('wishlist', ['_secure' => true]); ?>" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>'><?php
-                                                if ($customerSession->isLoggedIn()) {
-                                                    if (!in_array($product->getId(), $wishlist_id)) {
-                                                        ?>
-                                                        <i class="fa fa-heart-o"><?php } else { ?> <i class="fa fa-heart"> <?php
-                                                            }
-                                                        } else {
-                                                            ?><i class="fa fa-heart-o"><?php } ?></i></a></b>
+                                        <div class="like-action">
+
+        <button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $product->getId(); ?>" class="like <?php echo $class;?>">
+		</button>
+		(<span id="likes_<?php echo $product->getId(); ?>"><?php echo $total_likes; ?></span>)
+   <img class="like-loader" id="like-loader-<?php echo $product->getId()?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
+
+    </div>
                                                         <b>
                                                             <a href="<?php echo $product->getProductUrl(); ?>">
                                                                 <i class="fa fa-comment-o"></i> 

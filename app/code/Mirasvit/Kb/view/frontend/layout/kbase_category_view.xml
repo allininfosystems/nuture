@@ -32,7 +32,7 @@
                 <block name="kb.search.form" class="Mirasvit\Kb\Block\Search\Form" template="search/form.phtml"/>
             </container>
 
-            <container name="custom.container" htmlTag="div" htmlClass="custom.container">
+            <container name="custom_container" htmlTag="div" htmlClass="custom container">
                 <block class="Mirasvit\Kb\Block\Category\Custom" name="custom" template="Mirasvit_Kb::category/custom.phtml"/>
             </container>
 

@@ -13,12 +13,12 @@
 $topics = $block->getDisplayTopics();
 ?>
 <div class="forum-list-container controls-exists clearfix">
-  <h3 class="grid-title">
-    <?php if ($block->getIsIconsEnabled() && $block->getIconSrc()): ?>
-      <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getIconSrc()) ?>" />
-    <?php endif; ?>
-    <?php echo __('View Forum "%1"', $block->getForumTitle()) ?>
-  </h3>
+  <!-- <h3 class="grid-title">
+    <?php //if ($block->getIsIconsEnabled() && $block->getIconSrc()): ?>
+      <img src="<?php //echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getIconSrc()) ?>" />
+    <?php //endif; ?>
+    <?php //echo __('View Forum "%1"', $block->getForumTitle()) ?>
+  </h3> -->
   <div class="forum-grid-controls">
     <button onclick="document.location.href = '<?php echo $block->getAddNewUrl() ?>'" class="action primary" title="<?php echo __('Add Topic') ?>">
       <span><?php echo __('Add Topic') ?></span>
@@ -30,33 +30,34 @@ $topics = $block->getDisplayTopics();
       <?php echo __('No Data Found') ?>
     </div>
   <?php else: ?>
-    <div class="toolbar top forum-toolbar">
-      <?php echo $block->getPagerHtml(); ?>
-    </div>
+    <!-- <div class="toolbar top forum-toolbar">
+      <?php //echo $block->getPagerHtml(); ?>
+    </div> -->
 
-    <div class="forum-sort">
-      <?php echo __('Sort By') ?>
+    <!-- <div class="forum-sort">
+      <?php //echo __('Sort By') ?>
       &nbsp;&nbsp;
-      <a <?php echo ($this->getSortType() == 'asc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl(null, 'asc') ?>"><?php echo __('Oldest') ?></a>
+      <a <?php //echo ($this->getSortType() == 'asc' ? 'class="selected"' : '') ?> href="<?php //echo $block->getSortUrl(null, 'asc') ?>"><?php //echo __('Oldest') ?></a>
       &nbsp;|&nbsp;
-      <a <?php echo ($this->getSortType() == 'desc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl(null, 'desc') ?>"><?php echo __('Newest') ?></a>
-    </div>
-    <table class="forum-grid forum-list grid data-table-forum-resp">
-      <thead>
-        <tr>
-          <th width="35%"><?php echo __('Topic') ?></th>
-          <th width="15%"><?php echo __('Posts') ?></th>
-          <th width="15%"><?php echo __('Views') ?></th>
-          <th width="35%"><?php echo __('Freshness') ?></th>
-        <tr>
-      </thead>
-      <tbody>
+      <a <?php //echo ($this->getSortType() == 'desc' ? 'class="selected"' : '') ?> href="<?php //echo $block->getSortUrl(null, 'desc') ?>"><?php //echo __('Newest') ?></a>
+    </div> -->
+	<!-- forum -->
+    <ul class="forum-grid forum-list grid data-table-forum-resp">
+      <li class="bbp-header-cls">
+         <ul class="forum-titles-cls">
+          <li class="bbp-forum-info-cls"><?php echo __('Topic') ?></li>
+          <li class="bbp-forum-topic-count-cls"><?php echo __('Posts') ?></li>
+          <li class="bbp-forum-reply-count-cls"><?php echo __('Views') ?></li>
+          <li class="bbp-forum-freshness-cls"><?php echo __('Freshness') ?></li>
+        </ul>
+      </li>
+      <li class="bbp-body-cls">
         <?php foreach ($topics as $topic): ?>
-          <tr>
-            <td>
+          <ul class="loop-item-cls">
+            <li class="bbp-forum-info-cls">
               <div>
                 <div class="forum-icons">
-                  <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'folder_topic.png'); ?>" />
+                  <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'forum_post-icon.png'); ?>" />
                   <?php if ($block->getIsIconsEnabled() && $block->getIconSrc($topic, true)): ?>
                     <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . $block->getIconSrc($topic, true)) ?>" />
                   <?php endif; ?>
@@ -70,16 +71,16 @@ $topics = $block->getDisplayTopics();
                       <?php echo $topic->getDescription() ?>
                     </div>
                   <?php endif; ?>
-                  <div class="forum-created-time">
-                    <?php echo __('Created') ?>: <?php echo $block->getTimeAccordingToTimeZone($topic->getCreatedTime()); ?>
-                  </div>
-                  <div class="forum-created-by">
-                    <?php echo __('Created By: "<a href=%2>%1</a>"', $block->getTopicCreatorName($topic), $block->getTopicCreatorLink($topic)) ?>
-                  </div>
+                  <!-- <div class="forum-created-time">
+                    <?php //echo __('Created') ?>: <?php //echo $block->getTimeAccordingToTimeZone($topic->getCreatedTime()); ?>
+                  </div> -->
+                  <!-- <div class="forum-created-by">
+                    <?php //echo __('Created By: "<a href=%2>%1</a>"', $block->getTopicCreatorName($topic), $block->getTopicCreatorLink($topic)) ?>
+                  </div> -->
                   <?php if ($block->getIsOwner($topic)): ?>
                     <div class="forum-topic-controls">
                       <a href="<?php echo $block->getEditLink($topic) ?>" class="forum-topic-controls-edit">
-                        <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'edit_icon.png'); ?>" />
+                        <!-- <img src="<?php //echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'edit_icon.png'); ?>" /> -->
                         <?php echo __('Edit') ?>
                       </a>
                       &nbsp;
@@ -93,20 +94,20 @@ $topics = $block->getDisplayTopics();
                   <?php endif; ?>
                 </div>
               </div>
-            </td>
-            <td>
+            </li>
+            <li class="bbp-forum-topic-count-cls">
               <div class="total-posts-container">
-                <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'forum_post.png'); ?>" />
+                <!-- <img src="<?php //echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'forum_post.png'); ?>" /> -->
                 <?php echo $topic->getTotalPosts() ?>
               </div>
-            </td>
-            <td>
+            </li>
+            <li class="bbp-forum-reply-count-cls">
               <div class="total-views-container">
-                <img src="<?php echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'view_icon.png'); ?>" />
+                <!-- <img src="<?php //echo $block->getViewFileUrl('WIO_Forum' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'view_icon.png'); ?>" /> -->
                 <?php echo $topic->getTotalViews() ? $topic->getTotalViews() : '0'; ?>
               </div>
-            </td>
-            <td>
+            </li>
+            <li class="bbp-forum-freshness-cls">
               <?php
               $latest = $block->getLatestPostDetails($topic->getLastPostId());
               ?>
@@ -133,11 +134,11 @@ $topics = $block->getDisplayTopics();
                   </div>
                 <?php endif; ?>  
               </div>
-            </td>
-          </tr>
+            </li>
+          </ul>
         <?php endforeach; ?>
-      </tbody>
-    </table>
+      </li>
+    </ul>
     <script type="text/javascript">
       WIO_Forum_Responsive_tables.init();
     </script>

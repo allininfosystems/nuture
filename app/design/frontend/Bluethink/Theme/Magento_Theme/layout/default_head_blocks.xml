@@ -6,6 +6,7 @@
         <!-- <css src="mage/gallery/gallery.css"/> -->
         <css src="css/bootstrap.css"/>
         <css src="css/style.css"/>
+        <css src="css/custom-new.css"/>
         <css src="css/font-awesome.min.css"/>
         <css src="css/jquery.bxslider.css"/>
        <!--  <remove src="css/styles-m.css" /> -->

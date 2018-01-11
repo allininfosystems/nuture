@@ -132,12 +132,12 @@ if ($checkRss):
       <div class="blog-date"><?php echo  $block->getDateFormat($post->getPublishDate()); ?></div>
       <div class="blog-status">
         
-        <div class="like-action">
-  <button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $post->getPostId(); ?>" class="like <?php echo $class;?>">
-  </button>
-  (<span id="likes_<?php echo $post->getPostId(); ?>"><?php echo $total_likes; ?></span>)
-  <img class="like-loader" id="like-loader-<?php echo $post->getPostId()?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
-</div>
+		<div class="like-action">
+		    (<span id="likes_<?php echo $post->getPostId(); ?>"><?php echo $total_likes; ?></span>)
+			<button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $post->getPostId(); ?>" class="like <?php echo $class;?>">
+			</button>			
+			<img class="like-loader" id="like-loader-<?php echo $post->getPostId()?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
+		</div>
         
         <div class="blog-comment"><?php echo  $commentcount; ?> <i class="fa fa-comments"></i></div>
         <div class="clearfix"></div>

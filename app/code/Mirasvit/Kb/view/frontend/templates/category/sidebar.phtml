@@ -94,10 +94,10 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 		}
 	 ?>
 	
-	<div style="width:100%">
-		<ul>
+	<div class="kbmain-cls">
+		<ul class="kbmain-inner-cls">
 			<li>
-				<select name="month" id="months" style="width:10%; float:left;" onchange="monthVal(this.value)">
+				<select name="month" id="months" onchange="monthVal(this.value)">
 					<option value="">Month</option>
 					<?php 
 					$months = array_unique($months);
@@ -106,7 +106,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 						<option value="<?=$month ?>" <?php if(isset($_GET['month'])){ echo ($_GET['month']==$month?'selected':''); } ?>><?=$month ?></option>
 					<?php } ?>
 				</select>
-				<select name="pregnant" id="pregnants" style="width:10%; float:left;" onchange="pregnantVal(this.value)">
+				<select name="pregnant" id="pregnants" onchange="pregnantVal(this.value)">
 					<option value="">Getting Pregnant</option>
 					<?php 
 					$pregnants = array_unique($pregnant);
@@ -115,7 +115,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 						<option value="<?=$pregnant ?>" <?php if(isset($_GET['pregnant'])){ echo ($_GET['pregnant']==$pregnant?'selected':''); } ?>><?=$pregnant ?></option>
 					<?php } ?>
 				</select>
-				<select name="parenting" id="parentings" style="width:10%;" onchange="parentingVal(this.value)">
+				<select name="parenting" id="parentings" onchange="parentingVal(this.value)">
 					<option value="">Parenting</option>
 					<?php 
 					$parentings = array_unique($parenting);
@@ -124,22 +124,18 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 						<option value="<?=$parenting ?>" <?php if(isset($_GET['parenting'])){ echo ($_GET['parenting']==$parenting?'selected':''); } ?>><?=$parenting ?></option>
 					<?php } ?>
 				</select>
-			</li>
-			
-			<li>
-				<div class="toolbar toolbar-products" style="display: block;">
-					<div class="orderby">
-						<span>Order By</span>
-						<select style="width:70%;" id="sorter" class="custom_select" onchange="articleListSorting(this.value);" name="sorterone">
-							<option value="asc" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='asc'?'selected':''; } ?>>Relevance</option>
-							<option value="desc" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='desc'?'selected':''; } ?>>Alphabetically, Z-A</option>
-							<option value="popular" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='popular'?'selected':''; } ?>>Popular</option>
-						</select>
-					</div>
-				</div>
-			</li>
-			
+			</li>			
 		</ul>
+		<div class="toolbar toolbar-products" style="display: block;">
+			<div class="orderby">
+				<span>Order By</span>
+				<select style="width:70%;" id="sorter" class="custom_select" onchange="articleListSorting(this.value);" name="sorterone">
+					<option value="asc" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='asc'?'selected':''; } ?>>Relevance</option>
+					<option value="desc" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='desc'?'selected':''; } ?>>Alphabetically, Z-A</option>
+					<option value="popular" <?php if(isset($_GET['sort'])){ echo $_GET['sort']=='popular'?'selected':''; } ?>>Popular</option>
+				</select>
+			</div>
+		</div>
 	</div>
 
 <style type="text/css">

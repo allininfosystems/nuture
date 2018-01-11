@@ -19,8 +19,7 @@
 
 body{font-family: 'Raleway', sans-serif !important;}
 
-.product-item-details h5 {font-size: 15px; color: #2f2f2f; line-height: 24px;  font-weight: 500;  min-height: 50px;  margin: 5px 0 3px;
- white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.product-item-details h5 {font-size: 15px; color: #2f2f2f; line-height: 24px;  font-weight: 500;  min-height: 50px;  margin: 5px 0 3px;}
  ol, ul { list-style: none; margin:0; }
 
 /* Edited by Ajeet */
@@ -1828,11 +1827,11 @@ text-decoration: none;}
 .prd_control label {display: none !important;}
 .prd_control .actions {padding-top: 0 !important;}
 .prd_control form {float: left;}
-.prd_control #qty {border: 1px solid #e5e5e5;  width: 70px;  height: 45px; font-size: 20px;  text-align: center;  vertical-align: middle;}
+.prd_control #qty{border: 1px solid #e5e5e5;  width: 70px;  height: 45px; font-size: 20px;  text-align: center;  vertical-align: middle;}
 .prd_control .field.qty {padding-right: 5px !important;}
 .prd_control #product-addtocart-button {background: #7d6170; font-size: 14px; color: #fff;  height: 45px;  vertical-align: middle;  width: 127px;
                                         text-align: center; padding: 10px; line-height: 26px; float: left; font-weight: normal; margin-right: 5px; border: none;}
-.hub-box-image {width: 290px; height: 161px; overflow: hidden;}
+.hub-box-image {width: 100%; height: 161px; overflow: hidden;}
 .hub-box-image img {width: 100%; height: auto;}
 
 .checkout-index-index  {box-shadow: none !important; border: none !important;}
@@ -2203,13 +2202,14 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
  width:20px; height:9px; font-size:0; display: inline-block; background-size: cover; line-height: 20px;}
 .toolbar-products{float:right; margin-bottom: 0;}
 
-.like-action {display: inline-block; margin-right: 10px;}
+.like-action {display: inline-block; margin-right: 10px; position: relative;}
 .like-action .like{border:none; padding: 0;}
 .like-action .like:before{content: "\f08a"; font-family: "FontAwesome"; color: #333;}
 .like-action .like.liked:before{content: "\f004"; font-family: "FontAwesome"; color: #7e6674;}
 .like-action .like:hover:before{content: "\f004"; font-family: "FontAwesome"; color: #7e6674;}
 
 .fancybox-outer.abc {padding-top: 14px;}
+.rewards__product-points {display: none;}
 
 
 /*============ Category Search ========*/
@@ -2331,6 +2331,16 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .catalog-product-view .product-info-main .all-actions .box-tocart .prd_control{padding-bottom: 0px; border-bottom: none;}
 .like-loader {position: absolute; top: -12px; width: 70px; height: auto;}
 .catalog-product-view .rewardssocial-buttons .status-message{display:none;}
+._keyfocus *:focus, input:not([disabled]):focus, textarea:not([disabled]):focus, select:not([disabled]):focus{box-shadow: none;}
+
+.catalog-product-view .product-info-main .product-add-form .fieldset>.field:not(.choice)>.label {display: none;}
+.catalog-product-view .product-add-form .box-tocart .qty .control #qty{border: 1px solid #e5e5e5;  width: 70px;  height: 45px; font-size: 20px;  
+ text-align: center; vertical-align: middle;}
+.catalog-product-view .product-info-main .all-actions .like-action button:hover {outline: none; border: none; background: none;} 
+.catalog-product-view .product-info-main .all-actions .like-action{margin-right: 10px;}
+.catalog-product-view .product-add-form .box-tocart .field.qty {padding-right: 5px;}
+.catalog-product-view .product-add-form .box-tocart .actions .action.tocart{background: #7d6170; font-size: 14px; color: #fff; height: 45px; vertical-align: middle;
+ width: 127px; text-align: center; padding: 10px; line-height: 26px; float: left; font-weight: normal; margin-right: 5px; border: none;} 
 
 
 /* 01-01-2018 by SJ */
@@ -2422,6 +2432,7 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 
 .mpcss a:focus{outline: none; outline-offset: inherit;}
 .mpcss a:hover, .mpcss a:focus {text-decoration: none;}
+.blog-status > .blog-comment{float:none; display:inline-block; margin-left: 0;}
 
 
 
@@ -2501,6 +2512,22 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 
 .customer-reply-cls li {padding-bottom: 15px; display: block;}
 .customer-reply-cls li:last-child{padding-bottom:0px;}
+
+.kbmain-cls {width: 100%; float: left; margin: 13px 0px 23px 0px;}
+.kbmain-inner-cls {float: left; padding: 0;}
+.kbmain-inner-cls li {width: 100%; float: left; margin-bottom: 0;}
+.kbmain-inner-cls li select {display: inline-block; float: left; width: auto; margin-right: 10px; border: none; font-size: 14px; font-weight: 600;
+ font-family: 'Open Sans', sans-serif; 
+  -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    outline: 0; height: 30px; box-shadow: none; background: url(../images/select-arrow.png) no-repeat calc(100% - 5px) center; 
+	padding-right: 25px; line-height: 20px;}
+.kbmain-inner-cls li select:focus{box-shadow:none;}	
+.kbmain-cls .toolbar-products .orderby{margin:0px;}
+.custom.container {padding: 0;}
 
 
 /*======= End Of Knowledge Hub ==========*/
@@ -3760,7 +3787,7 @@ select.custom_select{padding-left: 0;}
 
 	
 }
-/*jkj*/
+
 @media screen and (max-width:480px){
 
 .slide-container{padding: 0px 0px;}	

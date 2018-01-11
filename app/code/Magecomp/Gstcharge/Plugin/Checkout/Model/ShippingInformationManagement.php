@@ -46,8 +46,15 @@ class ShippingInformationManagement
         ShippingInformationInterface $addressInformation
     )
     {
+		$buyerGstNumber = "";
+		
 		 $extAttributes = $addressInformation->getExtensionAttributes();
+		 try{
+			if(sizeof($extAttributes)){
 		 $buyerGstNumber = $extAttributes->getBuyerGstNumber();
+			}
+		 }catch (\Exception $e) {
+		}
 		 
 		 $quote = $this->quoteRepository->getActive($cartId);
  		
@@ -83,7 +90,5 @@ class ShippingInformationManagement
 			$quote->setIgstCharge(NULL);
             $quote->getShippingAddress()->setIgstCharge(NULL);
         }
-		
     }
 }
-

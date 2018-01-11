@@ -2337,7 +2337,7 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .catalog-product-view .product-add-form .box-tocart .qty .control #qty{border: 1px solid #e5e5e5;  width: 70px;  height: 45px; font-size: 20px;  
  text-align: center; vertical-align: middle;}
 .catalog-product-view .product-info-main .all-actions .like-action button:hover {outline: none; border: none; background: none;} 
-.catalog-product-view .product-info-main .all-actions .like-action{margin-right: 10px;}
+.catalog-product-view .product-info-main .all-actions .like-action{margin-right: 5px;}
 .catalog-product-view .product-add-form .box-tocart .field.qty {padding-right: 5px;}
 .catalog-product-view .product-add-form .box-tocart .actions .action.tocart{background: #7d6170; font-size: 14px; color: #fff; height: 45px; vertical-align: middle;
  width: 127px; text-align: center; padding: 10px; line-height: 26px; float: left; font-weight: normal; margin-right: 5px; border: none;}
@@ -3788,7 +3788,7 @@ select.custom_select{padding-left: 0;}
 
 	
 }
-/* lkdlf */
+
 @media screen and (max-width:480px){
 
 .slide-container{padding: 0px 0px;}	

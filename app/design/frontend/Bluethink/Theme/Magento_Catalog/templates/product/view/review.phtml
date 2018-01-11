@@ -22,7 +22,6 @@ $module_name = $request->getModuleName();
 $controller_name = $request->getControllerName();
 ?>
 <h3 class="prd_title"><?php echo $block->getProduct()->getData('name'); ?></h3>
-<?php if ($controller_name == 'product') { ?>
     <h6 class="prd_type rev"><?php $brandname= $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getProductBrand(), 'product_brand'); 
                $getAttribute=explode(',', $brandname);
                foreach ($getAttribute as $getAttributes) {
@@ -33,5 +32,4 @@ $controller_name = $request->getControllerName();
 			   } 
 			 ?>
 			 </h6>
-<?php } ?>
 <!--<div id="reviewdiv"><?php //echo $block->getReviewsSummaryHtml($block->getProduct(), false, true) ?></div>-->

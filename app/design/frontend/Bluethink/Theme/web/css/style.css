@@ -2209,6 +2209,7 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 
 .fancybox-outer.abc {padding-top: 14px;}
 .rewards__product-points {display: none !important;}
+.popular-products .prod-list-form button.p-product-add:hover {border: none;}
 
 
 /*============ Category Search ========*/
@@ -2267,6 +2268,12 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .order-title a.action.track:hover {text-decoration: none;}
 .order-title a.action.track {color: #fff;}
 
+#pincodemessage{padding: 0 4%;}
+#pincodemessage p {padding-left: 15px;}
+#one-step-checkout-form .checkout-review-load .data-table tbody th.mark .value {padding: 5px 0px 0; display: block;}
+.field .message.warning {width: calc(100vh - 105px);}
+.minicart-wrapper .action.showcart {display: block !important;}
+footer.footer .brand-slider .owl-dots {display: none;}
 
 /*========= End OF One Page Checkoutt ===========*/
 
@@ -2420,8 +2427,8 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .post-list-content {background: #fafafa;}
 .mpcss.mp-comment.bottomcommentBox-cls h2 {text-align: center; border-bottom: 1px solid #dedede; padding-bottom: 15px; margin-bottom: 0;}
 .bottomcommentBox-cls .content-login-cls {background: #7e6674; color: #fff !important; padding: 15px 25px; display: inline-block;}
-.bottomcommentBox-cls .content-login-cls:hover {text-decoration: none;}
-.bottomcommentBox-cls div.default-cmt__content__cmt-content {margin-top: 10px;}
+.bottomcommentBox-cls .content-login-cls:hover {text-decoration: none; }
+.bottomcommentBox-cls div.default-cmt__content__cmt-content {margin-top: 10px; padding-bottom: 15px;}
 
 .mpcss .panel-group.blogaccordion-cls .panel-heading{border-bottom: 1px solid #ddd; color: #666; font-family: 'open sans'; font-size: 15px; 
  padding: 15px; display: block;} 
@@ -2528,6 +2535,8 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .kbmain-inner-cls li select:focus{box-shadow:none;}	
 .kbmain-cls .toolbar-products .orderby{margin:0px;}
 .custom.container {padding: 0;}
+
+..mpcss.blogSharing .share-col-right{float:right;}
 
 
 /*======= End Of Knowledge Hub ==========*/

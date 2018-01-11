@@ -1,5 +1,7 @@
 <?php // Get current product
 $product = $block->getProduct();
 ?>
+<?php if($product->getData('awards')){ ?>
 <!-- <h1 style="color: #ff5501"> -->
 <div class="prd_overview"> <?php echo $product->getData('awards'); ?></div><!-- </h1> -->
+<?php } ?>

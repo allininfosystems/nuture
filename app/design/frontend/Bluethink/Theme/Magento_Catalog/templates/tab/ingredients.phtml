@@ -1,4 +1,6 @@
 <?php // Get current product
 $product = $block->getProduct();
 ?>
+<?php if($product->getData('ingredients')){ ?>
 <div class="prd_overview"> <?php echo $product->getData('ingredients'); ?></div>
+<?php } ?>

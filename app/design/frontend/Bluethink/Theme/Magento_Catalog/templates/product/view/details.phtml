@@ -53,7 +53,28 @@ $mediaUrl = $storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterfa
                        data-toggle="switch"
                        href="#<?php /* @escapeNotVerified */ echo $alias; ?>"
                        id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title">
-                        <?php /* @escapeNotVerified */ echo $label; ?>
+					   
+						<?php
+							$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+							$reviewFactory = $objectManager->create('Magento\Review\Model\Review');
+							$storeManager =    $objectManager->create('\Magento\Store\Model\StoreManagerInterface');		
+							$storeId = $storeManager->getStore()->getId();
+							$reviewFactory->getEntitySummary($product, $storeId);
+
+							$reviewCount = $ratingSummary = $product->getRatingSummary()->getRatingSummary();
+						?>
+
+                        <?php /* @escapeNotVerified */ 
+						
+							if($label!='Comments'){
+								echo $label;
+							}
+							if($label=='Comments'){
+								if($reviewCount!=''){
+									echo $label;
+								}
+							}
+						?>
                     </a>
                 </div>
                 <div class="data item content tabcontent-<?php echo $i;?>" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content">

@@ -36,12 +36,15 @@ $page_type = 3; //For knowledge hub page
    $total_likes =$likeblock->getLikeCount($postId);
    $client_like_count =$likeblock->isLikeAlredySubmitted($postId);
    if($client_like_count){
-	$value='Unlike';
-	$type_id=0;
+    $value='Unlike';
+    $type_id=0;
+	$class='liked';
 }else{
-	$value='Like';
-	$type_id=1;
+    $value='Like';
+    $type_id=1;
+	$class='';
 }
+
 ?>
 
 <?= $block->getKbPageTitle() ?>
@@ -62,12 +65,19 @@ $page_type = 3; //For knowledge hub page
 		
 		<div class="mpcss blogSharing">
 			<div id="sharing">
-				<div class="like-action">
 
-                <input type="button" value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $postId; ?>" class="like" />&nbsp;(<span id="likes_<?php echo $postId; ?>"><?php echo $total_likes; ?></span>)
-                
 
-            </div>
+				
+
+
+            <div class="like-action">
+
+        <button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $postId; ?>" class="like <?php echo $class;?>">
+		</button>
+		(<span id="likes_<?php echo $postId; ?>"><?php echo $total_likes; ?></span>)
+   <img class="like-loader" id="like-loader-<?php echo $postId?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
+
+    </div>
 				<div class="share-col-right">
 					<div class="post-sharing-button social-main-cls">
 						<label class="label-cls">Share: </label>

@@ -147,6 +147,12 @@ if($module_name == 'catalog' && $controller_name == 'category')
   echo __('TAGS');
   ?>
 </h2>
+<?php }elseif ($controller_name=='forum') {?>
+  <h2 class="head-title">
+<?php
+  echo __('Mama Squad');
+  ?>
+</h2>
 <?php }elseif ($action_name=='view' && $module_name=='mpblog' && $controller_name=='category') {?>
   <h2 class="head-title">
 <?php

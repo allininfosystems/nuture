@@ -2209,7 +2209,7 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .like-action .like:hover:before{content: "\f004"; font-family: "FontAwesome"; color: #7e6674;}
 
 .fancybox-outer.abc {padding-top: 14px;}
-.rewards__product-points {display: none;}
+.rewards__product-points {display: none !important;}
 
 
 /*============ Category Search ========*/
@@ -2340,7 +2340,8 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .catalog-product-view .product-info-main .all-actions .like-action{margin-right: 10px;}
 .catalog-product-view .product-add-form .box-tocart .field.qty {padding-right: 5px;}
 .catalog-product-view .product-add-form .box-tocart .actions .action.tocart{background: #7d6170; font-size: 14px; color: #fff; height: 45px; vertical-align: middle;
- width: 127px; text-align: center; padding: 10px; line-height: 26px; float: left; font-weight: normal; margin-right: 5px; border: none;} 
+ width: 127px; text-align: center; padding: 10px; line-height: 26px; float: left; font-weight: normal; margin-right: 5px; border: none;}
+.catalog-product-view .product-add-form .box-tocart .actions {padding-top: 0;} 
 
 
 /* 01-01-2018 by SJ */

@@ -38,9 +38,9 @@
     	border: 1px solid #7e6674
 
     }
-    .cart-summary>.title{
+   /* .cart-summary>.title{
       display: none;
-    }
+    }*/
     #block-shipping{
       display: none;
     }
@@ -65,19 +65,20 @@
             <div class="cart-products-toolbar cart-products-toolbar-top toolbar" data-attribute="cart-products-toolbar-top"><?php echo $block->getPagerHtml(); ?></div>
         <?php endif; ?>
         <table id="shopping-cart-table"
-               class="cart items data table table table-bordered cart-table"
+               class=""
                data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
                "updateCartActionContainer": "#update_cart_action_container"}}'>
             <caption role="heading" aria-level="2" class="table-caption"><?php /* @escapeNotVerified */ echo __('Shopping Cart Items') ?></caption>
-            <thead>
-                <tr><th style="width:5%" >S.No</th>
-                    <th class="col item" scope="col"><span><?php /* @escapeNotVerified */ echo __('Image') ?></span></th>
-                    <th class="col price" scope="col"><span><?php /* @escapeNotVerified */ echo __('Product Name') ?></span></th>
-                    <th class="col qty" scope="col"><span><?php /* @escapeNotVerified */ echo __('Quantity') ?></span></th>
+            <thead class="hide767">
+                <tr> 
+                  <?php /* <th style="width:5%" >S.No</th> */ ?>
+                    <th class="col item" scope="col" colspan="2"><span><?php /* @escapeNotVerified */ echo __('item') ?></span></th>
+                    <?php /* <th class="col price" scope="col"><span><?php echo __('Product Name') ?></span></th> */ ?>
                     <th class="col subtotal" scope="col"><span><?php /* @escapeNotVerified */ echo __('Price') ?></span>
                     </th>
+                    <th class="col qty" scope="col"><span><?php /* @escapeNotVerified */ echo __('Quantity') ?></span></th>
                     <th class="col subtotal" scope="col"><span><?php /* @escapeNotVerified */ echo __('Total') ?></span></th>
-                    <th class="col subtotal" scope="col"><span><?php /* @escapeNotVerified */ echo __('Remove') ?></span></th>
+                    <th class="col subtotal" scope="col"><span><?php /* @escapeNotVerified */ echo __('&nbsp;') ?></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -86,7 +87,7 @@
             <?php $i=1;
              foreach ($block->getItems() as $_item): ?>
              <tr>
-             <td><?php echo $i; ?></td>
+             <?php /* <td><?php echo $i; ?></td> */ ?>
                 <?php echo $block->getItemHtml($_item) ?>
                 </tr>
             <?php $i++;

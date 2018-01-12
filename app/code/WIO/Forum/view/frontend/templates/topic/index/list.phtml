@@ -11,6 +11,7 @@
  *
  */
 $posts = $this->getDisplayPosts();
+
 ?>
 
 <div class="forum-list-container controls-exists clearfix">
@@ -44,22 +45,22 @@ $posts = $this->getDisplayPosts();
       &nbsp;|&nbsp;
       <a <?php echo ($this->getSortType() == 'desc' ? 'class="selected"' : '') ?> href="<?php echo $block->getSortUrl(null, 'desc') ?>"><?php echo __('Newest') ?></a>
     </div>
-    <table class="forum-grid forum-list grid">
-      <thead>
-        <tr>
-          <th width="25%"></th>
-          <th width="75%">
+    <ul class="forum-grid forum-list grid">
+      <li class="bbp-header-cls">
+        <ul class="forum-titles-cls">
+          <li class="forum-topic-cls1"></li>
+          <li class="forum-topic-cls2">
             <?php echo __('Posts') ?>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
+          </li>
+        </ul>
+      </li>
+      <li class="forum-topic-body">
         <?php
         foreach ($posts as $post):
           $userDetails = $block->getUserDetails($post->getSystemUserId());
           ?>
-          <tr>
-            <td>
+          <ul class="forum-topic-body-inner">
+            <li class="forum-topic-cls1">
               <div class="forum-avatar-image-container">
                 <img src="<?php echo $userDetails['avatar'] ?>" class="forum-avatar-image"/>
               </div>
@@ -74,19 +75,18 @@ $posts = $this->getDisplayPosts();
                 </span>
                 <?php if ($userDetails['joined']): ?>
                   <span class="forum-user-joined">
-                    <?php echo __('Joined: <strong>%1</stron>', $block->getTimeAccordingToTimeZone($userDetails['joined'])); ?>
+                    <?php echo __('Joined: <strong>%1</strong>', $block->getTimeAccordingToTimeZone($userDetails['joined'])); ?>
                   </span>
                 <?php endif; ?>
               </div>
-            </td>
-            <td>
+            </li>
+            <li class="forum-topic-cls2">
               <div class="forum-post-view-container" id="<?php echo $block->getPostBlockId($post) ?>">
                 <?php echo $post->getPost() ?>
               </div>
               <?php if ($userDetails['signature']): ?>
                 <div class="forum-user-signater">
-                  <?php echo $userDetails['signature'] ?>
-                  <hr>
+                  <?php echo $userDetails['signature'] ?>                  
                 </div>
               <?php endif; ?>
               <?php if ($block->getIsOwner($post)): ?>
@@ -102,11 +102,11 @@ $posts = $this->getDisplayPosts();
                 </div>
               <?php endif; ?>
               <?php echo __('Posted: %1', $this->getPostTime($post)) ?>
-            </td>
-          </tr>
+            </li>
+          </ul>
         <?php endforeach; ?>
-      </tbody>
-    </table>
+      </li>
+    </ul>
 
     <div class="clearfix">&nbsp;</div>
     <div class="forum-grid-controls">

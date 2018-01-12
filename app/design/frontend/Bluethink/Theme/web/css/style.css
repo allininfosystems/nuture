@@ -2866,7 +2866,8 @@ a.lgbtn {color: #fff; padding: 13px 10px;  background: #7e6674; font-size: 20px;
 .forum-topic-description {width: 100%; float: left; margin-top: 15px; font-family: 'Open Sans', sans-serif; font-size: 15px; line-height: 25px;
  padding-left: 38px; color: #333333; font-weight: 400;}
 .forum-icons {width: 14px; margin-right: 22px;}
-.forum-details .forum-display-description {font-size: 20px; color: #333333; font-family: 'Raleway', Times, serif; font-weight: 600;}
+.forum-details .forum-display-description {font-size: 20px; color: #333333; font-family: 'Raleway', Times, serif; font-weight: 600;
+ display: flex; line-height: 1;}
 .total-topics-container,.total-posts-container {font-size: 20px; color: #333333;}
 .main-forum-container {padding: 0px 10px; max-width: 1220px; margin: 0 auto;}
 .forum-grid.forum-list {width: 100%; float: left; padding: 0;}
@@ -2914,7 +2915,7 @@ a.lgbtn {color: #fff; padding: 13px 10px;  background: #7e6674; font-size: 20px;
 .forum-topic-cls1{width:35%; display: table-cell;}
 .forum-topic-body .forum-topic-cls1 .forum-avatar-image-container .forum-avatar-image {max-width: 100px;}
 .forum-topic-cls2{width:65%; display: table-cell; vertical-align: middle;}
-.forum-topic-body .forum-post-view-container p {width: 100%; display: block; line-height: 22px;}
+.forum-topic-body .forum-post-view-container p {width: 100%; display: block; line-height: 22px; font-family: 'Open Sans', sans-serif;}
 .forum-user-signater{width:100%;} 
 .forum-topic-body .forum-topic-cls1 .forum-avatar-image-container {display: inline-block; vertical-align: top;}
 .forum-topic-body .forum-topic-cls1 .forum-user-data-container .forum-user-nickname {text-align: left;}

@@ -146,6 +146,15 @@ class ListTopic extends \WIO\Forum\Block\Forum\View {
     $post = $latest['post'];
     return $this->_forumUser->getForumUserName($post->getSystemUserId());
   }
+  public function getUserDetails($latest) {
+	$post = $latest['post'];  
+	$_systemUserId=$post->getSystemUserId();
+    if (!empty($this->_loadedUsers[$_systemUserId])) {
+      return $this->_loadedUsers[$_systemUserId];
+    }
+    $this->_loadedUsers[$_systemUserId] = $this->_forumUser->getForumUserData($_systemUserId);
+    return $this->_loadedUsers[$_systemUserId];
+  }
   
   public function getLatestPostedByUrl($latest){
     $post = $latest['post'];

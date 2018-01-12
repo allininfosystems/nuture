@@ -107,7 +107,9 @@ class ListForum extends \WIO\Forum\Block\Forum\Index {
     return $userData;
   }
   
-  public function getUserDetails($_systemUserId) {
+  public function getUserDetails($latest) {
+	$post = $latest['post'];  
+	$_systemUserId=$post->getSystemUserId();  
     if (!empty($this->_loadedUsers[$_systemUserId])) {
       return $this->_loadedUsers[$_systemUserId];
     }

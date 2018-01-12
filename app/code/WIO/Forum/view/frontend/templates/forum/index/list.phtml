@@ -94,38 +94,54 @@ $forums = $block->getDisplayForums();
                       </div>
                     <?php endif;*/ ?>
 					<?php
-						/* $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-						$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
-						$baseURL = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB); 
-						
-						$custId = $block->getCustId();
-						$customer = $objectManager->create('Magento\Customer\Model\Customer')->load($custId);
-						$customer->getData('avatar'); */
-						
-						$custId = $block->getCustId();
-						$userDetails = $block->getUserDetails($custId);
-                        // print_r($userDetails);			
+						$userDetails = $block->getUserDetails($latest);		
 					?>
                     <div class="forum-latest-reply-user">
-					 <!-- <img src="<?php // echo $baseURL .'media/avatar/' .$customer->getData('avatar'); ?>" height="30" width="30" alt="avatar"/> -->
-					 <img src="<?php echo $userDetails['avatar']; ?>" height="50" width="50" class="forum-avatar-image"/>
-                      
-                    </div>
-					<div class="uploader-container-cls">
+				     <?php 
+					     if($userDetails['avatar']){
+							 echo '<img src="'.$userDetails['avatar'].'" height="50" width="50" class="forum-avatar-image" />';
+						 }
+					 ?>
+                  </div>
+                  <div class="uploader-container-cls">
 						<div class="uploader-cls">
 							<?php
 							  echo __('<strong><a href="%1">%2</a></strong>', $block->getLatestPostedByUrl($latest), $block->getLatestPostedBy($latest));
 							  ?>
 						</div>
 						<div class="forum-latest-reply-date">
-						  <?php     $postdate=$block->getLatestPostedDate($latest);
+						        <?php 
+								    $postdate=$block->getLatestPostedDate($latest);
+									$ltpostdate = new DateTime($postdate);
+									$latestdate=$ltpostdate->format('Y-m-d H:i:s');
+									$currdatetime =  date('Y-m-d H:i:s');
+								    $datetime1 = new DateTime($latestdate);
+									$datetime2 = new DateTime($currdatetime);
+									$interval = $datetime1->diff($datetime2);
+									$days=$interval->format('%R%a');
+									$hours=$interval->format('%R%H');
+									$minute=$interval->format('%R%i');
+									$second=$interval->format('%R%s');
+									$dyears=$interval->format('%R%y');
+									$dmonths=$interval->format('%R%m');
+									if($dyears>0 && $dmonths>0){
+									   echo str_replace('+','',$dyears).' Year, '.str_replace('+','',$dmonths).' Months ago';	
+									}elseif($dmonths>0 && $days>0){
+									   echo str_replace('+','',$dmonths).' Month, '.str_replace('+','',$days).' Days ago';	
+									}elseif($days>0 && $hours>0){
+									   echo str_replace('+','',$days).' Days, '.str_replace('+','',$hours).' Hours ago';	
+									}elseif($hours>0 && $minute>0){
+									   echo str_replace('+','',$hours).' Hours, '.str_replace('+','',$minute).' Minutes ago';	
+									}elseif($minute>0 && $second>0){
+									   echo str_replace('+','',$minute).' Minutes, '.str_replace('+','',$second).' Seconds ago';	
+									}else{
+									   echo str_replace('+','',$second).' Seconds ago';	
+									}
 									$date = new DateTime($postdate);
 									$postdate1 =  $postdate;
 									$currdate =  date('Y-m-d');
 									?>
-									
-									<?php /* custom */ 
-									
+								<?php /* custom */ 
 									$start = strtotime($postdate1);
 									$end = strtotime($currdate);
 									$total_days = ceil(abs($end - $start) / 86400);
@@ -133,24 +149,9 @@ $forums = $block->getDisplayForums();
 									$year =  Intval($total_days/365);
 									$month = intval( $total_days/30);
 									$months = $actual_month = intval($month/12);
-
-									echo $year.' Year, '.$months.' months ago';
-											/* function printDiff($tz,$t1,$t2)
-											{
-												$d1 = new DateTime($t1, new DateTimeZone($tz));
-												$d2 = new DateTime($t2, new DateTimeZone($tz));
-												$diff = $d1->diff($d2);
-												print($diff->format("%Y Year, %M months %D day ago"). PHP_EOL);
-											}
-											
-											 printDiff("UTC",$postdate1,$currdate);  */
-											
-											//printDiff("Australia/Melbourne");
-											?>
-											
-											
-									<?php /* End: custom */ ?>
-										
+									//echo $year.' Year, '.$months.' months ago';
+								?>
+								<?php /* End: custom */ ?>
 						</div>
 					</div>
                   <?php endif; ?>  

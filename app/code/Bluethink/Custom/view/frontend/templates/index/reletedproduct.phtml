@@ -10,7 +10,9 @@ $routeName      = $requestInterface->getRouteName();
 $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
 $mediaUrl = $storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
 $likeblock = $objectManager->create('Nuluv\Liker\Block\Liker');
-$page_type = $likeblock->getPageType(); 
+$page_type = $likeblock->getPageType();
+$currentStore = $storeManager->getStore(); 
+$baseUrl = $currentStore->getBaseUrl();
 if(!empty($related_products) && $routeName!='amasty_quickview'){
 ?>
 <div class="alsolike-products">
@@ -169,10 +171,10 @@ $customerSession = $objectManager->get('Magento\Customer\Model\Session');
                     <div class="blog-date"><?php echo $month; ?></div>
                         <div class="blog-status">
                              <div class="like-action">
-		    (<span id="likes_<?php echo $products->getId(); ?>"><?php echo $total_likes; ?></span>)
-			<button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $products->getId(); ?>" class="like <?php echo $class;?>">
+		    (<span id="likes_<?php echo $post->getPostId(); ?>"><?php echo $total_likes; ?></span>)
+			<button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $post->getPostId(); ?>" class="like <?php echo $class;?>">
 			</button>			
-			<img class="like-loader" id="like-loader-<?php echo $products->getId()?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
+			<img class="like-loader" id="like-loader-<?php echo $post->getPostId(); ?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
 		</div>
                         <div class="blog-comment"><?php echo  $commentcount; ?> <i class="fa fa-comments"></i></div>
                             <div class="clearfix"></div>
@@ -187,29 +189,60 @@ $customerSession = $objectManager->get('Magento\Customer\Model\Session');
 </div>
 <?php } ?>
 <?php
+    $page_type = 3;
 	$storeManager1 =$objectManager->get('Magento\Store\Model\StoreManagerInterface');
 	$currentStore  = $storeManager1->getStore();
 	$mediaUrl      = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
 	$nn=$mediaUrl."kb";
+	$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+	$connection = $resource->getConnection();
     if($knowledgebasestr && $routeName!='amasty_quickview'){
 		$knowledgebasearr = explode(',',$knowledgebasestr);
 		echo '<div class="knowledgehub-container"> <h2 class="head-title">Knowledge hub goes here...</h2> <p class="head-small">dolor sit amet, consectetur, adipisci velit...</p>';
 		if(count($knowledgebasearr)>0){
 			echo '<div class="hub-item-coll">';
 			foreach($knowledgebasearr as $artid){
-				$articles = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->addFieldToFilter('article_id', $artid);
+				$articles = $objectManager->create('Mirasvit\Kb\Model\ResourceModel\Article\Collection')
+                    ->addFieldToSelect('*')
+                    ->addFieldToFilter('article_id', $artid)->load();
+				    $total_likes =$likeblock->getLikeCount($artid);
+					$client_like_count =$likeblock->isLikeAlredySubmitted($artid);
+					if($client_like_count){
+					  $pvalue='Unlike';
+					  $type_id=0;
+					  $class='liked';
+					}else{
+					  $pvalue='Like';
+					  $type_id=1;
+					  $class='';
+					}
 				foreach ($articles as  $value) {
-					$categories=$value->getCategories();
+					$catSql = "SELECT * FROM mst_kb_article_category as cat left join mst_kb_category as ar on cat.ac_category_id=ar.category_id where cat.ac_article_id='".$artid."' ";
+				    $allCats = $connection->fetchAll($catSql);
+					$cathtml='';
+					if(count($allCats)>0){
+						foreach($allCats as $category){
+							$cathtml.=' <a href="'.$baseUrl.'knowledge-hub/'.$category['url_key'].'.html">'.$category['name'].'</a>';
+						}
+					}
 					$publish_datte  = $value['created_at'];
 					$date = new DateTime($publish_datte);
                     $hubdate=$date->format('F d, Y');
+					
 					echo '<div class="knowledge-item">';
 					     if($value['image']){
-					        echo '<div class="knowledge-item-img"><img src="'.$nn.'/'.$value['image'].'" /></div>';
+					        echo '<div class="knowledge-item-img"><a href="'.$value->getUrl().'"><img src="'.$nn.'/'.$value['image'].'" /></a></div>';
 						 }
-                         echo '<div class="knowledge-item-cat">'.count($categories).'Mama</div>';						 
-					     echo '<div class="knowledge-item-title">'.$value['name'].'</div>';
-					     echo '<div class="knowledge-item-details"><div class="hubdate">'.$hubdate.'</div><div class="hubrate"><span><i class="fa fa-heart"></i></span><span>'.$value->getRating().'</span></div></div>';
+                         echo '<div class="knowledge-item-cat">'.$cathtml.'</div>';						 
+					     echo '<div class="knowledge-item-title"><a href="'.$value->getUrl().'">'.$value['name'].'</a></div>';
+					     echo '<div class="knowledge-item-details"><div class="hubdate">'.$hubdate.'</div><div class="hubrate">';?>
+						<div class="like-action pull-right">
+							<button value="<?php echo  $pvalue;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $artid; ?>" class="like <?php echo $class;?>">
+							</button>
+                            (<span id="likes_<?php echo $artid; ?>"><?php echo $total_likes; ?></span>)
+                             <img class="like-loader" id="like-loader-<?php echo $artid; ?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
+                        </div>
+						 <?php echo '</div></div>';
 					echo '</div>';
 				}
 			}

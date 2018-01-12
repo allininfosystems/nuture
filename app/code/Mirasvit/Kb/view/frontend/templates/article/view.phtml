@@ -107,6 +107,9 @@ $page_type = 3; //For knowledge hub page
 						<ul class="default-cmt__content__cmt-content row">
 							<?php
 							foreach($allComments as $allComment){
+								/*echo '<pre>';
+								print_r($allComment);
+								echo '</pre>';*/
 								$createdDate = date("M d Y", strtotime($allComment['created_at']));
 								$createdTime = date("h:i", strtotime($allComment['created_at']));
 								
@@ -117,9 +120,17 @@ $page_type = 3; //For knowledge hub page
 							
 							$replyComments = "SELECT * FROM mst_kb_comment WHERE post_id=$postId and parent_id=$pid and status=1 order by id DESC";
 							$allReplyComments = $connection->fetchAll($replyComments);
+							$customerEmail=$allComment['email'];
+							$CustomerModel = $objectManager->create('Magento\Customer\Model\Customer');
+							$CustomerModel->setWebsiteId(1);
+							$CustomerModel->loadByEmail($customerEmail);
+							/*echo '<pre>';
+							print_r($CustomerModel);
+							echo '</pre>';*/
 							
 							?>
 							<li class="default-cmt__content__cmt-content__cmt-row cmt-row col-xs-12" data-cmt-id="<?=$allComment['id']?>" style="border-top: none;">
+							    <div class="commentbyimage"><?php //echo $allComment['email']; ?></div>
 								<div class="cmt-row__cmt-username">
 									<span class="cmt-row__cmt-username username"><?=ucwords($allComment['name'])?></span>
 								</div>

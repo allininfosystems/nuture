@@ -49,7 +49,7 @@
             <strong data-role="title"><?php  echo __('Shop By') ?></strong>
         </div> -->
         <div class="block-content filter-content">
-            <?php echo $block->getChildHtml('state') ?>
+            
 
             <?php if ($block->getLayer()->getState()->getFilters()): ?>
                 <div class="block-actions filter-actions">
@@ -100,7 +100,9 @@
                     <?php endif; ?>
 
                 <?php endif; ?>
+				
             <?php endforeach; ?>
+			<?php echo $block->getChildHtml('state') ?>			
             <?php if ($wrapOptions): ?>
 
                 <?php if (!$this->helper('Plumrocket\ProductFilter\Helper\Data')->isAutoMode()): ?>

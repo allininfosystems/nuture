@@ -4,6 +4,7 @@ return array (
   array (
     'Allin_FedexAPI' => 1,
     'Allin_Knowledge' => 1,
+    'Allin_Store' => 1,
     'Amasty_Base' => 1,
     'Amasty_Quickview' => 1,
     'Bluethink_Custom' => 1,

@@ -1,0 +1,21 @@
+{
+    "name": "allin/module-store",
+    "description": "Add custom Name field",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Allin\\Store\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

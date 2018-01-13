@@ -518,11 +518,20 @@ function carousel() {
 }
 
 function openCondtion(condtionType) {
+
+	var elems = document.querySelectorAll(".w3-bar-item.w3-button");
+
+	[].forEach.call(elems, function(el) {
+		el.classList.remove("current");
+	});
+	
+	document.getElementById(condtionType+'s').className += " current";
     var i;
     var x = document.getElementsByClassName("concerned");
     for (i = 0; i < x.length; i++) {
        x[i].style.display = "none";  
     }
+	
     document.getElementById(condtionType).style.display = "block";  
 }
 

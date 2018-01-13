@@ -35,16 +35,6 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 	protected $pdfPath;
     protected $_io;
     protected $_directoryList;
-	protected $store_country_id;
-	protected $store_region_id;
-	protected $store_city;
-	protected $store_street_line1;
-	protected $store_postcode;
-	protected $store_phone;
-	protected $store_name;
-	protected $store_username;
-	protected $tracks;
-	protected $grand_total;
 	
 	
 	public function __construct(
@@ -63,19 +53,8 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 			$this->order = $order;
 			$this->_request = $request;
 			$this->unit_of_measure = $this->scopeConfig->getValue("carriers/fedex/unit_of_measure",$storeScope);
-			//$this->max_package_weight = $this->scopeConfig->getValue("carriers/fedex/max_package_weight",$storeScope);
+			$this->max_package_weight = $this->scopeConfig->getValue("carriers/fedex/max_package_weight",$storeScope);
 			$this->packaging = $this->scopeConfig->getValue("carriers/fedex/packaging",$storeScope);
-			
-			$this->store_country_id = $this->scopeConfig->getValue("general/store_information/country_id",$storeScope);
-			$this->store_region_id = $this->scopeConfig->getValue("general/store_information/region_id",$storeScope);
-			$this->store_city = $this->scopeConfig->getValue("general/store_information/city",$storeScope);
-			$this->store_street_line1 = $this->scopeConfig->getValue("general/store_information/street_line1",$storeScope);
-			$this->store_postcode = $this->scopeConfig->getValue("general/store_information/postcode",$storeScope);
-			$this->store_phone = $this->scopeConfig->getValue("general/store_information/phone",$storeScope);
-			$this->store_name = $this->scopeConfig->getValue("general/store_information/name",$storeScope);
-			$this->store_username = $this->scopeConfig->getValue("general/store_information/name2",$storeScope);
-			
-			
 			$this->_io = $io;
 			$this->_directoryList = $directoryList;
 			$customPath = $this->_directoryList->getPath('media').'/fedexpdf';
@@ -88,12 +67,11 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
+		//echo 'hello';
+		//die('testing');
 		
-		$this->tracks = $observer->getEvent()->getTrack();
-				
 		$orderId = $this->_request->getParam('order_id');
         $orderData = $this->order->load($orderId);
-		$this->grand_total = $orderData->getData('grand_total');
 
 		$this->getShippingAddress = $orderData->getShippingAddress()->getData();
 		$this->getBillingAddress = $orderData->getBillingAddress()->getData();
@@ -150,15 +128,15 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 		$request['RequestedShipment'] = array(
 			'ShipTimestamp' => date('c'),
 			'DropoffType' => 'REGULAR_PICKUP', // valid values REGULAR_PICKUP, REQUEST_COURIER, DROP_BOX, BUSINESS_SERVICE_CENTER and STATION
-			'ServiceType' => 'FEDEX_EXPRESS_SAVER', // valid values STANDARD_OVERNIGHT, PRIORITY_OVERNIGHT, FEDEX_EXPRESS_SAVER
+			'ServiceType' => 'STANDARD_OVERNIGHT', // valid values STANDARD_OVERNIGHT, PRIORITY_OVERNIGHT, FEDEX_EXPRESS_SAVER
 			'PackagingType' => $this->packaging, // valid values FEDEX_BOX, FEDEX_PAK, FEDEX_TUBE, YOUR_PACKAGING, ...
 			'Shipper' => $this->addShipper(),
 			'Recipient' => $this->addRecipient(),
 			'ShippingChargesPayment' => $this->addShippingChargesPayment(),
-			//'SpecialServicesRequested' => $this->addSpecialServices1(), //Used for Intra-India shipping - cannot use with PRIORITY_OVERNIGHT
+			'SpecialServicesRequested' => $this->addSpecialServices1(), //Used for Intra-India shipping - cannot use with PRIORITY_OVERNIGHT
 			'CustomsClearanceDetail' => $this->addCustomClearanceDetail(),                                                                                                      
 			'LabelSpecification' => $this->addLabelSpecification(),
-			//'CustomerSpecifiedDetail' => array('MaskedData'=> 'SHIPPER_ACCOUNT_NUMBER'), 
+			'CustomerSpecifiedDetail' => array('MaskedData'=> 'SHIPPER_ACCOUNT_NUMBER'), 
 			'PackageCount' => 1,                                       
 			'RequestedPackageLineItems' => array(
 				'0' => $this->addPackageLineItem1()
@@ -166,9 +144,6 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 		);
 
 
-		/* echo '<pre>';
-		print_r($request);
-		die('testingssssss'); */
 
 		try{
 			if($objectManager->create('Allin\FedexAPI\Helper\Data')->setEndpoint('changeEndpoint')){
@@ -176,22 +151,31 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 			}
 			
 			$response = $client->processShipment($request); // FedEx web service invocation
-
-			/* echo '<pre>';
-			print_r($response);
-			die('testingssssss'); */ 
-
-
+/* echo '<pre>';
+print_r($response);
+die('testingssssss'); */
 			if ($response->HighestSeverity != 'FAILURE' && $response->HighestSeverity != 'ERROR'){
-				//$this->printSuccess($client, $response);
+			   //$this->printSuccess($client, $response);
+
 				// Create PNG or PDF labels
 				// Set LabelSpecification.ImageType to 'PNG' for generating a PNG labels
 				$fp = fopen($pdf, 'wb');   
 				fwrite($fp, ($response->CompletedShipmentDetail->CompletedPackageDetails->Label->Parts->Image));
 				fclose($fp);
+				/*
+				echo 'Label <a href="./'.SHIP_LABEL.'">'.SHIP_LABEL.'</a> was generated.';           
+				
+				$fp = fopen(COD_LABEL, 'wb');   
+				fwrite($fp, ($response->CompletedShipmentDetail->AssociatedShipments->Label->Parts->Image));
+				fclose($fp);
+				echo 'Label <a href="./'.COD_LABEL.'">'.COD_LABEL.'</a> was generated.';  
+				echo $response->CompletedShipmentDetail->AssociatedShipments->TrackingId->TrackingNumber;
+				echo $response->CompletedShipmentDetail->CompletedPackageDetails->TrackingIds->TrackingNumber;
+				*/
+				
 				$finalTrackingNumber = $response->CompletedShipmentDetail->CompletedPackageDetails->TrackingIds->TrackingNumber;
-				//$this->tracks = $observer->getEvent()->getTrack();
-				$this->tracks->setTrackNumber($finalTrackingNumber);
+				$tracks = $observer->getEvent()->getTrack();
+				$tracks->setTrackNumber($finalTrackingNumber);
 			}else{
 				//printError($client, $response);
 			}
@@ -209,19 +193,29 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
     }
 	
 	function addShipper(){
+
+		$personName = $companyName = $phoneNumber = $streetLines = $city = $stateOrProvinceCode = $postalCode = $countryCode='';
 		
+		$personName = $this->getShippingAddress['prefix'].' '.$this->getShippingAddress['firstname'].' '.$this->getShippingAddress['middlename'].' '.$this->getShippingAddress['lastname'];
+		$companyName = $this->getShippingAddress['company'];
+		$phoneNumber = $this->getShippingAddress['telephone'];
+		$streetLines = $this->getShippingAddress['street'];
+		$city = $this->getShippingAddress['city'];
+		$stateOrProvinceCode = $this->getShippingAddress['region'];
+		$postalCode = $this->getShippingAddress['postcode'];
+		$countryCode = $this->getShippingAddress['country_id'];
 		$shipper = array(
 			'Contact' => array(
-				'PersonName' => $this->store_username,
-				'CompanyName' => $this->store_name,
-				'PhoneNumber' => $this->store_phone
+				'PersonName' => $personName,
+				'CompanyName' => $companyName,
+				'PhoneNumber' => $phoneNumber
 			),
 			'Address' => array(
-				'StreetLines' => $this->store_street_line1,
-				'City' => $this->store_city,
-				'StateOrProvinceCode' => $this->store_region_id,
-				'PostalCode' => $this->store_postcode,
-				'CountryCode' => $this->store_country_id,
+				'StreetLines' => $streetLines,
+				'City' => $city,
+				'StateOrProvinceCode' => $stateOrProvinceCode,
+				'PostalCode' => $postalCode,
+				'CountryCode' => $countryCode,
 				'CountryName' => 'INDIA'
 			)
 		);
@@ -281,20 +275,64 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 		);
 		return $labelSpecification;
 	}
-	
+	function addSpecialServices1(){
+		$specialServices = array(
+			'SpecialServiceTypes' => 'COD',
+			'CodDetail' => array(
+				'CodCollectionAmount' => array(
+					'Currency' => 'INR', 
+					'Amount' => 400
+				),
+				'CollectionType' => 'GUARANTEED_FUNDS',// ANY, GUARANTEED_FUNDS
+				'FinancialInstitutionContactAndAddress' => array(
+					'Contact' => array(
+						'PersonName' => 'Financial Contact',
+						'CompanyName' => 'Financial Company',
+						'PhoneNumber' => '8888888888'
+					),
+					'Address' => array(
+						'StreetLines' => '1 FINANCIAL STREET',
+						'City' => 'NEWDELHI',
+						'StateOrProvinceCode' => 'DL',
+						'PostalCode' => '110010',
+						'CountryCode' => 'IN',
+						'CountryName' => 'INDIA'
+					)
+				),
+				'RemitToName' => 'Remitter'
+			)
+		);
+		return $specialServices; 
+	}
 	function addCustomClearanceDetail(){
 		$customerClearanceDetail = array(
-			                                                                                     
+			'DutiesPayment' => array(
+				'PaymentType' => 'SENDER', // valid values RECIPIENT, SENDER and THIRD_PARTY
+				'Payor' => array(
+					'ResponsibleParty' => array(
+						'AccountNumber' => $this->dutyaccount,
+						'Contact' => null,
+						'Address' => array(
+							'CountryCode' => 'IN'
+						)
+					)
+				)
+			),
+			'DocumentContent' => 'NON_DOCUMENTS',                                                                                            
 			'CustomsValue' => array(
 				'Currency' => 'INR', 
-				'Amount' => $this->grand_total //changen dynamic
+				'Amount' => 400.0
 			),
 			'CommercialInvoice' => array(
-				'Purpose' => 'SOLD'
+				'Purpose' => 'SOLD',
+				'CustomerReferences' => array(
+					'CustomerReferenceType' => 'CUSTOMER_REFERENCE',
+					'Value' => '1234'
+				)
 			),
 			'Commodities' => array(
 				'NumberOfPieces' => 1,
-				'Description' => 'Here you can wright custom description',
+				'Description' => 'Books',
 				'CountryOfManufacture' => 'IN',
 				'Weight' => array(
 					'Units' => 'KG', 
@@ -304,7 +342,11 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 				'QuantityUnits' => 'KG',
 				'UnitPrice' => array(
 					'Currency' => 'INR', 
-					'Amount' => 1.0
+					'Amount' => 100.000000
+				),
+				'CustomsValue' => array(
+					'Currency' => 'INR', 
+					'Amount' => 400.000000
 				)
 			)
 		);
@@ -312,15 +354,26 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 	}
 	
 	function addPackageLineItem1(){
-		
-		$custom_weight = $this->tracks->getData('weight');
-		if($custom_weight > 68){
-			$custom_weight = null;
-		}
 		$packageLineItem = array(
+			'SequenceNumber'=>1,
+			'GroupPackageCount'=>1,
+			/* 'InsuredValue' => array(
+				'Amount' => 100.00, 
+				'Currency' => 'INR'
+			), */
 			'Weight' => array(
-				'Value' => $custom_weight,//$this->max_package_weight,//get from fedex config from admin 68
+				'Value' => 68,//$this->max_package_weight,//get from fedex config from admin
 				'Units' => $this->unit_of_measure
+			)/* ,
+			'Dimensions' => array(
+				'Length' => 20,
+				'Width' => 10,
+				'Height' => 10,
+				'Units' => 'IN'
+			) */,
+			'CustomerReferences' => array(
+				'CustomerReferenceType' => 'CUSTOMER_REFERENCE', // valid values CUSTOMER_REFERENCE, INVOICE_NUMBER, P_O_NUMBER and SHIPMENT_INTEGRITY
+				'Value' => 'GR4567892'
 			)
 		);
 		return $packageLineItem;

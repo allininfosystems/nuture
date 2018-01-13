@@ -37,7 +37,7 @@
                             <div class="panel-heading">
                                 <h4  class="panel-title"> <a id="a<?php echo $j.$r; ?>" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $j; ?>" href="#panel<?php echo $j.$r; ?>">
                                 <?php if($r=='0') { ?> 
-                                    <i class="fa fa-plus"></i>
+                                    <i class="fa fa-minus"></i>									
                                 <?php } else { ?>
                                 <i class="fa fa-plus"></i>
                                 <?php } ?>
@@ -127,21 +127,27 @@ jQuery(function ($) {
         
         jQuery(document).ready(function()
         {
-             acordopen();
-           // jQuery(".soci").load(function(){
-                 
-                  //jQuery("#a10").click();
+			// Add minus icon for collapse element which is open by default
+			jQuery(".collapse.in").each(function(){
+			jQuery(this).siblings(".panel-heading").find(".glyphicon").addClass("glyphicon-minus").removeClass("glyphicon-plus");
+			});
 
-            //});            
+			// Toggle plus minus icon on show hide of collapse element
+			jQuery(".collapse").on('show.bs.collapse', function(){
+			jQuery(this).parent().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+			}).on('hide.bs.collapse', function(){
+			jQuery(this).parent().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+			});
+			   
 
         });
        
 
         }); 
-        function acordopen() {
+        /* function acordopen() {
     setTimeout(function(){  jQuery("#a10").click(); }, 1000);
      setTimeout(function(){  jQuery("#a20").click(); }, 1000);
       setTimeout(function(){  jQuery("#a30").click(); }, 1000);
-       setTimeout(function(){  jQuery("#a40").click(); }, 1000);
+       setTimeout(function(){  jQuery("#a40").click(); }, 1000); */
 }     
 </script> 

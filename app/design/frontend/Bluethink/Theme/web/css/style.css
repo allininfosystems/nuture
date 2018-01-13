@@ -210,7 +210,7 @@ input:focus, button:focus { outline: none; }
 .owl-carousel .fadeOut { animation-name: fadeOut; }
 @keyframes fadeOut { 0% { opacity: 1; }100% { opacity: 0; } }
 
-
+/*love you*/
 
 .owl-height { transition: height 500ms ease-in-out; }
 

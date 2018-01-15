@@ -7,8 +7,6 @@
 // @codingStandardsIgnoreFile
 
 ?>
-<?php if ($crumbs && is_array($crumbs)) : ?>
-
 <?php 
 $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();        
 $request = $objectManager->get('\Magento\Framework\App\Request\Http');
@@ -19,7 +17,21 @@ $page_id;
 //echo $request->getFullActionName() . '<br />';
 $action_name = $request->getActionName();
 $module_name = $request->getModuleName();
-$controller_name = $request->getControllerName();
+$controller_name = $request->getControllerName();?>
+<?php if ($module_name=='lookingfor') {?>
+  <h2 class="head-title">
+<?php
+  echo __('Looking For');
+  ?>
+</h2>
+<div class="breadcum">
+    <a href="/" title="Go to Home Page">Home</a> &nbsp; &gt; &nbsp; Looking For                      
+</div>
+<?php } ?>
+<?php if ($crumbs && is_array($crumbs)) : ?>
+
+<?php 
+
 if($module_name == 'catalog' && $controller_name == 'category')
 { 
   $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
@@ -154,10 +166,17 @@ if($module_name == 'catalog' && $controller_name == 'category')
   ?>
 </h2>
 
-<?php }elseif ($controller_name=='topic') {?>
+<?php }elseif ($controller_name=='forum') {?>
   <h2 class="head-title">
 <?php
   echo __('Mama Squad');
+  ?>
+</h2>
+
+<?php }elseif ($module_name=='lookingfor') {?>
+  <h2 class="head-title">
+<?php
+  echo __('Looking For');
   ?>
 </h2>
 

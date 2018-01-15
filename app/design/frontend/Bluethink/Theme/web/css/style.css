@@ -21,7 +21,9 @@ body{font-family: 'Raleway', sans-serif !important;}
 
 .product-item-details h5 {font-size: 16px; color: #2f2f2f; line-height: 24px;  font-weight: 600;  min-height: 48px;  margin: 13px 0 10px;}
 .product-item .price-box .price{font-weight: 400; color: #666666;}
-.product-item-details p.p-price {display: none;}
+.page-products .product-item-details p.p-price{display:none;}
+.cms-index-index .product-box .product-image:hover .overlay-content a.quick-icon {display: none;}
+.product-item-details p.p-price{font-family: "open sans"; width: 100%; float: left; margin: 5px 0px 10px 0;}
  ol, ul { list-style: none; margin:0; }
 
 /* Edited by Ajeet */
@@ -2208,7 +2210,7 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
  width:20px; height:9px; font-size:0; display: inline-block; background-size: cover; line-height: 20px;}
 .toolbar-products{float:right; margin-bottom: 0;}
 
-.like-action {display: inline-block; margin-right: 10px; position: relative;}
+.like-action {display: inline-block; margin-right: 10px; position: relative; font-family: "open sans";}
 .like-action .like{border:none; padding: 0; background: none;}
 .like-action .like:before{content: "\f08a"; font-family: "FontAwesome"; color: #333;}
 .like-action .like.liked:before{content: "\f004"; font-family: "FontAwesome"; color: #7e6674;}
@@ -2276,6 +2278,21 @@ span.bloger-name {font-size: 18px; float: left; width: 100%; color: #212121; lin
 .one-step-checkout button.onestepcheckout-btn-checkout span{color:#7e6674;}
 .one-step-checkout button.onestepcheckout-btn-checkout:hover span{color:#fff;} 
 
+
+
+.cart-container .checkout-methods-items button.action.primary.checkout {background: transparent; color: #7e6674; transition: all .5s ease-in-out;}
+.checkout-cart-index .messages {width: 100%; float: left; padding-bottom: 15px;}
+.checkout-cart-index .message.success{float:left; margin-right:5px;}
+#onestepcheckout-login-form h2.decorated {display: none;}
+
+#onestepcheckout-login-form button#onestepcheckout-login-button{border: 1px solid #7e6670; padding: 8px 15px; border-radius: 4px; height: auto;
+line-height: 1; font-size: 14px; transition: all .5s ease-in-out; font-weight: normal;}
+#onestepcheckout-login-form button#onestepcheckout-login-button:hover{background: #7e6670 !important; color:#fff !important;}
+#onestepcheckout-login-form .email-icon:before,#onestepcheckout-login-form .password-icon:before{display:none;}
+#onestepcheckout-login-table p.forgot-link a span, #onestepcheckout-login-table p.register-link a span{display:none;}
+#onestepcheckout-login-table p.forgot-link a:hover, #onestepcheckout-login-table p.register-link a:hover{text-decoration:underline !important;}
+#onestepcheckout-login-table p.register-link {display: inline-block;}
+#onestepcheckout-login-table p.forgot-link{display: inline-block;}
 
 /*========= End OF Mini Cart ===========*/
 
@@ -2497,7 +2514,7 @@ footer.footer .brand-slider .owl-dots {display: none;}
 .mpcss .panel-group.blogaccordion-cls .panel-heading .panel-title{color: #666; font-family: 'open sans'; font-size: 15px;}
 .mpcss .panel-group.blogaccordion-cls .panel-heading .panel-title a:hover{text-decoration:none;}
 .mpcss .panel-group.blogaccordion-cls .panel-heading .panel-title a:hover {text-decoration: none;}
-.mpcss .panel-group.blogaccordion-cls .panel-body p a:hover{color:#7e6674; text-decoration: none;}
+.mpcss .panel-group.blogaccordion-cls .panel-body p a:hover{color:#7e6674;}
 
 .mpcss a:focus{outline: none; outline-offset: inherit;}
 .mpcss a:hover, .mpcss a:focus {text-decoration: none;}
@@ -2637,14 +2654,15 @@ font-family: 'Raleway', Times, serif; font-weight: 400;}
 
 /*=== Search Requirement ===*/
 
-.requirement-cls {max-width: 700px; margin: 0 auto; padding: 40px; border: 2px solid #8b7682;}
+.requirement-cls {max-width: 700px; margin: 0 auto; padding: 40px; border: 2px solid #ccc;}
 .requirement-cls h2 {text-align: center;}
 .requirement-cls .label {width: 100% !important; text-align:left !important;}
 .requirement-cls .control {width: 100% !important;}
 .requirement-cls .field {margin: 10px 0 !important;}
 .requirement-cls .actions-toolbar {width: 100%; margin: 0 !important; text-align: center;}
 .requirement-cls .actions-toolbar .primary {float: none; margin:20px 0px 0px 0px}
-.requirement-cls input.action.submit.primary {width: 180px; height: 45px; background: #8b7682; text-transform: uppercase;}
+.requirement-cls input.action.submit.primary {width: 180px; height: 45px; background: transparent; text-transform: uppercase; 
+ border: 1px solid #7e6670; color: #7e6670; border-radius: 4px; transition: all .5s ease-in-out;}
 .requirement-cls label.label[for='Message'] {margin-bottom: 5px !important;}
 
 .autocomplete-suggestions{padding-top: 0;}

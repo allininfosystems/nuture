@@ -5,25 +5,31 @@
   $categoryHelper = $this->helper('Magento\Catalog\Helper\Category');
   $categoryRepository = $objectManager->get('\Magento\Catalog\Model\CategoryRepository'); 
 
-$urlInterface = $objectManager->get('Magento\Framework\UrlInterface');
-
   $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
   $categoryId=$category->getId();
+  $parentId=$category->getParentId();
   $categoryname=$category->getName();
-   $catalogSession = $objectManager->get('\Magento\Catalog\Model\Session');
+  $ccategoryurl=$category->getUrl();
+  $categoryurlkey=$category->getUrlKey();
+  $caturlarr=explode('/',$ccategoryurl);
+  $catalogSession = $objectManager->get('\Magento\Catalog\Model\Session');
 
-       if ($categoryId==3 || $categoryId==4 || $categoryId==5 ) {
-   
+  if($categoryId==3 || $categoryId==4 || $categoryId==5 ) {
       $catalogSession->setCatid($categoryId);
-      $current = $urlInterface->getCurrentUrl();
-      $catalogSession->setCaturl($current);
+  }elseif(in_array('nuluv-mama',$caturlarr)){
+	  $catsid=3;
+	  $catalogSession->setCatid($catsid);
+  }elseif(in_array('nuluv-baby',$caturlarr)){
+	  $catsid=4;
+	  $catalogSession->setCatid($catsid);
+  }elseif(in_array('nuluv-kids',$caturlarr)){
+	  $catsid=5;
+	  $catalogSession->setCatid($catsid);
   } 
-  $currentq = $urlInterface->getCurrentUrl();
-  $catid=$catalogSession->getCatid();
-  $caturl=$catalogSession->getCaturl();
   
+  $catid=$catalogSession->getCatid();  
   $category = $categoryFactory->create()->load($catid);
-  $categoryurl=$category->getUrl();
+  $caturl=$category->getUrl();
   $childrenCategories = $category->getChildrenCategories();
   $urlstr=explode('cat=',$caturl);
   $allcaturl=explode('?',$caturl);
@@ -52,7 +58,7 @@ $urlInterface = $objectManager->get('Magento\Framework\UrlInterface');
 			  }else{
 				  $mainact='current'; 
 			  }
-			 echo '<a class="tab-link '.$mainact.'" href="'.$categoryurl.'">Shop All</a>';
+			 echo '<a class="tab-link '.$mainact.'" href="'.$caturl.'">Shop All</a>';
 			 echo $cathtml;
 			  ?>
       	</div>

@@ -1619,9 +1619,14 @@ li.default-cmt__content__cmt-content__cmt-row.cmt-row {margin: 30px 15px !import
 .kb-article__body {text-align: left; font-size: 14px; line-height: 26px;}
 .faq-index-index .product-filter {margin-top: 0 !important; }
 #my-orders-table th {background: #eee;color: #555; font-weight: 600;}
-#my-orders-table th, #my-orders-table td{border: solid 1px #ddd !important; font-family: "open sans";}
+#my-orders-table th, #my-orders-table td{border: solid 1px #ddd !important; font-family: "open sans"; border-left: 0 !important;
+border-right: 0 !important; border-top: 0 !important;}
 #my-orders-table th {vertical-align: text-top;}
 .page-with-filter .column.main {width: 100% !important;}
+.account .table-wrapper #my-orders-table .action {margin-right: 0; display: table; color: #7e6674; margin: 0 auto;}
+.account .actions-toolbar .secondary a.action{border: 1px solid #7d6174 !important; padding: 10px 15px !important; background: transparent;
+ border-radius: 4px; color: #7d6174; transition: all .3s ease-in-out;}
+.account .actions-toolbar .secondary a.action:hover{background: #7d6174 !important; color:#fff !important;} 
 
 @media (min-width:270px) and (max-width:736px){
 	

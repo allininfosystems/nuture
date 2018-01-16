@@ -21,9 +21,9 @@ $forums = $block->getDisplayForums();
       <?php echo __('No Data Found') ?>
     </div>
   <?php else: ?>
-    <!-- <div class="toolbar top forum-toolbar">
-      <?php //echo $block->getPagerHtml(); ?>
-    </div> -->
+    <div class="toolbar top forum-toolbar">
+      <?php echo $block->getPagerHtml(); ?>
+    </div>
 	<!-- forum -->
     <ul class="forum-grid forum-list grid data-table-forum-resp">
       <li class="bbp-header-cls">

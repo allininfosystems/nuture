@@ -31,7 +31,7 @@ class ListForum extends \WIO\Forum\Block\Forum\Index {
     $pager->setLimit($this->getPageLimit())
             ->setShowAmounts(true)
             ->setCollection($this->_collection);
-    $pager->setAvailableLimit(array(5=>5,10=>10,30=>30,50=>50));
+    $pager->setAvailableLimit(array(10=>10,30=>30,50=>50));
     $this->setChild('pager', $pager);
 
     return $this;

@@ -22,6 +22,13 @@ $currentUrl = $urlInterface->getCurrentUrl();
 $curUrl = explode("?", $currentUrl);
 
 $current = rtrim($curUrl[0],'/');
+$maincat = strpos($current, 'knowledge-hub.html');
+$maincatactive=0;
+if ($maincat === false) {
+} else {
+	$maincatactive=1;
+}
+echo 'caturl'.$current.'<br>';
 
 $param = $block->getRequest()->getParam('article');
 
@@ -35,16 +42,12 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 ?>
 <?php if (count($tree) > 0): ?>
     <div class="block block-collapsible-nav kb__category-sidebar">
-        <!-- <div class="title block-collapsible-nav-title"
-             data-mage-init='{"toggleAdvanced": {"toggleContainers": "#block-collapsible-nav-kb", "selectorsToggleClass": "active"}}'>
-            <strong><?//= __('Categories') ?></strong>
-        </div> -->
         <div class="product-filter filter"  id="block-collapsible-nav-kb">
             <ul class="nav items">
+			        <li class="item level-1"><a class="tab-link <?php if($maincatactive==1){ echo 'current'; } ?>" href="<?php echo $KnowledgehubUrl; ?>">Health A-Z</a></li>
                 <?php $p = 1; foreach ($tree as $category): ?>
                     <li class="item level-<?= $category->getLevel() - $minLevel + 1 ?>">
-                        <a class="tab-link <?php if ($current==$KnowledgehubUrl && $p == 1) {echo "current";} elseif ($current == $category->getUrl()) {echo "current";} ?>" href="<?= $category->getUrl() ?>"><?= $category->getName() ?>
-                            <!-- <span class="count"><?//= $category->getArticlesNumber($block->getStoreId()) ?></span> -->
+                        <a class="tab-link <?php if ($current == $category->getUrl()) {echo "current";} ?>" href="<?= $category->getUrl() ?>"><?= $category->getName() ?>
                         </a>
                     </li>
                 <?php $p++; endforeach ?>
@@ -52,7 +55,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
         </div>
     </div>
 	<?php
-	if(strpos($current, 'health-a-z') || $currentCat==2){  ?>
+	if($maincatactive==1){  ?>
     <div class="alpha_pagination">
 		<?php foreach (range('A', 'Z') as $i){ ?>
 			<a href="<?php echo $block->getUrl('kbase/category/filter');?>article/<?=$i?>" style="<?php if ($param==$i) { echo "filterColor";} ?>"><?=$i?></a>
@@ -69,7 +72,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
     </form>
 </div>  
 <?php } elseif ($action_name=='filter' && $module_name=='kbase') { ?>
-<form action="<?= $block->getUrl('kbase/article/s')?>" method="GET" id="kb-s-form">
+    <form action="<?= $block->getUrl('kbase/article/s')?>" method="GET" id="kb-s-form">
         <input name='s' id='s' type="text" placeholder="Search..." class="form-control input-text required-entry" required value="<?= $block->getQuery() ?>">
     </form>
 <?php } ?>

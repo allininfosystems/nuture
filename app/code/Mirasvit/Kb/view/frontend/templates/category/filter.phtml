@@ -1,3 +1,4 @@
+fgfgfgfgfgf
 <?php
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 echo $this->getLayout()
@@ -15,11 +16,13 @@ $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
 $connection = $resource->getConnection();
 
 if (!empty($param)) {
-	$articlecollection = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')
-                                       ->addFieldToFilter('name', array('like' => $param.'%'))->load();
+	/*$articlecollection = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->addFieldToFilter('name', array('like' => $param.'%'))->load();*/
+	$articlecollection = $objectManager->create('Mirasvit\Kb\Model\ResourceModel\Article\Collection')
+                    ->addFieldToSelect('*')
+                    ->addFieldToFilter('name', array('like' => $param.'%'))->load();
     if (count($articlecollection)>0) 
     {  	?>
-		<cite>Search Result For '<?php echo $param; ?>'</cite>
+		<div class="search-result-for"><cite>Search Result For '<?php echo $param; ?>'</cite></div>
 		<div id="filter-tab-1" class="tab-content current">          
 		<ul class="hub_list">
 

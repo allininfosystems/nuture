@@ -171,8 +171,13 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 			preg = preg==''?'':'pregnant=' + preg + '&';
 			
 			parenting = parenting==''?'':'parenting=' + parenting + '&';
+			<?php if(isset($_GET['alpha'])){ ?>
+			    var alpha = '<?php echo $_GET['alpha']; ?>';
+			   var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal + '&alpha=' + alpha;
+			<?php }else{ ?>
+			   var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
+			<?php } ?>
 			
-			var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
 			
 			window.location.href = filterUrl;
 		}
@@ -192,8 +197,12 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 			preg = preg==''?'':'pregnant=' + preg + '&';
 			
 			parenting = parenting==''?'':'parenting=' + parenting + '&';
-			
-			var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
+			<?php if(isset($_GET['alpha'])){ ?>
+			    var alpha = '<?php echo $_GET['alpha']; ?>';
+			   var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal + '&alpha=' + alpha;
+			<?php }else{ ?>
+			   var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
+			<?php } ?>
 			
 			window.location.href = filterUrl;
 		}
@@ -213,8 +222,12 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 			preg = preg==''?'':'pregnant=' + preg + '&';
 			
 			parenting = parenting==''?'':'parenting=' + parenting + '&';
-			
-			var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
+			<?php if(isset($_GET['alpha'])){ ?>
+			    var alpha = '<?php echo $_GET['alpha']; ?>';
+			   var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal + '&alpha=' + alpha;
+			<?php }else{ ?>
+			   var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
+			<?php } ?>
 			
 			window.location.href = filterUrl;
 		}
@@ -234,8 +247,12 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 			preg = preg==''?'':'pregnant=' + preg + '&';
 			
 			parenting = parenting==''?'':'parenting=' + parenting + '&';
-			
-			var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
+			<?php if(isset($_GET['alpha'])){ ?>
+			    var alpha = '<?php echo $_GET['alpha']; ?>';
+			   var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal + '&alpha=' + alpha;
+			<?php }else{ ?>
+			   var filterUrl = curUrl + month + preg + parenting + 'sort=' + sortVal;
+			<?php } ?>
 			
 			window.location.href = filterUrl;
 		}

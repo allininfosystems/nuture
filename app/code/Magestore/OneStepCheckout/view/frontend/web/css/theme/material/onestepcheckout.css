@@ -196,7 +196,7 @@ button.osc-ok-button,button.osc-edit-button
 div.loading-ajax,div.loading-ajax-login{height:50px;text-align:center;background:url(../../../images/onestepcheckout/material/ajax-loader.gif) center center no-repeat;float:left;width:100%}
 #onestepcheckout-login-popup,#onestepcheckout-toc-popup{text-align:left!important;position:relative}
 #onestepcheckout-forgot-success{float:left;width:90%;padding:10px 5%;box-sizing:content-box}
-#onestepcheckout-login-popup{width:500px;z-index:999999!important;position:absolute!important;top:100px!important;background:#fff}
+#onestepcheckout-login-popup{width:500px;z-index:999999!important;position: fixed !important;top:126px!important;background:#fff}
 #onestepcheckout-login-popup table{width:99%}
 #onestepcheckout-login-popup table td{padding-top:3px;padding-bottom:3px}
 #onestepcheckout-login-popup button.button{padding:0 86px;margin:0;float:right;width:auto;height:48px;font-size:20px;line-height:48px;text-align:center;font-weight:700;color:#fff;text-transform:none}

@@ -1625,8 +1625,18 @@ border-right: 0 !important; border-top: 0 !important;}
 .page-with-filter .column.main {width: 100% !important;}
 .account .table-wrapper #my-orders-table .action {margin-right: 0; display: table; color: #7e6674; margin: 0 auto;}
 .account .actions-toolbar .secondary a.action{border: 1px solid #7d6174 !important; padding: 10px 15px !important; background: transparent;
- border-radius: 4px; color: #7d6174; transition: all .3s ease-in-out;}
+ border-radius: 4px; color: #7d6174; transition: all .5s ease-in-out;}
 .account .actions-toolbar .secondary a.action:hover{background: #7d6174 !important; color:#fff !important;} 
+.account .box-newsletter .box-content button{border: 1px solid #7d6174; background: transparent; border-radius: 4px; padding: 5px 15px;
+ color: #7d6174; transition: all .5s ease-in-out;}
+.account .box-newsletter .box-content button:hover{background: #7d6174; color:#fff;}
+
+.form-edit-account .actions-toolbar .primary button{border: 1px solid #7d6174 !important; padding: 10px 15px !important; background: transparent;
+ border-radius: 4px; color: #7d6174; transition: all .5s ease-in-out;}
+.form-edit-account .actions-toolbar .primary button:hover{background: #7d6174 !important; color:#fff;} 
+.account .actions-toolbar .primary button{border: 1px solid #7d6174 !important; padding: 10px 15px !important; 
+ background: transparent; border-radius: 4px; color: #7d6174; transition: all .5s ease-in-out;}
+.account .actions-toolbar .primary button:hover{background: #7d6174 !important; color:#fff;} 
 
 @media (min-width:270px) and (max-width:736px){
 	

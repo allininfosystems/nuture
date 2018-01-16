@@ -84,31 +84,33 @@
 </div>
 </div>
 <div class="footer-links clearfix">
-<div class="link-box">
+<div class="link-box link-box-one">
 <h3>Information Links</h3>
 <ul class="effect">
 <li><a href="<?php echo $baseurl.'about_us'; ?>"><i class="fa fa-angle-right"></i> About Us</a></li>
 <li><a href="<?php echo $baseurl.'nuluv-brands'; ?>"><i class="fa fa-angle-right"></i> Brands</a></li>
-<li><a href="<?php echo $baseurl.'certificates-badges'; ?>"><i class="fa fa-angle-right"></i> Certifications</a></li>
-<li><a href="<?php echo $baseurl.'press-media-coverage'; ?>"><i class="fa fa-angle-right"></i> Press & Media Coverage</a></li>
-<li><a href="<?php echo $baseurl.'testimonials'; ?>"><i class="fa fa-angle-right"></i> Testimonials</a></li>
-<li><a href="<?php echo $baseurl.'rewardspoints'; ?>"><i class="fa fa-angle-right"></i> Rewards Program</a></li>
-<li><a href="<?php echo $baseurl.'faq/index/index'; ?>"><i class="fa fa-angle-right"></i> Help & FAQs</a></li>
+<li><a href="<?php echo $baseurl.'certificates-badges'; ?>"><i class="fa fa-angle-right"></i> Certificates and Badges</a></li>
+<li><a href="<?php echo $baseurl.'press-media-coverage'; ?>"><i class="fa fa-angle-right"></i> Press and Media, Rewards</a></li>
+<!-- <li><a href="<?php //echo $baseurl.'testimonials'; ?>"><i class="fa fa-angle-right"></i> Testimonials</a></li> 
+ <li><a href="<?php //echo $baseurl.'rewardspoints'; ?>"><i class="fa fa-angle-right"></i> Rewards Program</a></li> -->
+<li><a href="<?php echo $baseurl.'faq/index/index'; ?>"><i class="fa fa-angle-right"></i> Help and FAQs</a></li>
+<li><a href="<?php echo $baseurl.'customer/account/login/'; ?>"><i class="fa fa-angle-right"></i> My Account</a></li>
 </ul>
 </div>
-<div class="link-box">
+<div class="link-box link-box-two">
 <h3> </h3>
 <ul class="effect">
-<li><a href="<?php echo $baseurl.'terms_conditions'; ?>"><i class="fa fa-angle-right"></i> Shipping & Returns</a></li>
-<li><a href="<?php echo $baseurl.'terms_conditions'; ?>"><i class="fa fa-angle-right"></i> Terms & Policie</a></li>
-<li><a href="<?php echo $baseurl.'contact_us'; ?>"><i class="fa fa-angle-right"></i> Contact us</a></li>
-<li><a href="<?php echo $baseurl.'customer/account/login/'; ?>"><i class="fa fa-angle-right"></i> My Account</a></li>
-<li><a href="<?php echo $baseurl.'sales/order/history'; ?>"><i class="fa fa-angle-right"></i> Order Status</a></li>
 <li><a href="<?php echo $baseurl.'checkout/cart'; ?>"><i class="fa fa-angle-right"></i> My Cart</a></li>
 <li><a href="<?php echo $baseurl.'rewardpoints'; ?>"><i class="fa fa-angle-right"></i> My Rewards</a></li>
+<li><a href="<?php echo $baseurl.'sales/order/history'; ?>"><i class="fa fa-angle-right"></i> Order Status</a></li>
+<li><a href="<?php echo $baseurl.'terms_conditions'; ?>"><i class="fa fa-angle-right"></i> Shipping and Return Remove</a></li>
+<li><a href="<?php echo $baseurl.'#'; ?>"><i class="fa fa-angle-right"></i> Testimonials</a></li>
+<li><a href="<?php echo $baseurl.'#'; ?>"><i class="fa fa-angle-right"></i> Customer Service</a></li>
+<!-- <li><a href="<?php echo $baseurl.'terms_conditions'; ?>"><i class="fa fa-angle-right"></i> Terms & Policie</a></li>
+<li><a href="<?php echo $baseurl.'contact_us'; ?>"><i class="fa fa-angle-right"></i> Contact us</a></li> -->
 </ul>
 </div>
-<div class="link-box">
+<div class="link-box link-box-three">
 <h3>Trending Searches</h3>
 <div class="tags">
 <?php 
@@ -139,13 +141,28 @@ echo $this->getLayout()->createBlock("Magento\Newsletter\Block\Subscribe")->setT
 ?>
 <div class="soci">
 <ul class="social-footer">
-          <li><span>Follow us on : </span></li>
-          <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('social_icon')->toHtml();?>
-        </ul>
-<div class="'pro"><img src="<?php echo $this->getViewFileUrl('images/created_by.png'); ?>" alt="" /></div>
+  <li><span>#nuluv</span></li><br>
+  <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('social_icon')->toHtml();?>
+  <p>1800 - 120 - LOVE (5683)</p>
+  <a class="support-email" href="mailto:support@nuluv.in" target="_top">support@nuluv.in</a>
+</ul>
+<!-- <div class="'pro"><img src="<?php //echo $this->getViewFileUrl('images/created_by.png'); ?>" alt="" /></div> -->
 </div>
 </div>
-<div class="copyright clearfix"><span class="copyright-text">Copyright © 2017 Nuluv – All Rights Reserved.</span><span class="designed-by">Site By <a href="#" target="_blank"><img src="<?php echo $this->getViewFileUrl('images/dl.png'); ?>" alt="" /></a></span>
+
+<div class="footer-middle-section">
+<ul class="footer-middle-inner">
+<li class="footer-middle-lft"><a href="#"><i class="fa fa-credit-card" aria-hidden="true"></i> Hassle Free Domestic Payments</a></li>
+<li class="footer-middle-center"><a href="#"><i class="fa fa-truck" aria-hidden="true"></i> Products ship from nuluv warehouse in Delhi</a></li>
+<li class="footer-middle-rgt"><a href="#"><i class="fa fa-retweet" aria-hidden="true"></i> Easy Returns</a></li>
+</ul>
+</div>
+<div class="copyright clearfix">
+<ul>
+<li class="copyright-lft">Copyright © 2017 Nuluv – All Rights Reserved.</li>
+<li class="copyright-center"><img src="<?php echo $this->getViewFileUrl('images/payment-card.png'); ?>" alt="" /></li>
+<li class="copyright-rgt">Site By <a href="#" target="_blank"><img src="<?php echo $this->getViewFileUrl('images/dl.png'); ?>" alt="" /></a></li>
+</ul>
 </div>
 </div>
 

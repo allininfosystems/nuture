@@ -18,8 +18,6 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
      */
 	 
 	protected $path_to_wsdl;
-	protected $path_to_csv;
-	protected $final_csv;
 	protected $billaccount;
 	protected $dutyaccount;
 	protected $keyp;
@@ -62,7 +60,6 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 			$storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
 			$this->pdfPath = $wsdlBasePath = $configReader->getModuleDir(Dir::MODULE_ETC_DIR, 'Allin_FedexAPI') . '/wsdl/';
 			$this->path_to_wsdl = $wsdlBasePath . 'ShipService_v21.wsdl';
-			$this->path_to_csv = $wsdlBasePath . 'FedexZipCodes.csv';
 			$this->order = $order;
 			$this->_request = $request;
 			$this->unit_of_measure = $this->scopeConfig->getValue("carriers/fedex/unit_of_measure",$storeScope);
@@ -86,18 +83,6 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 				$this->_io->mkdir($this->_directoryList->getPath('media').'/fedexpdf', 0777);
 			} 
 			//die('hello dear');
-			
-			$myarray = glob($this->path_to_csv); 
-			usort($myarray, create_function('$a,$b', 'return filemtime($a) - filemtime($b);'));
-
-			/*This will create an array of associative arrays with the first row column headers as the keys.*/
-			$csv_map = array_map('str_getcsv', file($myarray[count($myarray)-1]));
-			array_walk($csv_map, function(&$a) use ($csv_map) {
-			$a = array_combine($csv_map[0], $a);
-			});
-			array_shift($csv_map);
-			
-			$this->final_csv = $csv_map;
 	}
 	
     public function execute(
@@ -180,20 +165,10 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 			)
 		);
 
-		$billerPostCode = $this->getShippingAddress['postcode'];
-		
-		foreach($this->final_csv as $key=>$csv_maps){
-				/* echo '<pre>';print_r($csv_maps);
-				die('testinjg'); */
 
-				if( $billerPostCode==trim($csv_maps['Postal_Code']) ){
-					if(trim($csv_maps['COD_Serviceable'])=='COD'){
-						$request['RequestedShipment']['SpecialServicesRequested'] = $this->addSpecialServices1(); //Used for Intra-India shipping - cannot use with PRIORITY_OVERNIGHT
-					}				
-	
-				} 
-				
-		}
+		/* echo '<pre>';
+		print_r($request);
+		die('testingssssss'); */
 
 		try{
 			if($objectManager->create('Allin\FedexAPI\Helper\Data')->setEndpoint('changeEndpoint')){
@@ -201,6 +176,11 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 			}
 			
 			$response = $client->processShipment($request); // FedEx web service invocation
+
+			/* echo '<pre>';
+			print_r($response);
+			die('testingssssss'); */ 
+
 
 			if ($response->HighestSeverity != 'FAILURE' && $response->HighestSeverity != 'ERROR'){
 				//$this->printSuccess($client, $response);
@@ -252,14 +232,14 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 		
 		$personName = $companyName = $phoneNumber = $streetLines = $city = $stateOrProvinceCode = $postalCode = $countryCode='';
 		
-		$personName = $this->getShippingAddress['prefix'].' '.$this->getShippingAddress['firstname'].' '.$this->getShippingAddress['middlename'].' '.$this->getShippingAddress['lastname'];
-		$companyName = $this->getShippingAddress['company'];
-		$phoneNumber = $this->getShippingAddress['telephone'];
-		$streetLines = $this->getShippingAddress['street'];
-		$city = $this->getShippingAddress['city'];
-		$stateOrProvinceCode = $this->getShippingAddress['region'];
-		$postalCode = $this->getShippingAddress['postcode'];
-		$countryCode = $this->getShippingAddress['country_id'];
+		$personName = $this->getBillingAddress['prefix'].' '.$this->getBillingAddress['firstname'].' '.$this->getBillingAddress['middlename'].' '.$this->getBillingAddress['lastname'];
+		$companyName = $this->getBillingAddress['company'];
+		$phoneNumber = $this->getBillingAddress['telephone'];
+		$streetLines = $this->getBillingAddress['street'];
+		$city = $this->getBillingAddress['city'];
+		$stateOrProvinceCode = $this->getBillingAddress['region'];
+		$postalCode = $this->getBillingAddress['postcode'];
+		$countryCode = $this->getBillingAddress['country_id'];
 		
 		$recipient = array(
 			'Contact' => array(
@@ -300,36 +280,6 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 			'LabelStockType' => 'PAPER_7X4.75'
 		);
 		return $labelSpecification;
-	}
-	
-	function addSpecialServices1(){
-		$specialServices = array(
-			'SpecialServiceTypes' => 'COD',
-			'CodDetail' => array(
-				'CodCollectionAmount' => array(
-					'Currency' => 'INR', 
-					'Amount' => 1
-				),
-				'CollectionType' => 'GUARANTEED_FUNDS',// ANY, GUARANTEED_FUNDS
-				'FinancialInstitutionContactAndAddress' => array(
-					'Contact' => array(
-						'PersonName' =>  $this->store_username,
-						'CompanyName' => $this->store_name,
-						'PhoneNumber' => $this->store_phone
-					),
-					'Address' => array(
-						'StreetLines' => $this->store_street_line1,
-						'City' => $this->store_city,
-						'StateOrProvinceCode' => $this->store_region_id,
-						'PostalCode' => $this->store_postcode,
-						'CountryCode' => $this->store_country_id,
-						'CountryName' => 'INDIA'
-					)
-				),
-				'RemitToName' => 'Remitter'
-			)
-		);
-		return $specialServices; 
 	}
 	
 	function addCustomClearanceDetail(){

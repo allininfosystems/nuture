@@ -74,20 +74,20 @@
             </image>
             <image id="product_page_image_large" type="image"/>
             <image id="product_page_image_medium" type="image">
-                <width>510</width>
-                <height>510</height>
+                <width>300</width>
+                <height>300</height>
             </image>
             <image id="product_page_image_small" type="thumbnail">
                 <width>90</width>
                 <height>90</height>
             </image>
             <image id="product_page_main_image" type="image">
-                <width>510</width>
-                <height>510</height>
+                <width>300</width>
+                <height>300</height>
             </image>
             <image id="product_page_main_image_default" type="image">
-                <width>510</width>
-                <height>510</height>
+                <width>300</width>
+                <height>300</height>
             </image>
             <image id="product_page_more_views" type="thumbnail">
                 <width>90</width>

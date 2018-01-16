@@ -31,7 +31,7 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 		
 		$sort = $_GET['sort']?" order by mstart.name ".$_GET['sort']:'';
 		if(isset($_GET['alpha'])){
-			$sql = "SELECT mstart.created_at created_at, mstart.url_key url, mstart.article_id article_id, mstart.image image, mstart.name as name FROM mst_kb_article as mstart where $month $parenting $pregnant $alpha $sort";
+			$sql = "SELECT mstart.created_at created_at, mstart.url_key url, mstart.article_id article_id, mstart.image image, mstart.name as name FROM mst_kb_article as mstart where $alpha $month $parenting $pregnant $sort";
 		}else{
 			$catid=$category->getId();
 			$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.article_id article_id, mstart.image image, mstart.name as name FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id where mstcat.category_id='".$catid."' $month $parenting $pregnant $sort";

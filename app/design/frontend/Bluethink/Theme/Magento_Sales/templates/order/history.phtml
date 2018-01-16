@@ -3,46 +3,47 @@
 <?= $block->getChildHtml('info') ?>
 <?php if ($_orders && count($_orders)): ?>
     <div class="wish-head"><span><?php /* @escapeNotVerified */ echo __('My Orders') ?></span></div>
-    <div class="container">
-        <table  id="my-orders-table">
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('Orders') ?></caption>
             <thead>
-                <tr><th scope="col" class="col id"><?php /* @escapeNotVerified */ echo __('Order #') ?></th>
-                    <th scope="col" ><?= /* @escapeNotVerified */ __('Date') ?></th>
-                    <th scope="col" ><?= /* @escapeNotVerified */ __('Image ') ?></th>
-                    <th scope="col" ><?= /* @escapeNotVerified */ __('Product Name') ?></th>
-                    <th scope="col" "><?= /* @escapeNotVerified */ __('Qty') ?></th>
-                    <th scope="col" ><?= /* @escapeNotVerified */ __('Order Status') ?></th>
-					<th scope="col" class="col actions">Action</th>
+                <tr>
+                    <th scope="col" class="col id"><?php /* @escapeNotVerified */ echo __('Order #') ?></th>
+                    <th scope="col" class="col date"><?php /* @escapeNotVerified */ echo __('Date') ?></th>
+                    <?php /* @noEscape */ echo $block->getChildHtml('extra.column.header');?>
+                    <th scope="col" class="col shipping"><?php /* @escapeNotVerified */ echo __('Ship To') ?></th>
+                    <th scope="col" class="col total"><?php /* @escapeNotVerified */ echo __('Order Total') ?></th>
+                    <th scope="col" class="col status"><?php /* @escapeNotVerified */ echo __('Status') ?></th>
+                    <th scope="col" class="col actions">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($_orders as $_order): 
-                    $orderid=$_order->getRealOrderId();
-                    $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
-                    $orderData = $objectManager->create('Magento\Sales\Model\Order')->loadByIncrementId($orderid);
-                    $orderItems = $orderData->getAllVisibleItems();
-                ?>  
-                  <?php foreach($orderItems as $orderItemst) { ?>
+                <?php foreach ($_orders as $_order): ?>
                     <tr>
-					    <td data-th="<?php echo $block->escapeHtml(__('Order #')) ?>" class="col id"><?php /* @escapeNotVerified */ echo $_order->getRealOrderId() ?></td>
-                        <td data-th="<?= $block->escapeHtml(__('Date')) ?>"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt()) ?></td>
-                        <td class="product-img">
-                        <?php
-                        $_product = $objectManager->get('Magento\Catalog\Model\Product')->load($orderItemst->getProductId());
-                        $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
-                        $image_url = $imageHelper->init($_product, 'product_page_image_small')->setImageFile($_product->getFile())->resize(100, 100)->getUrl();
-                       ?>
-                        <img src="<?php echo $image_url; ?>"></td>
-                        <td><?php echo $orderItemst['name']; ?></td>
-                        <td><?php echo $orderItemst['qty_ordered']; ?></td>
-                        <td><?=$_order->getStatusLabel(); ?></td>
-						<td data-th="<?php echo $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                        <td data-th="<?php echo $block->escapeHtml(__('Order #')) ?>" class="col id"><?php /* @escapeNotVerified */ echo $_order->getRealOrderId() ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Date')) ?>" class="col date"><?php /* @escapeNotVerified */ echo $block->formatDate($_order->getCreatedAt()) ?></td>
+                        <?php $extra = $block->getChildBlock('extra.container'); ?>
+                        <?php if ($extra): ?>
+                            <?php $extra->setOrder($_order); ?>
+                            <?php /* @noEscape */ echo $extra->getChildHtml() ?>
+                        <?php endif; ?>
+                        <td data-th="<?php echo $block->escapeHtml(__('Ship To')) ?>" class="col shipping"><?php echo $_order->getShippingAddress() ? $block->escapeHtml($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Order Total')) ?>" class="col total"><?php /* @escapeNotVerified */ echo $_order->formatPrice($_order->getGrandTotal()) ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Status')) ?>" class="col status"><?php /* @escapeNotVerified */ echo $_order->getStatusLabel() ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Actions')) ?>" class="col actions">
                             <a href="<?php /* @escapeNotVerified */ echo $block->getViewUrl($_order) ?>" class="action view">
                                 <span><?php /* @escapeNotVerified */ echo __('View Order') ?></span>
                             </a>
+                            <?php if ($this->helper('Magento\Sales\Helper\Reorder')->canReorder($_order->getEntityId())) : ?>
+                                <a href="#" data-post='<?php /* @escapeNotVerified */ echo
+                                $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+                                    ->getPostData($block->getReorderUrl($_order))
+                                ?>' class="action order">
+                                    <span><?php /* @escapeNotVerified */ echo __('Reorder') ?></span>
+                                </a>
+                            <?php endif ?>
                         </td>
                     </tr>
-                     <?php  } ?>
                 <?php endforeach; ?>
             </tbody>
         </table>

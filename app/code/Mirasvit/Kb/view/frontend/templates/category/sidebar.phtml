@@ -28,7 +28,6 @@ if ($maincat === false) {
 } else {
 	$maincatactive=1;
 }
-echo 'caturl'.$current.'<br>';
 
 $param = $block->getRequest()->getParam('article');
 
@@ -58,7 +57,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 	if($maincatactive==1){  ?>
     <div class="alpha_pagination">
 		<?php foreach (range('A', 'Z') as $i){ ?>
-			<a href="<?php echo $block->getUrl('kbase/category/filter');?>article/<?=$i?>" style="<?php if ($param==$i) { echo "filterColor";} ?>"><?=$i?></a>
+			<a href="<?php echo $baseurl; ?>knowledge-hub.html?alpha=<?=$i?>&sort=asc" style="<?php if ($param==$i) { echo "filterColor";} ?>"><?=$i?></a>
 		<?php }?>
 
 <?php if ($action_name=='view' && $module_name=='kbase' ) { ?>

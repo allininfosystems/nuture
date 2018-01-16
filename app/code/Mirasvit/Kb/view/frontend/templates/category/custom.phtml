@@ -13,7 +13,7 @@
 	  
 	  
 	  
-if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']) || isset($_GET['sort'])) 
+if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']) || isset($_GET['sort']) || isset($_GET['alpha'])) 
 {
 	$month = isset($_GET['month'])?" and mstart.pregnant_month='".$_GET['month']."'":'';
 			
@@ -21,16 +21,21 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 
 	$pregnant = isset($_GET['pregnant'])?" and mstart.getting_pregnant='".$_GET['pregnant']."'":'';
 	
+	$alpha = isset($_GET['alpha'])?" mstart.name like '".$_GET['alpha']."%'":'';
+	
 	if($_GET['sort']=='popular')
 	{
-		//$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.image image, mstart.name as name, liker_liker.* FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id left join liker_liker on mstart.article_id=liker_liker.product_id where liker_liker.page_type=3 $month $parenting $pregnant order by liker_liker.likes desc";
 		$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.article_id article_id, mstart.image image, mstart.name as name, liker_liker_view.* FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id left join liker_liker_view on mstart.article_id=liker_liker_view.product_id where 1=1 $month $parenting $pregnant order by liker_liker_view.likes desc";
 		
 	} else {
 		
 		$sort = $_GET['sort']?" order by mstart.name ".$_GET['sort']:'';
-		
-		$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.article_id article_id, mstart.image image, mstart.name as name FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id where 1=1 $month $parenting $pregnant $sort";
+		if(isset($_GET['alpha'])){
+			$sql = "SELECT mstart.created_at created_at, mstart.url_key url, mstart.article_id article_id, mstart.image image, mstart.name as name FROM mst_kb_article as mstart where $month $parenting $pregnant $alpha $sort";
+		}else{
+			$catid=$category->getId();
+			$sql = "SELECT mstcat.name catname, mstart.created_at created_at, mstart.url_key url, mstart.article_id article_id, mstart.image image, mstart.name as name FROM mst_kb_category as mstcat INNER JOIN mst_kb_article_category as mstartcat ON mstartcat.ac_category_id = mstcat.category_id INNER JOIN mst_kb_article as mstart ON mstartcat.ac_article_id = mstart.article_id where mstcat.category_id='".$catid."' $month $parenting $pregnant $sort";
+		}
 	}
 
 
@@ -41,6 +46,7 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 	$searchBy .= isset($_GET['month'])?$_GET['month'].' ':'';
 	$searchBy .= isset($_GET['parenting'])?$_GET['parenting'].' ':'';
 	$searchBy .= isset($_GET['pregnant'])?$_GET['pregnant']:'';
+	$searchBy .= isset($_GET['alpha'])?$_GET['alpha']:'';
 	?>
 		<div class="search-result-for"><cite>Search Result For '<?=$searchBy ?>'</cite></div>
 		
@@ -67,6 +73,14 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 					  $type_id=1;
 					  $class='';
 					}
+					$catSql = "SELECT * FROM mst_kb_article_category as cat left join mst_kb_category as ar on cat.ac_category_id=ar.category_id where cat.ac_article_id='".$postId."' ";
+				    $allCats = $connection->fetchAll($catSql);
+					$cathtml='';
+					if(count($allCats)>0){
+						foreach($allCats as $categorys){
+							$cathtml.=' '.$categorys['name'];
+						}
+					}
 
         ?>
 					<li>
@@ -78,7 +92,7 @@ if(isset($_GET['month']) || isset($_GET['parenting']) || isset($_GET['pregnant']
 							</a>
 							<div class="hub-details">
 								<div class="hub_flex">
-									<span class="hub_type"><?php echo $article['catname'] ?></span>
+									<span class="hub_type"><?php echo $cathtml; ?></span>
 									<div class="hub_title">
 										<a href="<?php echo $article['url']; ?>"><?php echo $article['name']; ?></a>
 									</div>

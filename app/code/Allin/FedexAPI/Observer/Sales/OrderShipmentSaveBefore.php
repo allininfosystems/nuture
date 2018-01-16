@@ -187,7 +187,7 @@ class OrderShipmentSaveBefore implements \Magento\Framework\Event\ObserverInterf
 				die('testinjg'); */
 
 				if( $billerPostCode==trim($csv_maps['Postal_Code']) ){
-					if(trim($csv_maps['COD_Serviceable'])=='COD'){
+					if(trim($csv_maps['COD_Serviceable'])=='COD' && $this->grand_total >= 999){
 						$request['RequestedShipment']['SpecialServicesRequested'] = $this->addSpecialServices1(); //Used for Intra-India shipping - cannot use with PRIORITY_OVERNIGHT
 					}				
 	

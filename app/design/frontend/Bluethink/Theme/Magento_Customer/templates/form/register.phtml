@@ -39,14 +39,6 @@ $controller_name = $request->getControllerName();
         <input type="hidden" name="success_url" value="<?php /* @escapeNotVerified */ echo $block->getSuccessUrl() ?>">
         <input type="hidden" name="error_url" value="<?php /* @escapeNotVerified */ echo $block->getErrorUrl() ?>">
         <?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
-      <!--   <?php //if ($block->isNewsletterEnabled()): ?>
-            <div class="field choice newsletter">
-                <input type="checkbox" name="is_subscribed" title="<?php /* @escapeNotVerified */ //echo __('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php //if ($block->getFormData()->getIsSubscribed()): ?> checked="checked"<?php //endif; ?> class="checkbox">
-                <label for="is_subscribed" class="label"><span><?php /* @escapeNotVerified */ //echo __('Sign Up for Newsletter') ?></span></label>
-            </div>
-            <?php /* Extensions placeholder */ ?>
-            <?php //echo $block->getChildHtml('customer.form.register.newsletter')?>
-        <?php //endif ?> -->
 
         <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
         <?php if ($_dob->isEnabled()): ?>
@@ -183,7 +175,21 @@ $controller_name = $request->getControllerName();
             </div>
         </div>
         <?php echo $block->getChildHtml('form_additional_info'); ?>
+		<?php if ($block->isNewsletterEnabled()): ?>
+            <div class="field choice newsletter">
+                <input type="checkbox" name="is_subscribed" title="<?php /* @escapeNotVerified */ echo __('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if ($block->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox">
+                <label for="is_subscribed" class="label"><span><?php /* @escapeNotVerified */ echo __('Sign Up for Newsletter') ?></span></label>
+            </div>
+            <?php /* Extensions placeholder */ ?>
+            <?php echo $block->getChildHtml('customer.form.register.newsletter')?>
+        <?php endif ?>
+		<div class="field term-and-condition required">
+		    <input type="checkbox" name="term-and-condition" title="<?php /* @escapeNotVerified */ echo __('I agree to the Terms and Conditions') ?>" value="1" />
+            <label for="term-and-condition" class="label"><span style="color:black;"><?php /* @escapeNotVerified */ echo __('I agree to the Terms and Conditions') ?></span></label>
+        </div>
     </fieldset>
+	
+	
     <div class="actions-toolbar">
         <div class="primary">
             <button type="submit" class="sub-btn" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>"><span><?php /* @escapeNotVerified */ echo __('Submit') ?></span></button>

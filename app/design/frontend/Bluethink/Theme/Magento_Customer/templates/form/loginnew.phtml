@@ -30,7 +30,7 @@
             <input name="login[password]" placeholder="Password"  type="password" <?php if ($block->isAutocompleteDisabled()) : ?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true,'validate-password':true}">   
             <?php echo $block->getChildHtml('form_additional_info'); ?> 
            <div class="lg-btn"><button type="submit" class="sub-btn"" name="send" id="send2"><span><?php /* @escapeNotVerified */ echo __('Log In') ?></span></button></div>
-            <div class="forgot-password"><a  href="<?php /* @escapeNotVerified */ echo $block->getForgotPasswordUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Forgot Your Password') ?> /</span></a>/<a href="<?php echo $block->geturl("customer/account/login");//echo $block->geturl("customer/account/create"); ?>">Register account</a></div>
+            <div class="forgot-password"><a  href="<?php /* @escapeNotVerified */ echo $block->getForgotPasswordUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Forgot Your Password') ?> /</span></a>/<a href="<?php echo $block->geturl("customer/account/create");//echo $block->geturl("customer/account/create"); ?>">Register account</a></div>
             <div class="clearfix"></div>
             <h2 class="decorated"><span>Or Log In With</span></h2> 
             <div class="sociallogin-login">

@@ -698,6 +698,8 @@ select.prd_select{ border:1px solid #e0e0e0;font-size:14px;color:#2f2f2f;height:
 .login-box.lga .decorated > span:before, 
 .login-box.lga .decorated > span:after{content: "";  border-bottom: none;}
 
+/*fdgdf*/
+
 .login-box.lga input[type="text"], 
 .login-box.lga input[type="password"], 
 .login-box.lga input[type="url"], 

@@ -40,8 +40,7 @@
         </referenceContainer>
         <referenceContainer name="content">
             <block class="Magento\Sales\Block\Order\View" name="order.comments" template="order/order_comments.phtml" before="sales.order.info.links"/>
-			<block class="Magento\Sales\Block\Order\Info" as="info" name="sales.order.info"/>
-            <block class="Magento\Sales\Block\Order\View" name="sales.order.view" cacheable="false" after="sales.order.info">
+            <block class="Magento\Sales\Block\Order\View" name="sales.order.view" cacheable="false" after="sales.order.info.links">
                 <block class="Magento\Sales\Block\Order\Items" name="order_items" template="order/items.phtml">
                     <block class="Magento\Framework\View\Element\RendererList" name="sales.order.items.renderers" as="renderer.list"/>
                     <block class="Magento\Theme\Block\Html\Pager" name="sales_order_item_pager"/>
@@ -54,7 +53,7 @@
                     </block>
                 </block>
             </block>
-            
+            <block class="Magento\Sales\Block\Order\Info" as="info" name="sales.order.info" after="sales.order.view"/>
         </referenceContainer>
         <block class="Magento\Framework\View\Element\Template" name="additional.product.info" template="Magento_Theme::template.phtml"/>
     </body>

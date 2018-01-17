@@ -9,16 +9,14 @@
 ?>
 <?php /** @var  $block \Magento\Sales\Block\Order\View*/?>
 <?php $_order = $block->getOrder() ?>
-<h1>Order Id: #<?php /* @escapeNotVerified */ echo $_order->getRealOrderId() ?></h1>
 <div class="order-details-items ordered">
 
-    <div class="order-title">
-        <strong><?php /* @escapeNotVerified */ echo __('Items Ordered') ?></strong>
-        <?php if ($_order->getTracksCollection()->count()) : ?>
+    <!--<div class="order-title">
+        <strong><?php /* @escapeNotVerified */ //echo __('Items Ordered') ?></strong>
+    </div>-->
+    <?php if ($_order->getTracksCollection()->count()) : ?>
             <?php echo $block->getChildHtml('tracking-info-link') ?>
         <?php endif; ?>
-    </div>
-
     <?php echo $block->getChildHtml('order_items') ?>
 
     <?php if ($this->helper('Magento\GiftMessage\Helper\Message')->isMessagesAllowed('order', $_order) && $_order->getGiftMessageId()): ?>

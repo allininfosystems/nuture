@@ -33,7 +33,7 @@ class Index extends \Magento\Framework\App\Action\Action
 			$likeModel->save();
 		}
 
-		$likecollection = $likeModel->getCollection()->addFieldToFilter('likes',array('eq'=>1))->addFieldToFilter('product_id',array('eq'=>$product_id))->addFieldToFilter('page_type',array('eq'=>$page_type))->addFieldToFilter('ip_address',array('eq'=>$ip_address));
+		$likecollection = $likeModel->getCollection()->addFieldToFilter('likes',array('eq'=>1))->addFieldToFilter('product_id',array('eq'=>$product_id))->addFieldToFilter('page_type',array('eq'=>$page_type));
 
 		$totalLikes=$likecollection->count();
 

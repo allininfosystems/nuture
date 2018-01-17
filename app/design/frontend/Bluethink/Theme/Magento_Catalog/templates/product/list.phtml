@@ -44,7 +44,7 @@ if ($customerSession->isLoggedIn()) {
 $_productCollection = $block->getLoadedProductCollection();
 
 $likeblock = $objectManager->create('Nuluv\Liker\Block\Liker');
-$page_type = $likeblock->getPageType();
+$page_type = 1;
 
 
 
@@ -133,8 +133,8 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
 
 
 <?php
-$total_likes =$likeblock->getLikeCount($_product->getId());
-$client_like_count =$likeblock->isLikeAlredySubmitted($_product->getId());
+$total_likes =$likeblock->getLikeCount($_product->getId(),$page_type);
+$client_like_count =$likeblock->isLikeAlredySubmitted($_product->getId(),$page_type);
 if($client_like_count){
     $value='Unlike';
     $type_id=0;

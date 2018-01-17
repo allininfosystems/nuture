@@ -3,10 +3,11 @@
 
 ///here type-id is 0=>unlike and 1=>like
 
-$total_likes =$block->getLikeCount();
+
 $product_id=$block->getCurrentProduct();
-$page_type = $block->getPageType();
-$client_like_count =$block->isLikeAlredySubmitted();
+$page_type = 1;
+$total_likes =$block->getLikeCount($product_id,$page_type);
+$client_like_count =$block->isLikeAlredySubmitted($product_id,$page_type);
 $_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
 $storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
 $currentStore = $storeManager->getStore();

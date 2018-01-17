@@ -40,26 +40,18 @@ public function getPageType()
     return $page_type;
 }
 
-public function getLikeCount($prod_id =''){
+public function getLikeCount($prod_id ='',$type_id=''){
        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-       if($prod_id == '')$prod_id= $this->getCurrentProduct();
-        
         $like=1;
-        $type_id=$this->getPageType();
         $likeModel = $objectManager->create('Nuluv\Liker\Model\Liker');
         $likecollection = $likeModel->getCollection()->addFieldToFilter('likes',array('eq'=>$like))->addFieldToFilter('page_type',array('eq'=>$type_id))->addFieldToFilter('product_id',array('eq'=>$prod_id));
-
-
         $totalLikes=$likecollection->count();
         return $totalLikes;
 }
 
-function isLikeAlredySubmitted($prod_id=''){
-
-     if($prod_id == '')$prod_id= $this->getCurrentProduct();
+function isLikeAlredySubmitted($prod_id='',$type_id=''){
     $ip=$this->getRealIpAddr();
     $like=1;
-    $type_id=$this->getPageType();
     $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
     $likeModel = $objectManager->create('Nuluv\Liker\Model\Liker');

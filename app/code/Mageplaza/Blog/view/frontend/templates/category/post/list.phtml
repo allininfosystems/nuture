@@ -99,18 +99,18 @@ if ($checkRss):
                      ?>
 
                      <?php
-       $total_likes =$likeblock->getLikeCount($post->getPostId());
-       $client_like_count =$likeblock->isLikeAlredySubmitted($post->getPostId());
-       if($client_like_count){
-        $value='Unlike';
-        $type_id=0;
-        $class='liked';
-      }else{
-        $value='Like';
-        $type_id=1;
-        $class='';
-      }
-      ?>
+					   $total_likes =$likeblock->getLikeCount($post->getPostId(),$page_type);
+					   $client_like_count =$likeblock->isLikeAlredySubmitted($post->getPostId(),$page_type);
+					   if($client_like_count){
+						$value='Unlike';
+						$type_id=0;
+						$class='liked';
+					  }else{
+						$value='Like';
+						$type_id=1;
+						$class='';
+					  }
+                    ?>
 
                      <div class="blog-item">
              <?php if ($post->getImage()) :

@@ -3,8 +3,7 @@
 require(['jquery'], function(){
 	jQuery(document).ready(function(){
 		
-        
-		jQuery(".like").click(function(){
+        jQuery(document).on("click",".like",function() {
         var id = this.id;   // Getting Button id
         var split_id = id.split("_");
 
@@ -28,19 +27,19 @@ require(['jquery'], function(){
         	dataType: 'json',
         	success: function(data){
         		var likes = data['likes'];
-        		jQuery("#likes_"+product_id).text(likes); 
+        		jQuery(".page-wrapper #likes_"+product_id).text(likes); 
         		if(type_id == 0){
-        			jQuery('#'+id).attr('type-id','1');
-        			jQuery('#'+id).val('Like');
-					jQuery('#'+id).removeClass('liked');
+        			jQuery('.page-wrapper #'+id).attr('type-id','1');
+        			jQuery('.page-wrapper #'+id).val('Like');
+					jQuery('.page-wrapper #'+id).removeClass('liked');
         		}
         		else{
-        			jQuery('#'+id).attr('type-id','0');
-        			jQuery('#'+id).val('Unlike');
-					jQuery('#'+id).addClass('liked');
+        			jQuery('.page-wrapper #'+id).attr('type-id','0');
+        			jQuery('.page-wrapper #'+id).val('Unlike');
+					jQuery('.page-wrapper #'+id).addClass('liked');
         		}
-                jQuery('#like-loader-'+product_id).hide();
-                jQuery('#'+id).removeAttr("disabled");
+                jQuery('.page-wrapper #like-loader-'+product_id).hide();
+                jQuery('.page-wrapper #'+id).removeAttr("disabled");
         	}
         });
     });

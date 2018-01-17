@@ -33,8 +33,8 @@ $page_type = 3; //For knowledge hub page
 <?= $block->getChildHtml('kb.search.form') ?>
 
 <?php
-   $total_likes =$likeblock->getLikeCount($postId);
-   $client_like_count =$likeblock->isLikeAlredySubmitted($postId);
+   $total_likes =$likeblock->getLikeCount($postId,$page_type);
+   $client_like_count =$likeblock->isLikeAlredySubmitted($postId,$page_type);
    if($client_like_count){
     $value='Unlike';
     $type_id=0;

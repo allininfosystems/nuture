@@ -53,9 +53,9 @@ $result = $connection->fetchAll($sql);
 
 
 $likeblock = $objectManager->create('Nuluv\Liker\Block\Liker');
-$page_type = $likeblock->getPageType();
-$total_likes =$likeblock->getLikeCount($_post->getPostId());
-$client_like_count =$likeblock->isLikeAlredySubmitted($_post->getPostId());
+$page_type = 2;
+$total_likes =$likeblock->getLikeCount($_post->getPostId(),$page_type);
+$client_like_count =$likeblock->isLikeAlredySubmitted($_post->getPostId(),$page_type);
 if($client_like_count){
     $value='Unlike';
     $type_id=0;

@@ -29,6 +29,12 @@ $controller_name = $request->getControllerName();
 <div class="breadcum">
     <a href="/" title="Go to Home Page">Home</a> &nbsp; &gt; &nbsp; Looking For                      
 </div>
+<?php }elseif ($action_name=='forgotpassword'){ ?>
+ <h2 class="head-title">
+ <?php
+  echo __('Forgot Password');
+  ?>
+</h2>
 <?php } ?>
 <?php if ($crumbs && is_array($crumbs)) : ?>
 
@@ -95,7 +101,6 @@ if($module_name == 'catalog' && $controller_name == 'category')
   ?>
 </h2>
 <?php }elseif ($module_name=='customer'){ 
-  echo 'action_name=='.$action_name.'<br>';
 ?>
  <h2 class="head-title">
   <?php

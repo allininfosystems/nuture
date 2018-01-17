@@ -1179,6 +1179,7 @@ section.daily-dose { width: 100%; height: auto; display: block; padding: 45px 0p
 .blog-item a {color: #000;}
 .blog-item a:hover{color:#7d6170; text-decoration:none;}
 .prd_overview .value h3 {color: #212121;}
+.prd_overview.description h3 {color: #7e6674;}
 .cart  input {width: 32px; border: none !important;}
 .cart a {color: #000;} 
 .cart a {color: #000;} 
@@ -1288,7 +1289,7 @@ button, a.action.primary, .cart.table-wrapper .actions-toolbar>.action, .cart.ta
 .customer-account-create .actions-toolbar .secondary a { width: auto !important; background: #7e6674;  color: #fff; 
  padding: 12px 30px !important;   border: 0px solid !important; text-decoration: none; font-size: 16px;}
 .customer-account-create .actions-toolbar .secondary a:hover {background: #e2e2e2; border: 1px solid #cdcdcd;  color: #555;}
-.customer-account-create .actions-toolbar {margin-left: 52.8% !important;}
+
 .customer-account-create .primary {padding-top: 6px;}
 input[type="text"]::-webkit-input-placeholder, input[type="email"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder { color: #555;}
 
@@ -1410,9 +1411,9 @@ span.cmt-row__cmt-username {text-transform: uppercase;}
 #review-form input { border-radius: 0px; border: 1px solid #cccc; padding: 15px;  margin-bottom: 15px;  width: 100%;  height: 50px;  
  font-size: 16px;}
 #review-form input:focus {box-shadow: none;}
-#review-form .actions-primary button { background: #7d6170 !important; color: #fff; font-size: 14px; padding: 14px 15px; border-radius: 0; 
- border: none; font-weight: normal;}
-#review-form .actions-primary button:hover {color: #fff !important; border: none;}
+#review-form .actions-primary button {background: transparent; color: #7d6174; font-size: 14px; padding: 14px 15px; border-radius: 4px;
+ border: 1px solid #7d6170; font-weight: normal; transition: all .3s ease-in-out;} 
+#review-form .actions-primary button:hover {background: #7d6174; color: #fff !important;}
 #review-form .fieldset>.field {margin-bottom: 0;}
 #review-form .review-field-nickname {margin-top: 35px;}
 .fieldset .review-legend.legend {margin-bottom: 15px;}
@@ -2413,8 +2414,9 @@ footer.footer .brand-slider .owl-dots {display: none;}
 .catalog-product-view .search-icon{margin-top: 0;}
 .search-icon i.fa {color: #fff;}
 
-.catalog-product-view .product-info-main .block.newsletter .action.subscribe.primary{background: #7e6674; border: 1px solid #7e6674; 
- border-radius: 0; height: 32px;} 
+.catalog-product-view .product-info-main .block.newsletter .action.subscribe.primary{background: transparent; border: 1px solid #7e6674;
+ border-radius: 4px; height: 32px; width: auto; color: #7e6674 !important; margin-top: 10px; transition: all .3s ease-in-out;} 
+.catalog-product-view .product-info-main .block.newsletter .action.subscribe.primary:hover{background: ##7e6674; color:#fff !important;} 
 .catalog-product-view .product-info-main .block.newsletter .action.subscribe.primary:focus,.catalog-product-view .product-info-main .block.newsletter .action.subscribe.primary:active {background: #7e6674!important; border: 1px solid #7e6674!important; color: #fff !important;}
 .prd_overview div #ak {text-transform: lowercase;}
 .product-info-main .magebuzz-social .earnpoint {display: inline-block; float: left; margin-right: 10px;}
@@ -2485,7 +2487,12 @@ footer.footer .brand-slider .owl-dots {display: none;}
 .tnc-pgs button{position:relative;}
 .tnc-pgs button:hover{background: transparent !important; color: #666 !important;}
 .tnc-pgs button.current:after{position: absolute; content: ""; width: 100%; height: 2px; background: #7d6170; bottom: 0px; left: 0;}
+.catalog-product-view .product.info.detailed .prd_overview p {width: 100%; float: left;}
 
+.catalog-product-view .review-ratings~.review-details {margin-top: 20px;}
+.catalog-product-view .review-ratings~.review-details table tbody tr td {padding: 0; padding-right: 30px;}
+.catalog-product-view .review-ratings~.review-details table tbody tr td img {width: 55px; height: 55px; border-radius: 100%; overflow: hidden;
+ margin-right: 0 !important;}
 
 
 /*============ End Of Product ============*/
@@ -2568,6 +2575,7 @@ footer.footer .brand-slider .owl-dots {display: none;}
 #mpblog-list-container p.block-mp-sidebar-heading {padding: 0px 0px 15px 0; color: #343434; font-size: 20px; 
 font-family: 'Raleway', Times, serif; font-weight: 400;}
 #mpblog-list-container .block-title.col-xs-12.sidebar-tags {padding: 25px 15px;}
+.mpcss.mp-comment.bottomcommentBox-cls {padding-bottom: 40px;}
 
 
 
@@ -2680,7 +2688,9 @@ font-family: 'Raleway', Times, serif; font-weight: 400;}
  color: #fff;}
 .commentmp .default-cmt__content {width: 100%; float: left;}
 .commentmp .default-cmt__content .default-cmt__content__cmt-block {width: 100%; float: left;}
-.commentmp .default-cmt__content .default-cmt__content__cmt-block .default-cmt__content__cmt-block__cmt-box{width: 100%; float: left;}
+.commentmp .default-cmt__content .default-cmt__content__cmt-block .default-cmt__content__cmt-block__cmt-box{width: 100%; float: left;     
+ position: relative;}
+.default-cmt__content__cmt-block__cmt-box__cmt-btn{position: absolute; right: 0; bottom: 0;} 
 .commentmp .default-cmt__content .default-cmt__content__cmt-block .default-cmt__content__cmt-block__cmt-box textarea {width: 70%; float: left;
  height: 130px;}
 .sidebar-acc button.accordion:hover {background: transparent !important;}

@@ -53,18 +53,19 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
             </ul>
         </div>
     </div>
-	<?php
-	if($maincatactive==1){  ?>
+	
     <div class="alpha_pagination">
+	   <?php
+	if($maincatactive==1){  ?>
 		<?php foreach (range('A', 'Z') as $i){ ?>
 			<a href="<?php echo $baseurl; ?>knowledge-hub.html?alpha=<?=$i?>&sort=asc" style="<?php if ($param==$i) { echo "filterColor";} ?>"><?=$i?></a>
 		<?php }?>
-
+      <?php } ?>
 <?php if ($action_name=='view' && $module_name=='kbase' ) { ?>
       <div class="kb__search-box hub_search">
     <div class="search-title">Expert advices for parenting and more!</div>
     <form action="<?= $block->getUrl('kbase/article/s')?>" method="GET" id="kb-s-form" class="abc">
-        <input id="mpblog-search-box" name='s' id='s' type="text" placeholder="Search..." class="form-control input-text required-entry" required value="<?= $block->getQuery() ?>">
+        <input id="mpblog-search-box" name='s' id='s' type="text" placeholder="Search Knowledge hub here..." class="form-control input-text required-entry" required value="<?= $block->getQuery() ?>">
         <button class="action primary" title="Submit" type="submit">
             <span><i class="fa fa-fw fa-search"></i></span>
         </button>
@@ -72,9 +73,9 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 </div>  
 <?php } elseif ($action_name=='filter' && $module_name=='kbase') { ?>
     <form action="<?= $block->getUrl('kbase/article/s')?>" method="GET" id="kb-s-form">
-        <input name='s' id='s' type="text" placeholder="Search..." class="form-control input-text required-entry" required value="<?= $block->getQuery() ?>">
+        <input name='s' id='s' type="text" placeholder="Search Knowledge hub here..." class="form-control input-text required-entry" required value="<?= $block->getQuery() ?>">
     </form>
-<?php } ?>
+
 
 </div>
 	<?php } ?>

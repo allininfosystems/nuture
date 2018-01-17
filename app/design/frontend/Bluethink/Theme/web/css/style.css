@@ -2789,6 +2789,9 @@ span#back-to-top {right: 22px; width: 40px; height: 40px; background: #7e6674; z
 .sales-order-view .my-orders-subtotal-cls .amount {width: 160px; text-align: right !important; border:none !important;
  border-bottom: 1px solid #ddd !important; display: inline-block;}
 .sales-order-view .table-wrapper {width: 100%; float: left;}
+.customer-account-create .fieldset>.field .checkbox {width: auto; height: auto;}
+.customer-account-create .fieldset>.field label.label.term-and-cond-cls {color: #333; font-size: 14px; padding: .2em .6em .3em;
+ font-weight: normal;}
 
 
 .sales-order-view .block-title{font-size:18px; font-family: 'Open Sans', sans-serif; font-weight: 700; padding:15px 0px; margin-bottom:15px;}

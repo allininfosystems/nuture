@@ -17,7 +17,9 @@ $page_id;
 //echo $request->getFullActionName() . '<br />';
 $action_name = $request->getActionName();
 $module_name = $request->getModuleName();
-$controller_name = $request->getControllerName();?>
+$controller_name = $request->getControllerName();
+
+?>
 <?php if ($module_name=='lookingfor') {?>
   <h2 class="head-title">
 <?php
@@ -92,7 +94,9 @@ if($module_name == 'catalog' && $controller_name == 'category')
 }
   ?>
 </h2>
-<?php }elseif ($module_name=='customer'){ ?>
+<?php }elseif ($module_name=='customer'){ 
+  echo 'action_name=='.$action_name.'<br>';
+?>
  <h2 class="head-title">
   <?php
   if($action_name=='create')

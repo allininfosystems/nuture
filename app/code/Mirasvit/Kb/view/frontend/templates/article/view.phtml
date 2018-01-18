@@ -81,12 +81,14 @@ $page_type = 3; //For knowledge hub page
 				<div class="share-col-right">
 					<div class="post-sharing-button social-main-cls">
 						<label class="label-cls">Share: </label>
-						<ul class="social-media-icons-cls">
+						<?php /* <ul class="social-media-icons-cls">
 						<li class="fa-twitter-cls"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 						<li class="fa-facebook-cls"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 						<li class="fa-pinterest-p-cls"><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
 						<li class="fa-instagram-cls"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-						</ul>
+						</ul> */ ?>						
+						<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+						<div class="addthis_inline_share_toolbox_skkz"></div>
 					</div>
 				</div>
 			</div>
@@ -136,6 +138,7 @@ $page_type = 3; //For knowledge hub page
 							?>
 							<li class="default-cmt__content__cmt-content__cmt-row cmt-row col-xs-12" data-cmt-id="<?=$allComment['id']?>" style="border-top: none;">
 							    <div class="commentbyimage"><?php echo '<img src="'.$imgurl.'" style="height:70px;" >'; ?></div>
+								<div class="commt-section">
 								<div class="cmt-row__cmt-username">
 									<span class="cmt-row__cmt-username username"><?=ucwords($allComment['name'])?></span>
 								</div>
@@ -190,6 +193,7 @@ $page_type = 3; //For knowledge hub page
 									<?php } ?>
 								</ul>
 								<?php } ?>
+								</div>
 							</li>
 							<?php } ?>
 						</ul>                               

@@ -84,7 +84,12 @@ $customerSession = $objectManager->get('Magento\Customer\Model\Session');
 			</button>			
 			<img class="like-loader" id="like-loader-<?php echo $products->getId()?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
 		</div>
-                                
+                <b>
+					<a href="<?php echo $products->getProductUrl(); ?>">
+						<i class="fa fa-comment-o"></i> 
+						(<span><?php echo ($RatingOb->getCount()) ? $RatingOb->getCount() : '0'; ?></span>)
+					</a>
+				</b>           
                                
                                 <?php   $addToCartUrl =  $listBlock->getAddToCartUrl($productModel); ?>
                                                 <b><form data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post"> 
@@ -173,7 +178,7 @@ $customerSession = $objectManager->get('Magento\Customer\Model\Session');
                         <div class="blog-status">
                              <div class="like-action">
 		    (<span id="likes_<?php echo $post->getPostId(); ?>"><?php echo $total_likes; ?></span>)
-			<button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $post->getPostId(); ?>" class="like <?php echo $class;?>">
+			<button value="<?php echo  $value;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $post->getPostId(); ?>" class="blike <?php echo $class;?>">
 			</button>			
 			<img class="like-loader" id="like-loader-<?php echo $post->getPostId(); ?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
 		</div>
@@ -238,7 +243,7 @@ $customerSession = $objectManager->get('Magento\Customer\Model\Session');
 					     echo '<div class="knowledge-item-title"><a href="'.$value->getUrl().'">'.$value['name'].'</a></div>';
 					     echo '<div class="knowledge-item-details"><div class="hubdate">'.$hubdate.'</div><div class="hubrate">';?>
 						<div class="like-action pull-right">
-							<button value="<?php echo  $pvalue;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $artid; ?>" class="like <?php echo $class;?>">
+							<button value="<?php echo  $pvalue;?>" type-id="<?php echo $type_id ?>" page-type="<?php echo $page_type;?>" id="like_<?php echo $artid; ?>" class="klike <?php echo $class;?>">
 							</button>
                             (<span id="likes_<?php echo $artid; ?>"><?php echo $total_likes; ?></span>)
                              <img class="like-loader" id="like-loader-<?php echo $artid; ?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
@@ -294,4 +299,114 @@ jQuery("#reviewcom").click(function() {
     
 });
 </script>
+<script type="text/javascript">
+require(['jquery'], function(){
+	jQuery(document).ready(function(){
+		
+        jQuery(document).on("click",".blike",function() {
+        var id = this.id;   // Getting Button id
+        var split_id = id.split("_");
+        var text = split_id[0];
+        var product_id = split_id[1];  
+        jQuery('.prd_detail-blog #like-loader-'+product_id).show();
+        jQuery('.prd_detail-blog #'+id).attr("disabled","disabled");
 
+        var type_id= jQuery('.prd_detail-blog #'+id).attr('type-id');
+        var page_type= 2;
+        // AJAX Request
+        jQuery.ajax({
+        	url: '<?php echo $block->getUrl("liker/liker/index");?>',
+        	type: 'post',
+        	data: {type_id:type_id,product_id:product_id,page_type:page_type},
+        	dataType: 'json',
+        	success: function(data){
+        		var likes = data['likes'];
+        		jQuery(".prd_detail-blog #likes_"+product_id).text(likes); 
+        		if(type_id == 0){
+        			jQuery('.prd_detail-blog #'+id).attr('type-id','1');
+        			jQuery('.prd_detail-blog #'+id).val('Like');
+					jQuery('.prd_detail-blog #'+id).removeClass('liked');
+        		}
+        		else{
+        			jQuery('.prd_detail-blog #'+id).attr('type-id','0');
+        			jQuery('.prd_detail-blog #'+id).val('Unlike');
+					jQuery('.prd_detail-blog #'+id).addClass('liked');
+        		}
+                jQuery('.prd_detail-blog #like-loader-'+product_id).hide();
+                jQuery('.prd_detail-blog #'+id).removeAttr("disabled");
+        	}
+        });
+    });
+
+    jQuery(document).on("click",".klike",function() {
+        var id = this.id;   // Getting Button id
+        var split_id = id.split("_");
+        var text = split_id[0];
+        var product_id = split_id[1];  
+        jQuery('.hub-item-coll #like-loader-'+product_id).show();
+        jQuery('.hub-item-coll #'+id).attr("disabled","disabled");
+
+        var type_id= jQuery('.hub-item-coll #'+id).attr('type-id');
+        var page_type= 3;
+        // AJAX Request
+        jQuery.ajax({
+        	url: '<?php echo $block->getUrl("liker/liker/index");?>',
+        	type: 'post',
+        	data: {type_id:type_id,product_id:product_id,page_type:page_type},
+        	dataType: 'json',
+        	success: function(data){
+        		var likes = data['likes'];
+        		jQuery(".hub-item-coll #likes_"+product_id).text(likes); 
+        		if(type_id == 0){
+        			jQuery('.hub-item-coll #'+id).attr('type-id','1');
+        			jQuery('.hub-item-coll #'+id).val('Like');
+					jQuery('.hub-item-coll #'+id).removeClass('liked');
+        		}
+        		else{
+        			jQuery('.hub-item-coll #'+id).attr('type-id','0');
+        			jQuery('.hub-item-coll #'+id).val('Unlike');
+					jQuery('.hub-item-coll #'+id).addClass('liked');
+        		}
+                jQuery('.hub-item-coll #like-loader-'+product_id).hide();
+                jQuery('.hub-item-coll #'+id).removeAttr("disabled");
+        	}
+        });
+    });
+
+
+	});
+
+});
+</script>
+<style>
+   .like-action .blike {
+    border: none;
+    padding: 0;
+    background: none;
+}
+.like-action .blike:hover:before {
+    content: "\f004";
+    font-family: "FontAwesome";
+    color: #7e6674;
+}
+.like-action .blike:before {
+    content: "\f08a";
+    font-family: "FontAwesome";
+    color: #333;
+}
+.like-action .klike {
+    border: none;
+    padding: 0;
+    background: none;
+}
+.like-action .klike:hover:before {
+    content: "\f004";
+    font-family: "FontAwesome";
+    color: #7e6674;
+}
+.like-action .klike:before {
+    content: "\f08a";
+    font-family: "FontAwesome";
+    color: #333;
+}
+</style>

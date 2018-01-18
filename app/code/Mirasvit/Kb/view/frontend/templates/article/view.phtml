@@ -81,12 +81,14 @@ $page_type = 3; //For knowledge hub page
 				<div class="share-col-right">
 					<div class="post-sharing-button social-main-cls">
 						<label class="label-cls">Share: </label>
-						<ul class="social-media-icons-cls">
+						<?php /* <ul class="social-media-icons-cls">
 						<li class="fa-twitter-cls"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 						<li class="fa-facebook-cls"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 						<li class="fa-pinterest-p-cls"><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
 						<li class="fa-instagram-cls"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-						</ul>
+						</ul> */ ?>						
+						<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+						<div class="addthis_inline_share_toolbox_skkz"></div>
 					</div>
 				</div>
 			</div>
@@ -121,16 +123,22 @@ $page_type = 3; //For knowledge hub page
 							$replyComments = "SELECT * FROM mst_kb_comment WHERE post_id=$postId and parent_id=$pid and status=1 order by id DESC";
 							$allReplyComments = $connection->fetchAll($replyComments);
 							$customerEmail=$allComment['email'];
-							$CustomerModel = $objectManager->create('Magento\Customer\Model\Customer');
-							$CustomerModel->setWebsiteId(1);
-							$CustomerModel->loadByEmail($customerEmail);
-							/*echo '<pre>';
-							print_r($CustomerModel);
-							echo '</pre>';*/
+							$avturl = $storeManager->getStore()->getBaseUrl().'media/avatar/';
+							$imgurl=$avturl.'defaultimg.png';
+							if($customerEmail){
+								$CustomerModel = $objectManager->create('Magento\Customer\Model\Customer');
+								$CustomerModel->setWebsiteId(1);
+								$CustomerModel->loadByEmail($customerEmail);
+								$avtarimg=$CustomerModel['avatar'];
+								if($avtarimg){
+									$imgurl=$avturl.$avtarimg;
+								}
+							}
 							
 							?>
 							<li class="default-cmt__content__cmt-content__cmt-row cmt-row col-xs-12" data-cmt-id="<?=$allComment['id']?>" style="border-top: none;">
-							    <div class="commentbyimage"><?php //echo $allComment['email']; ?></div>
+							    <div class="commentbyimage"><?php echo '<img src="'.$imgurl.'" style="height:70px;" >'; ?></div>
+								<div class="commt-section">
 								<div class="cmt-row__cmt-username">
 									<span class="cmt-row__cmt-username username"><?=ucwords($allComment['name'])?></span>
 								</div>
@@ -185,6 +193,7 @@ $page_type = 3; //For knowledge hub page
 									<?php } ?>
 								</ul>
 								<?php } ?>
+								</div>
 							</li>
 							<?php } ?>
 						</ul>                               
@@ -201,27 +210,24 @@ $page_type = 3; //For knowledge hub page
 					<div class="col-xs-12 commentmp">
 						<div class="default-cmt__content">
 							<div class="default-cmt__content__cmt-block">
+							    <?php  if($customerSession->isLoggedIn()) {  ?>
 								<div class="default-cmt__content__cmt-block__cmt-box">
 									<input type="hidden" id="article_id" value="<?=$article->getArticleId() ?>">
 									<textarea class="default-cmt__content__cmt-block__cmt-box__cmt-input" id="cust_cmnt" maxlength="255" placeholder="Type comments here..."></textarea>
 									<div style="color:red; display:none" id="comment-error">Required field</div>
 									<div class="default-cmt__content__cmt-block__cmt-box__cmt-btn">
-									
-										<?php if($customerSession->isLoggedIn()) { ?>
-											<button class="default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit btn-primary" onclick="submitComment()">Post Your Comment</button>
-											
-										<?php } else {	?>
-											
-											<a class="content-login-cls" href="<?=$baseUrl ?>customer/account/login/" style="color: red; margin-right:10px;">Submit</a>
-											
-										<?php }	?>
-										
+										<button class="default-cmt__content__cmt-block__cmt-box__cmt-btn__btn-submit btn-primary" onclick="submitComment()">Submit</button>
 										<div id="ajax-loading" style="display:none">
 											<img src="<?=$mediaUrl ?>wysiwyg/ajax-loader.gif">
 										</div>
-										
 									</div>
 								</div>
+								<?php }else{ echo '<div class="block-content">
+    <div class="message info notlogged" id="review-form">
+        <div>
+            Only registered users can write Comments. Please <a href="'.$baseUrl.'customer/account/create/">Sign in</a> or <a href="'.$baseUrl.'customer/account/create/">create an account</a>        </div>
+    </div>
+</div>'; } ?>
 							</div>                               
 						</div>
 					</div>

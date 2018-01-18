@@ -18,7 +18,9 @@ $page_id;
 $action_name = $request->getActionName();
 $module_name = $request->getModuleName();
 $controller_name = $request->getControllerName();
-
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$currentStore = $storeManager->getStore(); 
+$baseUrl = $currentStore->getBaseUrl();
 ?>
 <?php if ($module_name=='lookingfor') {?>
   <h2 class="head-title">
@@ -35,6 +37,9 @@ $controller_name = $request->getControllerName();
   echo __('Forgot Password');
   ?>
 </h2>
+<div class="breadcum"> 
+  <a href="http://127.0.0.1/nuture/" title="Home">Home</a> &nbsp; &gt; &nbsp; Forgot Password                     
+</div>
 <?php } ?>
 <?php if ($crumbs && is_array($crumbs)) : ?>
 

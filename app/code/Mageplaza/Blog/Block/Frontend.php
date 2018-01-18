@@ -667,6 +667,23 @@ class Frontend extends Template
         $this->commentTree .= '<ul class="default-cmt__content__cmt-content row">';
         foreach ($comments as $comment) {
             if ($comment['reply_id'] == $cmtId) {
+				$objectManager   = \Magento\Framework\App\ObjectManager::getInstance();
+				$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+				$avturl = $storeManager->getStore()->getBaseUrl().'media/avatar/';
+				$resource        = $objectManager->get('Magento\Framework\App\ResourceConnection');
+                $connection      = $resource->getConnection(); 
+				$customerId=$comment['entity_id'];
+				$sql = "SELECT * FROM customer_entity where entity_id='".$customerId."' ";
+				$sresult = $connection->fetchAll($sql);
+				$imgurl=$avturl.'defaultimg.png';
+				if(count($sresult) > 0){
+					foreach ($sresult as $userdata){
+						$avtar=$userdata['avatar'];
+						if($avtar){
+							$imgurl=$avturl.$avtar;
+						}
+					}
+				}
                 $isReply = (bool)$comment['is_reply'];
                 $replyId = $isReply ? $comment['reply_id'] : '';
                 $userCmt = $this->getUserComment($comment['entity_id']);
@@ -676,7 +693,7 @@ class Frontend extends Template
                 $this->commentTree .= '<li class="default-cmt__content__cmt-content__cmt-row cmt-row col-xs-12'
                     . ($isReply ? ' reply-row' : '') . '" data-cmt-id="'
                     . $comment['comment_id'] . '" ' . ($replyId
-                        ? 'data-reply-id="' . $replyId . '"' : '') . '>
+                        ? 'data-reply-id="' . $replyId . '"' : '') . '><div class="img-section"><img class="profileimg" src="'.$imgurl.'" style="height:70px;" /></div><div class="cont-section">
 							<div class="cmt-row__cmt-username">
 								<span class="cmt-row__cmt-username username">'
                     . $userName . '</span>
@@ -706,7 +723,7 @@ class Frontend extends Template
                         $comment['comment_id']
                     );
                 }
-                $this->commentTree .= '</li>';
+                $this->commentTree .= '</div></li>';
             }
         }
         $this->commentTree .= '</ul>';

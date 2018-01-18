@@ -560,12 +560,19 @@ function openCondtion(condtionType) {
 
 
 function openMedia(condtionMode) {
+	var elems = document.querySelectorAll(".tabmed");
+
+	[].forEach.call(elems, function(el) {
+		el.classList.remove("current");
+	});
+	
+	document.getElementById(condtionMode+'s').className += " current";
     var i;
     var x = document.getElementsByClassName("mediacover");
     for (i = 0; i < x.length; i++) {
        x[i].style.display = "none";  
     }
-    document.getElementById(condtionMode).style.display = "block";  
+    document.getElementById(condtionMode).style.display = "block";
 }
 
 

@@ -308,11 +308,11 @@ require(['jquery'], function(){
         var split_id = id.split("_");
         var text = split_id[0];
         var product_id = split_id[1];  
-        jQuery('#like-loader-'+product_id).show();
-        jQuery('#'+id).attr("disabled","disabled");
+        jQuery('.prd_detail-blog #like-loader-'+product_id).show();
+        jQuery('.prd_detail-blog #'+id).attr("disabled","disabled");
 
-        var type_id= jQuery('#'+id).attr('type-id');
-        var page_type= jQuery('#'+id).attr('page-type');
+        var type_id= jQuery('.prd_detail-blog #'+id).attr('type-id');
+        var page_type= 2;
         // AJAX Request
         jQuery.ajax({
         	url: '<?php echo $block->getUrl("liker/liker/index");?>',
@@ -321,7 +321,7 @@ require(['jquery'], function(){
         	dataType: 'json',
         	success: function(data){
         		var likes = data['likes'];
-        		jQuery(".page-wrapper #likes_"+product_id).text(likes); 
+        		jQuery(".prd_detail-blog #likes_"+product_id).text(likes); 
         		if(type_id == 0){
         			jQuery('.prd_detail-blog #'+id).attr('type-id','1');
         			jQuery('.prd_detail-blog #'+id).val('Like');
@@ -343,11 +343,11 @@ require(['jquery'], function(){
         var split_id = id.split("_");
         var text = split_id[0];
         var product_id = split_id[1];  
-        jQuery('#like-loader-'+product_id).show();
-        jQuery('#'+id).attr("disabled","disabled");
+        jQuery('.hub-item-coll #like-loader-'+product_id).show();
+        jQuery('.hub-item-coll #'+id).attr("disabled","disabled");
 
-        var type_id= jQuery('#'+id).attr('type-id');
-        var page_type= jQuery('#'+id).attr('page-type');
+        var type_id= jQuery('.hub-item-coll #'+id).attr('type-id');
+        var page_type= 3;
         // AJAX Request
         jQuery.ajax({
         	url: '<?php echo $block->getUrl("liker/liker/index");?>',

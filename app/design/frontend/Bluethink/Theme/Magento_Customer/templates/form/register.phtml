@@ -20,12 +20,39 @@ $cmsPage = $objectManager->get('\Magento\Cms\Model\Page');
 $page_id=$cmsPage->getId();
 $cmsPage->getIdentifier(); //Get Current CMS Page Identifier
 $page_id;
+$storeManager   = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+    $store          = $storeManager->getStore();
+    $baseurl        = $store->getBaseUrl();
 //echo $request->getFullActionName() . '<br />';
 $action_name = $request->getActionName();
 $module_name = $request->getModuleName();
 $controller_name = $request->getControllerName();
 
 ?>
+<div class="login-bga">
+<div class="container">
+    <div class="login-box lga">
+	    <h1 class="login-box-title">Login</h1>
+        <form 
+            action="<?php echo $baseurl.'customer/account/loginPost/'; ?>"
+            method="post"
+            id="login-form"
+            data-mage-init='{"validation":{}}'>
+                <?php echo $block->getBlockHtml('formkey'); ?>
+            <input name="login[username]" placeholder="Email"  value="<?php echo $block->escapeHtml($block->getUsername()) ?> " id="email" type="email" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" data-validate="{required:true, 'validate-email':true}">
+            <input name="login[password]" placeholder="Password"  type="password"  class="input-text" id="pass" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true,'validate-password':true}">   
+            <?php echo $block->getChildHtml('form_additional_info'); ?> 
+           <div class="lg-btn"><button type="submit" class="sub-btn"" name="send" id="send2"><span><?php /* @escapeNotVerified */ echo __('Log In') ?></span></button></div>
+            <div class="forgot-password"><a  href="<?php /* @escapeNotVerified */ echo $block->getForgotPasswordUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Forgot Your Password') ?> </span></a> <!--<a href="<?php echo $block->geturl("customer/account/create"); ?>">Register account</a>--></div>
+            <div class="clearfix"></div>
+            <h2 class="decorated"><span>Or Log In With</span></h2> 
+            <div class="sociallogin-login">
+                <?php echo $block->getLayout()->createBlock('Mageplaza\SocialLogin\Block\Popup\Social')->setTemplate('Mageplaza_SocialLogin::form/social.phtml')->toHtml(); ?>
+            </div>
+        </form>
+    </div>
+
+<div class="signbga">
 <div class="">
 <div class="login-box">
 <h1 class="signup-box-title">Sign Up</h1>
@@ -187,9 +214,7 @@ $controller_name = $request->getControllerName();
 		    <input class="checkbox" type="checkbox" name="term-and-condition" title="<?php /* @escapeNotVerified */ echo __('I agree to the Terms and Conditions') ?>" value="1" />
             <label for="term-and-condition" class="label term-and-cond-cls"><span><?php /* @escapeNotVerified */ echo __('I agree to the Terms and Conditions') ?></span></label>
         </div>
-    </fieldset>
-	
-	
+    </fieldset>	
     <div class="actions-toolbar">
         <div class="primary">
             <button type="submit" class="sub-btn" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>"><span><?php /* @escapeNotVerified */ echo __('Submit') ?></span></button>
@@ -201,6 +226,10 @@ $controller_name = $request->getControllerName();
   </form>
 </div>
 </div>
+</div>
+</div>
+</div>
+
 <script>
 require([
     'jquery',

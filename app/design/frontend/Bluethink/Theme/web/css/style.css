@@ -340,9 +340,9 @@ p.head-small { font-size: 15px; color: #ababab; font-family: 'Sofia', cursive; d
  font-family: 'Open Sans', sans-serif; cursor: default; }
 .product-box .product-details span.cta b .fa { -webkit-transition: all .8s ease-in-out; -moz-transition: all .8s ease-in-out; 
  -o-transition: all .8s ease-in-out; transition: all .8s ease-in-out; }
-.product-filter-slider .owl-carousel .item:hover .fa.fa-heart-o:before { content: "\f004"; color: #333; }
+/* .product-filter-slider .owl-carousel .item:hover .fa.fa-heart-o:before { content: "\f004"; color: #333; }
 .product-filter-slider .owl-carousel .item:hover .fa.fa-comment-o:before { content: "\f075"; color: #333; }
-.product-filter-slider .owl-carousel .item:hover .fa.fa-shopping-cart:before { color: #333; }
+.product-filter-slider .owl-carousel .item:hover .fa.fa-shopping-cart:before { color: #333;  */}
 @keyframes zoom-in { 0% { transform: scale(.1); } 100% { transform: none; } }
 
 /*====cuddle and care =====*/
@@ -521,9 +521,9 @@ select.custom_select{border:none;font-weight:600;vertical-align:middle; text-ali
 .orderby select option{text-align:left;float:left;}
 .orderby select:focus{outline:0;}
 
-.product-box:hover .fa.fa-heart-o:before { content: "\f004"; color: #7e6674; }
+/* .product-box:hover .fa.fa-heart-o:before { content: "\f004"; color: #7e6674; }
 .product-box:hover .fa.fa-comment-o:before { content: "\f075"; color: #7e6674; }
-.product-box:hover .fa.fa-shopping-cart:before { color: #7e6674; }
+.product-box:hover .fa.fa-shopping-cart:before { color: #7e6674; } */
 .new-items {position: absolute; top: 10px; right: 10px; background: transparent; color: #7e6674; padding: 5px 8px; border-radius: 3px;
  font-family: "open sans"; font-size: 10px; text-transform: uppercase; border: 1px solid #7e6674; font-weight: 400; opacity: 1; text-shadow: none;}
 .overlay { background: rgba(190,178,185,.7); position: absolute; left: 0; top: 0; opacity:0; width:100%; height:100%; 
@@ -587,7 +587,8 @@ a.close:hover { -webkit-transition: all 1s ease; -moz-transition: all 1s ease; t
  padding:10px;line-height:26px; border: none; font-weight: normal;}
 .prd_control .add_cart:hover{text-decoration:none;}
 .peta_logo{padding:0; margin:25px 0; list-style:none;}
-.peta_logo li{float:left;padding-right:30px;}
+.peta_logo li{float:left; padding-right: 20px; width: 16.67%;}
+.peta_logo li img {width: 100%; height: auto;}
 .prd_overview{font-size:14px;font-weight:500;color:#666;line-height:24px;}
 .prd_overview strong{color: #333; font-weight: 600; font-family: "open sans";}
 .prd_overview a{color:#000; font-weight: 600; font-family: "open sans";}
@@ -1286,7 +1287,7 @@ button, a.action.primary, .cart.table-wrapper .actions-toolbar>.action, .cart.ta
 
 .customer-account-create .fieldset>.field:not(.choice)>.control {width: 100%;}
 .customer-account-create .form.password.reset, .customer-account-create .form.send.confirmation, .customer-account-create .form.password.forget, .customer-account-create .form.create.account {min-width: inherit; width: auto;}
-.customer-account-create .login-box input {border: solid 1px #a1a1a1;}
+.customer-account-create .login-box input {/* border: solid 1px #a1a1a1; */}
 
 .customer-account-create .actions-toolbar .secondary a { width: auto !important; background: #7e6674;  color: #fff; 
  padding: 12px 30px !important;   border: 0px solid !important; text-decoration: none; font-size: 16px;}
@@ -2824,6 +2825,7 @@ span#back-to-top {right: 22px; width: 40px; height: 40px; background: #7e6674; z
 .form-create-account .checkbox {width: auto; height: auto;}
 .form-create-account label.label.term-and-cond-cls{color: #333; font-size: 14px; padding: .2em .6em .3em !important; font-weight: normal;}
 .customer-account-login .login-box.lga div.mage-error[generated] {color: #fff !important;}
+.customer-account-create .login-box.lga div.mage-error[generated] {color: #fff !important;}
 
 
 /*=========== End Of Account Page ==============*/
@@ -2931,7 +2933,7 @@ a.lgbtn {color: #fff; padding: 13px 10px;  background: #7e6674; font-size: 20px;
     }
 }
 
-.tofive.oneright {bottom: 0; position: absolute; right: 0; width: 49%; margin: 0;}
+.tofive.oneright {bottom: -5px; position: absolute; right: 0; width: 49%; margin: 0;}
 .bottom-portion {position: relative; width: 100%; float: left; margin: 23px 0; min-height: 300px;}
 .left-toped {float: left; width: 100%; position: relative;}
 .tofive.onetopleft {width: 19%; margin: 0 0px 0 0; position: absolute; left: 0; top: 0;}
@@ -2942,15 +2944,16 @@ a.lgbtn {color: #fff; padding: 13px 10px;  background: #7e6674; font-size: 20px;
 .tofive.onetopmid {float: left; width: 29.5%; margin: 0 0 0 0;}
 .seven-slidersnuluvs {margin: 0 auto; width: 74%;}
 .main-grips {float: none; width: 90%; position: relative; padding: 33px 0; text-align: center; margin: 0 auto; overflow: hidden;}
-.prod-cardstag {position: absolute; top: 27%; left: 0; right: 0; margin: 0 auto; width: 28%; background-color: rgba(255,255,255,0.9);
- min-height: 200px; z-index: 999;}
-.inoff-prod {margin: 20px; border: 1px solid #ddd; padding: 10px; text-align: center; min-height: 200px;}
-.inoff-prod h1 {text-transform: uppercase; color: #7e6674; font-size: 30px; padding: 2% 0 0 0;}
+.prod-cardstag {position: absolute; top: 27%; left: 0; right: 0; margin: 0 auto; width: 100%; max-width:320px; background-color: rgba(255,255,255,0.9);
+ min-height: 200px; z-index: 999; padding: 20px;}
+.inoff-prod {border: 1px solid #ddd; padding: 0px; min-height: 200px; display: flex; align-items: center; width: 100%;}
+.inoff-prod h1 {text-transform: uppercase; color: #7e6674; font-size: 30px; padding: 0; margin: 0; width: 100%; word-wrap: break-word;}
 .inoff-prod a {color: #fff; background: #7e6674; padding: 12px 37px; text-decoration: none;}
 .inoff-prod a:hover{background: #fff; color: #7e6674; box-shadow: 0px 0px 2px 0px;}
 .main-grips img{transform: translate3d(0, 0, 0) scale(1.025);  transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1); width: 100%;}
 .main-grips img:hover{transform: scale(1) translate3d(0, 0, 0);}
-.tohalfnulv img {height: 300px; width: 440px;}
+/* .tohalfnulv img {height: 300px; width: 440px;} */
+.tohalfnulv img {width:100%; height:auto;}
 .allbtn {margin: 0 auto; width: 50%;}
 .allbtn p.storyelelinks {float: left; margin: 20px; text-align: center; cursor: pointer; font-weight: 600;}
 .storytabs {float: left; width: 100%; margin: 30px 0; position: absolute; top: 0; right: 0; left: 0;}

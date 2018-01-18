@@ -84,7 +84,12 @@ $customerSession = $objectManager->get('Magento\Customer\Model\Session');
 			</button>			
 			<img class="like-loader" id="like-loader-<?php echo $products->getId()?>" style="display:none" src="<?php echo $mediaUrl.'loader.gif'?>">
 		</div>
-                                
+                <b>
+					<a href="<?php echo $products->getProductUrl(); ?>">
+						<i class="fa fa-comment-o"></i> 
+						(<span><?php echo ($RatingOb->getCount()) ? $RatingOb->getCount() : '0'; ?></span>)
+					</a>
+				</b>           
                                
                                 <?php   $addToCartUrl =  $listBlock->getAddToCartUrl($productModel); ?>
                                                 <b><form data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post"> 

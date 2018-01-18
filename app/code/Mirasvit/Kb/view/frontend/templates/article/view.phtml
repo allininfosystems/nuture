@@ -24,7 +24,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
       $currentStore    = $storeManager1->getStore();
       $mediaUrl1        = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
       $nn=$mediaUrl1."kb";
-	  $articles4 = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
+	  $articles4 = $objectManager->create('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
 	  
 $likeblock = $objectManager->create('Nuluv\Liker\Block\Liker');
 $page_type = 3; //For knowledge hub page 

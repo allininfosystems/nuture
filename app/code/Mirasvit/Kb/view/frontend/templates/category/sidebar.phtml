@@ -32,7 +32,7 @@ if ($maincat === false) {
 $param = $block->getRequest()->getParam('article');
 
 
-$articles4 = $objectManager->get('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
+
 
 $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
       $currentStore    = $storeManager1->getStore();
@@ -83,6 +83,7 @@ $storeManager1   = $objectManager->get('Magento\Store\Model\StoreManagerInterfac
 	
 	
 	<?php
+	    $articles4 = $objectManager->create('Mirasvit\Kb\Model\ResourceModel\Article\Collection')->load();
 		$artarr=array();
 		$months = array();
 		$pregnant = array();

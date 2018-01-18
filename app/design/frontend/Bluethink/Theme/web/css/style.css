@@ -684,7 +684,7 @@ select.prd_select{ border:1px solid #e0e0e0;font-size:14px;color:#2f2f2f;height:
  box-shadow: none;}
 .signbga .actions-toolbar{margin-left: 0 !important; margin: 14px 0 0 0 !important;}
 .lg-btn {text-align: center; margin: 39px 0 8px 0;}
-.login-box.lga .decorated{font-size: 22px; color: #fff; font-weight: 100;}
+.login-box.lga .decorated{font-size: 18px; color: #fff; font-weight: 100; margin-top: 5px;}
 
 /* Edited By Ajeet */
 
@@ -697,6 +697,8 @@ select.prd_select{ border:1px solid #e0e0e0;font-size:14px;color:#2f2f2f;height:
 .login-box.lga .forgot-password a{color: #fff;}
 .login-box.lga .decorated > span:before, 
 .login-box.lga .decorated > span:after{content: "";  border-bottom: none;}
+
+/*fdgdf*/
 
 .login-box.lga input[type="text"], 
 .login-box.lga input[type="password"], 
@@ -2416,7 +2418,7 @@ footer.footer .brand-slider .owl-dots {display: none;}
 
 .catalog-product-view .product-info-main .block.newsletter .action.subscribe.primary{background: transparent; border: 1px solid #7e6674;
  border-radius: 4px; height: 32px; width: auto; color: #7e6674 !important; margin-top: 10px; transition: all .3s ease-in-out;} 
-.catalog-product-view .product-info-main .block.newsletter .action.subscribe.primary:hover{background: ##7e6674; color:#fff !important;} 
+.catalog-product-view .product-info-main .block.newsletter .action.subscribe.primary:hover{background: #7e6674 !important; color:#fff !important;} 
 .catalog-product-view .product-info-main .block.newsletter .action.subscribe.primary:focus,.catalog-product-view .product-info-main .block.newsletter .action.subscribe.primary:active {background: #7e6674!important; border: 1px solid #7e6674!important; color: #fff !important;}
 .prd_overview div #ak {text-transform: lowercase;}
 .product-info-main .magebuzz-social .earnpoint {display: inline-block; float: left; margin-right: 10px;}
@@ -2818,6 +2820,9 @@ span#back-to-top {right: 22px; width: 40px; height: 40px; background: #7e6674; z
 .sales-order-view .order-details-items a.action.track:hover{background:#7e6674; color:#fff; text-decoration:none;}
 .sales-order-view .block-order-details-view .block-content .box .box-title {margin-bottom: 10px !important;}
 .sales-order-view .table-wrapper.order-items th table.gsttable tbody tr td.gsttable-inner {border: none !important;}
+
+.form-create-account .checkbox {width: auto; height: auto;}
+.form-create-account label.label.term-and-cond-cls{color: #333; font-size: 14px; padding: .2em .6em .3em !important; font-weight: normal;}
 
 
 

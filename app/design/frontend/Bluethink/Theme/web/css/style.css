@@ -587,7 +587,7 @@ a.close:hover { -webkit-transition: all 1s ease; -moz-transition: all 1s ease; t
  padding:10px;line-height:26px; border: none; font-weight: normal;}
 .prd_control .add_cart:hover{text-decoration:none;}
 .peta_logo{padding:0; margin:25px 0; list-style:none;}
-.peta_logo li{float:left; padding-right: 20px; width: 16.67%;}
+.peta_logo li{float:left; padding-right: 15px; width: 20%;}
 .peta_logo li img {width: 100%; height: auto;}
 .prd_overview{font-size:14px;font-weight:500;color:#666;line-height:24px;}
 .prd_overview strong{color: #333; font-weight: 600; font-family: "open sans";}
@@ -2597,6 +2597,11 @@ font-family: 'Raleway', Times, serif; font-weight: 400;}
 .fotorama__nav{max-height: 492px!important}
 .fotorama__stage.fotorama__shadows--top:before, .fotorama__nav.fotorama__shadows--top:before{display:none}
 .fotorama__stage.fotorama__shadows--bottom:after, .fotorama__nav.fotorama__shadows--bottom:after{display: none;}
+.fotorama__arr.fotorama__arr--next{right: 0!important}
+.fotorama--fullscreen .fotorama__stage__shaft{max-width:inherit!important;}
+.fotorama--fullscreen .fotorama__stage{max-width:inherit; max-height: inherit!important}
+.fotorama--fullscreen .fotorama__nav{max-height: inherit!important}
+
 
 
 /*======= End Of Blog ==========*/

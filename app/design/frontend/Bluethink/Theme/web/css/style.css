@@ -2594,6 +2594,9 @@ font-family: 'Raleway', Times, serif; font-weight: 400;}
 
 .fotorama__stage__shaft{max-width:492px!important;}
 .fotorama__stage{max-width:492px!important; max-height: 492px!important}
+.fotorama__nav{max-height: 492px!important}
+.fotorama__stage.fotorama__shadows--top:before, .fotorama__nav.fotorama__shadows--top:before{display:none}
+.fotorama__stage.fotorama__shadows--bottom:after, .fotorama__nav.fotorama__shadows--bottom:after{display: none;}
 
 
 /*======= End Of Blog ==========*/

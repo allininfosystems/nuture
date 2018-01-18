@@ -2496,6 +2496,12 @@ footer.footer .brand-slider .owl-dots {display: none;}
 .catalog-product-view .review-ratings~.review-details table tbody tr td {padding: 0; padding-right: 30px;}
 .catalog-product-view .review-ratings~.review-details table tbody tr td img {width: 55px; height: 55px; border-radius: 100%; overflow: hidden;
  margin-right: 0 !important;}
+ 
+ .catalog-product-view .product.media .magnifier-preview:not(.hidden){margin-left: -55px;}
+ 
+ #login-form .field.refferal input#refferal {display: none;}
+ .tabs-medias ul li p{position: relative;}
+ .tabs-medias ul li p.current:after {position: absolute; content: ""; width: 100%; height: 2px; background: #7d6170; bottom: 0px; left: 0;}
 
 
 /*============ End Of Product ============*/
@@ -2833,7 +2839,7 @@ span#back-to-top {right: 22px; width: 40px; height: 40px; background: #7e6674; z
 .sales-order-view .block-title{font-size:18px; font-family: 'Open Sans', sans-serif; font-weight: 700; padding:15px 0px; margin-bottom:15px;}
 .sales-order-view .order-date {width: 100%; float: left; font-family: 'Open Sans', sans-serif; padding: 0px 0px 15px;}
 .sales-order-view .order-date .ordernumber, .sales-order-view .order-date .orderdate {width: 25%; float: left;}
-.sales-order-view .order-date .orderdate{padding:0px 20px;}
+.sales-order-view .order-date .orderdate{padding:0px 0px;}
 .sales-order-view .block-order-details-view{width:100%; float:left; margin-bottom: 20px;}
 .sales-order-view .block-order-details-view .block-content{width:100%; float:left;}
 .sales-order-view .block-order-details-view .block-content .box{width: 25% !important; float: left !important; clear: none !important;
@@ -2871,7 +2877,7 @@ span#back-to-top {right: 22px; width: 40px; height: 40px; background: #7e6674; z
 .cms-puracy .content-para ul {list-style: circle;}
 .onebrand-border .col-sm-10 p {overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;}
 .images-mediaprods {float: left; padding-right: 20px; width: 42%; min-height: 128px;}
-.logos-mediacontent {float: left; width: 49%;}
+.logos-mediacontent {float: left; width: 49%; min-height: 143px;}
 .logos-mediacontent h4 {margin: 7px 0 7px 0; font-size: 14px; display: block; font-weight: 600;}
 .logos-mediacontent h6{margin: 2px 0; font-weight: 600; color: #6b4242;}
 .logos-mediacontent p strong {color: #7e6674; font-weight: 400; font-size: 12px; margin: 0; line-height: 14px; overflow: hidden; 
@@ -2881,7 +2887,7 @@ span#back-to-top {right: 22px; width: 40px; height: 40px; background: #7e6674; z
 .tabs-medias {width: 40%; margin: 30px auto; text-align: center; display: block;}
 .tabs-medias ul li {float: left; border-bottom: 1px solid #ddd; padding: 0; margin: 0; display: inline-block; width: 147px;}
 .tabs-medias ul li p {background: transparent; padding: 18px 6px; text-transform: capitalize; text-decoration: none; cursor: pointer;
- color: #666666; font-size: 16px; font-weight:600; margin: 0;}
+ color: #666666; font-size: 15px; font-weight:600; margin: 0; font-family: 'Open Sans', sans-serif;}
 .tabs-medias ul li.active {border-bottom: 2px solid #7e6674 !important;}
 .mediagallers {float: left; width: 100%; margin: 20px 0;}
 .mediagallers .col-md-6 {margin: 15px 14px; box-shadow: 0px 0px 2px 0px; width: 30%; padding: 10px;}

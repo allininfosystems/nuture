@@ -21,6 +21,10 @@ class DefaultInvoice extends InvoiceDefualt
         $lines = [];
 		$hsncode = $this->getHsncodeValue($item);
 		$taxableAmount=$item->getrow_total() - $item->getdiscount_amount();
+		
+		$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+		$customproduct = $objectManager->create('Magento\Catalog\Model\Product')->load($item->getId());
+
 		if($item->getExclPrice())
 		{
 			$subTotal = $item->getrow_total();
@@ -34,6 +38,11 @@ class DefaultInvoice extends InvoiceDefualt
 		}
 		
 		$namearra = $this->string->split( $item->getName(), 20);
+		
+		if($customproduct->getExpiryDate()){
+			$namearra[] = "Expiry Date-: ".date("d/m/Y",strtotime($customproduct->getExpiryDate()));
+		}
+		
 		$namearra[] = "HSN: ".$hsncode;
 		
         $lines[0] = [['text' => $namearra, 'feed' => 30]];

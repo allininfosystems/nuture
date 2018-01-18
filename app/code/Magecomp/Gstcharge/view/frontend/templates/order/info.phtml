@@ -39,7 +39,18 @@
             </div>
         </div>
 
-        <div class="box box-order-shipping-method">
+        
+    <?php endif; ?>
+
+        <div class="box box-order-billing-address">
+            <strong class="box-title">
+                <span><?php /* @escapeNotVerified */ echo __('Billing Address') ?></span>
+            </strong>
+            <div class="box-content">
+                <address><?php /* @escapeNotVerified */ echo $block->getFormattedAddress($_order->getBillingAddress()); ?></address>
+            </div>
+        </div>
+		<div class="box box-order-shipping-method">
             <strong class="box-title">
                 <span><?php /* @escapeNotVerified */ echo __('Shipping Method') ?></span>
             </strong>
@@ -49,16 +60,6 @@
             <?php else: ?>
                 <?php /* @escapeNotVerified */ echo __('No shipping information available'); ?>
             <?php endif; ?>
-            </div>
-        </div>
-    <?php endif; ?>
-
-        <div class="box box-order-billing-address">
-            <strong class="box-title">
-                <span><?php /* @escapeNotVerified */ echo __('Billing Address') ?></span>
-            </strong>
-            <div class="box-content">
-                <address><?php /* @escapeNotVerified */ echo $block->getFormattedAddress($_order->getBillingAddress()); ?></address>
             </div>
         </div>
         <div class="box box-order-billing-method">

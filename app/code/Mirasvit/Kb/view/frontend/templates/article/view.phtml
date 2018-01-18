@@ -417,16 +417,17 @@ $page_type = 3; //For knowledge hub page
 			<?php
 				$catSql = "SELECT * FROM mst_kb_category where category_id!=1 and is_active=1";
 				$allCats = $connection->fetchAll($catSql);
-			
+			    
 				foreach ($allCats as $category): ?>
-				    
-					<button class="accordion"><?= $category['name'] ?></button>
+				    <?php if($category['category_id']!=2) { ?>
+					<button class="accordion <?php echo $category['category_id']; ?>"><?= $category['name'] ?></button>
 					<div class="panel" style="display:none">
 						<p><a href="http://demo.demotoday.info/nuture/blog/post/what-happens-at-the-mid-pregnancy-ultrasound">What Happens At The Mid-Pregnancy Ultrasound</a></p>
 						<p><a href="http://demo.demotoday.info/nuture/blog/post/why-you-won-t-be-seeing-baby-pictures-at-the-ob">Why You Won’t Be Seeing Baby Pictures At The OB</a></p>
 						<p><a href="http://demo.demotoday.info/nuture/blog/post/this-gyno-made-this-silliest-mistake">This gyno made this silliest mistake</a></p>
 						<p><a href="http://demo.demotoday.info/nuture/blog/post/how-to-make-labor-hurt-less_2">test</a></p>
 					</div>
+					<?php } ?>
 				<?php endforeach ?>
             </div>
         </div>

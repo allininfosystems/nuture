@@ -12,7 +12,7 @@
             </p>
 
             <input type="hidden" name="remove-points" id="remove-points" data-bind="value: isRemovePoints"/>
-
+            <div class="five-hundred">Spend reward points in multiple of 500 only</div> 
             <div class="input-box">
                 <input type="text" class="input-text" id="points_amount" name="points_amount"
                     data-bind='
@@ -26,7 +26,6 @@
                 />
                 <label for="points_amount"><!-- ko i18n: 'Enter amount of points to spend'--><!-- /ko --></label>
             </div>
-
             <div class="buttons-container">
                 <button type="button" class="button" data-bind="click: rewardsFormSubmit.bind($data, false)">
                     <span><!-- ko i18n: 'Apply Points'--><!-- /ko --></span>

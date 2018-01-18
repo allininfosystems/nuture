@@ -55,7 +55,7 @@ abstract class PrintAction extends \Magento\Backend\App\Action
                 $pdf = $this->_objectManager->create('Magento\Sales\Model\Order\Pdf\Invoice')->getPdf([$invoice]);
                 $date = $this->_objectManager->get('Magento\Framework\Stdlib\DateTime\DateTime')->date('Y-m-d_H-i-s');
                 return $this->_fileFactory->create(
-                    'invoice' . $date . '.pdf',
+                    'invoice-'. "0000000$invoiceId-" . $date . '.pdf',
                     $pdf->render(),
                     DirectoryList::VAR_DIR,
                     'application/pdf'

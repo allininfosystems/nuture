@@ -72,7 +72,8 @@ class Index extends \Magento\Framework\App\Action\Action {
   }
 
   protected function registerPageLimit($request) {
-    $page_limit = $this->getPageLimit($request);
+    /*$page_limit = $this->getPageLimit($request);*/
+    $page_limit = 64;
     $this->_registry->register(\WIO\Forum\Helper\Constant::WIO_FORUM_LIMIT_KEY_REGISTER, $page_limit);
   }
 

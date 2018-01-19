@@ -40,7 +40,7 @@ class DefaultInvoice extends InvoiceDefualt
 		$namearra = $this->string->split( $item->getName(), 20);
 		
 		if($customproduct->getExpiryDate()){
-			$namearra[] = "Expiry Date-: ".date("d/m/Y",strtotime($customproduct->getExpiryDate()));
+			$namearra[] = "Expiry Date-: ".date("F Y",strtotime($customproduct->getExpiryDate()));
 		}
 		
 		$namearra[] = "HSN: ".$hsncode;

@@ -3,17 +3,21 @@
 namespace Nuluv\Freeshipamt\Model\Quote\Total;
 
 use Magento\Store\Model\ScopeInterface;
+use Magento\Checkout\Model\Session as CheckoutSession;
 
 class Freeshipamt extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal {
 
 	protected $helperData;
+	
+	protected $_checkoutSession;
 
 	protected $quoteValidator = null;
 
 	public function __construct(\Magento\Quote\Model\QuoteValidator $quoteValidator,
-		\Nuluv\Freeshipamt\Helper\Data $helperData) {
+		\Nuluv\Freeshipamt\Helper\Data $helperData, CheckoutSession $checkoutSession) {
 		$this -> quoteValidator = $quoteValidator;
 		$this -> helperData = $helperData;
+		$this->_checkoutSession = $checkoutSession;
 	} 
 
 	public function collect(\Magento\Quote\Model\Quote $quote,
@@ -27,8 +31,9 @@ class Freeshipamt extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
 		$enabled = $this -> helperData -> isModuleEnabledFreeshipamt();
 		$minimumOrderAmount = $this -> helperData -> getMinimumOrderAmountFreeshipamt();
 		$subtotal = $total -> getTotalAmount('subtotal');
-		if($quote->getShippingAddress()){
-			$getShippingRate = $quote->getShippingAddress()->getShippingAmount();
+		$shippingAddress = $this->_checkoutSession->getQuote()->getShippingAddress();
+		if($shippingAddress){
+			$getShippingRate = $shippingAddress->getShippingAmount();
 			if($getShippingRate > 0){
 				$freeshipamt = 0 - intval($getShippingRate);	
 			}else{

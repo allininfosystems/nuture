@@ -100,7 +100,7 @@ class ForgotPasswordPost extends \Magento\Customer\Controller\AbstractAccount
     protected function getSuccessMessage($email)
     {
         return __(
-            'We are sending you an email with instructions to reset your password. If you don’t receive an email check your junk folder',
+            'If there is an account associated with %1 you will receive an email with a link to reset your password.',
             $this->escaper->escapeHtml($email)
         );
     }

@@ -142,6 +142,7 @@ return array (
     'Mirasvit_Kb' => 1,
     'Mirasvit_Report' => 1,
     'Mirasvit_Rewards' => 1,
+    'Nuluv_Forgotpass' => 1,
     'Nuluv_Freeshipamt' => 1,
     'Nuluv_Liker' => 1,
     'Nuluv_Loginredirect' => 1,

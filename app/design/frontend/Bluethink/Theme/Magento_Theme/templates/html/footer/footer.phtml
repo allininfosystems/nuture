@@ -383,147 +383,6 @@ function newsletterSubmit(event){
     evt.currentTarget.className += " activele";
 }
 
-
-
-
-
-
-  jQuery(".storyelelinks").click(function(){
-    jQuery(".oneleft").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.oneleft').removeClass('slideleft');
-},1000);
-
-});
-
-
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".oneright").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.oneright').removeClass('slideleft');
-},1000);
-
-});
-
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".innerright").toggleClass('slideright');
-
-    jQuery(".innerleft").toggleClass('slideright');
-
-      jQuery(".halftopdv").toggleClass('slidhalfrgt');
-
-});
-
-
-jQuery(".storyelelinks").click(function(){
-     setTimeout(function() {
-    jQuery('.totinr').removeClass('slideleft');
-},1000);
-
-});
-
-
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".totinr").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.totinr').removeClass('slideleft');
-},1000);
-
-});
-
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".onetopleft").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.onetopleft').removeClass('slideleft');
-},1000);
-
-});
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".onemd").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.onemd').removeClass('slideleft');
-},1000);
-
-});
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".twomd").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.twomd').removeClass('slideleft');
-},1000);
-
-});
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".onetopright").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.onetopright').removeClass('slideleft');
-},1000);
-
-});
-
-
-    
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div.tofive").toggleClass("slideleft");
-
-}, 2000);
-
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div.innerleft").toggleClass("slideright");
-
-}, 2000);
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div.halftopdv").toggleClass("slidhalfrgt");
-
-}, 2000);
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div.innerright").toggleClass("slideright");
-
-}, 2000);
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div.totinr").toggleClass("brf");
-
-}, 2000);
-
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div#All").addClass("showthis");
-
-}, 2000);
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div#All").removeClass("showthis");
-
-}, 2000);
-
-
-
-
 var myIndex = 0;
 carousel();
 
@@ -584,20 +443,174 @@ function openStory(condtionType) {
     document.getElementById(condtionType).style.display = "block";  
 }
 
+/*  */
 
- jQuery(function () {
-	jQuery('.tabs-medias li').click(function() {
-		jQuery(this).addClass('active').siblings().removeClass('active');
-	});
-})
+require(["jquery"],function(jQuery){
 
 
-jQuery(function () {
-    jQuery('.w3-bar button').click(function() {
-    jQuery(this).addClass('active').siblings().removeClass('active');
+			  jQuery(".storyelelinks").click(function(){
+				jQuery(".oneleft").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.oneleft').removeClass('slideleft');
+			},1000);
+
+			});
+
+
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".oneright").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.oneright').removeClass('slideleft');
+			},1000);
+
+			});
+
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".innerright").toggleClass('slideright');
+
+				jQuery(".innerleft").toggleClass('slideright');
+
+				  jQuery(".halftopdv").toggleClass('slidhalfrgt');
+
+			});
+
+
+			jQuery(".storyelelinks").click(function(){
+				 setTimeout(function() {
+				jQuery('.totinr').removeClass('slideleft');
+			},1000);
+
+			});
+
+
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".totinr").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.totinr').removeClass('slideleft');
+			},1000);
+
+			});
+
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".onetopleft").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.onetopleft').removeClass('slideleft');
+			},1000);
+
+			});
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".onemd").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.onemd').removeClass('slideleft');
+			},1000);
+
+			});
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".twomd").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.twomd').removeClass('slideleft');
+			},1000);
+
+			});
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".onetopright").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.onetopright').removeClass('slideleft');
+			},1000);
+
+			});
+
+
+    
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div.tofive").toggleClass("slideleft");
+
+			}, 2000);
+
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div.innerleft").toggleClass("slideright");
+
+			}, 2000);
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div.halftopdv").toggleClass("slidhalfrgt");
+
+			}, 2000);
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div.innerright").toggleClass("slideright");
+
+			}, 2000);
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div.totinr").toggleClass("brf");
+
+			}, 2000);
+
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div#All").addClass("showthis");
+
+			}, 2000);
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div#All").removeClass("showthis");
+
+			}, 2000);
+
+
+			
+			jQuery(function () {
+				jQuery('.tabs-medias li').click(function() {
+					jQuery(this).addClass('active').siblings().removeClass('active');
+				});
+			})
+
+
+			jQuery(function () {
+				jQuery('.w3-bar button').click(function() {
+				jQuery(this).addClass('active').siblings().removeClass('active');
+			});
+			})
+			
+			
+			jQuery("div.main").toggleClass("content-para");
+			
+			//Custom Code Start
+			jQuery(document).mouseup(function(e)
+			{
+				var container = jQuery("#suggestion");
+
+				// if the target of the click isn't the container nor a descendant of the container
+				if (!container.is(e.target) && container.has(e.target).length === 0) 
+				{
+					container.hide();
+				}
+			});
+			//Custom Code End
 });
-})
 
-
- jQuery("div.main").toggleClass("content-para");
 </script>

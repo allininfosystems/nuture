@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="synchronize" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Synchronize</label>
+        <field id="zohocrm_sync_all" translate="button_label" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+            <button_label>Sync All Data Now</button_label>
+            <attribute type="button_url">zohocrm/queue/all</attribute>
+            <frontend_model>Magenest\ZohocrmIntegration\Block\System\Config\Form\Button\Button</frontend_model>
+        </field>
+        <field id="number_record" type="select" translate="button_label" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Zoho CRM Edition</label>
+            <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\Edition</source_model>
+            <tooltip>Setup Record Number Sync</tooltip>
+            <config_path>zohocrm/sync/number</config_path>
+        </field>
+    </group>
+
+</include>

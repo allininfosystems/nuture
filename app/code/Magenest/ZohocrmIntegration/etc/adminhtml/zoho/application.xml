@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="config" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+
+        <label>Setup</label>
+        <field id="email" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Email</label>
+            <tooltip>Enter email of ZohoCRM</tooltip>
+            <config_path>zohocrm/config/email</config_path>
+        </field>
+        <field id="passwd" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Password</label>
+            <frontend_model>Magenest\ZohocrmIntegration\Block\System\Config\Form\Field\Password</frontend_model>
+            <tooltip>Enter password of ZohoCRM</tooltip>
+            <config_path>zohocrm/config/passwd</config_path>
+        </field>
+        <field id="get_auth_token" translate="button_label" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+            <button_label>Get Auth Token</button_label>
+            <frontend_model>Magenest\ZohocrmIntegration\Block\Adminhtml\System\Config\GetAuth</frontend_model>
+            <tooltip>Click this button to get Auth Tokens automatically</tooltip>
+        </field>
+        <field id="auth_token" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Auth Token</label>
+            <frontend_model>Magenest\ZohocrmIntegration\Block\System\Config\Form\Field\Disable</frontend_model>
+            <config_path>zohocrm/config/auth_token</config_path>
+        </field>
+        <field id="save_report" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Save Report</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+    </group>
+</include>

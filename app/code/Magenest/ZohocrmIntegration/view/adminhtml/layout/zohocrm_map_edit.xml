@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ZohoCrm extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ZohoCrm
+ * @author ThaoPV
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="js">
+            <block class="Magenest\ZohocrmIntegration\Block\Adminhtml\Map\UpdateFields" template="Magenest_ZohocrmIntegration::map/update_fields.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

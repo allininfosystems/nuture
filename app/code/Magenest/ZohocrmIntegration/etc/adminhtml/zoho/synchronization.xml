@@ -1,0 +1,303 @@
+<?xml version="1.0" ?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="sync" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Synchronization Settings</label>
+        <group id="lead" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+               showInStore="1">
+            <label>Lead</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <tooltip><![CDATA[Synchronize to Leads when:
+                    <ol><li>Customer edit address information</li>
+                    <li>Customer register success</li>
+                    <li>Admin edit a customer</li>
+                    <li>Admin deleted a customer</li>
+                    </ol>]]></tooltip>
+                <config_path>zohocrm/zohocrm_sync/lead</config_path>
+            </field>
+            <field id="sync_mode" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sync Mode</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\SyncMode</source_model>
+                <config_path>zohocrm/sync/lead_mode</config_path>
+                <depends>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="cron_time" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Queue Auto Sync Time</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\CronTime</source_model>
+                <config_path>zohocrm/sync/lead_time</config_path>
+                <depends>
+                    <field id="sync_mode">1</field>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="zohocrm_sync_leads" translate="button_label" sortOrder="20" showInDefault="1"
+                   showInWebsite="0" showInStore="0">
+                <button_label>Sync All Leads Now</button_label>
+                <attribute type="button_url">zohocrm/queue/lead</attribute>
+                <frontend_model>Magenest\ZohocrmIntegration\Block\System\Config\Form\Button\Button</frontend_model>
+            </field>
+        </group>
+        <group id="account" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+               showInStore="1">
+            <label>Account</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <tooltip><![CDATA[Synchronize to Accounts when:
+                    <ol><li>Customer place order</li>
+                    <li>Admin create an order</li>
+                    <li>Admin edit a customer</li>
+                    <li>Admin deleted a customer</li>
+                    </ol>]]></tooltip>
+                <config_path>zohocrm/zohocrm_sync/account</config_path>
+            </field>
+            <field id="sync_mode" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sync Mode</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\SyncMode</source_model>
+                <config_path>zohocrm/sync/account_mode</config_path>
+                <depends>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="cron_time" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Queue Auto Sync Time</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\CronTime</source_model>
+                <config_path>zohocrm/sync/account_time</config_path>
+                <depends>
+                    <field id="sync_mode">1</field>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="zohocrm_sync_accounts" translate="button_label" sortOrder="20" showInDefault="1"
+                   showInWebsite="0" showInStore="0">
+                <button_label>Sync All Accounts Now</button_label>
+                <attribute type="button_url">zohocrm/queue/account</attribute>
+                <frontend_model>Magenest\ZohocrmIntegration\Block\System\Config\Form\Button\Button</frontend_model>
+            </field>
+        </group>
+        <group id="contact" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+               showInStore="1">
+            <label>Contact</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <tooltip><![CDATA[Synchronize to Contacts when:
+                    <ol><li>Customer edit address information</li>
+                    <li>Customer place order</li>
+                    <li>Admin create an order</li>
+                    <li>Admin edit a customer</li>
+                    <li>Admin deleted a customer</li>
+                    </ol>]]></tooltip>
+                <config_path>zohocrm/zohocrm_sync/contact</config_path>
+            </field>
+            <field id="sync_mode" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sync Mode</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\SyncMode</source_model>
+                <config_path>zohocrm/sync/contact_mode</config_path>
+                <depends>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="cron_time" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Queue Auto Sync Time</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\CronTime</source_model>
+                <config_path>zohocrm/sync/contact_time</config_path>
+                <depends>
+                    <field id="sync_mode">1</field>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="zohocrm_sync_contacts" translate="button_label" sortOrder="20" showInDefault="1"
+                   showInWebsite="0" showInStore="0">
+                <button_label>Sync All Contacts Now</button_label>
+                <attribute type="button_url">zohocrm/queue/contact</attribute>
+                <frontend_model>Magenest\ZohocrmIntegration\Block\System\Config\Form\Button\Button</frontend_model>
+            </field>
+        </group>
+        <group id="order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"
+               showInStore="1">
+            <label>Order</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <tooltip><![CDATA[Synchronize to Orders when:
+                    <ol>
+                    <li>Customer place order</li>
+                    <li>Admin create an order</li>
+                    </ol>]]></tooltip>
+                <config_path>zohocrm/zohocrm_sync/order</config_path>
+            </field>
+            <field id="sync_mode" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sync Mode</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\SyncMode</source_model>
+                <config_path>zohocrm/sync/order_mode</config_path>
+                <depends>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="cron_time" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Queue Auto Sync Time</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\CronTime</source_model>
+                <config_path>zohocrm/sync/order_time</config_path>
+                <depends>
+                    <field id="sync_mode">1</field>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="zohocrm_sync_orders" translate="button_label" sortOrder="20" showInDefault="1"
+                   showInWebsite="0" showInStore="0">
+                <button_label>Sync All Orders Now</button_label>
+                <attribute type="button_url">zohocrm/queue/order</attribute>
+                <frontend_model>Magenest\ZohocrmIntegration\Block\System\Config\Form\Button\Button</frontend_model>
+            </field>
+        </group>
+        <group id="invoice" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"
+               showInStore="1">
+            <label>Invoice</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <tooltip><![CDATA[Synchronize to Orders when:
+                    <ol>
+                    <li>Customer place order</li>
+                    <li>Admin create an order</li>
+                    </ol>]]></tooltip>
+                <config_path>zohocrm/zohocrm_sync/invoice</config_path>
+            </field>
+            <field id="sync_mode" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sync Mode</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\SyncMode</source_model>
+                <config_path>zohocrm/sync/invoice_mode</config_path>
+                <depends>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="cron_time" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Queue Auto Sync Time</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\CronTime</source_model>
+                <config_path>zohocrm/sync/invoice_time</config_path>
+                <depends>
+                    <field id="sync_mode">1</field>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="zohocrm_sync_invoice" translate="button_label" sortOrder="20" showInDefault="1"
+                   showInWebsite="0" showInStore="0">
+                <button_label>Sync All Invoice Now</button_label>
+                <attribute type="button_url">zohocrm/queue/invoice</attribute>
+                <frontend_model>Magenest\ZohocrmIntegration\Block\System\Config\Form\Button\Button</frontend_model>
+            </field>
+        </group>
+        <group id="product" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1"
+               showInStore="1">
+            <label>Product</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <tooltip><![CDATA[Synchronize to Products when:
+                    <ol><li>Customer edit address information</li>
+                    <li>Customer place order</li>
+                    <li>Admin create an order</li>
+                    <li>Admin save a product</li>
+                    <li>Admin deleted a product</li>
+                    </ol>]]></tooltip>
+                <config_path>zohocrm/zohocrm_sync/product</config_path>
+            </field>
+            <field id="sync_mode" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sync Mode</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\SyncMode</source_model>
+                <config_path>zohocrm/sync/product_mode</config_path>
+                <depends>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="cron_time" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Queue Auto Sync Time</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\CronTime</source_model>
+                <config_path>zohocrm/sync/product_time</config_path>
+                <depends>
+                    <field id="sync_mode">1</field>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="zohocrm_sync_product" translate="button_label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <button_label>Sync All Products Now</button_label>
+                <attribute type="button_url">zohocrm/queue/product</attribute>
+                <frontend_model>Magenest\ZohocrmIntegration\Block\System\Config\Form\Button\Button</frontend_model>
+            </field>
+        </group>
+        <group id="campaign" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+               showInStore="1">
+            <label>Campaign</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <tooltip><![CDATA[Synchronize Campaigns when:
+                    <ol>
+                    <li>Admin save a catalog rule price</li>
+                    </ol>]]></tooltip>
+                <config_path>zohocrm/zohocrm_sync/campaign</config_path>
+            </field>
+            <field id="sync_mode" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sync Mode</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\SyncMode</source_model>
+                <config_path>zohocrm/sync/campaign_mode</config_path>
+                <depends>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="cron_time" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Queue Auto Sync Time</label>
+                <source_model>Magenest\ZohocrmIntegration\Model\Config\Source\CronTime</source_model>
+                <config_path>zohocrm/sync/campaign_time</config_path>
+                <depends>
+                    <field id="sync_mode">1</field>
+                    <field id="enable">1</field>
+                </depends>
+                <validate>required-entry</validate>
+            </field>
+            <field id="zohocrm_sync_campaigns" translate="button_label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <button_label>Sync All Campaigns Now</button_label>
+                <attribute type="button_url">zohocrm/queue/campaign</attribute>
+                <frontend_model>Magenest\ZohocrmIntegration\Block\System\Config\Form\Button\Button</frontend_model>
+            </field>
+        </group>
+        <group id="subscriber" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1"
+               showInStore="1">
+            <label>Subscriber</label>
+            <field id="subscriber" translate="label comment" type="select" sortOrder="70" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <tooltip><![CDATA[Synchronize Subscriber to Leads when:
+                    <ol>
+                    <li>Customer register Subscriber</li>
+                    </ol>]]></tooltip>
+                <config_path>zohocrm/sync/subscriber</config_path>
+            </field>
+        </group>
+    </group>
+</include>

@@ -119,25 +119,20 @@
 <h3>Trending Searches</h3>
 <div class="tags">
 <?php 
-     $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
-     $_productCollection = $productCollection->create()->addAttributeToSelect('*')->addAttributeToFilter('product_tags', array('neq' => ''))->load();
+	 $variables = $objectManager->create('Magento\Variable\Model\Variable');
+	 $tagvalue = $variables->loadByCode('tagfooter')->getPlainValue();
+     $tagcoll=explode(',', $tagvalue);
 	 $alltag=array();
-	 if (count($_productCollection)>0){ 
-		  foreach ($_productCollection as $_product){
-			  $product_tags=$_product->getProductTags();
-			  $tagcoll=explode(',', $product_tags);
-			  if(count($tagcoll)>0){
-				  foreach($tagcoll as $tag){
-					  $tag = ltrim($tag);
-					  if(!in_array($tag,$alltag)){
-						  $alltag[]=$tag;
-					      echo '<a href="'.$baseurl.'tag/'.urlencode(preg_replace('/\-{1,}/', '-', preg_replace('/\s{1,}/', '-', $tag))).'.html">'.$tag.'</a>';
-					  }
-					  
-				  }
+	 if(count($tagcoll)>0){
+		  foreach($tagcoll as $tag){
+			  $tag = ltrim($tag);
+			  if(!in_array($tag,$alltag)){
+				  $alltag[]=$tag;
+				  echo '<a href="'.$baseurl.'tag/'.urlencode(preg_replace('/\-{1,}/', '-', preg_replace('/\s{1,}/', '-', $tag))).'.html">'.$tag.'</a>';
 			  }
+			  
 		  }
-     }
+	  }
  ?>
 </div>
 </div>
@@ -614,3 +609,4 @@ require(["jquery"],function(jQuery){
 });
 
 </script>
+<script type="text/javascript"> var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"48540a57ae038e45dce600664b4c7609ae4a90813ebb3ca5dc77bbfc31b06bb495fb663a0da22210bd0444a98669376b", values:{},ready:function(){}}; var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true; s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);d.write("<div id='zsiqwidget'></div>"); </script>

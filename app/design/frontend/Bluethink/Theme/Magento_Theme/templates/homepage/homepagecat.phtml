@@ -133,7 +133,7 @@ if ($customerSession->isLoggedIn()) {
 												<?php endif; ?>												
                                             </div>
                                             <div class="product-item-details">
-                                                <h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php $namelen=strlen($product->getName()); if($namelen>60){ echo substr($product->getName(), 0, 60).'...'; }else{ echo $product->getName(); } ?></a></h5>
+                                                <h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php $namelen=strlen($product->getName()); if($namelen>40){ echo substr($product->getName(), 0, 40).'...'; }else{ echo $product->getName(); } ?></a></h5>
 												
                                                 <?php
                                                 $brand = $product->getResource()->getAttribute('product_brand')->getFrontend()->getValue($product);
@@ -234,7 +234,7 @@ if ($customerSession->isLoggedIn()) {
 												<?php endif; ?>
 											</div>
 											<div class="product-item-details">
-												<h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php $namelen=strlen($product->getName()); if($namelen>60){ echo substr($product->getName(), 0, 60).'...'; }else{ echo $product->getName(); } ?></a></h5>
+												<h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php $namelen=strlen($product->getName()); if($namelen>40){ echo substr($product->getName(), 0, 40).'...'; }else{ echo $product->getName(); } ?></a></h5>
 												<?php
 												$brand = $product->getResource()->getAttribute('product_brand')->getFrontend()->getValue($product);
 												if (isset($brand) && !empty($brand)) {
@@ -322,7 +322,7 @@ if ($customerSession->isLoggedIn()) {
 												<?php endif; ?>
 											</div>
 											<div class="product-item-details">
-												<h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php $namelen=strlen($product->getName()); if($namelen>60){ echo substr($product->getName(), 0, 60).'...'; }else{ echo $product->getName(); } ?></a></h5>
+												<h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php $namelen=strlen($product->getName()); if($namelen>40){ echo substr($product->getName(), 0, 40).'...'; }else{ echo $product->getName(); } ?></a></h5>
 												<?php
 												$brand = $product->getResource()->getAttribute('product_brand')->getFrontend()->getValue($product);
 												if (isset($brand) && !empty($brand)) {
@@ -403,7 +403,7 @@ if ($customerSession->isLoggedIn()) {
 												<?php endif; ?>
                                                                                                                                                 </div>
                                                                                                                                                 <div class="product-item-details">
-                                                                                                                                                    <h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php $namelen=strlen($product->getName()); if($namelen>60){ echo substr($product->getName(), 0, 60).'...'; }else{ echo $product->getName(); } ?></a></h5>
+                                                                                                                                                    <h5><a href="<?php echo $product->getProductUrl(); ?>" class="product-item-link"><?php $namelen=strlen($product->getName()); if($namelen>40){ echo substr($product->getName(), 0, 40).'...'; }else{ echo $product->getName(); } ?></a></h5>
                                                                                                                                                     <?php
                                                                                                                                                     $brand = $product->getResource()->getAttribute('product_brand')->getFrontend()->getValue($product);
                                                                                                                                                     if (isset($brand) && !empty($brand)) {

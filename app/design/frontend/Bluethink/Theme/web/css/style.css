@@ -287,10 +287,11 @@ p.head-small {font-size: 15px; color: #ababab; font-family: 'Sofia', cursive; di
  border-width: 15px 15px 0 0; border-color: #333 transparent transparent transparent;}
 .product-box {width: 100%; height: auto; display: block;}
 .product-filter-slider .owl-carousel .item {animation: fading 2s;}
-.product-box .product-image {width: 100%; height: auto; display: block; border: 1px solid #eee; height: 268px;}
-.product-box .product-image > a {display: block; padding: 0px; width: 100%; position: relative; height: 100%;}
-.product-box .product-image a img {position: absolute; top: 0; left: 0; width: auto; padding: 10px; max-height: 100%; right: 0; bottom: 0; 
- margin: auto; max-width: 100%;}
+.product-box .product-image {width: 100%; height: auto; display: block; border: 1px solid #eee; /* height: 268px; */}
+.product-image-photo{position:relative;}
+.product-box .product-image > a {display: block; padding: 20px; width: 100%; position: relative; /* height: 100%; */}
+/* .product-box .product-image a img {position: absolute; top: 0; left: 0; width: auto; padding: 10px; max-height: 100%; right: 0; bottom: 0; 
+ margin: auto; max-width: 100%;} */
 .tab-content {display: none;}
 .tab-content.current {display: inherit;}
 .product-box .product-details {width: 100%; height: auto; text-align: left;}
@@ -1903,7 +1904,6 @@ nav.navigation ul.left-nav > li:nth-child(3) .megamenu{left: 0;}
 .page-layout-1column .product-info-main {width: 100% !important;}
 .page-layout-1column .product.media {width: 100% !important;}
 .fotorama__wrap--slide .fotorama__stage__frame{margin-left: 0; width: 100%;}
-.products-grid .product-item{ width: 100%;}
 .orderby{margin: 5px 0;}
 .link-box ul li a{margin: 8px 0;}
 .modal-box {width: 95%; height: 451px; z-index: 9999999; top: 100px !important;}
@@ -2426,7 +2426,8 @@ font-family: 'Raleway', Times, serif; font-weight: 400;}
 .bottomcommentBox-cls div.default-cmt__content__cmt-content .img-section {float: left; border-radius: 100%; margin-right: 27px;}
 .bottomcommentBox-cls div.default-cmt__content__cmt-content .img-section img{border-radius: 100%;  width: 60px; height: 60px !important;}
 .post-sharing-button.social-main-cls {float: right;}
-.fotorama__stage__shaft{max-width:492px!important;}
+
+/* .fotorama__stage__shaft{max-width:492px!important;}
 .fotorama__stage{max-width:492px!important; max-height: 492px!important}
 .fotorama__nav{max-height: 492px!important}
 .fotorama__stage.fotorama__shadows--top:before, .fotorama__nav.fotorama__shadows--top:before{display:none}
@@ -2434,7 +2435,7 @@ font-family: 'Raleway', Times, serif; font-weight: 400;}
 .fotorama__arr.fotorama__arr--next{right: 0!important}
 .fotorama--fullscreen .fotorama__stage__shaft{max-width:inherit!important;}
 .fotorama--fullscreen .fotorama__stage{max-width:inherit; max-height: inherit!important}
-.fotorama--fullscreen .fotorama__nav{max-height: inherit!important}
+.fotorama--fullscreen .fotorama__nav{max-height: inherit!important} */
 
 /*======= End Of Blog ==========*/
 
@@ -3206,6 +3207,19 @@ section.moment-slide, .inner-moment-slide{height: auto;}
 
 /*======= End Of Blog =========*/
 
+
+/*=========== Product Page ============*/
+
+.storelisting .alsolike-products .reletedprod .owl-nav,.storelisting .alsolike-products .reletedprod .owl-dots{display:none;}
+.catalog-product-view .product-box .product-details{text-align:left;}
+.catalog-product-view .prd_detail-blog > .blog-list > .blog-item:nth-child(2n+1) {clear: left;}
+.catalog-product-view .knowledgehub-container{margin-bottom: 30px;}
+.catalog-product-view .fotorama__stage {max-width: 100% !important; max-height: inherit;}
+.catalog-product-view .fotorama__stage .fotorama__stage__shaft {max-width: 100% !important;}
+
+/*======= End Of Product Page =========*/
+
+
 /*======== Cart Page =========*/
 
 .cart-container .form-cart{width: 100%!important} 
@@ -3244,8 +3258,7 @@ section.moment-slide, .inner-moment-slide{height: auto;}
 select.custom_select{padding-left: 0;}
 .page-products .toolbar-products .orderby span{font-size: 14px; font-weight: bold;}
 .page-products .orderby select.custom_select {font-size: 14px;}
-.column.main .product-items {margin-left: 0;}
-.column.main .product-item {padding-left: 0;}
+
 .products-grid .product-item {margin-bottom: 30px;}
 .page-products.catalog-category-view #layered-filter-block{width:100%;}
 .top-wrap .free-shipping {display: none;}
@@ -3302,6 +3315,14 @@ nav.navigation .cart-search {right: 70px;}
 .search-bar form input.search-input{width: 90%;}
 .product-info-price .prd_title {font-size: 16px; line-height: 24px;}
 .product-info-main .magebuzz-social .earnpoint p{margin-bottom:10px;}
+
+
+/*======= Category Page ======*/
+
+.product-item-details h5{font-size: 13px; line-height: 19px;}
+.product-box .product-image > a{padding: 10px 0;}
+
+/*== End Of Category Page ===*/
 
 /*======= Knowledge Hub ======*/
 

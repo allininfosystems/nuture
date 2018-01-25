@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ZohoCrm extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ZohoCrm
+ * @author ThaoPV
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_register_success">
+        <observer name="zohocrm_register" instance="Magenest\ZohocrmIntegration\Observer\Customer\Register"/>
+    </event>
+    <event name="customer_address_save_commit_after">
+        <observer name="zohocrm_updateCustomer" instance="ZohocrmIntegration\ZohoCrm\Observer\Customer\Update"/>
+    </event>
+    <event name="sales_order_save_commit_after">
+        <observer name="zohocrm_syncOrder" instance="Magenest\ZohocrmIntegration\Observer\SalesOrder\Create"/>
+    </event>
+    <event name="sales_order_invoice_save_commit_after">
+        <observer name="zohocrm_syncInvoice" instance="Magenest\ZohocrmIntegration\Observer\Invoice\Create"/>
+    </event>
+    <event name="controller_action_predispatch_newsletter">
+        <observer name="zohocrm_syncSubscriber" instance="Magenest\ZohocrmIntegration\Observer\Customer\Subscriber"/>
+    </event>
+</config>

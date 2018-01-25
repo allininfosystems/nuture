@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ZohoCrm extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ZohoCrm
+ * @author ThaoPV
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_delete_commit_after">
+        <observer name="zohocrm_deleteCustomer" instance="Magenest\ZohocrmIntegration\Observer\Customer\Delete"/>
+    </event>
+    <event name="adminhtml_customer_save_after">
+        <observer name="zohocrm_updateCustomer" instance="Magenest\ZohocrmIntegration\Observer\Customer\Edit"/>
+    </event>
+    <event name="catalog_product_save_after">
+        <observer name="zohocrm_syncProduct" instance="Magenest\ZohocrmIntegration\Observer\Product\Update"/>
+    </event>
+    <event name="catalog_product_delete_commit_after">
+        <observer name="zohocrm_deleteProduct" instance="Magenest\ZohocrmIntegration\Observer\Product\Delete"/>
+    </event>
+    <event name="sales_order_save_commit_after">
+        <observer name="zohocrm_syncOrder" instance="Magenest\ZohocrmIntegration\Observer\SalesOrder\Create"/>
+    </event>
+    <event name="catalogrule_rule_save_commit_after">
+        <observer name="zohocrm_syncCampaign" instance="Magenest\ZohocrmIntegration\Observer\Campaign\Update"/>
+    </event>
+    <event name="sales_order_invoice_save_commit_after">
+        <observer name="zohocrm_syncInvoice" instance="Magenest\ZohocrmIntegration\Observer\Invoice\Create"/>
+    </event>
+</config>

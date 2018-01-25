@@ -326,6 +326,7 @@ if ($request->getFullActionName() != 'cms_index_index') {
 				nav:true,
 				mouseDrag: true,
 				dots: true,
+				autoplay: true,
 				responsive:{
 					0:{ items:1 },
 					600:{ items:1 },
@@ -372,7 +373,7 @@ if ($request->getFullActionName() != 'cms_index_index') {
 
                 if (st <= 34) {
                     sticky.removeClass('fixed');
-					heading.removeClass('fixed');
+					//heading.removeClass('fixed');
                 } else {
                     sticky.addClass('fixed');					
                 }
@@ -387,4 +388,7 @@ if ($request->getFullActionName() != 'cms_index_index') {
 
 .blogimage{overflow: hidden; height: 215px;}
 .cart-box {visibility: visible; opacity: 1;}
+#search_mini_form .search-submit-btn{
+	display: none;
+}
 </style>

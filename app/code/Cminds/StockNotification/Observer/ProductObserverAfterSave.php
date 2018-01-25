@@ -43,16 +43,26 @@ class ProductObserverAfterSave implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
+		$prod=$observer->getEvent()->getData('product');
+		$ptype=$prod->getTypeId();
         $stockData = $observer->getEvent()->getData('product')->getStockData();
         $currentStatus = (bool)$stockData['is_in_stock'];
 
         if ($currentStatus === true
             && $currentStatus !== $this->checkPreviousProductStatus()
         ) {
-            $this->eventManager->dispatch(
+			if($ptype=='bundle'){
+				$this->eventManager->dispatch(
+                'cminds_stocknotification_product_is_salable',
+                ['product_id' => $prod->getId()]
+              );
+			}else{
+				$this->eventManager->dispatch(
                 'cminds_stocknotification_product_is_salable',
                 ['product_id' => $stockData['product_id']]
-            );
+              );
+			}
+            
         }
     }
 

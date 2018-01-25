@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ZohocrmIntegration extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ZohocrmIntegration
+ * @author ThaoPV
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenest_ZohocrmIntegration::zohocrm" title="Integration" module="Magenest_ZohocrmIntegration" sortOrder="60" resource="Magenest_ZohocrmIntegration::zohocrm"/>
+        <add id="Magenest_ZohocrmIntegration::mapping" title="Field Mapping" module="Magenest_ZohocrmIntegration" sortOrder="10" parent="Magenest_ZohocrmIntegration::zohocrm" action="zohocrm/map/index" resource="Magenest_ZohocrmIntegration::mapping"/>
+        <add id="Magenest_ZohocrmIntegration::report" title="View Report" module="Magenest_ZohocrmIntegration" sortOrder="20" parent="Magenest_ZohocrmIntegration::zohocrm" action="zohocrm/report/index" resource="Magenest_ZohocrmIntegration::report"/>
+        <add id="Magenest_ZohocrmIntegration::queue" title="Queue" module="Magenest_ZohocrmIntegration" sortOrder="30" parent="Magenest_ZohocrmIntegration::zohocrm" action="zohocrm/queue/index" resource="Magenest_ZohocrmIntegration::queue"/>
+        <add id="Magenest_ZohocrmIntegration::config" title="Configuration" module="Magenest_ZohocrmIntegration" sortOrder="40" parent="Magenest_ZohocrmIntegration::zohocrm" action="adminhtml/system_config/edit/section/zohocrm" resource="Magenest_ZohocrmIntegration::config"/>
+    </menu>
+</config>

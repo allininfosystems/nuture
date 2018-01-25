@@ -1,0 +1,18 @@
+@zohocrm-icons-admin__font-name-path: 'Magenest_ZohocrmIntegration::fonts/icomoon';
+@zohocrm-icons-admin__font-name : 'ZohocrmIntegration';
+
+.lib-font-face(
+  @family-name: @zohocrm-icons-admin__font-name,
+  @font-path: @zohocrm-icons-admin__font-name-path,
+  @font-weight: normal,
+  @font-style: normal
+);
+
+.admin__menu .item-zohocrm.parent.level-0 > a:before,
+.admin__menu .item-zohocrm.level-0 > a:before {
+  font-family: @zohocrm-icons-admin__font-name;
+  font-size: 5.2rem;
+  line-height: 2px;
+  content: "\e900";
+  padding-top: 5px;
+}

@@ -673,6 +673,7 @@ class Frontend extends Template
 				$resource        = $objectManager->get('Magento\Framework\App\ResourceConnection');
                 $connection      = $resource->getConnection(); 
 				$customerId=$comment['entity_id'];
+				$createdDate = date("F d, Y", strtotime($comment['created_at']));
 				$sql = "SELECT * FROM customer_entity where entity_id='".$customerId."' ";
 				$sresult = $connection->fetchAll($sql);
 				$imgurl=$avturl.'defaultimg.png';
@@ -702,19 +703,8 @@ class Frontend extends Template
 								<p>' . $comment['content'] . '</p>
 							</div>
 							<div class="cmt-row__cmt-interactions interactions">
-								<div class="interactions__btn-actions">
-									<a class="interactions__btn-actions action btn-like" data-cmt-id="'
-                    . $comment['comment_id'] . '">' . __('Like') . '</a>
-									<a class="interactions__btn-actions action btn-reply" data-cmt-id="'
-                    . $comment['comment_id'] . '">' . __('Reply') . '</a>
-									<a class="interactions__btn-actions count-like">
-										<i class="fa fa-thumbs-up" aria-hidden="true"></i>
-										<span class="count-like__like-text">'
-                    . $countLikes . '</span>
-									</a>
-								</div>
 								<div class="interactions__cmt-createdat">
-									<span>' . $comment['created_at'] . '</span>
+									<span>' . $createdDate . '</span>
 								</div>
 							</div>';
                 if ($comment['has_reply']) {

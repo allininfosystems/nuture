@@ -1,0 +1,40 @@
+<?php
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ZohocrmIntegration extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ZohocrmIntegration
+ * @author ThaoPV
+ */
+?>
+<script>
+    require([
+        "Magenest_ZohocrmIntegration/js/fields",
+        "domReady!"
+    ], function (Fields) {
+        var fields = new Fields({url : '<?php echo $this->getUpdateUrl()?>'});
+    });
+</script>
+<script>
+    require(["jquery"], function(jQuery){
+        jQuery("#updateallfields").click(function(){
+            var url = '<?php echo $this->getUpdateAllFields(); ?>';
+            jQuery.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    form_key: FORM_KEY
+                },
+                showLoader: true,
+                success: function(){
+                    alert('Update success');
+                }
+            });
+        });
+    });
+</script>

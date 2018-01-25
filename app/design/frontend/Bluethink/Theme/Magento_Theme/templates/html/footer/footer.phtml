@@ -119,25 +119,20 @@
 <h3>Trending Searches</h3>
 <div class="tags">
 <?php 
-     $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
-     $_productCollection = $productCollection->create()->addAttributeToSelect('*')->addAttributeToFilter('product_tags', array('neq' => ''))->load();
+	 $variables = $objectManager->create('Magento\Variable\Model\Variable');
+	 $tagvalue = $variables->loadByCode('tagfooter')->getPlainValue();
+     $tagcoll=explode(',', $tagvalue);
 	 $alltag=array();
-	 if (count($_productCollection)>0){ 
-		  foreach ($_productCollection as $_product){
-			  $product_tags=$_product->getProductTags();
-			  $tagcoll=explode(',', $product_tags);
-			  if(count($tagcoll)>0){
-				  foreach($tagcoll as $tag){
-					  $tag = ltrim($tag);
-					  if(!in_array($tag,$alltag)){
-						  $alltag[]=$tag;
-					      echo '<a href="'.$baseurl.'tag/'.urlencode(preg_replace('/\-{1,}/', '-', preg_replace('/\s{1,}/', '-', $tag))).'.html">'.$tag.'</a>';
-					  }
-					  
-				  }
+	 if(count($tagcoll)>0){
+		  foreach($tagcoll as $tag){
+			  $tag = ltrim($tag);
+			  if(!in_array($tag,$alltag)){
+				  $alltag[]=$tag;
+				  echo '<a href="'.$baseurl.'tag/'.urlencode(preg_replace('/\-{1,}/', '-', preg_replace('/\s{1,}/', '-', $tag))).'.html">'.$tag.'</a>';
 			  }
+			  
 		  }
-     }
+	  }
  ?>
 </div>
 </div>
@@ -383,147 +378,6 @@ function newsletterSubmit(event){
     evt.currentTarget.className += " activele";
 }
 
-
-
-
-
-
-  jQuery(".storyelelinks").click(function(){
-    jQuery(".oneleft").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.oneleft').removeClass('slideleft');
-},1000);
-
-});
-
-
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".oneright").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.oneright').removeClass('slideleft');
-},1000);
-
-});
-
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".innerright").toggleClass('slideright');
-
-    jQuery(".innerleft").toggleClass('slideright');
-
-      jQuery(".halftopdv").toggleClass('slidhalfrgt');
-
-});
-
-
-jQuery(".storyelelinks").click(function(){
-     setTimeout(function() {
-    jQuery('.totinr').removeClass('slideleft');
-},1000);
-
-});
-
-
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".totinr").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.totinr').removeClass('slideleft');
-},1000);
-
-});
-
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".onetopleft").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.onetopleft').removeClass('slideleft');
-},1000);
-
-});
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".onemd").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.onemd').removeClass('slideleft');
-},1000);
-
-});
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".twomd").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.twomd').removeClass('slideleft');
-},1000);
-
-});
-
-jQuery(".storyelelinks").click(function(){
-    jQuery(".onetopright").toggleClass('slideleft');
-
-    setTimeout(function() {
-    jQuery('.onetopright').removeClass('slideleft');
-},1000);
-
-});
-
-
-    
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div.tofive").toggleClass("slideleft");
-
-}, 2000);
-
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div.innerleft").toggleClass("slideright");
-
-}, 2000);
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div.halftopdv").toggleClass("slidhalfrgt");
-
-}, 2000);
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div.innerright").toggleClass("slideright");
-
-}, 2000);
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div.totinr").toggleClass("brf");
-
-}, 2000);
-
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div#All").addClass("showthis");
-
-}, 2000);
-
-setInterval(function(){ 
-    //alert("Hello"); 
-    jQuery("div#All").removeClass("showthis");
-
-}, 2000);
-
-
-
-
 var myIndex = 0;
 carousel();
 
@@ -584,20 +438,175 @@ function openStory(condtionType) {
     document.getElementById(condtionType).style.display = "block";  
 }
 
+/*  */
 
- jQuery(function () {
-	jQuery('.tabs-medias li').click(function() {
-		jQuery(this).addClass('active').siblings().removeClass('active');
-	});
-})
+require(["jquery"],function(jQuery){
 
 
-jQuery(function () {
-    jQuery('.w3-bar button').click(function() {
-    jQuery(this).addClass('active').siblings().removeClass('active');
+			  jQuery(".storyelelinks").click(function(){
+				jQuery(".oneleft").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.oneleft').removeClass('slideleft');
+			},1000);
+
+			});
+
+
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".oneright").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.oneright').removeClass('slideleft');
+			},1000);
+
+			});
+
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".innerright").toggleClass('slideright');
+
+				jQuery(".innerleft").toggleClass('slideright');
+
+				  jQuery(".halftopdv").toggleClass('slidhalfrgt');
+
+			});
+
+
+			jQuery(".storyelelinks").click(function(){
+				 setTimeout(function() {
+				jQuery('.totinr').removeClass('slideleft');
+			},1000);
+
+			});
+
+
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".totinr").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.totinr').removeClass('slideleft');
+			},1000);
+
+			});
+
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".onetopleft").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.onetopleft').removeClass('slideleft');
+			},1000);
+
+			});
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".onemd").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.onemd').removeClass('slideleft');
+			},1000);
+
+			});
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".twomd").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.twomd').removeClass('slideleft');
+			},1000);
+
+			});
+
+			jQuery(".storyelelinks").click(function(){
+				jQuery(".onetopright").toggleClass('slideleft');
+
+				setTimeout(function() {
+				jQuery('.onetopright').removeClass('slideleft');
+			},1000);
+
+			});
+
+
+    
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div.tofive").toggleClass("slideleft");
+
+			}, 2000);
+
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div.innerleft").toggleClass("slideright");
+
+			}, 2000);
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div.halftopdv").toggleClass("slidhalfrgt");
+
+			}, 2000);
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div.innerright").toggleClass("slideright");
+
+			}, 2000);
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div.totinr").toggleClass("brf");
+
+			}, 2000);
+
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div#All").addClass("showthis");
+
+			}, 2000);
+
+			setInterval(function(){ 
+				//alert("Hello"); 
+				jQuery("div#All").removeClass("showthis");
+
+			}, 2000);
+
+
+			
+			jQuery(function () {
+				jQuery('.tabs-medias li').click(function() {
+					jQuery(this).addClass('active').siblings().removeClass('active');
+				});
+			})
+
+
+			jQuery(function () {
+				jQuery('.w3-bar button').click(function() {
+				jQuery(this).addClass('active').siblings().removeClass('active');
+			});
+			})
+			
+			
+			jQuery("div.main").toggleClass("content-para");
+			
+			//Custom Code Start
+			jQuery(document).mouseup(function(e)
+			{
+				var container = jQuery("#suggestion");
+
+				// if the target of the click isn't the container nor a descendant of the container
+				if (!container.is(e.target) && container.has(e.target).length === 0) 
+				{
+					container.hide();
+				}
+			});
+			//Custom Code End
 });
-})
 
-
- jQuery("div.main").toggleClass("content-para");
 </script>
+<script type="text/javascript"> var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"48540a57ae038e45dce600664b4c7609ae4a90813ebb3ca5dc77bbfc31b06bb495fb663a0da22210bd0444a98669376b", values:{},ready:function(){}}; var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true; s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);d.write("<div id='zsiqwidget'></div>"); </script>

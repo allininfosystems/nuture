@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ZohocrmIntegration extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ZohocrmIntegration
+ * @author CanhND
+ */
+?>
+<?php
+    /** @var $block \Magenest\ZohocrmIntegration\Block\System\Config\Form\Button\Button */
+?>
+<div class="actions button-container">
+    <a href="<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getButtonUrl()) ?>">
+        <button  class="button action-configure"
+                 type="button"
+                 data-role="<?php /* @escapeNotVerified */ echo $block->getHtmlId() ?>"
+                 id="<?php /* @escapeNotVerified */ echo $block->getHtmlId() ?>" disabled="disabled">
+            <span><?php /* @escapeNotVerified */ echo $block->escapeHtml($block->getButtonLabel()) ?></span>
+        </button>
+    </a>
+</div>

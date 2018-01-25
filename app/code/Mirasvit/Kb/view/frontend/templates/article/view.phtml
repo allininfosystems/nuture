@@ -112,7 +112,7 @@ $page_type = 3; //For knowledge hub page
 								/*echo '<pre>';
 								print_r($allComment);
 								echo '</pre>';*/
-								$createdDate = date("M d Y", strtotime($allComment['created_at']));
+								$createdDate = date("F d, Y", strtotime($allComment['created_at']));
 								$createdTime = date("h:i", strtotime($allComment['created_at']));
 								
 							$allLikes = $connection->fetchAll("select sum(likes) as totalLikes from mst_kb_comment_likes where comment_id=".$allComment['id']);
@@ -146,7 +146,7 @@ $page_type = 3; //For knowledge hub page
 									<p><?=$allComment['comment']?></p>
 								</div>
 								<div class="cmt-row__cmt-interactions interactions">
-									<div class="interactions__btn-actions">
+									<?php /* ?><div class="interactions__btn-actions">
 										<a class="interactions__btn-actions action btn-like" id="artical_likes<?=$allComment['id']?>" data-cmt-id="<?=$allComment['id']?>"><?=$totalLikes?> Likes</a>
 																				
 										<?php if($customerSession->isLoggedIn()) { ?>
@@ -166,8 +166,9 @@ $page_type = 3; //For knowledge hub page
 											<img src="<?=$mediaUrl ?>wysiwyg/ajax-loader.gif">
 										</div>
 									</div>
+							        <?php */ ?>
 									<div class="interactions__cmt-createdat">
-										<span><?=$createdDate ?> at <?=$createdTime ?></span>
+										<span><?=$createdDate ?> By <?=ucwords($allComment['name'])?></span>
 									</div>
 								</div>
 								<div class="cmt-row__reply-row row" style="display:none" id="reply_on_comment<?=$allComment['id']?>">

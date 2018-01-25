@@ -155,7 +155,7 @@ return array (
     'Plumrocket_ProductFilter' => 1,
     'SR_ReCaptcha' => 0,
     'SY_Avatar' => 1,
-    'Tawk_Widget' => 1,
+    'Tawk_Widget' => 0,
     'WIO_Forum' => 1,
     'Webinse_Barcode' => 1,
     'Webinse_Core' => 1,

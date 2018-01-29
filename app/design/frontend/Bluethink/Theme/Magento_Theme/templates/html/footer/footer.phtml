@@ -385,12 +385,48 @@ function carousel() {
     var i;
     var x = document.getElementsByClassName("storytabs");
     for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
+       x[i].style.display = "none";
+    }
+	var y = document.getElementsByClassName("innerright");
+	for (k = 0; k < y.length; k++) {
+	   document.getElementsByClassName("innerright")[k].classList.remove("slideright");
+    }
+	var half = document.getElementsByClassName("halftopdv");
+	for (l = 0; l < half.length; l++) {
+	   document.getElementsByClassName("halftopdv")[l].classList.remove("slidhalfrgt");
+    }
+	var inner = document.getElementsByClassName("innerleft");
+	for (m = 0; m < inner.length; m++) {
+	   document.getElementsByClassName("innerleft")[m].classList.remove("slideright");
+    }
+	var tofive = document.getElementsByClassName("tofive");
+	for (n = 0; n < tofive.length; n++) {
+	   document.getElementsByClassName("tofive")[n].classList.remove("slideleft");
+    }
+	var oneto = document.getElementsByClassName("onetopleft");
+	for (o = 0; o < oneto.length; o++) {
+	   document.getElementsByClassName("onetopleft")[o].classList.remove("slideleft");
     }
     myIndex++;
     if (myIndex > x.length) {myIndex = 1}    
     x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 4000); // Change image every 2 seconds
+    setTimeout(carousel, 12000); // Change image every 2 seconds
+	
+	for (k = 0; k < y.length; k++) {
+	   document.getElementsByClassName("innerright")[k].classList.add("slideright");
+    }
+	for (l = 0; l < half.length; l++) {
+	   document.getElementsByClassName("halftopdv")[l].classList.add("slidhalfrgt");
+    }
+	for (m = 0; m < inner.length; m++) {
+	   document.getElementsByClassName("innerleft")[m].classList.add("slideright");
+    }
+	for (n = 0; n < tofive.length; n++) {
+	   document.getElementsByClassName("tofive")[n].classList.add("slideleft");
+    }
+	for (o = 0; o < oneto.length; o++) {
+	   document.getElementsByClassName("onetopleft")[o].classList.add("slideleft");
+    }
 }
 
 function openCondtion(condtionType) {
@@ -528,55 +564,6 @@ require(["jquery"],function(jQuery){
 			},1000);
 
 			});
-
-
-    
-
-			setInterval(function(){ 
-				//alert("Hello"); 
-				jQuery("div.tofive").toggleClass("slideleft");
-
-			}, 2000);
-
-
-			setInterval(function(){ 
-				//alert("Hello"); 
-				jQuery("div.innerleft").toggleClass("slideright");
-
-			}, 2000);
-
-			setInterval(function(){ 
-				//alert("Hello"); 
-				jQuery("div.halftopdv").toggleClass("slidhalfrgt");
-
-			}, 2000);
-
-			setInterval(function(){ 
-				//alert("Hello"); 
-				jQuery("div.innerright").toggleClass("slideright");
-
-			}, 2000);
-
-			setInterval(function(){ 
-				//alert("Hello"); 
-				jQuery("div.totinr").toggleClass("brf");
-
-			}, 2000);
-
-
-			setInterval(function(){ 
-				//alert("Hello"); 
-				jQuery("div#All").addClass("showthis");
-
-			}, 2000);
-
-			setInterval(function(){ 
-				//alert("Hello"); 
-				jQuery("div#All").removeClass("showthis");
-
-			}, 2000);
-
-
 			
 			jQuery(function () {
 				jQuery('.tabs-medias li').click(function() {

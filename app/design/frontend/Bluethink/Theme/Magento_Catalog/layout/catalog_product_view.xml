@@ -126,7 +126,7 @@
                 <referenceBlock name="product.info.details">
                     <block class="Magento\Catalog\Block\Product\View" name="howtouse.tab" template="Magento_Catalog::tab/howtouse.phtml" group="detailed_info" >
                         <arguments>
-                            <argument translate="true" name="title" xsi:type="string">How To Use</argument>
+                            <argument translate="true" name="title" xsi:type="string">FAQs</argument>
                         </arguments>
                     </block>
                 </referenceBlock>

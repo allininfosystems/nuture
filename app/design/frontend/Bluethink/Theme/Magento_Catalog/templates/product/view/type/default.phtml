@@ -24,7 +24,7 @@
       $crossSellProducts = $_product->getCrossSellProducts(); 
       if (!empty($crossSellProducts)) {
 		echo '<select name="crosssell" onchange="crosssell(this.value);">';
-		echo '<option>Please select varient</option>';
+		echo '<option>Please select variants</option>';
 		foreach ($crossSellProducts as $crossSellProduct) {
 			$product = $objectManager->create('Magento\Catalog\Model\Product')->load($crossSellProduct->getId());
 			$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
